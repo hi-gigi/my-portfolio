@@ -4,6 +4,15 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-07 — Wordmark set to lowercase
+
+- Header wordmark changed from "Jiaqi Zhuo" to lowercase "jiaqi zhuo" (calmer,
+  reads better than run-together "jiaqizhuo", less loud than all-caps)
+- `<title>`, meta description and footer copyright still use proper-case
+  "Jiaqi Zhuo" — that's the name, not the wordmark treatment
+
+---
+
 ## 2026-09-07 — Mobile nav (collapsed dropdown)
 
 **Done**
