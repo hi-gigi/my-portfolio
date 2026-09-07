@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  YOUR PORTFOLIO — index.html
+  ============================================================
+  This is the only page for now. To change the words on your
+  site, edit the text between the tags below (the parts that
+  are NOT inside < >). If you break something, you can always
+  revert with git — ask Claude "undo my last change".
+
+  Quick map of this file:
+    1. <head>      — page title + links to the stylesheet
+    2. header      — your name and the top navigation
+    3. #intro      — the big hello at the top
+    4. #work       — your project cards (duplicate a card to add one)
+    5. #about      — a short bio
+    6. footer      — contact links
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- This shows in the browser tab. Change it to your name. -->
+  <title>Jiaqi Zhuo — Design Portfolio</title>
+  <meta name="description" content="Design portfolio of Jiaqi Zhuo." />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top">Jiaqi Zhuo</a>
+    <nav class="nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="mailto:hizhuojiaqi@gmail.com">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== INTRO ===================================== -->
+    <section id="intro" class="intro">
+      <p class="eyebrow">Product &amp; UX Designer</p>
+      <h1>
+        I design calm, usable products —
+        and I&rsquo;m building this site in the open.
+      </h1>
+      <p class="lede">
+        Currently exploring new roles. Below is a selection of work.
+        Reach me at
+        <a href="mailto:hizhuojiaqi@gmail.com">hizhuojiaqi@gmail.com</a>.
+      </p>
+    </section>
+
+    <!-- ===== SELECTED WORK ============================= -->
+    <!--
+      Each <article class="card"> is one project.
+      To add a project: copy one whole <article>...</article>
+      block and paste it below the last one, then edit the text.
+      To use a real image, drop the file into the assets/ folder
+      and change the src="" path on the <img> tag.
+    -->
+    <section id="work" class="work">
+      <h2 class="section-title">Selected work</h2>
+
+      <div class="card-grid">
+
+        <article class="card">
+          <div class="card-media" aria-hidden="true">01</div>
+          <div class="card-body">
+            <h3>Project One</h3>
+            <p>
+              One or two sentences on the problem, what you did,
+              and the outcome. Keep it short and specific.
+            </p>
+            <p class="card-meta">Role: Lead designer &middot; 2025</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media" aria-hidden="true">02</div>
+          <div class="card-body">
+            <h3>Project Two</h3>
+            <p>
+              One or two sentences on the problem, what you did,
+              and the outcome. Keep it short and specific.
+            </p>
+            <p class="card-meta">Role: UX &middot; 2024</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media" aria-hidden="true">03</div>
+          <div class="card-body">
+            <h3>Project Three</h3>
+            <p>
+              One or two sentences on the problem, what you did,
+              and the outcome. Keep it short and specific.
+            </p>
+            <p class="card-meta">Role: Product design &middot; 2024</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ==================================== -->
+    <section id="about" class="about">
+      <h2 class="section-title">About</h2>
+      <p>
+        Write a short paragraph here: who you are, how you work,
+        the kinds of problems you like, and what you&rsquo;re
+        looking for next.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> Jiaqi Zhuo</p>
+    <p class="footer-links">
+      <a href="mailto:hizhuojiaqi@gmail.com">Email</a>
+      <a href="https://github.com/hi-gigi">GitHub</a>
+      <!-- Add LinkedIn, Dribbble, etc. the same way -->
+    </p>
+  </footer>
+
+  <!-- Tiny script: keeps the footer year current automatically. -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+/* ============================================================
+   STYLES — styles.css
+   ============================================================
+   The easiest things to change are in the ":root" block right
+   below: colours, fonts, and the max page width. Change a value,
+   save, then refresh the browser to see it.
+
+   If a change looks wrong, ask Claude to revert it.
+   ============================================================ */
+
+:root {
+  /* ---- Colours ---- */
+  --bg:        #ffffff;   /* page background            */
+  --text:      #1a1a1a;   /* main text                  */
+  --muted:     #6b6b6b;   /* secondary / meta text      */
+  --accent:    #2b5cff;   /* links and highlights       */
+  --line:      #e6e6e6;   /* thin borders / dividers    */
+  --card-bg:   #f6f6f4;   /* project card background    */
+
+  /* ---- Type ---- */
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+
+  /* ---- Layout ---- */
+  --measure: 1080px;      /* max width of the content   */
+  --pad: 24px;            /* space from the screen edge */
+}
+
+/* ---- Dark mode: used automatically if the visitor's device
+        is set to dark. Delete this block to always stay light. ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #101012;
+    --text:    #f2f2f2;
+    --muted:   #a0a0a0;
+    --accent:  #7aa2ff;
+    --line:    #2a2a2e;
+    --card-bg: #1a1a1d;
+  }
+}
+
+/* ---- Base ---- */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Center every major block and cap its width */
+.site-header,
+main > section,
+.site-footer {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+
+/* ---- Header ---- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.wordmark {
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav a {
+  margin-left: 22px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.nav a:hover { color: var(--text); }
+
+/* ---- Intro ---- */
+.intro { padding-top: 48px; padding-bottom: 72px; }
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.intro h1 {
+  margin: 0 0 20px;
+  font-size: clamp(1.9rem, 5vw, 3.1rem);
+  max-width: 20ch;
+}
+
+.lede {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 55ch;
+}
+.lede a { color: var(--accent); }
+
+/* ---- Section headings ---- */
+.section-title {
+  margin: 0 0 28px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---- Work / cards ---- */
+.work { padding-bottom: 72px; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* The grey block with a number. Swap for an <img> when ready. */
+.card-media {
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: linear-gradient(135deg, var(--line), var(--card-bg));
+}
+.card-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-body { padding: 20px 22px 24px; }
+.card-body h3 { margin: 0 0 8px; font-size: 1.2rem; }
+.card-body p { margin: 0 0 10px; font-size: 0.98rem; color: var(--text); }
+
+.card-meta { color: var(--muted) !important; font-size: 0.88rem !important; }
+
+/* ---- About ---- */
+.about { padding-bottom: 72px; }
+.about p { max-width: 60ch; }
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+  padding-bottom: 56px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.site-footer p { margin: 0; }
+.footer-links a { margin-left: 18px; color: var(--muted); text-decoration: none; }
+.footer-links a:first-child { margin-left: 0; }
+.footer-links a:hover { color: var(--text); }
+
+/* ---- Small screens ---- */
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .site-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .nav a:first-child { margin-left: 0; }
+}
