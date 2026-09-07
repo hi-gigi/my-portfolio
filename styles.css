@@ -292,6 +292,13 @@ h1, h2, h3, h4 {
 .intro {
   padding-top: var(--space-7);
   padding-bottom: var(--space-9);
+
+  /* Hero type — deliberate one-off, NOT design-system tokens.
+     Tweak these to taste; nothing else in the site reads them. */
+  --hero-eyebrow-size: 0.95rem;                          /* base .eyebrow: 0.85rem */
+  --hero-title-size: clamp(1.85rem, 1rem + 3vw, 2.5rem); /* was clamp(1.9rem, 4.2vw, 2.75rem) */
+  --hero-title-leading: 1.1;                             /* base h1 line-height: 1.2 */
+  --hero-lede-size: clamp(1rem, 0.9rem + 0.5vw, 1.15rem); /* base .lede: 1.15rem flat — 16px floor, 18.4px ceiling */
 }
 
 .eyebrow {
@@ -300,12 +307,16 @@ h1, h2, h3, h4 {
   font-size: 0.85rem;
   color: var(--muted);
 }
+.intro .eyebrow {
+  font-size: var(--hero-eyebrow-size);
+}
 
 .intro h1 {
   margin: 0 0 var(--space-5);
   font-weight: 700;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  max-width: 20ch;
+  font-size: var(--hero-title-size);
+  line-height: var(--hero-title-leading);
+  max-width: 26ch;
 }
 
 .lede {
@@ -313,6 +324,9 @@ h1, h2, h3, h4 {
   font-size: 1.15rem;
   color: var(--muted);
   max-width: 55ch;
+}
+.intro .lede {
+  font-size: var(--hero-lede-size);
 }
 
 .intro-actions {

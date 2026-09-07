@@ -4,6 +4,19 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-07 — Hero copy is real now
+
+- eyebrow → "Product Designer & Generalist"
+- h1 → "8+ years in Enterprise B2B. Sharp in ambiguous, technical spaces —
+  move fast, think strategically, and build with AI."
+- lede → two lines: "Currently Senior UX Designer II @ Lucid Software" /
+  "M.S. Human-Computer Interaction, Indiana University Bloomington"
+- `.intro h1` retuned for the longer statement: font clamp max 3.2 → 2.75rem,
+  `max-width` 20 → 26ch (was wrapping to 5 tall lines)
+- Intro buttons unchanged (still See selected work / Email me)
+
+---
+
 ## 2026-09-07 — Wordmark set to lowercase
 
 - Header wordmark changed from "Jiaqi Zhuo" to lowercase "jiaqi zhuo" (calmer,
