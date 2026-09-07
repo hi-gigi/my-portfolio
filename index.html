@@ -65,16 +65,41 @@
         </svg>
       </button>
     </div>
-    <nav class="nav">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="mailto:hizhuojiaqi@gmail.com">Contact</a>
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+
+    <button type="button" class="nav-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+
+    <nav class="nav" id="primary-nav">
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="mailto:hizhuojiaqi@gmail.com">Contact</a>
+      </div>
       <a
         class="btn btn-primary nav-cta"
         href="assets/jiaqi-zhuo-resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
-      >Résumé</a>
+      >Résumé<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7M8 7h9v9" />
+        </svg><span class="sr-only"> (opens in a new tab)</span></a>
     </nav>
   </header>
 
@@ -214,6 +239,62 @@
       });
 
       syncLabel();
+    })();
+  </script>
+
+  <!-- Mobile nav: open / close the collapsed dropdown menu. -->
+  <script>
+    (function () {
+      var nav = document.getElementById("primary-nav");
+      var openBtn = document.querySelector(".nav-toggle");
+      var closeBtn = document.querySelector(".nav-close");
+      if (!nav || !openBtn) return;
+
+      var deskMQ = window.matchMedia("(min-width: 561px)");
+
+      function isOpen() { return nav.classList.contains("is-open"); }
+
+      function setOpen(open) {
+        nav.classList.toggle("is-open", open);
+        openBtn.setAttribute("aria-expanded", String(open));
+        document.body.classList.toggle("nav-open", open);
+        if (open) {
+          (closeBtn || nav).focus();
+        } else {
+          openBtn.focus();
+        }
+      }
+
+      openBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setOpen(true);
+      });
+      if (closeBtn) closeBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setOpen(false);
+      });
+
+      // Choosing a link closes the menu.
+      nav.addEventListener("click", function (e) {
+        if (e.target.closest("a")) setOpen(false);
+      });
+
+      // A click anywhere outside the open dropdown closes it.
+      document.addEventListener("click", function (e) {
+        if (isOpen() && !nav.contains(e.target) && !openBtn.contains(e.target)) {
+          setOpen(false);
+        }
+      });
+
+      // Escape closes it.
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && isOpen()) setOpen(false);
+      });
+
+      // Back up to desktop width: make sure the menu isn't left open.
+      deskMQ.addEventListener("change", function (e) {
+        if (e.matches) setOpen(false);
+      });
     })();
   </script>
 </body>

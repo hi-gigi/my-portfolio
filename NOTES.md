@@ -4,6 +4,30 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-07 — Mobile nav (collapsed dropdown)
+
+**Done**
+- At ≤560px the nav collapses to a hamburger icon button (☰) in the header;
+  it opens a full-width dropdown that hangs under the sticky header
+- Dropdown height wraps its content — the page stays visible below it, with a
+  drop shadow + `--tonal` bottom border to separate the layers
+- Closed dropdown is `pointer-events: none`, so the page below stays usable
+- "X" icon button sits in the exact header slot the hamburger used (same
+  32×32 spot); the two swap via `body.nav-open`, only one shows at a time
+- Drop shadow kept subtle: `0 8px 18px -8px rgba(0,0,0,.16)` + `--tonal` border
+- Links (Work / About / Contact) dropped from 1.9rem to 1.15rem, right-aligned,
+  Résumé CTA below
+- Desktop unchanged — `.nav-links` uses `display: contents` so the anchors
+  still flow into the inline flex row above the breakpoint
+- JS: `aria-expanded` + `aria-label` swap, click-outside to close, Esc to
+  close, tap-a-link to close, auto-close when resized to desktop
+- Removed the earlier body scroll-lock / `inert` (dropdown, not full overlay)
+- Reduced-motion: dropdown transition disabled
+- Reference also had a LinkedIn/Resume/Email row + a decorative ring — still
+  not built; Résumé is the single CTA for now
+
+---
+
 ## 2026-09-07 — Layout tweaks + résumé CTA
 
 **Done**
@@ -15,6 +39,7 @@ Running log of where things stand and what's next. Newest entry on top.
 - Primary "Résumé" CTA in the nav (after Contact), opens in a new tab
   → **needs the file at `assets/jiaqi-zhuo-resume.pdf`** (not added yet), or
     repoint the href at a hosted URL
+  → has a trailing ↗ icon + sr-only "(opens in a new tab)" text
 
 ---
 

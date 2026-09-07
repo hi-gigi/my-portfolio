@@ -75,6 +75,19 @@
 /* ---- Base ---- */
 * { box-sizing: border-box; }
 
+/* Visually hidden, still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   /* keep anchor links (#work, #about) clear of the sticky header */
   scroll-padding-top: var(--space-9);
@@ -175,8 +188,7 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  padding-top: var(--space-5);
-  padding-bottom: var(--space-5);
+  height: 72px; /* fixed bar height; content is centred */
   background: var(--bg);
   border-bottom: 1px solid var(--tonal);
 }
@@ -210,9 +222,18 @@ h1, h2, h3, h4 {
 }
 .nav a:hover { color: var(--text); }
 
+/* On desktop the links flow straight into the .nav flex row; the
+   Menu / Close buttons only exist for the mobile overlay. */
+.nav-links { display: contents; }
+.nav-toggle,
+.nav-close { display: none; }
+
 /* Primary CTA sitting in the nav — smaller than a page button.
    Selector is scoped to beat the generic `.nav a` colour/font rules. */
 .nav a.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   margin-left: var(--space-5);
   padding: var(--space-2) var(--space-4);
   font-family: var(--font-body);
@@ -220,6 +241,13 @@ h1, h2, h3, h4 {
   color: var(--bg);
 }
 .nav a.nav-cta:hover { color: var(--accent-text); }
+
+/* trailing "opens in a new tab" arrow */
+.nav-cta .ext-icon {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+}
 
 /* Dark / light toggle — a small supporting nav control, accent on hover only */
 .theme-toggle {
@@ -371,10 +399,91 @@ h1, h2, h3, h4 {
 .footer-links a:first-child { margin-left: 0; }
 .footer-links a:hover { color: var(--text); }
 
+/* ---- Collapsed nav (narrow screens) ---- */
+@media (max-width: 560px) {
+  /* Header stays a single row: brand on the left, hamburger on the right */
+  .nav-toggle,
+  .nav-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--tonal);
+    border-radius: var(--radius-btn);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-toggle:hover,
+  .nav-close:hover { border-color: var(--accent); }
+  .nav-toggle svg,
+  .nav-close svg { width: 18px; height: 18px; display: block; }
+
+  /* Hamburger and X occupy the same header slot — swap which one shows */
+  .nav-close { display: none; }
+  body.nav-open .nav-toggle { display: none; }
+  body.nav-open .nav-close { display: inline-flex; }
+
+  /* Nav becomes a full-width dropdown hanging under the header.
+     Height wraps its content, so the page stays visible below it. */
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-3);
+    /* tight top so the first link sits close under the Close button */
+    padding: var(--space-2) var(--pad) var(--space-5);
+    background: var(--bg);
+    border-bottom: 1px solid var(--tonal);
+    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.16);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  }
+  .nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1);
+  }
+  .nav-links a {
+    margin-left: 0;
+    padding: var(--space-2) 0;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--text);
+  }
+
+  .nav a.nav-cta {
+    margin-left: 0;
+    font-size: 0.9rem;
+    padding: var(--space-2) var(--space-4);
+  }
+}
+
+@media (max-width: 560px) and (prefers-reduced-motion: reduce) {
+  .nav { transition: none; }
+}
+
 /* ---- Small screens ---- */
 @media (max-width: 600px) {
   body { font-size: 17px; }
-  .site-header { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
-  .nav a:first-child { margin-left: 0; }
   .card-grid { grid-template-columns: 1fr; } /* stack tiles on narrow screens */
 }
