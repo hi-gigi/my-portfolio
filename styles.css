@@ -2,56 +2,93 @@
    STYLES — styles.css
    ============================================================
    The easiest things to change are in the ":root" block right
-   below: colours, fonts, and the max page width. Change a value,
-   save, then refresh the browser to see it.
+   below: colours, fonts, spacing, and the max page width.
+   Change a value, save, then refresh the browser to see it.
+
+   This file follows the Warm Stone design system:
+   warm muted stone background, coral accent used only for small
+   supporting moments (badges, hovers, dividers) — never the
+   loudest thing on the page.
 
    If a change looks wrong, ask Claude to revert it.
    ============================================================ */
 
 :root {
-  /* ---- Colours ---- */
-  --bg:        #ffffff;   /* page background            */
-  --text:      #1a1a1a;   /* main text                  */
-  --muted:     #6b6b6b;   /* secondary / meta text      */
-  --accent:    #2b5cff;   /* links and highlights       */
-  --line:      #e6e6e6;   /* thin borders / dividers    */
-  --card-bg:   #f6f6f4;   /* project card background    */
+  /* ---- Colours: Warm Stone ---- */
+  --bg:          #F4F2EE;  /* page background                     */
+  --text:        #221F1A;  /* main text                           */
+  --muted:       #746E64;  /* secondary / meta text               */
+  --tonal:       #E6E2D9;  /* secondary surface, one shade off bg */
+  --accent:      #FB9280;  /* coral pink — primary accent         */
+  --accent-alt:  #F76A6A;  /* light red — hover / emphasis accent */
+  --accent-text: #201F1C;  /* dark text used ON TOP of accent     */
+
+  /* Soft background washes (lighter end of the accent palette).
+     Only tuned for light mode — use sparingly. */
+  --wash-1: #FFF3DB;
+  --wash-2: #FFD6B9;
+  --wash-3: #FFB996;
 
   /* ---- Type ---- */
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-          Arial, sans-serif;
+  --font-heading: "Raleway", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body:    "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* ---- Layout ---- */
-  --measure: 1080px;      /* max width of the content   */
-  --pad: 24px;            /* space from the screen edge */
+  /* ---- Spacing scale (8px grid) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ---- Shape & layout ---- */
+  --radius:     8px;       /* cards (not full pill)               */
+  --radius-btn: 4px;       /* buttons — slightly tighter          */
+  --measure: 1080px;       /* max width of the content            */
+  --pad:     var(--space-5); /* space from the screen edge        */
 }
 
-/* ---- Dark mode: used automatically if the visitor's device
-        is set to dark. Delete this block to always stay light. ---- */
+/* ---- Dark mode ----
+   Applied automatically when the visitor's device is set to dark,
+   unless the page is explicitly forced light. The [data-theme]
+   hooks let a future toggle button override the device setting. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg:      #101012;
-    --text:    #f2f2f2;
-    --muted:   #a0a0a0;
-    --accent:  #7aa2ff;
-    --line:    #2a2a2e;
-    --card-bg: #1a1a1d;
+  :root:not([data-theme="light"]) {
+    --bg:    #1A1815;
+    --text:  #F2EFE9;
+    --muted: #A39C8E;
+    --tonal: #26221C;
   }
+}
+
+[data-theme="dark"] {
+  --bg:    #1A1815;
+  --text:  #F2EFE9;
+  --muted: #A39C8E;
+  --tonal: #26221C;
 }
 
 /* ---- Base ---- */
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font);
+  font-family: var(--font-body);
+  font-weight: 400;
   font-size: 18px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* Center every major block and cap its width */
@@ -63,136 +100,254 @@ main > section,
   padding-inline: var(--pad);
 }
 
-a { color: var(--accent); }
-a:hover { text-decoration: none; }
+/* Links: keep the text colour (coral-as-text fails contrast in
+   light mode) and carry the accent in the underline instead. */
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration-color: var(--accent-alt); }
 
-h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Buttons ----
+   Primary = monochrome (inverts between light/dark automatically).
+   Secondary = neutral tonal surface. Accent only shows on hover. */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+}
+.btn-primary:hover {
+  background: var(--accent-alt);
+  color: var(--accent-text);
+}
+
+.btn-secondary {
+  background: var(--tonal);
+  color: var(--text);
+}
+.btn-secondary:hover { border-color: var(--accent); }
+
+/* ---- Badge / tag: an accent-filled surface, always dark text ---- */
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-text);
+}
 
 /* ---- Header ---- */
 .site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
 }
 
 .wordmark {
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.05rem;
   text-decoration: none;
   color: var(--text);
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .nav a {
-  margin-left: 22px;
+  margin-left: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   text-decoration: none;
   color: var(--muted);
-  font-size: 0.95rem;
 }
 .nav a:hover { color: var(--text); }
 
+/* Dark / light toggle — a small supporting nav control, accent on hover only */
+.theme-toggle {
+  margin-left: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--tonal);
+  border-radius: var(--radius-btn);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.theme-toggle svg { width: 16px; height: 16px; display: block; }
+
+.btn:focus-visible,
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Show the icon for the mode you'd switch TO: moon in light, sun in dark */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
 /* ---- Intro ---- */
-.intro { padding-top: 48px; padding-bottom: 72px; }
+.intro {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-9);
+}
 
 .eyebrow {
-  margin: 0 0 12px;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   color: var(--muted);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 .intro h1 {
-  margin: 0 0 20px;
-  font-size: clamp(1.9rem, 5vw, 3.1rem);
+  margin: 0 0 var(--space-5);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   max-width: 20ch;
 }
 
 .lede {
-  margin: 0;
+  margin: 0 0 var(--space-6);
   font-size: 1.15rem;
   color: var(--muted);
   max-width: 55ch;
 }
-.lede a { color: var(--accent); }
 
-/* ---- Section headings ---- */
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* ---- Section headings (labels — set in mono, no all-caps) ---- */
 .section-title {
-  margin: 0 0 28px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.85rem;
   color: var(--muted);
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--tonal);
 }
 
 /* ---- Work / cards ---- */
-.work { padding-bottom: 72px; }
+.work { padding-bottom: var(--space-9); }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: var(--space-5);
 }
 
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  background: var(--tonal);
+  border: 1px solid var(--tonal);
+  border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease;
 }
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-}
+.card:hover { border-color: var(--accent); }
 
-/* The grey block with a number. Swap for an <img> when ready. */
+/* Placeholder panel — swap for an <img> when ready. */
 .card-media {
   aspect-ratio: 3 / 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--muted);
-  background: linear-gradient(135deg, var(--line), var(--card-bg));
+  background: var(--bg);
+  border-bottom: 1px solid var(--tonal);
 }
-.card-media img { width: 100%; height: 100%; object-fit: cover; }
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-.card-body { padding: 20px 22px 24px; }
-.card-body h3 { margin: 0 0 8px; font-size: 1.2rem; }
-.card-body p { margin: 0 0 10px; font-size: 0.98rem; color: var(--text); }
+.card-body { padding: var(--space-5); }
+.card-body h3 { margin: 0 0 var(--space-2); font-size: 1.2rem; }
+.card-body p { margin: 0 0 var(--space-3); font-size: 0.98rem; color: var(--text); }
 
-.card-meta { color: var(--muted) !important; font-size: 0.88rem !important; }
+.card-meta {
+  font-family: var(--font-mono);
+  color: var(--muted) !important;
+  font-size: 0.8rem !important;
+}
 
 /* ---- About ---- */
-.about { padding-bottom: 72px; }
+.about { padding-bottom: var(--space-9); }
 .about p { max-width: 60ch; }
 
 /* ---- Footer ---- */
 .site-footer {
-  border-top: 1px solid var(--line);
-  padding-top: 28px;
-  padding-bottom: 56px;
+  border-top: 1px solid var(--tonal);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-8);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: var(--space-3);
   color: var(--muted);
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
 }
 .site-footer p { margin: 0; }
-.footer-links a { margin-left: 18px; color: var(--muted); text-decoration: none; }
+.footer-links a {
+  margin-left: var(--space-4);
+  color: var(--muted);
+  text-decoration: none;
+}
 .footer-links a:first-child { margin-left: 0; }
 .footer-links a:hover { color: var(--text); }
 
 /* ---- Small screens ---- */
 @media (max-width: 600px) {
   body { font-size: 17px; }
-  .site-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .site-header { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
   .nav a:first-child { margin-left: 0; }
 }

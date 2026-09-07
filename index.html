@@ -26,7 +26,27 @@
   <title>Jiaqi Zhuo — Design Portfolio</title>
   <meta name="description" content="Design portfolio of Jiaqi Zhuo." />
 
+  <!-- Fonts: Raleway (headings), Inter (body), IBM Plex Mono (labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  />
+
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Set the colour theme before the page paints, so there's no flash. -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        if (saved === "dark" || saved === "light") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>
@@ -36,6 +56,17 @@
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="mailto:hizhuojiaqi@gmail.com">Contact</a>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
     </nav>
   </header>
 
@@ -50,9 +81,11 @@
       </h1>
       <p class="lede">
         Currently exploring new roles. Below is a selection of work.
-        Reach me at
-        <a href="mailto:hizhuojiaqi@gmail.com">hizhuojiaqi@gmail.com</a>.
       </p>
+      <div class="intro-actions">
+        <a class="btn btn-primary" href="#work">See selected work</a>
+        <a class="btn btn-secondary" href="mailto:hizhuojiaqi@gmail.com">Email me</a>
+      </div>
     </section>
 
     <!-- ===== SELECTED WORK ============================= -->
@@ -69,7 +102,7 @@
       <div class="card-grid">
 
         <article class="card">
-          <div class="card-media" aria-hidden="true">01</div>
+          <div class="card-media" aria-hidden="true"></div>
           <div class="card-body">
             <h3>Project One</h3>
             <p>
@@ -81,7 +114,7 @@
         </article>
 
         <article class="card">
-          <div class="card-media" aria-hidden="true">02</div>
+          <div class="card-media" aria-hidden="true"></div>
           <div class="card-body">
             <h3>Project Two</h3>
             <p>
@@ -93,7 +126,7 @@
         </article>
 
         <article class="card">
-          <div class="card-media" aria-hidden="true">03</div>
+          <div class="card-media" aria-hidden="true"></div>
           <div class="card-body">
             <h3>Project Three</h3>
             <p>
@@ -131,6 +164,49 @@
   <!-- Tiny script: keeps the footer year current automatically. -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Dark / light mode toggle in the top nav. -->
+  <script>
+    (function () {
+      var toggle = document.querySelector(".theme-toggle");
+      if (!toggle) return;
+
+      var mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function stored() {
+        try { return localStorage.getItem("theme"); } catch (e) { return null; }
+      }
+
+      function currentTheme() {
+        var attr = document.documentElement.getAttribute("data-theme");
+        if (attr === "dark" || attr === "light") return attr;
+        return mq.matches ? "dark" : "light";
+      }
+
+      function syncLabel() {
+        var isDark = currentTheme() === "dark";
+        toggle.setAttribute(
+          "aria-label",
+          isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+        toggle.setAttribute("aria-pressed", String(isDark));
+      }
+
+      toggle.addEventListener("click", function () {
+        var next = currentTheme() === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        syncLabel();
+      });
+
+      // Follow the OS setting as long as the visitor hasn't picked one.
+      mq.addEventListener("change", function () {
+        if (!stored()) syncLabel();
+      });
+
+      syncLabel();
+    })();
   </script>
 </body>
 </html>
