@@ -48,7 +48,7 @@
   /* ---- Shape & layout ---- */
   --radius:     8px;       /* cards (not full pill)               */
   --radius-btn: 4px;       /* buttons — slightly tighter          */
-  --measure: 1080px;       /* max width of the content            */
+  --measure: 1280px;       /* max width of the content (80rem)    */
   --pad:     var(--space-5); /* space from the screen edge        */
 }
 
@@ -74,6 +74,11 @@
 
 /* ---- Base ---- */
 * { box-sizing: border-box; }
+
+html {
+  /* keep anchor links (#work, #about) clear of the sticky header */
+  scroll-padding-top: var(--space-9);
+}
 
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
@@ -163,12 +168,23 @@ h1, h2, h3, h4 {
 
 /* ---- Header ---- */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  padding-top: var(--space-6);
-  padding-bottom: var(--space-6);
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+  background: var(--bg);
+  border-bottom: 1px solid var(--tonal);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
 .wordmark {
@@ -194,9 +210,19 @@ h1, h2, h3, h4 {
 }
 .nav a:hover { color: var(--text); }
 
+/* Primary CTA sitting in the nav — smaller than a page button.
+   Selector is scoped to beat the generic `.nav a` colour/font rules. */
+.nav a.nav-cta {
+  margin-left: var(--space-5);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--bg);
+}
+.nav a.nav-cta:hover { color: var(--accent-text); }
+
 /* Dark / light toggle — a small supporting nav control, accent on hover only */
 .theme-toggle {
-  margin-left: var(--space-5);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -283,7 +309,7 @@ h1, h2, h3, h4 {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* two tiles per row, max */
   gap: var(--space-5);
 }
 
@@ -350,4 +376,5 @@ h1, h2, h3, h4 {
   body { font-size: 17px; }
   .site-header { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
   .nav a:first-child { margin-left: 0; }
+  .card-grid { grid-template-columns: 1fr; } /* stack tiles on narrow screens */
 }

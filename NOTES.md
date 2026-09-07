@@ -4,6 +4,20 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-07 — Layout tweaks + résumé CTA
+
+**Done**
+- `--measure` 1080 → 1280px (wider centre container, 80rem)
+- Button radius 8 → 4px (`--radius-btn`); cards stay at 8px
+- Project grid: fixed 2 columns max, collapses to 1 under 600px
+- Sticky top nav — `position: sticky`, solid `--bg`, hairline bottom border,
+  `scroll-padding-top` so anchor links clear it; header padding trimmed to 24px
+- Primary "Résumé" CTA in the nav (after Contact), opens in a new tab
+  → **needs the file at `assets/jiaqi-zhuo-resume.pdf`** (not added yet), or
+    repoint the href at a hosted URL
+
+---
+
 ## 2026-09-07 — Dark / light toggle in the nav
 
 **Done**
