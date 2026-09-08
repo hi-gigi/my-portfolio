@@ -4,6 +4,84 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-07 — Fix: mobile hamburger opened then instantly closed
+
+**Bug** — tapping the hamburger did nothing. The header rendered the
+hamburger and the close button as *two separate elements*, swapped on
+`menu.isOpen`. Opening unmounted the hamburger, so `menu.triggerRef.current`
+went `null`. The same native click kept bubbling to the `document`
+outside-click listener that had just been attached; its guard
+`triggerRef.current?.contains(target)` was now `null`, so it treated the
+opening click as an outside click and called `close()`.
+
+**Fix (part 1)** — one persistent `.nav-toggle` button that only swaps its
+icon / `aria-label` and uses `menu.toggle`. The node stays mounted, so
+`triggerRef` stays live and the guard works. Dropped the `.nav-close` class +
+its CSS. `menu.open` is now unused but kept on the view-model (generic
+presenter API).
+
+**Fix (part 2) — the "2nd open shows nothing" bug.** `.nav` animated
+`visibility` in the same `transition` as `opacity`/`transform`
+(`transition: … visibility 0.2s ease`). On repeat open/close cycles the
+computed style got stuck: `.nav.is-open` resolved to `opacity: 0;
+visibility: hidden` even with the class applied and the CSSOM rule correct —
+the classic smooth-`visibility` transition trap. Now `visibility` is a `0s`
+step: instant on open (`… visibility 0s linear 0s`), delayed to after the
+fade on close (`… visibility 0s linear 0.28s`); only `opacity` + `transform`
+actually animate. Reduced-motion block also neutralises `.nav.is-open`.
+
+**Fix (part 3) — `useNavMenu` was fighting its own open.** Console logging
+caught `close()` being fired from the debounced `resize` handler right after
+each open: it ran on *every* `resize` event and re-checked
+`window.innerWidth >= 561`, so any stray resize (mobile URL-bar show/hide,
+devtools docking, zoom) slammed the menu shut. Also the outside-dismiss
+listener was on `document` `click`, which is prone to catching the very
+interaction that opened the menu.
+
+Rewrote the hook:
+- outside dismiss → `pointerdown`, and the listener is attached on a `0ms`
+  `setTimeout` so the opening tap can't be read back as an outside click
+- grow-to-desktop → `window.matchMedia("(min-width: 561px)")` `change`
+  event; only fires when the viewport *crosses* the breakpoint, never on
+  incidental resizes. Removed the `lodash/debounce` resize handler
+  (lodash is still a dep; nothing in `src/` imports it now).
+
+Verified: 8 consecutive toggle cycles at a 400px viewport all open cleanly
+(`opacity 1 / visible`); a plain `resize` event no longer closes it; outside
+`pointerdown` still dismisses.
+
+---
+
+## 2026-09-07 — Project tile iteration
+
+Reworked `ProjectCard` around a fixed element order: **thumbnail → title →
+description → labels**.
+
+- **Thumbnail is now inset**, not full-bleed. `.card` has `padding: @space-3`;
+  `.card-media` sits inside it with `calc(@radius - 2px)` corners (concentric
+  with the card) and `margin-bottom: @space-4`. Dropped the old
+  `border-bottom` + `overflow: hidden` on the card.
+- **Two media modes**, both optional per project:
+  - `image` — static; gets a `scale(1.04)` hover-zoom (gated behind
+    `prefers-reduced-motion: no-preference`)
+  - `video` — muted/loop/playsInline `<video>`; plays on card hover, resets on
+    leave, stays paused under reduced motion. `image` doubles as its poster.
+    Hover logic lives in `ProjectCard.presenter.ts` (`useCardVideo`).
+  - neither set → empty `--bg` panel (as before)
+- **Labels** replace the old `Role: X · year` line. `Project.labels: string[]`,
+  rendered as a `<ul class="card-labels">` of small mono pills (`--bg` fill on
+  the `--tonal` card). `content.ts` migrated: `role`/`year` → `labels` array.
+- Type change: `Project` drops `role`, `year`, `imageUrl`; adds `labels`,
+  `image`, `video`.
+
+No real thumbnails yet — drop files in `public/` (or `src/assets/`) and set
+`image` / `video` on each project in `content.ts`.
+
+Verified: `tsc -b --noEmit` clean, dev server renders both themes, hover border
++ grid stacking unchanged.
+
+---
+
 ## 2026-09-07 — Rebuilt as React + TypeScript + LESS
 
 Static HTML/CSS → **Vite + React 18 + TS**, styling in **LESS**. Same visual

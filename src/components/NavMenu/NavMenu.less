@@ -65,13 +65,19 @@
     visibility: hidden;
     transform: translateY(-8px);
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    // Animate opacity + transform only. `visibility` flips as an instant
+    // step — held `visible` until the fade-out finishes on close — so it
+    // never leaves the panel stuck mid-transition on a re-open.
+    transition: opacity @ease-slow, transform @ease-slow,
+      visibility 0s linear 0.28s;
 
     &.is-open {
       opacity: 1;
       visibility: visible;
       transform: none;
       pointer-events: auto;
+      transition: opacity @ease-slow, transform @ease-slow,
+        visibility 0s linear 0s;
     }
 
     .nav-links {
@@ -99,7 +105,8 @@
 }
 
 @media (max-width: @bp-nav-collapse) and (prefers-reduced-motion: reduce) {
-  .nav {
+  .nav,
+  .nav.is-open {
     transition: none;
   }
 }

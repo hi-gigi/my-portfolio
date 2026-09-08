@@ -1,18 +1,13 @@
 // ============================================================
 //  PRESENTER — collapsed nav menu
 //  Owns the open/close state for the mobile dropdown plus the
-//  dismissal behaviour (outside click, Escape, grow-to-desktop).
-//  lodash.debounce keeps the resize handler cheap — and doubles
-//  as a smoke test that the utility layer is wired up.
+//  dismissal behaviour (outside pointer-down, Escape, grow-to-desktop).
 // ============================================================
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import debounce from "lodash/debounce";
 
 /** One pixel past @bp-nav-collapse (560px) in tokens.less. */
 const DESKTOP_MIN_WIDTH = 561;
-
-const RESIZE_DEBOUNCE_MS = 150;
 
 export interface NavMenuViewModel {
   isOpen: boolean;
@@ -21,12 +16,13 @@ export interface NavMenuViewModel {
   toggle: () => void;
   /** Attach to the dropdown container so outside-clicks can be detected. */
   containerRef: React.RefObject<HTMLElement>;
-  /** Attach to the hamburger button so its own clicks are ignored. */
+  /** Attach to the trigger button so its own clicks are ignored. */
   triggerRef: React.RefObject<HTMLButtonElement>;
 }
 
 export function useNavMenu(): NavMenuViewModel {
   const [isOpen, setIsOpen] = useState(false);
+
   const containerRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -40,40 +36,45 @@ export function useNavMenu(): NavMenuViewModel {
     return () => document.body.classList.remove("nav-open");
   }, [isOpen]);
 
-  // Dismiss on outside click / Escape — only while open.
+  // Dismiss on outside pointer-down / Escape — only while open.
   useEffect(() => {
     if (!isOpen) return;
 
-    const onPointerDown = (event: MouseEvent) => {
-      const target = event.target as Node;
+    const onPointerDown = (event: Event) => {
+      const target = event.target as Node | null;
+      if (!target) return;
       if (containerRef.current?.contains(target)) return;
       if (triggerRef.current?.contains(target)) return;
-      close();
+      setIsOpen(false);
     };
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close();
+      if (event.key === "Escape") setIsOpen(false);
     };
 
-    document.addEventListener("click", onPointerDown);
+    // Attach on the next tick, so the same pointer-down that opened the
+    // menu (still mid-dispatch) is never read back as an outside click.
+    const timer = window.setTimeout(() => {
+      document.addEventListener("pointerdown", onPointerDown);
+    }, 0);
     document.addEventListener("keydown", onKeyDown);
+
     return () => {
-      document.removeEventListener("click", onPointerDown);
+      window.clearTimeout(timer);
+      document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [isOpen, close]);
+  }, [isOpen]);
 
-  // Collapse the menu once the viewport grows back to desktop width.
+  // Collapse the menu only when the viewport actually crosses back to
+  // desktop width — not on every incidental resize event.
   useEffect(() => {
-    const onResize = debounce(() => {
-      if (window.innerWidth >= DESKTOP_MIN_WIDTH) close();
-    }, RESIZE_DEBOUNCE_MS);
-
-    window.addEventListener("resize", onResize);
-    return () => {
-      onResize.cancel();
-      window.removeEventListener("resize", onResize);
+    const query = window.matchMedia(`(min-width: ${DESKTOP_MIN_WIDTH}px)`);
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setIsOpen(false);
     };
-  }, [close]);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
 
   return { isOpen, open, close, toggle, containerRef, triggerRef };
 }

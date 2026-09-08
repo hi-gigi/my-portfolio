@@ -25,32 +25,20 @@ export function Header({ wordmark, nav, resume }: HeaderProps) {
         <ThemeToggle isDark={theme.isDark} onToggle={theme.toggle} />
       </div>
 
-      {/* Hamburger and close share the same header slot — only one is
-          mounted at a time so they land in the exact same position. */}
-      {menu.isOpen ? (
-        <button
-          type="button"
-          className="nav-close"
-          aria-label="Close menu"
-          aria-expanded
-          aria-controls={NAV_ID}
-          onClick={menu.close}
-        >
-          <CloseIcon />
-        </button>
-      ) : (
-        <button
-          type="button"
-          className="nav-toggle"
-          aria-label="Open menu"
-          aria-expanded={false}
-          aria-controls={NAV_ID}
-          ref={menu.triggerRef}
-          onClick={menu.open}
-        >
-          <HamburgerIcon />
-        </button>
-      )}
+      {/* One persistent button — it only swaps its icon. Keeping the same
+          node mounted keeps `triggerRef` live, so the outside-click guard
+          can tell "clicked the toggle" from "clicked outside". */}
+      <button
+        type="button"
+        className="nav-toggle"
+        aria-label={menu.isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menu.isOpen}
+        aria-controls={NAV_ID}
+        ref={menu.triggerRef}
+        onClick={menu.toggle}
+      >
+        {menu.isOpen ? <CloseIcon /> : <HamburgerIcon />}
+      </button>
 
       <NavMenu
         id={NAV_ID}

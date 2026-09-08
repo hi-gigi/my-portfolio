@@ -37,7 +37,7 @@ Add logic to a component by creating `X/X.presenter.ts` and consuming it from `X
 
 `package.json` already carries:
 
-- **lodash** — used now for `debounce` in `useNavMenu`; import per-method (`lodash/debounce`) to keep the bundle small.
+- **lodash** — installed, not currently imported anywhere in `src/` (the old `useNavMenu` `debounce` was dropped for a `matchMedia` listener). If you need it, import per-method (`lodash/debounce`) to keep the bundle small.
 - **lottie-react** — installed, not yet used. Drop a Lottie JSON in `src/assets/` and render `<Lottie animationData={…} />` inside a view (keep the "should it play?" logic in a presenter).
 
 ## Deploy

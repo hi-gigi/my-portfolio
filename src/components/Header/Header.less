@@ -28,15 +28,13 @@
   color: var(--text);
 }
 
-// Hamburger / close icon buttons — only exist on narrow screens.
-.nav-toggle,
-.nav-close {
+// Hamburger / close toggle — only exists on narrow screens.
+.nav-toggle {
   display: none;
 }
 
 @media (max-width: @bp-nav-collapse) {
-  .nav-toggle,
-  .nav-close {
+  .nav-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
