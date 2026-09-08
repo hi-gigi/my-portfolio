@@ -1,0 +1,105 @@
+@import (reference) "../../styles/tokens.less";
+
+.nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  // On desktop the links flow straight into this flex row.
+  .nav-links {
+    display: contents;
+  }
+
+  a {
+    margin-left: @space-5;
+    font-family: @font-mono;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--muted);
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  // Résumé CTA — scoped tight to beat the generic `.nav a` rules.
+  a.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: @space-1;
+    margin-left: @space-5;
+    padding: @space-2 @space-4;
+    font-family: @font-body;
+    font-size: 0.85rem;
+    color: var(--bg);
+
+    &:hover {
+      color: var(--accent-text);
+    }
+  }
+}
+
+.ext-icon {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+}
+
+// ---- Collapsed: full-width dropdown under the header ----------
+@media (max-width: @bp-nav-collapse) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: @z-nav-dropdown;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: @space-3;
+    // tight top so the first link sits close under the close button
+    padding: @space-2 @pad @space-5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--tonal);
+    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.16);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: @space-1;
+    }
+
+    .nav-links a {
+      margin-left: 0;
+      padding: @space-2 0;
+      font-family: @font-heading;
+      font-weight: @weight-medium;
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+
+    a.nav-cta {
+      margin-left: 0;
+      font-size: 0.9rem;
+      padding: @space-2 @space-4;
+    }
+  }
+}
+
+@media (max-width: @bp-nav-collapse) and (prefers-reduced-motion: reduce) {
+  .nav {
+    transition: none;
+  }
+}

@@ -1,0 +1,108 @@
+// ============================================================
+//  DESIGN TOKENS — single source of truth
+// ============================================================
+//  HOW TO USE
+//  • Layout / type / motion / breakpoints are LESS @variables
+//    (resolved at build time). Import this file with (reference)
+//    and use them:  padding: @space-5;
+//  • Colours that flip between light / dark are CSS custom
+//    properties, emitted once from the palette below. Use them
+//    as:  color: var(--text);
+//  • Component .less files MUST NOT hardcode hex / px / rem for
+//    anything defined here — always go through a token.
+// ============================================================
+
+// ---- Raw palette — the ONLY place these hex values live ------
+@palette-bg-light: #f4f2ee;
+@palette-text-light: #221f1a;
+@palette-muted-light: #746e64;
+@palette-tonal-light: #e6e2d9;
+
+@palette-bg-dark: #1a1815;
+@palette-text-dark: #f2efe9;
+@palette-muted-dark: #a39c8e;
+@palette-tonal-dark: #26221c;
+
+@palette-accent: #fb9280;
+@palette-accent-alt: #f76a6a;
+@palette-accent-text: #201f1c;
+
+// Warm accent washes — light-mode tints, use sparingly
+@wash-1: #fff3db;
+@wash-2: #ffd6b9;
+@wash-3: #ffb996;
+
+// ---- Typography --------------------------------------------
+@font-heading: "Raleway", ui-sans-serif, system-ui, -apple-system, sans-serif;
+@font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+@font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+@weight-body: 400;
+@weight-medium: 500;
+@weight-semibold: 600;
+@weight-bold: 700;
+
+// ---- Spacing scale (8px grid) -----------------------------
+@space-1: 4px;
+@space-2: 8px;
+@space-3: 12px;
+@space-4: 16px;
+@space-5: 24px;
+@space-6: 32px;
+@space-7: 48px;
+@space-8: 64px;
+@space-9: 96px;
+
+// ---- Shape ------------------------------------------------
+@radius: 8px; // cards
+@radius-btn: 4px; // buttons
+
+// ---- Layout ---------------------------------------------
+@measure: 1280px; // max content width
+@pad: @space-5; // inline gutter
+@header-height: 72px;
+
+// ---- Breakpoints --------------------------------------
+@bp-nav-collapse: 560px; // header nav -> hamburger dropdown at/below this
+@bp-cards-stack: 600px; // project grid -> single column at/below this
+
+// ---- Elevation ---------------------------------------
+@z-header: 100;
+@z-nav-dropdown: 1;
+
+// ---- Motion ----------------------------------------
+@ease: 0.15s ease;
+@ease-slow: 0.28s ease;
+
+// ============================================================
+//  Runtime theme — emit CSS custom properties from the palette.
+//  These rules are suppressed when the file is @import (reference)'d,
+//  so they land in the bundle exactly once (via global.less).
+// ============================================================
+// NB: LESS 4 emits custom-property values verbatim — `@{name}`
+// interpolation is required to substitute a LESS variable here.
+:root {
+  --bg: @{palette-bg-light};
+  --text: @{palette-text-light};
+  --muted: @{palette-muted-light};
+  --tonal: @{palette-tonal-light};
+  --accent: @{palette-accent};
+  --accent-alt: @{palette-accent-alt};
+  --accent-text: @{palette-accent-text};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: @{palette-bg-dark};
+    --text: @{palette-text-dark};
+    --muted: @{palette-muted-dark};
+    --tonal: @{palette-tonal-dark};
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: @{palette-bg-dark};
+  --text: @{palette-text-dark};
+  --muted: @{palette-muted-dark};
+  --tonal: @{palette-tonal-dark};
+}

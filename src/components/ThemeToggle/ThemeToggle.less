@@ -1,0 +1,32 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--tonal);
+  border-radius: @radius-btn;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color @ease, border-color @ease;
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  &:focus-visible {
+    .focus-ring();
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+}

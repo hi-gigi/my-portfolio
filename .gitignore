@@ -7,3 +7,11 @@
 
 # OS thumbnails
 Thumbs.db
+
+# Node / Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+*.tsbuildinfo

@@ -1,0 +1,48 @@
+@import (reference) "../../styles/tokens.less";
+
+.card {
+  background: var(--tonal);
+  border: 1px solid var(--tonal);
+  border-radius: @radius;
+  overflow: hidden;
+  transition: border-color @ease;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+}
+
+// Placeholder panel — an <img> fills it once a project has one.
+.card-media {
+  aspect-ratio: 3 / 2;
+  background: var(--bg);
+  border-bottom: 1px solid var(--tonal);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.card-body {
+  padding: @space-5;
+
+  h3 {
+    margin: 0 0 @space-2;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin: 0 0 @space-3;
+    font-size: 0.98rem;
+    color: var(--text);
+  }
+}
+
+.card-meta {
+  font-family: @font-mono;
+  color: var(--muted) !important;
+  font-size: 0.8rem !important;
+}

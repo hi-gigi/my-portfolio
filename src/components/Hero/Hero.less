@@ -1,0 +1,50 @@
+@import (reference) "../../styles/tokens.less";
+
+.intro {
+  padding-top: @space-7;
+  padding-bottom: @space-9;
+
+  // Hero type — deliberate one-off, NOT global tokens. Tweak here;
+  // nothing else in the site reads these.
+  --hero-eyebrow-size: 0.95rem; // global .eyebrow is 0.85rem
+  --hero-title-size: clamp(1.85rem, 1rem + 3vw, 2.5rem);
+  --hero-title-leading: 1.1; // base h1 line-height is 1.2
+  --hero-title-weight: @{weight-semibold}; // base display weight is 700
+  --hero-lede-size: clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+}
+
+.eyebrow {
+  margin: 0 0 @space-3;
+  font-family: @font-mono;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.intro .eyebrow {
+  font-size: var(--hero-eyebrow-size);
+}
+
+.intro h1 {
+  margin: 0 0 @space-5;
+  font-weight: var(--hero-title-weight);
+  font-size: var(--hero-title-size);
+  line-height: var(--hero-title-leading);
+  max-width: 26ch;
+}
+
+.lede {
+  margin: 0 0 @space-6;
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 55ch;
+}
+
+.intro .lede {
+  font-size: var(--hero-lede-size);
+}
+
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: @space-3;
+}

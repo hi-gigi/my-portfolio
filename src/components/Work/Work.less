@@ -1,0 +1,17 @@
+@import (reference) "../../styles/tokens.less";
+
+.work {
+  padding-bottom: @space-9;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); // two tiles per row, max
+  gap: @space-5;
+}
+
+@media (max-width: @bp-cards-stack) {
+  .card-grid {
+    grid-template-columns: 1fr; // stack on narrow screens
+  }
+}

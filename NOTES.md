@@ -4,6 +4,52 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-07 — Rebuilt as React + TypeScript + LESS
+
+Static HTML/CSS → **Vite + React 18 + TS**, styling in **LESS**. Same visual
+design and behaviour, ported component by component.
+
+**Architecture** (see `ARCHITECTURE.md`)
+- MVP: `src/model/` (data + types), `src/presenters/` + `*.presenter.ts`
+  (logic hooks), `*.tsx` (views — no direct `window`/`document`/`localStorage`)
+- Presenters: `useTheme` (light/dark + persistence, replaces the old inline
+  scripts — pre-paint theme script still in `index.html`), `useNavMenu`
+  (dropdown open state + outside-click/Esc/resize dismissal, uses
+  `lodash/debounce`)
+- All copy now in `src/model/content.ts`
+
+**LESS tokens**
+- `src/styles/tokens.less` = single source. `@`-vars for compile-time values
+  (spacing/radius/fonts/breakpoints/z/motion), `var(--*)` custom properties
+  for the 7 themeable colours (emitted once via `global.less`)
+- Each component `.less` does `@import (reference) "…/tokens.less"` and uses
+  tokens only — no raw hex/px/rem for anything a token covers
+- Hero one-off type scale kept as scoped `--hero-*` props on `.intro`
+
+**Deploy model changed**
+- Was: Pages serving `index.html` from `main` root
+- Now: `.github/workflows/deploy.yml` builds `dist/` and deploys via Actions
+  (`npm ci` + `npm run build` → upload `dist` → deploy-pages)
+- **TODO in repo settings: Pages → Source → GitHub Actions**
+- `package-lock.json` committed; `vite.config.ts` `base: "/my-portfolio/"`
+
+**Verified locally** — `npm install`, `npm run build` (tsc + vite, clean),
+`npm run dev`: renders identically to the old static site, theme toggle +
+mobile dropdown + resize/Esc/outside-click dismissal all work.
+
+**Résumé** still expects `public/jiaqi-zhuo-resume.pdf` (not added).
+
+---
+
+## 2026-09-07 — Hero h1 weight 700 → 600
+
+- Added Raleway 600 to the Google Fonts load (was 500;700 → 500;600;700)
+- New `--hero-title-weight: 600` knob in the `.intro` hero block
+- Deviates from the design brief ("headings: 500 / 700") — one-off for the
+  hero only; nothing else uses 600. Revisit if it should be systematised.
+
+---
+
 ## 2026-09-07 — Hero copy is real now
 
 - eyebrow → "Product Designer & Generalist"

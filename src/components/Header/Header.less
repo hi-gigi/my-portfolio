@@ -1,0 +1,67 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: @z-header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: @space-4;
+  height: @header-height;
+  background: var(--bg);
+  border-bottom: 1px solid var(--tonal);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: @space-3;
+}
+
+.wordmark {
+  font-family: @font-heading;
+  font-weight: @weight-bold;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+// Hamburger / close icon buttons — only exist on narrow screens.
+.nav-toggle,
+.nav-close {
+  display: none;
+}
+
+@media (max-width: @bp-nav-collapse) {
+  .nav-toggle,
+  .nav-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--tonal);
+    border-radius: @radius-btn;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color @ease, color @ease;
+
+    &:hover {
+      border-color: var(--accent);
+    }
+
+    &:focus-visible {
+      .focus-ring();
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+  }
+}

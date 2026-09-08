@@ -1,302 +1,34 @@
-<!DOCTYPE html>
-<!--
-  ============================================================
-  YOUR PORTFOLIO — index.html
-  ============================================================
-  This is the only page for now. To change the words on your
-  site, edit the text between the tags below (the parts that
-  are NOT inside < >). If you break something, you can always
-  revert with git — ask Claude "undo my last change".
-
-  Quick map of this file:
-    1. <head>      — page title + links to the stylesheet
-    2. header      — your name and the top navigation
-    3. #intro      — the big hello at the top
-    4. #work       — your project cards (duplicate a card to add one)
-    5. #about      — a short bio
-    6. footer      — contact links
-  ============================================================
--->
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- This shows in the browser tab. Change it to your name. -->
-  <title>Jiaqi Zhuo — Design Portfolio</title>
-  <meta name="description" content="Design portfolio of Jiaqi Zhuo." />
+    <title>Jiaqi Zhuo — Design Portfolio</title>
+    <meta name="description" content="Design portfolio of Jiaqi Zhuo." />
 
-  <!-- Fonts: Raleway (headings), Inter (body), IBM Plex Mono (labels) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-  />
+    <!-- Fonts: Raleway (headings), Inter (body), IBM Plex Mono (labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
 
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Set the colour theme before the page paints, so there's no flash. -->
-  <script>
-    (function () {
-      try {
-        var saved = localStorage.getItem("theme");
-        if (saved === "dark" || saved === "light") {
-          document.documentElement.setAttribute("data-theme", saved);
-        }
-      } catch (e) {}
-    })();
-  </script>
-</head>
-
-<body>
-  <header class="site-header">
-    <div class="brand">
-      <a class="wordmark" href="#top">jiaqi zhuo</a>
-      <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-        </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-        </svg>
-      </button>
-    </div>
-    <button
-      type="button"
-      class="nav-toggle"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="primary-nav"
-    >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" aria-hidden="true">
-        <path d="M3 6h18M3 12h18M3 18h18" />
-      </svg>
-    </button>
-
-    <button type="button" class="nav-close" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" aria-hidden="true">
-        <path d="M6 6l12 12M18 6L6 18" />
-      </svg>
-    </button>
-
-    <nav class="nav" id="primary-nav">
-      <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="mailto:hizhuojiaqi@gmail.com">Contact</a>
-      </div>
-      <a
-        class="btn btn-primary nav-cta"
-        href="assets/jiaqi-zhuo-resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Résumé<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M7 17 17 7M8 7h9v9" />
-        </svg><span class="sr-only"> (opens in a new tab)</span></a>
-    </nav>
-  </header>
-
-  <main id="top">
-
-    <!-- ===== INTRO ===================================== -->
-    <section id="intro" class="intro">
-      <p class="eyebrow">Product Designer &amp; Generalist</p>
-      <h1>
-        8+ years in Enterprise B2B. Sharp in ambiguous, technical
-        spaces &mdash; move fast, think strategically, and build with AI.
-      </h1>
-      <p class="lede">
-        Currently Senior UX Designer II @ Lucid Software<br />
-        M.S. Human-Computer Interaction, Indiana University Bloomington
-      </p>
-      <div class="intro-actions">
-        <a class="btn btn-primary" href="#work">See selected work</a>
-        <a class="btn btn-secondary" href="mailto:hizhuojiaqi@gmail.com">Email me</a>
-      </div>
-    </section>
-
-    <!-- ===== SELECTED WORK ============================= -->
-    <!--
-      Each <article class="card"> is one project.
-      To add a project: copy one whole <article>...</article>
-      block and paste it below the last one, then edit the text.
-      To use a real image, drop the file into the assets/ folder
-      and change the src="" path on the <img> tag.
-    -->
-    <section id="work" class="work">
-      <h2 class="section-title">Selected work</h2>
-
-      <div class="card-grid">
-
-        <article class="card">
-          <div class="card-media" aria-hidden="true"></div>
-          <div class="card-body">
-            <h3>Project One</h3>
-            <p>
-              One or two sentences on the problem, what you did,
-              and the outcome. Keep it short and specific.
-            </p>
-            <p class="card-meta">Role: Lead designer &middot; 2025</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-media" aria-hidden="true"></div>
-          <div class="card-body">
-            <h3>Project Two</h3>
-            <p>
-              One or two sentences on the problem, what you did,
-              and the outcome. Keep it short and specific.
-            </p>
-            <p class="card-meta">Role: UX &middot; 2024</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-media" aria-hidden="true"></div>
-          <div class="card-body">
-            <h3>Project Three</h3>
-            <p>
-              One or two sentences on the problem, what you did,
-              and the outcome. Keep it short and specific.
-            </p>
-            <p class="card-meta">Role: Product design &middot; 2024</p>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ===== ABOUT ==================================== -->
-    <section id="about" class="about">
-      <h2 class="section-title">About</h2>
-      <p>
-        Write a short paragraph here: who you are, how you work,
-        the kinds of problems you like, and what you&rsquo;re
-        looking for next.
-      </p>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> Jiaqi Zhuo</p>
-    <p class="footer-links">
-      <a href="mailto:hizhuojiaqi@gmail.com">Email</a>
-      <a href="https://github.com/hi-gigi">GitHub</a>
-      <!-- Add LinkedIn, Dribbble, etc. the same way -->
-    </p>
-  </footer>
-
-  <!-- Tiny script: keeps the footer year current automatically. -->
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-  <!-- Dark / light mode toggle in the top nav. -->
-  <script>
-    (function () {
-      var toggle = document.querySelector(".theme-toggle");
-      if (!toggle) return;
-
-      var mq = window.matchMedia("(prefers-color-scheme: dark)");
-
-      function stored() {
-        try { return localStorage.getItem("theme"); } catch (e) { return null; }
-      }
-
-      function currentTheme() {
-        var attr = document.documentElement.getAttribute("data-theme");
-        if (attr === "dark" || attr === "light") return attr;
-        return mq.matches ? "dark" : "light";
-      }
-
-      function syncLabel() {
-        var isDark = currentTheme() === "dark";
-        toggle.setAttribute(
-          "aria-label",
-          isDark ? "Switch to light mode" : "Switch to dark mode"
-        );
-        toggle.setAttribute("aria-pressed", String(isDark));
-      }
-
-      toggle.addEventListener("click", function () {
-        var next = currentTheme() === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", next);
-        try { localStorage.setItem("theme", next); } catch (e) {}
-        syncLabel();
-      });
-
-      // Follow the OS setting as long as the visitor hasn't picked one.
-      mq.addEventListener("change", function () {
-        if (!stored()) syncLabel();
-      });
-
-      syncLabel();
-    })();
-  </script>
-
-  <!-- Mobile nav: open / close the collapsed dropdown menu. -->
-  <script>
-    (function () {
-      var nav = document.getElementById("primary-nav");
-      var openBtn = document.querySelector(".nav-toggle");
-      var closeBtn = document.querySelector(".nav-close");
-      if (!nav || !openBtn) return;
-
-      var deskMQ = window.matchMedia("(min-width: 561px)");
-
-      function isOpen() { return nav.classList.contains("is-open"); }
-
-      function setOpen(open) {
-        nav.classList.toggle("is-open", open);
-        openBtn.setAttribute("aria-expanded", String(open));
-        document.body.classList.toggle("nav-open", open);
-        if (open) {
-          (closeBtn || nav).focus();
-        } else {
-          openBtn.focus();
-        }
-      }
-
-      openBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        setOpen(true);
-      });
-      if (closeBtn) closeBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        setOpen(false);
-      });
-
-      // Choosing a link closes the menu.
-      nav.addEventListener("click", function (e) {
-        if (e.target.closest("a")) setOpen(false);
-      });
-
-      // A click anywhere outside the open dropdown closes it.
-      document.addEventListener("click", function (e) {
-        if (isOpen() && !nav.contains(e.target) && !openBtn.contains(e.target)) {
-          setOpen(false);
-        }
-      });
-
-      // Escape closes it.
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && isOpen()) setOpen(false);
-      });
-
-      // Back up to desktop width: make sure the menu isn't left open.
-      deskMQ.addEventListener("change", function (e) {
-        if (e.matches) setOpen(false);
-      });
-    })();
-  </script>
-</body>
+    <!-- Set the colour theme before first paint, so there is no flash. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          if (saved === "dark" || saved === "light") {
+            document.documentElement.setAttribute("data-theme", saved);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
