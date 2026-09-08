@@ -50,56 +50,82 @@ export const content: PortfolioContent = {
   },
 
   work: {
-    title: "Selected work",
-    projects: [
+    title: "Selected work · 2020–present",
+    groups: [
       {
-        id: "ai-search",
-        title: "Bringing AI-powered answers to document search",
-        blurb:
-          "Natural-language queries in, generative answers out — on Lucid's primary search surface.",
-        labels: ["AI", "Search", "0→1"],
+        label: "",
+        projects: [
+          {
+            id: "ai-search",
+            title: "Bringing AI-powered answers to document search",
+            blurb:
+              "Natural-language queries in, generative answers out — on Lucid's primary search surface.",
+            labels: ["AI", "Search", "0→1"],
+          },
+          {
+            id: "document-discovery",
+            title: "Document Discovery: search and audit across an org",
+            blurb:
+              "A security and compliance foundation that grew into a multi-million dollar add-on.",
+            labels: ["Security & Compliance", "Research & Strategy", "0→1"],
+          },
+          {
+            id: "license-request-justification",
+            title: "Justification on the license request flow",
+            blurb:
+              "+14.5% improvement in 7-day license approval rate — by giving admins the context to act.",
+            labels: ["Growth", "End-to-End", "A/B Test"],
+          },
+          {
+            id: "distributed-admin-controls",
+            title:
+              "(Coming soon) Distributed admin controls for Enterprise accounts",
+            blurb:
+              "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
+            labels: ["Systems Thinking", "Design Strategy", "0→1"],
+          },
+        ],
       },
       {
-        id: "document-discovery",
-        title: "Document Discovery: search and audit across an org",
-        blurb:
-          "A security and compliance foundation that grew into a multi-million dollar add-on.",
-        labels: ["Security & Compliance", "Research & Strategy", "0→1"],
-      },
-      {
-        id: "license-request-justification",
-        title: "Justification on the license request flow",
-        blurb:
-          "+14.5% improvement in 7-day license approval rate — by giving admins the context to act.",
-        labels: ["Growth", "End-to-End", "A/B Test"],
-      },
-      {
-        id: "distributed-admin-controls",
-        title: "(Coming soon) Distributed admin controls for Enterprise accounts",
-        blurb:
-          "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
-        labels: ["Systems Thinking", "Design Strategy", "0→1"],
-      },
-      {
-        id: "hasbro-pulse",
-        title: "Hasbro Pulse Mobile Experience",
-        blurb:
-          "UX Design Intern @ Hasbro — Digital Operations Team, 2019 Summer",
-        labels: ["Customer Facing Product", "Mobile Application", "Fan Community"],
-      },
-      {
-        id: "ibm-solution-gateway",
-        title: "IBM Solution Gateway",
-        blurb:
-          "UX Design Intern @ IBM — ISG Team, June 2018 to October 2018",
-        labels: ["Enterprise Software", "Web-based Application", "Content Management"],
+        label: "Internships · 2018–2019",
+        projects: [
+          {
+            id: "hasbro-pulse",
+            title: "Hasbro Pulse Mobile Experience",
+            blurb:
+              "UX Design Intern @ Hasbro — Digital Operations Team, 2019 Summer",
+            labels: [
+              "Customer Facing Product",
+              "Mobile Application",
+              "Fan Community",
+            ],
+          },
+          {
+            id: "ibm-solution-gateway",
+            title: "IBM Solution Gateway",
+            blurb:
+              "UX Design Intern @ IBM — ISG Team, June 2018 to October 2018",
+            labels: [
+              "Enterprise Software",
+              "Web-based Application",
+              "Content Management",
+            ],
+          },
+        ],
       },
     ],
   },
 
   about: {
     title: "About",
-    body: "Write a short paragraph here: who you are, how you work, the kinds of problems you like, and what you're looking for next.",
+    name: "Jiaqi",
+    pronunciation: "/JYAH-chee/",
+    body: [
+      "I'm most at home in ambiguity, and comfortable designing in technical, complex domains where the right answer isn't obvious yet.",
+      "I believe design is about solving problems — shifting how people work and live. I enjoy turning complexity into clarity and putting technology to use in inventive ways.",
+      "AI is part of how I think now, not just what I design for. I use it as a thinking partner — a designer who also builds with AI.",
+      "Outside of work, I'm happiest outdoors — hiking, skiing, or on the tennis court — and often behind a lens, capturing the beauty of nature and the small moments of everyday life.",
+    ],
   },
 
   footer: {

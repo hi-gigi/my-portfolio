@@ -3,7 +3,31 @@
 .about {
   padding-bottom: @space-9;
 
+  // "About" reads as an eyebrow above the name — sit it close.
+  .section-title {
+    margin-bottom: @space-3;
+  }
+
   p {
+    margin: 0;
     max-width: 60ch;
   }
+
+  p + p {
+    margin-top: @space-4;
+  }
+}
+
+.about-name {
+  margin: 0 0 @space-5;
+  font-size: 1.4rem;
+  font-weight: @weight-semibold;
+}
+
+.about-pronunciation {
+  margin-left: @space-2;
+  font-family: @font-body;
+  font-size: 0.95rem;
+  font-weight: @weight-body;
+  color: var(--muted);
 }

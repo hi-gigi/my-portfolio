@@ -54,14 +54,29 @@ export interface Project {
   video?: string;
 }
 
+export interface WorkGroup {
+  /**
+   * Sub-heading above this batch of tiles (role / era / context).
+   * Empty string renders no heading — the tiles sit directly under
+   * the section title.
+   */
+  label: string;
+  projects: Project[];
+}
+
 export interface WorkContent {
   title: string;
-  projects: Project[];
+  groups: WorkGroup[];
 }
 
 export interface AboutContent {
   title: string;
-  body: string;
+  /** Rendered as "I'm {name}" above the body. */
+  name: string;
+  /** Phonetic hint shown in muted text after the name, e.g. "/JYAH-chee/". */
+  pronunciation?: string;
+  /** One entry per rendered paragraph. */
+  body: string[];
 }
 
 export interface SocialLink {

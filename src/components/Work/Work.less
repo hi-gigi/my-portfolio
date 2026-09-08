@@ -4,6 +4,18 @@
   padding-bottom: @space-9;
 }
 
+// Each batch of tiles under its own context sub-heading (role / era).
+.work-group + .work-group {
+  margin-top: @space-8;
+}
+
+.work-group-title {
+  margin: 0 0 @space-5;
+  font-size: 1.05rem;
+  font-weight: @weight-medium;
+  color: var(--text);
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr)); // two tiles per row, max

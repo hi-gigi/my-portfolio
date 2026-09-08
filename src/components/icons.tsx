@@ -87,23 +87,24 @@ export function ArrowUpRightIcon({ className }: IconProps) {
   );
 }
 
-// ---- Brand / contact marks. Filled shapes, so they read as logos
-// next to each other; `currentColor` still lets them theme.
+// ---- Brand / contact marks. Solid fills — the LinkedIn and GitHub
+// logos only read at this size when filled, and the envelope matches
+// them. The stroke icons above (theme toggle, hamburger) stay as-is.
 
 export function MailIcon({ className }: IconProps) {
+  // Full-bleed solid envelope to match the visual mass of the brand
+  // marks. One path, evenodd: outer body minus a thin chevron for the
+  // flap fold, so the seam stays see-through on hover / in both themes.
   return (
     <svg
       className={className}
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
+      fillRule="evenodd"
+      clipRule="evenodd"
       aria-hidden="true"
     >
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="m3 7 9 6 9-6" />
+      <path d="M3 3h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm.4 3.1L12 12.4l8.6-6.3v1.7L12 14.1 3.4 7.8V6.1Z" />
     </svg>
   );
 }

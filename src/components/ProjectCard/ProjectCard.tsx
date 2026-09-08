@@ -42,7 +42,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div className="card-body">
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         <p>{blurb}</p>
         {labels.length > 0 && (
           <ul className="card-labels">
