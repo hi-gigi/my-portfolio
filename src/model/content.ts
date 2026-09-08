@@ -45,24 +45,21 @@ export const content: PortfolioContent = {
         title: "Project One",
         blurb:
           "One or two sentences on the problem, what you did, and the outcome. Keep it short and specific.",
-        role: "Lead designer",
-        year: "2025",
+        labels: ["Lead designer", "2025"],
       },
       {
         id: "project-two",
         title: "Project Two",
         blurb:
           "One or two sentences on the problem, what you did, and the outcome. Keep it short and specific.",
-        role: "UX",
-        year: "2024",
+        labels: ["UX", "2024"],
       },
       {
         id: "project-three",
         title: "Project Three",
         blurb:
           "One or two sentences on the problem, what you did, and the outcome. Keep it short and specific.",
-        role: "Product design",
-        year: "2024",
+        labels: ["Product design", "2024"],
       },
     ],
   },

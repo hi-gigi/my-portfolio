@@ -29,10 +29,15 @@ export interface Project {
   id: string;
   title: string;
   blurb: string;
-  role: string;
-  year: string;
-  /** Absolute or base-relative URL. Falls back to a placeholder panel. */
-  imageUrl?: string;
+  /** Short tags under the description — e.g. role, discipline, year. */
+  labels: string[];
+  /** Static thumbnail. Absolute or base-relative URL; falls back to an empty panel. */
+  image?: string;
+  /**
+   * Optional looping clip (mp4/webm). Plays on hover, resets on leave, and is
+   * left paused when the visitor prefers reduced motion. `image` is its poster.
+   */
+  video?: string;
 }
 
 export interface WorkContent {
