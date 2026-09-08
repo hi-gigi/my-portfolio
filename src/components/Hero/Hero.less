@@ -1,8 +1,8 @@
 @import (reference) "../../styles/tokens.less";
 
 .intro {
-  padding-top: @space-7;
-  padding-bottom: @space-9;
+  padding-top: @space-9;
+  padding-bottom: (@space-9 + @space-7);
 
   // Hero type — deliberate one-off, NOT global tokens. Tweak here;
   // nothing else in the site reads these.
@@ -46,5 +46,12 @@
 .intro-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: @space-3;
+}
+
+// Keep the icon links together as one cluster when the row wraps.
+.intro-socials {
+  display: flex;
+  gap: @space-2;
 }

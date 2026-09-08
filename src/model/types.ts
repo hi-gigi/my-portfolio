@@ -17,12 +17,26 @@ export interface HeroAction {
   variant: ButtonVariant;
 }
 
+/** Which glyph a hero social button renders. */
+export type SocialIcon = "linkedin" | "github" | "email";
+
+export interface HeroSocial {
+  /** Accessible name — used for aria-label and title. */
+  label: string;
+  href: string;
+  icon: SocialIcon;
+  /** Opens in a new tab with rel="noopener noreferrer". */
+  external?: boolean;
+}
+
 export interface HeroContent {
   eyebrow: string;
   headline: string;
   /** One entry per rendered line. */
   lede: string[];
   actions: HeroAction[];
+  /** Icon-only links (LinkedIn / GitHub / email) shown beside the actions. */
+  socials: HeroSocial[];
 }
 
 export interface Project {

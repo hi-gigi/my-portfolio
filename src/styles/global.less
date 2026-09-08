@@ -106,6 +106,28 @@ h4 {
   }
 }
 
+// Icon-only button — square, same tonal surface as secondary.
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: var(--tonal);
+  color: var(--text);
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent-alt);
+  }
+
+  svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+}
+
 .btn:focus-visible {
   .focus-ring();
 }

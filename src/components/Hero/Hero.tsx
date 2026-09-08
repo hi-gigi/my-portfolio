@@ -1,8 +1,15 @@
-import { Fragment } from "react";
-import type { HeroContent } from "@/model/types";
+import { Fragment, type ComponentType } from "react";
+import type { HeroContent, SocialIcon } from "@/model/types";
+import { GitHubIcon, LinkedInIcon, MailIcon } from "../icons";
 import "./Hero.less";
 
-export function Hero({ eyebrow, headline, lede, actions }: HeroContent) {
+const SOCIAL_ICONS: Record<SocialIcon, ComponentType<{ className?: string }>> = {
+  linkedin: LinkedInIcon,
+  github: GitHubIcon,
+  email: MailIcon,
+};
+
+export function Hero({ eyebrow, headline, lede, actions, socials }: HeroContent) {
   return (
     <section id="intro" className="intro">
       <p className="eyebrow">{eyebrow}</p>
@@ -28,6 +35,26 @@ export function Hero({ eyebrow, headline, lede, actions }: HeroContent) {
             {action.label}
           </a>
         ))}
+
+        <div className="intro-socials">
+          {socials.map((social) => {
+            const Icon = SOCIAL_ICONS[social.icon];
+            return (
+              <a
+                key={social.href}
+                className="btn btn-icon"
+                href={social.href}
+                aria-label={social.label}
+                title={social.label}
+                {...(social.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                <Icon className="btn-icon-glyph" />
+              </a>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

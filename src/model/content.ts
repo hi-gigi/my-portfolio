@@ -31,9 +31,21 @@ export const content: PortfolioContent = {
       "Currently Senior UX Designer II @ Lucid Software",
       "M.S. Human-Computer Interaction, Indiana University Bloomington",
     ],
-    actions: [
-      { label: "See selected work", href: "#work", variant: "primary" },
-      { label: "Email me", href: EMAIL, variant: "secondary" },
+    actions: [{ label: "View work", href: "#work", variant: "primary" }],
+    socials: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/jiaqizhuo/",
+        icon: "linkedin",
+        external: true,
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/hi-gigi",
+        icon: "github",
+        external: true,
+      },
+      { label: "Email", href: EMAIL, icon: "email" },
     ],
   },
 
@@ -41,25 +53,46 @@ export const content: PortfolioContent = {
     title: "Selected work",
     projects: [
       {
-        id: "project-one",
-        title: "Project One",
+        id: "ai-search",
+        title: "Bringing AI-powered answers to document search",
         blurb:
-          "One or two sentences on the problem, what you did, and the outcome. Keep it short and specific.",
-        labels: ["Lead designer", "2025"],
+          "Natural-language queries in, generative answers out — on Lucid's primary search surface.",
+        labels: ["AI", "Search", "0→1"],
       },
       {
-        id: "project-two",
-        title: "Project Two",
+        id: "document-discovery",
+        title: "Document Discovery: search and audit across an org",
         blurb:
-          "One or two sentences on the problem, what you did, and the outcome. Keep it short and specific.",
-        labels: ["UX", "2024"],
+          "A security and compliance foundation that grew into a multi-million dollar add-on.",
+        labels: ["Security & Compliance", "Research & Strategy", "0→1"],
       },
       {
-        id: "project-three",
-        title: "Project Three",
+        id: "license-request-justification",
+        title: "Justification on the license request flow",
         blurb:
-          "One or two sentences on the problem, what you did, and the outcome. Keep it short and specific.",
-        labels: ["Product design", "2024"],
+          "+14.5% improvement in 7-day license approval rate — by giving admins the context to act.",
+        labels: ["Growth", "End-to-End", "A/B Test"],
+      },
+      {
+        id: "distributed-admin-controls",
+        title: "(Coming soon) Distributed admin controls for Enterprise accounts",
+        blurb:
+          "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
+        labels: ["Systems Thinking", "Design Strategy", "0→1"],
+      },
+      {
+        id: "hasbro-pulse",
+        title: "Hasbro Pulse Mobile Experience",
+        blurb:
+          "UX Design Intern @ Hasbro — Digital Operations Team, 2019 Summer",
+        labels: ["Customer Facing Product", "Mobile Application", "Fan Community"],
+      },
+      {
+        id: "ibm-solution-gateway",
+        title: "IBM Solution Gateway",
+        blurb:
+          "UX Design Intern @ IBM — ISG Team, June 2018 to October 2018",
+        labels: ["Enterprise Software", "Web-based Application", "Content Management"],
       },
     ],
   },
