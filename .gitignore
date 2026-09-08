@@ -15,3 +15,6 @@ dist-ssr/
 *.local
 .vite/
 *.tsbuildinfo
+
+# Claude Code local project config (machine-specific paths)
+.claude/

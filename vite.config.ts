@@ -2,15 +2,14 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// GitHub Pages serves this project at https://<user>.github.io/my-portfolio/
-const REPO_BASE = "/my-portfolio/";
-
-export default defineConfig({
-  base: REPO_BASE,
+// Dev serves from "/"; the production build is served from the GitHub
+// Pages project path https://<user>.github.io/my-portfolio/.
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? "/my-portfolio/" : "/",
   plugins: [react()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-});
+}));
