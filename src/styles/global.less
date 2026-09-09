@@ -37,10 +37,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-// Centre every major block and cap its width
-.site-header,
+// Centre every major block and cap its width. The header and footer
+// wrappers are full-bleed so their divider lines reach the screen edge;
+// only their inner content is capped.
+.site-header-inner,
 main > section,
-.site-footer {
+.site-footer-inner {
   max-width: @measure;
   margin-inline: auto;
   padding-inline: @pad;

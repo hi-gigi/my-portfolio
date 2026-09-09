@@ -1,17 +1,24 @@
 @import (reference) "../../styles/tokens.less";
 @import (reference) "../../styles/mixins.less";
 
+// Full-bleed bar: the sticky background and divider span the viewport.
 .site-header {
   position: sticky;
   top: 0;
   z-index: @z-header;
+  background: var(--bg);
+  border-bottom: 1px solid var(--tonal);
+}
+
+// Capped, centred content. Positioned so the collapsed nav dropdown
+// anchors to it.
+.site-header-inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: @space-4;
   height: @header-height;
-  background: var(--bg);
-  border-bottom: 1px solid var(--tonal);
 }
 
 .brand {

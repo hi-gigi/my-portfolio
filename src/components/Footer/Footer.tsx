@@ -7,22 +7,24 @@ export function Footer({ name, links }: FooterContent) {
 
   return (
     <footer className="site-footer">
-      <p>
-        &copy; {year} {name}
-      </p>
-      <p className="footer-links">
-        {links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            {...(link.external
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-          >
-            {link.label}
-          </a>
-        ))}
-      </p>
+      <div className="site-footer-inner">
+        <p>
+          &copy; {year} {name}
+        </p>
+        <p className="footer-links">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              {...(link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              {link.label}
+            </a>
+          ))}
+        </p>
+      </div>
     </footer>
   );
 }

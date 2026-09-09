@@ -1,9 +1,12 @@
 @import (reference) "../../styles/tokens.less";
 
+// Full-bleed: the divider spans the viewport.
 .site-footer {
   border-top: 1px solid var(--tonal);
-  padding-top: @space-6;
-  padding-bottom: @space-8;
+}
+
+.site-footer-inner {
+  padding-block: @space-5;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -19,7 +22,7 @@
 
 .footer-links {
   a {
-    margin-left: @space-4;
+    margin-left: @space-6;
     color: var(--muted);
     text-decoration: none;
 

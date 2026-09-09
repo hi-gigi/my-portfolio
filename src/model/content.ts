@@ -139,8 +139,13 @@ export const content: PortfolioContent = {
   footer: {
     name: "Jiaqi Zhuo",
     links: [
-      { label: "Email", href: EMAIL },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/jiaqizhuo/",
+        external: true,
+      },
       { label: "GitHub", href: "https://github.com/hi-gigi", external: true },
+      { label: "Email", href: EMAIL },
     ],
   },
 };
