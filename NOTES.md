@@ -4,6 +4,23 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## Environment & conventions (evergreen — keep at top)
+
+- **node** is at `/opt/homebrew/bin` and is NOT on the Bash tool's default
+  PATH — prefix commands with `export PATH="/opt/homebrew/bin:$PATH";`.
+- **Content model** lives entirely in `src/model/content.ts` + `types.ts`;
+  every view is presentational. Editing the site = editing `content.ts`.
+- **Design tokens** are the single source of truth in `src/styles/tokens.less`
+  (colour, type scale, spacing, motion). Component `.less` files must not
+  hardcode hex/px/rem for anything a token covers.
+- **Dev server** binds a PORT from the environment (`vite.config.ts`) and
+  `.claude/launch.json` has `autoPort: true` — don't re-add a hardcoded
+  `--port 5173`.
+- **Deploy**: push to `main` → GitHub Actions builds `dist/` and publishes
+  to Pages. Repo setting: Pages → Source must be "GitHub Actions".
+
+---
+
 ## 2026-09-07 — Fix: mobile hamburger opened then instantly closed
 
 **Bug** — tapping the hamburger did nothing. The header rendered the
