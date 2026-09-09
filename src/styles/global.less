@@ -34,7 +34,8 @@ body {
   font-size: @text-base;
   line-height: @leading-body;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  // Avoid short last lines / lopsided rags in running text.
+  text-wrap: pretty;
 }
 
 // Centre every major block and cap its width. The header and footer
@@ -72,6 +73,7 @@ h4 {
   font-weight: @weight-medium;
   line-height: @leading-snug;
   letter-spacing: @tracking-tight;
+  text-wrap: balance; // even out line lengths on wrapping headings
 }
 
 h1 {

@@ -7,12 +7,27 @@
     <title>Jiaqi Zhuo — Design Portfolio</title>
     <meta name="description" content="Design portfolio of Jiaqi Zhuo." />
 
-    <!-- Fonts: Raleway (headings), Inter (body), IBM Plex Mono (labels) -->
+    <!-- Fonts: Raleway (headings), Inter (body), IBM Plex Mono (labels).
+         Weights loaded = weights actually used: Raleway 500/600/700,
+         Inter 400/500, Mono 400. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload the hero headline face (Raleway 600, latin subset) so the
+         LCP text paints without a swap. If Google revises the font this
+         hashed URL 404s and the browser just loads it normally via the
+         stylesheet below — re-copy it from the css2 response if that happens. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVsEpbCIPrEVIT9d0c8.woff2"
+    />
+
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap"
     />
 
     <!-- Set the colour theme before first paint, so there is no flash. -->
