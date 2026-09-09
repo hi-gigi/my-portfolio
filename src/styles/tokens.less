@@ -13,15 +13,18 @@
 // ============================================================
 
 // ---- Raw palette — the ONLY place these hex values live ------
-@palette-bg-light: #f4f2ee;
-@palette-text-light: #221f1a;
-@palette-muted-light: #746e64;
-@palette-tonal-light: #e6e2d9;
+// Every neutral sits on the coral accent's hue (~14°) at low saturation:
+// warm, not pink. bg/text/muted/tonal all track it so the accent reads
+// native. Dark bg keeps green >= blue so it leans warm, never magenta.
+@palette-bg-light: #f8f3f1;
+@palette-text-light: #201a18;
+@palette-muted-light: #7a635c;
+@palette-tonal-light: #f2e7e5;
 
-@palette-bg-dark: #1a1815;
-@palette-text-dark: #f2efe9;
-@palette-muted-dark: #a39c8e;
-@palette-tonal-dark: #26221c;
+@palette-bg-dark: #110e0e;
+@palette-text-dark: #f2ede9;
+@palette-muted-dark: #a5938d;
+@palette-tonal-dark: #1f1b1a;
 
 @palette-accent: #fb9280;
 @palette-accent-alt: #f76a6a;
