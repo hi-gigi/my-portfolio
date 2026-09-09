@@ -4,19 +4,19 @@
   padding-top: @space-9;
   padding-bottom: (@space-9 + @space-7);
 
-  // Hero type — deliberate one-off, NOT global tokens. Tweak here;
-  // nothing else in the site reads these.
-  --hero-eyebrow-size: 0.95rem; // global .eyebrow is 0.85rem
-  --hero-title-size: clamp(1.85rem, 1rem + 3vw, 2.5rem);
-  --hero-title-leading: 1.1; // base h1 line-height is 1.2
-  --hero-title-weight: @{weight-semibold}; // base display weight is 700
-  --hero-lede-size: clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+  // Hero type — one deliberate step up from the global scale.
+  --hero-eyebrow-size: @text-sm; // global .eyebrow is @text-xs
+  --hero-title-size: @text-xl;
+  --hero-title-leading: @leading-tight;
+  --hero-title-weight: @{weight-semibold};
+  --hero-lede-size: clamp(@text-base, 0.9rem + 0.5vw, @text-md);
 }
 
 .eyebrow {
   margin: 0 0 @space-3;
   font-family: @font-mono;
-  font-size: 0.85rem;
+  font-size: @text-xs;
+  letter-spacing: @tracking-wide;
   color: var(--muted);
 }
 
@@ -34,7 +34,7 @@
 
 .lede {
   margin: 0 0 @space-6;
-  font-size: 1.15rem;
+  font-size: @text-md;
   color: var(--muted);
   max-width: 55ch;
 }

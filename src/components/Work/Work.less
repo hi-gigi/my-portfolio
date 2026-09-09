@@ -1,4 +1,5 @@
 @import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
 
 .work {
   padding-bottom: @space-9;
@@ -9,13 +10,10 @@
   margin-top: @space-8;
 }
 
-// Same type treatment as `.section-title` (the "Selected work" heading).
+// Same typographic role as `.section-title` (the "Selected work" label).
 .work-group-title {
+  .eyebrow-label();
   margin: 0 0 @space-5;
-  font-family: @font-mono;
-  font-size: 0.85rem;
-  font-weight: @weight-body;
-  color: var(--muted);
 }
 
 .card-grid {

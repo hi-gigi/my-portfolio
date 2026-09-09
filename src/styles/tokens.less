@@ -45,6 +45,25 @@
 @weight-semibold: 600;
 @weight-bold: 700;
 
+// ---- Type scale — base 1rem = 16px (html + body). Every
+//      component sizes text from this ladder; no raw rem/px.
+@text-2xs: 0.75rem; //  12px   — card labels, badge
+@text-xs: 0.85rem; //   13.6px — nav, footer, section eyebrows
+@text-sm: 0.95rem; //   15.2px — buttons, card blurb, pronunciation
+@text-base: 1rem; //     16px   — body
+@text-md: 1.15rem; //   18.4px — hero lede, card title, mobile nav
+@text-lg: 1.4rem; //     22.4px — About name / default h2
+@text-xl: clamp(1.85rem, 1rem + 3vw, 2.5rem); // hero h1 / default h1
+
+// ---- Line height by role ---------------------------------
+@leading-tight: 1.1; // display headings
+@leading-snug: 1.2; //  sub-headings
+@leading-body: 1.6; //  running text
+
+// ---- Letter spacing ------------------------------------
+@tracking-tight: -0.01em; // headings
+@tracking-wide: 0.02em; //  mono meta-labels (mono needs air)
+
 // ---- Spacing scale (8px grid) -----------------------------
 @space-1: 4px;
 @space-2: 8px;

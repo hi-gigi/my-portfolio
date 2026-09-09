@@ -1,6 +1,6 @@
 // Shared LESS mixins. Import with (reference) so nothing is emitted
-// until a component actually calls a mixin. These only use runtime
-// CSS custom properties, so no token import is needed.
+// until a component actually calls a mixin.
+@import (reference) "./tokens.less";
 
 // Visually hidden, still announced by screen readers.
 .sr-only() {
@@ -19,4 +19,14 @@
 .focus-ring() {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+// Mono meta-label — section eyebrows, group sub-headings, captions.
+// One typographic role; callers add only their own margin.
+.eyebrow-label() {
+  font-family: @font-mono;
+  font-weight: @weight-body;
+  font-size: @text-xs;
+  letter-spacing: @tracking-wide;
+  color: var(--muted);
 }
