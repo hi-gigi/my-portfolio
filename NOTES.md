@@ -21,6 +21,94 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-08 — Content fill-in, palette re-tone, type scale (backfilled)
+
+Several small commits over 2026-09-07 evening → 09-08 plus one long polish
+session. Recorded here after the fact; the per-commit messages have the
+fine detail.
+
+### Content + structure
+
+- **All six project tiles** now carry real copy (`content.ts`).
+- **Work section grouped**: `WorkContent.projects` → `groups[]`, each
+  `{ label, projects }`. `label === ""` renders no `<h3>`. Current layout:
+  "Selected work · 2020–present" (4 Lucid tiles, empty label) + "Internships
+  · 2018–2019" (Hasbro, IBM).
+- **About rewritten**: `body` is now `string[]` (one `<p>` each); added
+  `name` + optional `pronunciation`; heading "I'm Jiaqi /JYAH-chee/". Four
+  paragraphs — ambiguity/technical domains → complexity-to-clarity → AI as a
+  thinking partner → outdoors + photography.
+- **Hero actions**: primary "View work"; secondary = three solid icon links
+  (LinkedIn / GitHub / email). Section-title bottom dividers dropped.
+- **Thumbnails + résumé wired**: `public/thumbs/<id>.{png,jpg}` via a
+  `thumb()` helper (resolves against `BASE_URL` like the résumé link);
+  `public/jiaqi-zhuo-resume.pdf` added; card `<img>` is `loading="lazy"`.
+  Swapping a thumbnail = drop a same-named file in `public/thumbs/`.
+
+### Build / dev
+
+- Dev serves from `/`; the build keeps `base: "/my-portfolio/"` for Pages.
+- LESS `math: "parens"` so authored `clamp(1rem, 1rem + 3vw, …)` survives
+  the build instead of collapsing.
+- `vite.config.ts` reads `process.env.PORT`; `.claude/launch.json`
+  `autoPort: true` (dev server no longer pins 5173).
+
+### Layout
+
+- **Full-bleed header & footer**: split each into a full-width outer element
+  (sticky background + divider) and an inner wrapper capped at `@measure`,
+  so the divider lines reach the screen edge. `.site-header-inner` is
+  `position: relative` so the collapsed nav dropdown still anchors to it.
+- Footer: even `24px` block padding (was 32/64), ~117px → ~69px; link gap
+  16 → 32px; LinkedIn added ahead of GitHub / Email.
+- `@header-height` 72 → 64px.
+
+### Palette re-tone → "Warm Stone" on the coral hue
+
+The neutrals used to sit around hue 36° (yellow-taupe) and never agreed with
+the coral accent. Moved every neutral onto the accent's hue (~14°) at low
+saturation — warm, not pink:
+
+- light: `--bg #f8f3f1` · `--tonal #f2e7e5` · `--text #201a18` · `--muted #7a635c`
+- dark ("Onyx"): `--bg #110e0e` · `--tonal #1f1b1a` · `--text #f2ede9` · `--muted #a5938d`
+- accent trio unchanged (`#fb9280` / `#f76a6a` / `#201f1c`).
+
+Why: coral underline / badge / hover states now read native; dark bg keeps
+green ≥ blue so it leans warm, never magenta; `--muted` on `--tonal` in
+light clears AA (~4.6:1, was 3.9). Dark ground picked from B/C/D options
+(near-black / charcoal / espresso) via a temporary in-page tone switcher
+that was then removed.
+
+### Type scale
+
+- New tokens in `tokens.less`: `@text-2xs … @text-xl`, `@leading-*`,
+  `@tracking-*`. Every component now sizes text from the ladder — no raw
+  rem/px.
+- **Body 18 → 16px** (`@text-base`). `h1`–`h4` gained real default sizes so
+  a classless heading still looks like a heading.
+- `.eyebrow-label()` mixin (`mixins.less`) is the one mono meta-label role;
+  `.section-title` and `.work-group-title` both use it and render identical.
+- Mono meta-labels moved to `+0.02em` tracking (`@tracking-wide`) — mono
+  needs air. `.wordmark` left at `1.05rem`, off-scale on purpose (brand).
+
+### Font loading + smaller polish
+
+- Google Fonts request trimmed to weights actually used (dropped Inter 600,
+  Mono 500). Raleway 600 (latin) is `<link rel="preload">`ed for the hero
+  LCP text.
+- `text-wrap: balance` on headings, `text-wrap: pretty` on body; dropped
+  `text-rendering: optimizeLegibility` (can jank long-page scroll).
+- Project-card description `--text` → `--muted` so the title leads.
+- Hero lede shrunk but still fluid:
+  `clamp(@text-sm, 0.9rem + 0.2vw, @text-base)` (15.2–16px, was 16–18.4).
+
+### Docs
+
+- Deleted `HANDOFF.md` (a stale 2026-09-08 snapshot); its evergreen bits
+  are the pinned section at the top of this file.
+
+---
+
 ## 2026-09-07 — Fix: mobile hamburger opened then instantly closed
 
 **Bug** — tapping the hamburger did nothing. The header rendered the
