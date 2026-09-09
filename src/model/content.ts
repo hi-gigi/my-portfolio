@@ -8,9 +8,11 @@ import type { PortfolioContent } from "./types";
 
 const EMAIL = "mailto:hizhuojiaqi@gmail.com";
 
-// Drop the PDF at `public/jiaqi-zhuo-resume.pdf`; BASE_URL resolves
-// to "/my-portfolio/" in the built site and "/" in dev.
+// BASE_URL resolves to "/my-portfolio/" in the built site and "/" in
+// dev. The PDF lives at `public/jiaqi-zhuo-resume.pdf`; project
+// thumbnails at `public/thumbs/<id>.{png,jpg}`.
 const RESUME_URL = `${import.meta.env.BASE_URL}jiaqi-zhuo-resume.pdf`;
+const thumb = (file: string) => `${import.meta.env.BASE_URL}thumbs/${file}`;
 
 export const content: PortfolioContent = {
   wordmark: "jiaqi zhuo",
@@ -61,6 +63,7 @@ export const content: PortfolioContent = {
             blurb:
               "Natural-language queries in, generative answers out — on Lucid's primary search surface.",
             labels: ["AI", "Search", "0→1"],
+            image: thumb("ai-search.png"),
           },
           {
             id: "document-discovery",
@@ -68,6 +71,7 @@ export const content: PortfolioContent = {
             blurb:
               "A security and compliance foundation that grew into a multi-million dollar add-on.",
             labels: ["Security & Compliance", "Research & Strategy", "0→1"],
+            image: thumb("document-discovery.png"),
           },
           {
             id: "license-request-justification",
@@ -75,6 +79,7 @@ export const content: PortfolioContent = {
             blurb:
               "+14.5% improvement in 7-day license approval rate — by giving admins the context to act.",
             labels: ["Growth", "End-to-End", "A/B Test"],
+            image: thumb("license-request-justification.jpg"),
           },
           {
             id: "distributed-admin-controls",
@@ -83,6 +88,7 @@ export const content: PortfolioContent = {
             blurb:
               "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
             labels: ["Systems Thinking", "Design Strategy", "0→1"],
+            image: thumb("distributed-admin-controls.png"),
           },
         ],
       },
@@ -99,6 +105,7 @@ export const content: PortfolioContent = {
               "Mobile Application",
               "Fan Community",
             ],
+            image: thumb("hasbro-pulse.jpg"),
           },
           {
             id: "ibm-solution-gateway",
@@ -110,6 +117,7 @@ export const content: PortfolioContent = {
               "Web-based Application",
               "Content Management",
             ],
+            image: thumb("ibm-solution-gateway.png"),
           },
         ],
       },

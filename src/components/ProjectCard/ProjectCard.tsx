@@ -37,7 +37,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             preload="metadata"
           />
         ) : image ? (
-          <img src={image} alt="" />
+          <img src={image} alt="" loading="lazy" decoding="async" />
         ) : null}
       </div>
 
