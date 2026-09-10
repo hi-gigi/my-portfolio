@@ -1,6 +1,7 @@
 # Working notes
 
-Running log of where things stand and what's next. Newest entry on top.
+Running log of where things stand and what's next. Grouped by date,
+newest date first; within a date, newest entry first.
 
 ---
 
@@ -21,13 +22,15 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
-## 2026-09-09 — Custom cursor + a motion-options exploration
+## 2026-09-09
+
+### Custom cursor + a motion-options exploration
 
 First piece of the long-deferred "motion pass". Committed the custom
 cursor (`b356d8b`); the exploration scaffolding is deliberately **not**
 committed.
 
-### Custom cursor — shipped (`src/components/Cursor/`)
+#### Custom cursor — shipped (`src/components/Cursor/`)
 
 Document-level, mounted in `App.tsx`, three layered nodes:
 
@@ -70,7 +73,7 @@ Non-obvious bits worth keeping:
 Verified: `tsc -b --noEmit` + `npm run build` clean; disc/dot/label +
 edge-flip + ping all checked in the browser.
 
-### Exploration scaffolding — throwaway, NOT committed
+#### Exploration scaffolding — throwaway, NOT committed
 
 Three self-contained option catalogs at the repo root, each with live
 mini-demos + a pick tracker. `rm` them when the motion pass is done:
@@ -93,13 +96,15 @@ demoed in `playground.html`, not yet built into `src/`.
 
 ---
 
-## 2026-09-08 — Content fill-in, palette re-tone, type scale (backfilled)
+## 2026-09-08
+
+### Content fill-in, palette re-tone, type scale (backfilled)
 
 Several small commits over 2026-09-07 evening → 09-08 plus one long polish
 session. Recorded here after the fact; the per-commit messages have the
 fine detail.
 
-### Content + structure
+#### Content + structure
 
 - **All six project tiles** now carry real copy (`content.ts`).
 - **Work section grouped**: `WorkContent.projects` → `groups[]`, each
@@ -117,7 +122,7 @@ fine detail.
   `public/jiaqi-zhuo-resume.pdf` added; card `<img>` is `loading="lazy"`.
   Swapping a thumbnail = drop a same-named file in `public/thumbs/`.
 
-### Build / dev
+#### Build / dev
 
 - Dev serves from `/`; the build keeps `base: "/my-portfolio/"` for Pages.
 - LESS `math: "parens"` so authored `clamp(1rem, 1rem + 3vw, …)` survives
@@ -125,7 +130,7 @@ fine detail.
 - `vite.config.ts` reads `process.env.PORT`; `.claude/launch.json`
   `autoPort: true` (dev server no longer pins 5173).
 
-### Layout
+#### Layout
 
 - **Full-bleed header & footer**: split each into a full-width outer element
   (sticky background + divider) and an inner wrapper capped at `@measure`,
@@ -135,7 +140,7 @@ fine detail.
   16 → 32px; LinkedIn added ahead of GitHub / Email.
 - `@header-height` 72 → 64px.
 
-### Palette re-tone → "Warm Stone" on the coral hue
+#### Palette re-tone → "Warm Stone" on the coral hue
 
 The neutrals used to sit around hue 36° (yellow-taupe) and never agreed with
 the coral accent. Moved every neutral onto the accent's hue (~14°) at low
@@ -151,7 +156,7 @@ light clears AA (~4.6:1, was 3.9). Dark ground picked from B/C/D options
 (near-black / charcoal / espresso) via a temporary in-page tone switcher
 that was then removed.
 
-### Type scale
+#### Type scale
 
 - New tokens in `tokens.less`: `@text-2xs … @text-xl`, `@leading-*`,
   `@tracking-*`. Every component now sizes text from the ladder — no raw
@@ -163,7 +168,7 @@ that was then removed.
 - Mono meta-labels moved to `+0.02em` tracking (`@tracking-wide`) — mono
   needs air. `.wordmark` left at `1.05rem`, off-scale on purpose (brand).
 
-### Font loading + smaller polish
+#### Font loading + smaller polish
 
 - Google Fonts request trimmed to weights actually used (dropped Inter 600,
   Mono 500). Raleway 600 (latin) is `<link rel="preload">`ed for the hero
@@ -174,14 +179,16 @@ that was then removed.
 - Hero lede shrunk but still fluid:
   `clamp(@text-sm, 0.9rem + 0.2vw, @text-base)` (15.2–16px, was 16–18.4).
 
-### Docs
+#### Docs
 
 - Deleted `HANDOFF.md` (a stale 2026-09-08 snapshot); its evergreen bits
   are the pinned section at the top of this file.
 
 ---
 
-## 2026-09-07 — Fix: mobile hamburger opened then instantly closed
+## 2026-09-07
+
+### Fix: mobile hamburger opened then instantly closed
 
 **Bug** — tapping the hamburger did nothing. The header rendered the
 hamburger and the close button as *two separate elements*, swapped on
@@ -229,7 +236,7 @@ Verified: 8 consecutive toggle cycles at a 400px viewport all open cleanly
 
 ---
 
-## 2026-09-07 — Project tile iteration
+### Project tile iteration
 
 Reworked `ProjectCard` around a fixed element order: **thumbnail → title →
 description → labels**.
@@ -259,7 +266,7 @@ Verified: `tsc -b --noEmit` clean, dev server renders both themes, hover border
 
 ---
 
-## 2026-09-07 — Rebuilt as React + TypeScript + LESS
+### Rebuilt as React + TypeScript + LESS
 
 Static HTML/CSS → **Vite + React 18 + TS**, styling in **LESS**. Same visual
 design and behaviour, ported component by component.
@@ -296,7 +303,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Hero h1 weight 700 → 600
+### Hero h1 weight 700 → 600
 
 - Added Raleway 600 to the Google Fonts load (was 500;700 → 500;600;700)
 - New `--hero-title-weight: 600` knob in the `.intro` hero block
@@ -305,7 +312,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Hero copy is real now
+### Hero copy is real now
 
 - eyebrow → "Product Designer & Generalist"
 - h1 → "8+ years in Enterprise B2B. Sharp in ambiguous, technical spaces —
@@ -318,7 +325,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Wordmark set to lowercase
+### Wordmark set to lowercase
 
 - Header wordmark changed from "Jiaqi Zhuo" to lowercase "jiaqi zhuo" (calmer,
   reads better than run-together "jiaqizhuo", less loud than all-caps)
@@ -327,7 +334,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Mobile nav (collapsed dropdown)
+### Mobile nav (collapsed dropdown)
 
 **Done**
 - At ≤560px the nav collapses to a hamburger icon button (☰) in the header;
@@ -351,7 +358,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Layout tweaks + résumé CTA
+### Layout tweaks + résumé CTA
 
 **Done**
 - `--measure` 1080 → 1280px (wider centre container, 80rem)
@@ -366,7 +373,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Dark / light toggle in the nav
+### Dark / light toggle in the nav
 
 **Done**
 - Added a theme toggle button to the top nav (`.theme-toggle`) — sun/moon inline SVG,
@@ -380,7 +387,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Warm Stone design system applied
+### Warm Stone design system applied
 
 **Done**
 - Applied the design system from `portfolio-design-system.md` to `styles.css` + `index.html`:
@@ -409,7 +416,7 @@ mobile dropdown + resize/Esc/outside-click dismissal all work.
 
 ---
 
-## 2026-09-07 — Setup done, site is live
+### Setup done, site is live
 
 **Done so far**
 - Project scaffolded: `index.html`, `styles.css`, `.gitignore`, `assets/`, `README.md`
