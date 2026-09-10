@@ -64,6 +64,13 @@
   border-radius: @radius-btn;
   background: var(--text);
   color: var(--bg);
+  // 1px ring in the opposite token. The pill is fixed-position over
+  // arbitrary content — project thumbnails are light UI screenshots, so
+  // in dark theme the cream fill dissolves into them. The ring gives a
+  // two-tone edge: whichever of fill / ring matches the surface behind
+  // it, the other one still separates. box-shadow, not border, so the
+  // geometry the presenter measures (offsetWidth/Height) is unchanged.
+  box-shadow: 0 0 0 1px var(--bg);
   font-family: @font-mono;
   font-size: @text-xs;
   line-height: 1;
