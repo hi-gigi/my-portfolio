@@ -22,6 +22,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article
       className="card"
+      data-cursor-label="View case study"
       onMouseEnter={video ? play : undefined}
       onMouseLeave={video ? pause : undefined}
     >

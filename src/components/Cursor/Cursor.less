@@ -1,0 +1,136 @@
+// Custom cursor. The disc/dot/label geometry is one-off to this effect
+// (no token covers it), so it lives as scoped custom properties on the
+// wrapper — same pattern as Hero's `--hero-*` scale.
+@import (reference) "../../styles/tokens.less";
+
+.cursor {
+  display: contents;
+
+  --cursor-dot-size: 7px;
+  --cursor-disc-size: 22px;
+  --cursor-disc-size-hot: 48px;
+}
+
+.cursor__disc,
+.cursor__dot,
+.cursor__label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: @z-cursor;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.cursor__disc {
+  width: var(--cursor-disc-size);
+  height: var(--cursor-disc-size);
+  border-radius: 50%;
+  // Pure white is the operand that makes `difference` invert whatever
+  // is behind it — keeps the cursor legible on the dark hero and the
+  // light body alike. Not a theme colour; don't tokenise it.
+  background: #fff;
+  mix-blend-mode: difference;
+  transition:
+    opacity @ease,
+    width @ease,
+    height @ease;
+}
+
+.cursor__dot {
+  width: var(--cursor-dot-size);
+  height: var(--cursor-dot-size);
+  border-radius: 50%;
+  background: var(--accent);
+  will-change: transform;
+  transition: opacity @ease;
+}
+
+.cursor__disc.is-visible,
+.cursor__dot.is-visible {
+  opacity: 1;
+}
+
+.cursor__disc.is-hot {
+  width: var(--cursor-disc-size-hot);
+  height: var(--cursor-disc-size-hot);
+}
+
+.cursor__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: @space-2 @space-3;
+  border-radius: @radius-btn;
+  background: var(--text);
+  color: var(--bg);
+  font-family: @font-mono;
+  font-size: @text-xs;
+  line-height: 1;
+  white-space: nowrap;
+  // Only the fade is eased — the position is set every pointermove, so
+  // transitioning transform would make the pill lag the cursor.
+  transition: opacity @ease;
+}
+
+// Arrow is an inline SVG, not a glyph — the ↗ / → glyphs aren't in the
+// loaded IBM Plex Mono subset and fall back with mismatched metrics.
+// `align-items: center` keeps it on the text's optical middle.
+.cursor__label-arrow {
+  width: 0.8em;
+  height: 0.8em;
+  flex: none;
+}
+
+.cursor__label.is-visible {
+  opacity: 1;
+}
+
+// Click effect — a ring that expands and fades from the press point.
+.cursor__ping {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: @z-cursor;
+  width: var(--cursor-disc-size);
+  height: var(--cursor-disc-size);
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: cursor-ping 0.5s ease-out forwards;
+}
+
+@keyframes cursor-ping {
+  from {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0.7;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2.8);
+    opacity: 0;
+  }
+}
+
+// Hide the native cursor wherever ours is active. The element list
+// mirrors INTERACTIVE in the presenter — extend both together if the
+// site gains real form controls.
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button,
+body.has-custom-cursor .btn,
+body.has-custom-cursor [role="button"],
+body.has-custom-cursor label,
+body.has-custom-cursor summary {
+  cursor: none;
+}
+
+// If the OS flips to reduced motion, the view unmounts the nodes
+// anyway — this just belt-and-braces hides them.
+@media (prefers-reduced-motion: reduce) {
+  .cursor__disc,
+  .cursor__dot,
+  .cursor__label,
+  .cursor__ping {
+    display: none;
+  }
+}

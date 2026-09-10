@@ -1,4 +1,5 @@
 import { About } from "./components/About";
+import { Cursor } from "./components/Cursor";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
@@ -12,6 +13,8 @@ import { content } from "./model/content";
 export default function App() {
   return (
     <>
+      <Cursor />
+
       <Header
         wordmark={content.wordmark}
         nav={content.nav}
