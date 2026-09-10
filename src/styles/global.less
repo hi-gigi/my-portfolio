@@ -119,7 +119,8 @@ h4 {
   border-radius: @radius-btn;
   text-decoration: none;
   cursor: pointer;
-  transition: background @ease, border-color @ease, color @ease;
+  transition: background @ease, border-color @ease, color @ease,
+    transform @ease;
 }
 
 .btn-primary {
@@ -165,6 +166,16 @@ h4 {
 
 .btn:focus-visible {
   .focus-ring();
+}
+
+// Press feedback — a small squash on every button that springs back on
+// release. The custom cursor's ping already marks the click point; this
+// is just the tactile part. Gated so a reduced-motion visitor gets the
+// state change with no scale.
+@media (prefers-reduced-motion: no-preference) {
+  .btn:active {
+    transform: scale(0.96);
+  }
 }
 
 // ---- Badge / tag: an accent-filled surface, always dark text
