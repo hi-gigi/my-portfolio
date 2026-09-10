@@ -21,6 +21,78 @@ Running log of where things stand and what's next. Newest entry on top.
 
 ---
 
+## 2026-09-09 — Custom cursor + a motion-options exploration
+
+First piece of the long-deferred "motion pass". Committed the custom
+cursor (`b356d8b`); the exploration scaffolding is deliberately **not**
+committed.
+
+### Custom cursor — shipped (`src/components/Cursor/`)
+
+Document-level, mounted in `App.tsx`, three layered nodes:
+
+- **disc** — a white circle in `mix-blend-mode: difference`, lags the
+  pointer (0.18 lerp in a rAF loop) and swells 22 → 48px over
+  `a, button, .btn, [role=button], label, summary`.
+- **dot** — small `--accent` dot, tracks the pointer exactly (no lag).
+- **label** — a mono pill that fades in over any `[data-cursor-label]`
+  element and shows its text. `ProjectCard`'s `<article class="card">`
+  carries `data-cursor-label="View case study"`. The pill measures
+  itself and **flips left / below the pointer** near the right and top
+  viewport edges so it's never clipped (was clipping in the rightmost
+  tile column).
+- **click** — `.cursor__ping`, an `--accent` ring that expands + fades
+  from every `pointerdown`.
+
+Why this shape (picked from the `cursor-bg-options.html` catalog, "C5c"):
+the difference-blend disc stays legible on both the dark hero and the
+light body without a per-section swap, and the orange dot is the one
+element that's *always* the brand colour.
+
+MVP split kept: `Cursor.presenter.ts` owns the enable decision
+(`(hover: hover) and (pointer: fine)` **and** not
+`prefers-reduced-motion`, both reactive via `matchMedia` change events)
+and every pointer listener; `Cursor.tsx` only renders nodes + refs.
+
+Non-obvious bits worth keeping:
+- **The label arrow is an inline SVG, not a glyph.** `↗` / `→` aren't in
+  the loaded IBM Plex Mono subset — they fall back to a system font with
+  different metrics, which is why the glyph never sat right.
+- The disc's `#fff` fill is a **blend operand**, not a theme colour —
+  intentionally not tokenised.
+- Cursor geometry (`--cursor-dot-size`, `--cursor-disc-size*`) lives as
+  scoped custom props on the `.cursor` wrapper — the `Hero` `--hero-*`
+  pattern. New `@z-cursor: 1000` token, above `@z-header`.
+- Native cursor hidden via `body.has-custom-cursor` + an explicit
+  interactive-element list in `Cursor.less` that mirrors `INTERACTIVE`
+  in the presenter — extend both together if real form controls appear.
+
+Verified: `tsc -b --noEmit` + `npm run build` clean; disc/dot/label +
+edge-flip + ping all checked in the browser.
+
+### Exploration scaffolding — throwaway, NOT committed
+
+Three self-contained option catalogs at the repo root, each with live
+mini-demos + a pick tracker. `rm` them when the motion pass is done:
+
+- `playground.html` — the original: scroll reveals, magnetic buttons +
+  cursor spotlight, gradient mesh / dot grid, text (scramble · per-word
+  stagger · shine), then duotone image, link underline-draw, marquee,
+  click ripple.
+- `motion-catalog.html` — a wider menu (custom cursor, cursor trail,
+  page spotlight, hover-image reveal, parallax, sticky scrub, horizontal
+  gallery, velocity skew, progress bar, 3D tilt, …).
+- `cursor-bg-options.html` — deep-dive on cursor *shapes* (8) and calmer
+  *ambient backgrounds* (7: spotlight-follow, dot-grid parallax, line
+  grid, column glow, contour lines, constellation, aurora), plus a
+  three-way "C5 orange" comparison stage.
+
+Still open from the picks: catalog **13** duotone thumbnails, **14** link
+underline-draw + arrow, **15** marquee divider, **22** click ripple —
+demoed in `playground.html`, not yet built into `src/`.
+
+---
+
 ## 2026-09-08 — Content fill-in, palette re-tone, type scale (backfilled)
 
 Several small commits over 2026-09-07 evening → 09-08 plus one long polish
