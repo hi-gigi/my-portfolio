@@ -22,6 +22,69 @@ newest date first; within a date, newest entry first.
 
 ---
 
+## 2026-09-10
+
+### Button hover / click exploration — first two picks shipped
+
+Second slice of the motion pass. Built a throwaway
+`button-effects.html` catalog (same pattern as the others: token
+subset, `pg-theme` toggle, reduced-motion banner, a pick-per-group
+tracker that drives a live preview row). Four groups: primary hover
+(`hp-*`), secondary / icon hover (`hs-*`), text-button / link hover
+(`tb-*`), press (`pr-*`). It also mounts a **compact port of the real
+`src/components/Cursor`** with an on/off toggle, so each treatment can
+be judged under the difference-blend disc + the click ping.
+
+How the options read against the custom cursor (the reason some are
+tagged "avoid"):
+
+- The 48px disc already carries the hover affordance (native cursor is
+  hidden), so a hover treatment only needs to add a little.
+- `mix-blend-mode: difference` fights any hover that **repaints the
+  whole fill** (the current coral flip, wipes, washes) — the disc
+  inverts against the new colour and its tint swims. Treatments that
+  leave the fill alone (lift, ring, sheen, underbar, label tint) stay
+  clean.
+- The cursor **ping is already the click effect**. An on-button shape
+  that expands from the click point (ink ripple) just doubles it;
+  surface-level presses (squash, keycap, dim) layer under it fine.
+
+#### Shipped (`60b3f7a`)
+
+- **`pr-1` press squash** — `.btn:active { transform: scale(0.96) }`
+  in `global.less`, gated behind `prefers-reduced-motion:
+  no-preference`; `transform` added to the `.btn` transition. First
+  press feedback the buttons have had. Applies to every `.btn`
+  (Hero actions + socials, Résumé CTA). The chrome toggles
+  (`.nav-toggle`, `ThemeToggle`) are **not** `.btn` and were left
+  out — easy to add later if wanted.
+- **`tb-1` draw-in underline** — header nav (`NavMenu.less`) and
+  footer (`Footer.less`) links grow a coral (`--accent-alt`)
+  underline from the left on `:hover` / `:focus-visible`, retract it
+  right on leave (transform-origin swap, `@ease-slow`, snaps under
+  reduced motion). Résumé CTA excluded via `a:not(.nav-cta)`.
+  - The site has **no inline prose links** — every `<a>` is a nav
+    link, footer link, or a `.btn` — so this is the whole surface.
+    The dormant global `a` rule in `global.less` (static underline,
+    accent → accent-alt on hover) is left untouched for future body
+    copy.
+
+#### Still open
+
+- **Primary + secondary hover kept as-is** (`hp-0` / `hs-0`) for now.
+  The original gripe — the primary's full flip to saturated
+  `--accent-alt` — is unresolved; `button-effects.html` has the
+  alternatives staged (lift, warm-shift, label-tint, ring, underbar,
+  border-draw, …) if we come back to it.
+
+#### Throwaway files at the repo root (still not committed)
+
+`playground.html`, `motion-catalog.html`, `cursor-bg-options.html`,
+`cursor-label-contrast.html`, `theme-toggle-playground.html`,
+`button-effects.html`. `rm` the lot when the motion pass is done.
+
+---
+
 ## 2026-09-09
 
 ### Custom cursor + a motion-options exploration
