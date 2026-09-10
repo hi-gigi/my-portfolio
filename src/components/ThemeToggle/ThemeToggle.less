@@ -2,9 +2,8 @@
 @import (reference) "../../styles/mixins.less";
 
 .theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-grid;
+  place-items: center;
   width: 32px;
   height: 32px;
   padding: 0;
@@ -23,10 +22,52 @@
   &:focus-visible {
     .focus-ring();
   }
+}
 
-  svg {
-    width: 16px;
-    height: 16px;
-    display: block;
+// Both icons share one grid cell. The swap is sequential, not a
+// cross-fade: whichever icon is leaving animates out immediately, and
+// the arriving one waits (@toggle-delay) so the two never overlap at
+// high opacity — the mush you get fading two different glyphs in place.
+.theme-toggle-icon {
+  grid-area: 1 / 1;
+  width: 16px;
+  height: 16px;
+  display: block;
+  transition: opacity @ease-toggle-icon, transform @ease-toggle-icon;
+}
+
+// The button shows the mode you'd switch *to*: moon in light, sun in
+// dark. The shown glyph carries the delay; the hidden one leaves at once.
+.theme-toggle-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.4);
+}
+
+.theme-toggle-moon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+  transition-delay: @toggle-delay;
+}
+
+.theme-toggle[data-dark] {
+  .theme-toggle-sun {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+    transition-delay: @toggle-delay;
+  }
+
+  .theme-toggle-moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.4);
+    transition-delay: 0s;
+  }
+}
+
+// Reduced motion: no spin, no stagger — a plain quick fade in place.
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-icon {
+    transition: opacity @ease;
+    transition-delay: 0s;
+    transform: none;
   }
 }

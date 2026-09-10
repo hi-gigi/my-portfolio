@@ -38,6 +38,21 @@ body {
   text-wrap: pretty;
 }
 
+// ---- Light/dark swap --------------------------------------
+// `useTheme` flags <html> for the length of a mode change; while the
+// flag is up, every themed colour cross-fades instead of cutting. The
+// `[data-theme-changing] *` selector out-specifies component rules so
+// buttons, cards and the header ride along too. Hover/focus keep their
+// own faster timing the rest of the time, and the presenter never sets
+// the flag under reduced motion.
+:root[data-theme-changing],
+:root[data-theme-changing] *,
+:root[data-theme-changing] *::before,
+:root[data-theme-changing] *::after {
+  transition: background-color @ease-swap, border-color @ease-swap,
+    color @ease-swap, fill @ease-swap, stroke @ease-swap;
+}
+
 // Centre every major block and cap its width. The header and footer
 // wrappers are full-bleed so their divider lines reach the screen edge;
 // only their inner content is capped.

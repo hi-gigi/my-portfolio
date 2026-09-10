@@ -6,10 +6,33 @@
 //  or matchMedia themselves.
 // ============================================================
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ThemeMode, ThemePreference } from "@/model/types";
 
 const STORAGE_KEY = "theme";
+
+/** Palette cross-fade window — keep in sync with @ease-swap in tokens.less. */
+const SWAP_MS = 700;
+
+let swapTimer: number | undefined;
+
+const prefersReducedMotion = (): boolean =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/**
+ * Flag <html> for the length of a light/dark change. While the flag is
+ * up, global.less lets every themed colour tween instead of cut. Skipped
+ * under reduced motion, and never fired on first paint.
+ */
+function flagThemeSwap(): void {
+  if (prefersReducedMotion()) return;
+  const root = document.documentElement;
+  root.setAttribute("data-theme-changing", "");
+  window.clearTimeout(swapTimer);
+  swapTimer = window.setTimeout(() => {
+    root.removeAttribute("data-theme-changing");
+  }, SWAP_MS + 80);
+}
 
 const darkQuery = (): MediaQueryList =>
   window.matchMedia("(prefers-color-scheme: dark)");
@@ -80,6 +103,16 @@ export function useTheme(): ThemeViewModel {
 
   const resolved: ThemeMode =
     preference === "system" ? systemMode : preference;
+
+  // Cross-fade the whole palette whenever the effective mode changes —
+  // toggle or OS flip — but not on the initial mount.
+  const lastResolved = useRef<ThemeMode | null>(null);
+  useEffect(() => {
+    if (lastResolved.current !== null && lastResolved.current !== resolved) {
+      flagThemeSwap();
+    }
+    lastResolved.current = resolved;
+  }, [resolved]);
 
   const toggle = useCallback(() => {
     setPreference(resolved === "dark" ? "light" : "dark");

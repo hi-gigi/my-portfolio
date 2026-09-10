@@ -96,6 +96,15 @@
 // ---- Motion ----------------------------------------
 @ease: 0.15s ease;
 @ease-slow: 0.28s ease;
+// Light/dark flip — slow on purpose so the change is legible, not a
+// blink. @ease-swap is the page-wide palette cross-fade (hard
+// decelerate); keep its duration in sync with SWAP_MS in
+// presenters/useTheme.ts. The toggle's icon swap is two phases —
+// @ease-toggle-icon per phase — with the arriving glyph held back by
+// @toggle-delay so the sun and moon don't overlap mid-swap.
+@ease-swap: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+@ease-toggle-icon: 0.55s ease-in-out;
+@toggle-delay: 0.4s;
 
 // ============================================================
 //  Runtime theme — emit CSS custom properties from the palette.
