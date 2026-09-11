@@ -28,7 +28,7 @@ export const aiSearch: CaseStudyContent = {
     },
     { kind: "image", alt: "The AI answer, expanded, above Lucid's traditional document search results" },
     { kind: "subheading", text: "My Role & Contribution" },
-    { kind: "paragraph", text: "Lead designer on a 0-to-1 AI initiative." },
+    { kind: "paragraph", text: "Lead designer on a 0-to-1 AI initiative.", emphasis: true },
     {
       kind: "list",
       items: [

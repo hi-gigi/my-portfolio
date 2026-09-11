@@ -58,7 +58,11 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
       return <h4>{block.text}</h4>;
 
     case "paragraph":
-      return <p>{block.text}</p>;
+      return (
+        <p className={block.emphasis ? "case-study-emphasis" : undefined}>
+          {block.text}
+        </p>
+      );
 
     case "list": {
       const ListTag = block.ordered ? "ol" : "ul";

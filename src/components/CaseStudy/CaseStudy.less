@@ -122,12 +122,19 @@
     line-height: @leading-body;
 
     // Browser-default bold (700) has no real Inter face to render
-    // with — the page only loads 400/500 — so it was rendering as a
-    // heavy synthetic/faux bold. Pin it to the medium weight that's
-    // actually loaded instead.
+    // with, so it was rendering as a heavy synthetic/faux bold. Inter
+    // 600 is now loaded (index.html) specifically so this can pin to
+    // a real face instead.
     strong {
-      font-weight: @weight-medium;
+      font-weight: @weight-semibold;
     }
+  }
+
+  // A lead-in sentence right under a subheading ("Lead designer on a
+  // 0-to-1 AI initiative.") — same weight as the <strong> list
+  // lead-ins, for the same "this introduces what follows" role.
+  .case-study-emphasis {
+    font-weight: @weight-semibold;
   }
 
   img {
