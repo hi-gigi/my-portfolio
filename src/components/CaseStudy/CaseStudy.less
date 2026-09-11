@@ -26,6 +26,7 @@
 
 .case-study-intro h1 {
   margin: 0 0 @space-4;
+  font-weight: @weight-bold;
 }
 
 .case-study-lede {
@@ -39,12 +40,20 @@
     margin-top: @space-5;
   }
 
+  // Section titles ("Project Overview", "Problem Space", …) — the
+  // major beats of the case study.
   h2 {
     margin-top: @space-8;
+    font-weight: @weight-semibold;
   }
 
+  // Subsection titles ("Timeline", "My Role & Contribution", …) —
+  // one level down; the accent colour reads as a callout label
+  // rather than a second heading size.
   h3 {
     margin-top: @space-6;
+    font-weight: @weight-semibold;
+    color: var(--accent-alt);
   }
 
   ul,
