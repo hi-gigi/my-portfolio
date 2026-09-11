@@ -120,6 +120,14 @@
 
   li {
     line-height: @leading-body;
+
+    // Browser-default bold (700) has no real Inter face to render
+    // with — the page only loads 400/500 — so it was rendering as a
+    // heavy synthetic/faux bold. Pin it to the medium weight that's
+    // actually loaded instead.
+    strong {
+      font-weight: @weight-medium;
+    }
   }
 
   img {
