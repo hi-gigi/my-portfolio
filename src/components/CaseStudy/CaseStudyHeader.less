@@ -8,9 +8,10 @@
 // Contact ever did.
 @case-study-nav-collapse: 720px;
 
-// Not sticky — only the site's main header is. Scrolls away with the
-// page like any other block.
 .case-study-header {
+  position: sticky;
+  top: 0;
+  z-index: @z-header;
   background: var(--bg);
   border-bottom: 1px solid var(--tonal);
 }

@@ -26,7 +26,33 @@ newest date first; within a date, newest entry first.
 
 ## 2026-09-11
 
-### CaseStudyHeader: not sticky, section links collapse instead of wrapping
+### CaseStudyHeader made sticky again (reverts the "not sticky" call below)
+
+Direct follow-up, same day — turns out sticky was wanted after all.
+Restored `position: sticky; top: 0; z-index: @z-header;` on
+`.case-study-header` (same treatment as `.site-header`); everything
+else from the entry below (the 720px collapse breakpoint, the
+hamburger dropdown for section links, `white-space: nowrap` on the
+back link) is unchanged.
+
+**Verification note**: the browser-automation tool's screenshots were
+unreliable here — after a scroll, some screenshots showed the header
+gone (as if not sticky) while others showed it correctly pinned, with
+no code change in between and no reproducible pattern. Direct DOM
+inspection settled it unambiguously: `window.scrollTo(0, 800)`
+followed immediately by reading `window.scrollY` back as `800` and
+`.case-study-header.getBoundingClientRect().top` as `0`, with
+`getComputedStyle(...).position === "sticky"` and no `transform` /
+`filter` / `contain` on any ancestor (any of which would silently
+break sticky positioning by creating a new containing block) — that's
+the real layout engine confirming correct behavior, independent of
+whatever the screenshot capture was doing. Treat this as the same
+class of tool flakiness as the hamburger-click timeout noted earlier
+today, not a site bug.
+
+---
+
+### CaseStudyHeader: not sticky, section links collapse instead of wrapping (superseded above)
 
 Two fixes to the `CaseStudyHeader` from the entry below, same day.
 
