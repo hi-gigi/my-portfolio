@@ -117,6 +117,8 @@ export type CaseStudyBlock =
    */
   | { kind: "heading"; id: string; text: string; navLabel?: string }
   | { kind: "subheading"; text: string }
+  /** One tier below a subheading — e.g. the named options under a "Decision #N" subheading. */
+  | { kind: "subsubheading"; text: string }
   | { kind: "paragraph"; text: string }
   | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }
   /** `src` omitted renders a labelled placeholder panel until real art lands. */

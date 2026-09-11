@@ -91,17 +91,17 @@ export const aiSearch: CaseStudyContent = {
     { kind: "paragraph", text: "These two problems shaped the decisions that followed." },
 
     { kind: "subheading", text: "Decision #1: When should AI kick in? Opt-in, or intent-aware?" },
-    { kind: "subheading", text: "First idea: an AI toggle" },
+    { kind: "subsubheading", text: "First idea: an AI toggle" },
     {
       kind: "paragraph",
       text: "If users chose to turn AI mode on themselves, they'd likely expect it to take a moment — making the latency easier to accept.",
     },
-    { kind: "subheading", text: "The problem" },
+    { kind: "subsubheading", text: "The problem" },
     {
       kind: "paragraph",
       text: "AI answer quality depends heavily on what the user gives it to work with. A user who opted in and typed a single keyword would get a slow answer that was no better than traditional search — the toggle put the burden on users to know when AI would actually help, with no protection against turning it on for a query it couldn't do anything with.",
     },
-    { kind: "subheading", text: "The decision: make the system decide" },
+    { kind: "subsubheading", text: "The decision: make the system decide" },
     {
       kind: "paragraph",
       text: "Intent-aware search evaluates how much information is in the query itself, and only runs the AI answer when there's enough signal to make it worthwhile. Sparse, keyword-style queries stay fast and get traditional results; specific, question-style queries get the richer AI experience — automatically, with no mode for the user to discover or manage.",
@@ -109,13 +109,13 @@ export const aiSearch: CaseStudyContent = {
     { kind: "image", alt: "Early exploration of an AI mode toggle in the search bar" },
 
     { kind: "subheading", text: "Decision #2: Where should the AI answer live? A separate tab, or inline above the results?" },
-    { kind: "subheading", text: "The alternative" },
+    { kind: "subsubheading", text: "The alternative" },
     {
       kind: "paragraph",
       text: 'A separate "AI answer" tab next to "All results," appearing only once AI had something to show. Clean separation, but it put a click between the user and the answer — they\'d have to notice the tab and switch views before finding out whether AI found anything.',
     },
     { kind: "image", alt: "A separate AI answer tab, explored and rejected" },
-    { kind: "subheading", text: "The decision: inline, above the traditional results, collapsed by default" },
+    { kind: "subsubheading", text: "The decision: inline, above the traditional results, collapsed by default" },
     { kind: "paragraph", text: "This resolved three things at once." },
     {
       kind: "list",
@@ -139,12 +139,12 @@ export const aiSearch: CaseStudyContent = {
     { kind: "image", alt: "Format: a compact, collapsed AI answer above the full results list" },
 
     { kind: "subheading", text: "Decision #3: Where should follow-up conversation happen? In search, or in the AI hub?" },
-    { kind: "subheading", text: "The obvious path" },
+    { kind: "subsubheading", text: "The obvious path" },
     {
       kind: "paragraph",
       text: "Build conversation directly into search — turn the AI answer into the start of a chat thread on the results page.",
     },
-    { kind: "subheading", text: "The decision: hand off instead" },
+    { kind: "subsubheading", text: "The decision: hand off instead" },
     {
       kind: "paragraph",
       text: "Lucid already has an AI hub built for back-and-forth with Lucid AI. Building a second, parallel conversational experience inside search would have meant maintaining two chat patterns for the same capability, and blurred what each surface was for — search is where people go to find something fast; the hub is where they go to think something through.",

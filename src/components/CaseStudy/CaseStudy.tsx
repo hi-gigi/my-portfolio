@@ -54,6 +54,9 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
     case "subheading":
       return <h3>{block.text}</h3>;
 
+    case "subsubheading":
+      return <h4>{block.text}</h4>;
+
     case "paragraph":
       return <p>{block.text}</p>;
 

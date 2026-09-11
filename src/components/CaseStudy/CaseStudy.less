@@ -58,6 +58,16 @@
     color: color-mix(in srgb, var(--accent-alt) 55%, var(--muted));
   }
 
+  // One tier below a subheading (e.g. the named options under a
+  // "Decision #N" subheading) — plain text colour, bolder and a touch
+  // larger than body copy is what carries the hierarchy at this depth,
+  // not another colour.
+  h4 {
+    margin-top: @space-5;
+    font-size: @text-base;
+    font-weight: @weight-semibold;
+  }
+
   ul,
   ol {
     padding-left: @space-5;
