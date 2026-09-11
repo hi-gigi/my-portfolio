@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { NavItem, SocialLink } from "@/model/types";
 import { NavMenu } from "../NavMenu";
 import { ThemeToggle } from "../ThemeToggle";
@@ -15,15 +14,15 @@ interface HeaderProps {
 const NAV_ID = "primary-nav";
 
 export function Header({ wordmark, nav, resume }: HeaderProps) {
-  const { theme, menu, nav: resolvedNav } = useHeaderPresenter(nav);
+  const { theme, menu } = useHeaderPresenter();
 
   return (
     <header className="site-header">
       <div className="site-header-inner">
         <div className="brand">
-          <Link className="wordmark" to="/#top">
+          <a className="wordmark" href="#top">
             {wordmark}
-          </Link>
+          </a>
           <ThemeToggle isDark={theme.isDark} onToggle={theme.toggle} />
         </div>
 
@@ -44,7 +43,7 @@ export function Header({ wordmark, nav, resume }: HeaderProps) {
 
         <NavMenu
           id={NAV_ID}
-          items={resolvedNav}
+          items={nav}
           resume={resume}
           isOpen={menu.isOpen}
           onNavigate={menu.close}

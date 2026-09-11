@@ -1,0 +1,84 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+// Full-bleed sticky bar, same pattern as the site's main .site-header —
+// but its own component, not a variant: no wordmark, no Résumé CTA.
+.case-study-header {
+  position: sticky;
+  top: 0;
+  z-index: @z-header;
+  background: var(--bg);
+  border-bottom: 1px solid var(--tonal);
+}
+
+.case-study-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: @space-3 @space-5;
+  max-width: @measure;
+  min-height: @header-height;
+  margin-inline: auto;
+  padding-inline: @pad;
+}
+
+.case-study-header-left {
+  display: flex;
+  align-items: center;
+  gap: @space-4;
+}
+
+.case-study-header-back {
+  .eyebrow-label();
+  text-decoration: none;
+
+  &:hover {
+    color: var(--text);
+  }
+}
+
+.case-study-header-sections {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: @space-2 @space-5;
+
+  a {
+    position: relative;
+    font-family: @font-mono;
+    font-size: @text-xs;
+    text-decoration: none;
+    color: var(--muted);
+
+    &:hover {
+      color: var(--text);
+    }
+
+    // Same coral underline draw-in as the main nav's text links.
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 1px;
+      background: var(--accent-alt);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform @ease-slow;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-header-sections a::after {
+    transition: none;
+  }
+}

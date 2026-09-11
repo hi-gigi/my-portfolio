@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useMatch } from "react-router-dom";
 import { About } from "./components/About";
-import { CaseStudyPage } from "./components/CaseStudy";
+import { CaseStudyHeader, CaseStudyPage } from "./components/CaseStudy";
 import { Cursor } from "./components/Cursor";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -19,19 +19,26 @@ function HomePage() {
   );
 }
 
-/** Header/Footer/Cursor persist across routes; only `<main>` swaps. */
+/** Footer/Cursor persist across routes; the header and `<main>` swap. */
 function Layout() {
   useScrollToHash();
+
+  const caseStudyMatch = useMatch("/work/:id");
+  const caseStudyId = caseStudyMatch?.params.id;
 
   return (
     <>
       <Cursor />
 
-      <Header
-        wordmark={content.wordmark}
-        nav={content.nav}
-        resume={content.resume}
-      />
+      {caseStudyId ? (
+        <CaseStudyHeader caseStudyId={caseStudyId} />
+      ) : (
+        <Header
+          wordmark={content.wordmark}
+          nav={content.nav}
+          resume={content.resume}
+        />
+      )}
 
       <main id="top">
         <Routes>

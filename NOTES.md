@@ -26,7 +26,42 @@ newest date first; within a date, newest entry first.
 
 ## 2026-09-11
 
-### Case study header: back button + in-page section nav
+### Case study header, take two: its own component, not a `Header` variant
+
+Immediate follow-up to the entry below — the "swap `Header`'s nav
+contextually" approach was replaced with a **separate `CaseStudyHeader`
+component** per explicit direction: no wordmark, no Résumé CTA on a
+case study page; layout is back-link + theme toggle left, section
+links right.
+
+- `Header.presenter.ts` / `Header.tsx` reverted to their pre-case-study
+  form — no more `useMatch`, no more nav-swapping. `NavMenu` reverted
+  to plain `<a href="#work">` too (it's only ever rendered on `/` now,
+  so the `Link`/`useLocation` generalization from the last entry was
+  dead complexity — removed rather than left unused).
+- New `src/components/CaseStudy/CaseStudyHeader.tsx` + `.less`: its
+  own sticky full-bleed bar (same pattern as `.site-header`, separate
+  rule set — not shared/extended). Left group: `← Back to work` (→
+  `/#work`) + `ThemeToggle` (reuses the existing `useTheme` presenter
+  directly, no `Header` involved). Right: this case study's section
+  links from `getCaseStudySections(id)`, each `Link`ing to
+  `${pathname}#${sectionId}` — same-page jump on whichever case study
+  is actually open.
+- `App.tsx`'s `Layout` now picks the header component itself:
+  `useMatch("/work/:id")` decides `<CaseStudyHeader>` vs. `<Header>`.
+  Both are siblings under `Layout`, not a shared component with
+  branching internals.
+
+Verified: `tsc -b --noEmit` + `npm run build` clean; browser check —
+case study header shows exactly back+toggle left / 4 section links
+right (no wordmark/Résumé), toggle flips theme, a section link jumps
+to that heading, "Back to work" returns to `/#work` with the full
+site header (wordmark/Work/About/Contact/Résumé) restored and the
+dark-mode choice carried over.
+
+---
+
+### Case study header: back button + in-page section nav (superseded above)
 
 Follow-up to the case study page below, same day. Moved "← Back to
 work" out of the article body and into the header's nav row, and
