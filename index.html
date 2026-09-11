@@ -44,21 +44,22 @@
 
     <!-- Undo the 404.html redirect (see public/404.html) before React
          Router mounts, restoring the real deep-linked path via
-         history.replaceState. No-op on a normal navigation. -->
+         history.replaceState. No-op on a normal navigation.
+         The query is "?p=<path>" (+ "&q=<original query>" if there was
+         one) — pull the value out from behind each "p="/"q=" label,
+         don't just re-glue the raw params with "?". -->
     <script>
       (function (l) {
         if (l.search[1] === "p" && l.search[1] !== undefined) {
-          var decoded = l.search
-            .slice(1)
-            .split("&")
-            .map(function (s) {
-              return s.replace(/~and~/g, "&");
-            })
-            .join("?");
+          var params = l.search.slice(1).split("&");
+          var path = params[0].slice(2).replace(/~and~/g, "&");
+          var query = params[1]
+            ? "?" + params[1].slice(2).replace(/~and~/g, "&")
+            : "";
           window.history.replaceState(
             null,
             null,
-            l.pathname.slice(0, -1) + decoded + l.hash,
+            l.pathname.slice(0, -1) + path + query + l.hash,
           );
         }
       })(window.location);
