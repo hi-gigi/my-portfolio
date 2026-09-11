@@ -6,6 +6,15 @@
 // stays local rather than joining the global token set.
 @case-study-measure: 44rem;
 
+// This page's own type sizes for the lede and body headings — a
+// finer ramp (16/20/24) than the shared ladder in tokens.less has
+// steps for, deliberately scoped here rather than added there since
+// nothing else on the site uses these sizes.
+@case-study-text-lede: 1rem; //   16px
+@case-study-text-h2: 1.5rem; //   24px
+@case-study-text-h3: 1.25rem; //  20px
+@case-study-text-h4: 1.125rem; // 18px
+
 // Not a `<section>`, so it falls outside the `main > section` global
 // centering rule — replicate the inline gutter here directly.
 .case-study {
@@ -26,11 +35,11 @@
 
 .case-study-intro h1 {
   margin: 0 0 @space-4;
-  font-weight: @weight-bold;
+  font-weight: @weight-semibold;
 }
 
 .case-study-lede {
-  font-size: @text-md;
+  font-size: @case-study-text-lede;
   color: var(--muted);
   margin: 0;
 }
@@ -44,6 +53,7 @@
   // major beats of the case study.
   h2 {
     margin-top: @space-8;
+    font-size: @case-study-text-h2;
     font-weight: @weight-semibold;
   }
 
@@ -52,6 +62,7 @@
   // warmth to read as a deliberate callout label without shouting.
   h3 {
     margin-top: @space-6;
+    font-size: @case-study-text-h3;
     font-weight: @weight-semibold;
     color: color-mix(in srgb, var(--accent-alt) 30%, var(--muted));
   }
@@ -62,7 +73,7 @@
   // not another colour.
   h4 {
     margin-top: @space-5;
-    font-size: @text-base;
+    font-size: @case-study-text-h4;
     font-weight: @weight-bold;
   }
 
