@@ -26,6 +26,46 @@ newest date first; within a date, newest entry first.
 
 ## 2026-09-11
 
+### CaseStudyHeader: not sticky, section links collapse instead of wrapping
+
+Two fixes to the `CaseStudyHeader` from the entry below, same day.
+
+- **Not sticky.** Only the site's main `.site-header` should pin to
+  the viewport top; `.case-study-header` was accidentally given the
+  same `position: sticky` treatment. Removed — it's a normal block
+  now, scrolls away with the page.
+- **Section links collapse into a hamburger dropdown below a
+  breakpoint**, instead of wrapping onto a second line. Reused
+  `useNavMenu` (already generic — open state, outside-click/Esc
+  dismiss, auto-close on grow-to-desktop) directly in
+  `CaseStudyHeader.tsx`, same toggle-button + dropdown-`<nav>` pattern
+  `Header`/`NavMenu` use. **New local breakpoint**
+  `@case-study-nav-collapse: 720px` (not the shared `@bp-nav-collapse`
+  at 560px) — this header's content is shaped differently (back link +
+  toggle + up to 4 section labels, one as long as "Key
+  considerations") and was still wrapping well above 560px before the
+  hamburger took over.
+- Also fixed while in there: `.case-study-header-back` had no
+  `white-space: nowrap`, so "← Back to work" itself was wrapping
+  mid-phrase at in-between widths, independent of the section-links
+  issue.
+
+Verified: `tsc -b --noEmit` + `npm run build` clean. Browser check —
+1024px shows the full inline row with no wrapping; scrolling confirms
+the header leaves the viewport (not sticky); at 480px the hamburger
+appears and (JS-dispatched click, see note below) opens a right-
+aligned dropdown with all 4 section links, matching the site nav's
+mobile treatment.
+
+**Tool note**: clicking the hamburger via the browser-automation
+`computer` tool timed out (30s) here too — same pre-existing
+click-handling quirk on this button noted in the entry below (`.nav-
+toggle`), not specific to this component. Verified by dispatching
+`.click()` via `javascript_tool` instead, which confirmed the toggle
+actually works (`aria-expanded` flips, dropdown becomes visible).
+
+---
+
 ### Case study header, take two: its own component, not a `Header` variant
 
 Immediate follow-up to the entry below — the "swap `Header`'s nav

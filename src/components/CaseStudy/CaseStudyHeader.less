@@ -1,22 +1,26 @@
 @import (reference) "../../styles/tokens.less";
 @import (reference) "../../styles/mixins.less";
 
-// Full-bleed sticky bar, same pattern as the site's main .site-header —
-// but its own component, not a variant: no wordmark, no Résumé CTA.
+// This header's own collapse point — wider than the site nav's
+// @bp-nav-collapse (560px). Back link + theme toggle + up to 4 section
+// labels (one as long as "Key considerations") need more room before
+// the hamburger takes over than the home nav's shorter Work/About/
+// Contact ever did.
+@case-study-nav-collapse: 720px;
+
+// Not sticky — only the site's main header is. Scrolls away with the
+// page like any other block.
 .case-study-header {
-  position: sticky;
-  top: 0;
-  z-index: @z-header;
   background: var(--bg);
   border-bottom: 1px solid var(--tonal);
 }
 
 .case-study-header-inner {
+  position: relative; // anchors the collapsed dropdown below
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: @space-3 @space-5;
+  gap: @space-4;
   max-width: @measure;
   min-height: @header-height;
   margin-inline: auto;
@@ -26,12 +30,14 @@
 .case-study-header-left {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: @space-4;
 }
 
 .case-study-header-back {
   .eyebrow-label();
   text-decoration: none;
+  white-space: nowrap;
 
   &:hover {
     color: var(--text);
@@ -41,8 +47,7 @@
 .case-study-header-sections {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: @space-2 @space-5;
+  gap: @space-5;
 
   a {
     position: relative;
@@ -50,6 +55,7 @@
     font-size: @text-xs;
     text-decoration: none;
     color: var(--muted);
+    white-space: nowrap;
 
     &:hover {
       color: var(--text);
@@ -74,6 +80,90 @@
       transform: scaleX(1);
       transform-origin: left;
     }
+  }
+}
+
+// Hamburger toggle for the section links — only exists on narrow screens.
+.case-study-nav-toggle {
+  display: none;
+}
+
+// ---- Collapsed: section links become a dropdown, same pattern as
+//      the site header's mobile nav (NavMenu.less), instead of
+//      wrapping onto a second line. ----
+@media (max-width: @case-study-nav-collapse) {
+  .case-study-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--tonal);
+    border-radius: @radius-btn;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color @ease, color @ease;
+
+    &:hover {
+      border-color: var(--accent);
+    }
+
+    &:focus-visible {
+      .focus-ring();
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+  }
+
+  .case-study-header-sections {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: @z-nav-dropdown;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: @space-1;
+    padding: @space-2 @pad @space-5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--tonal);
+    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.16);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity @ease-slow, transform @ease-slow,
+      visibility 0s linear 0.28s;
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+      transition: opacity @ease-slow, transform @ease-slow,
+        visibility 0s linear 0s;
+    }
+
+    a {
+      padding: @space-2 0;
+      font-family: @font-heading;
+      font-weight: @weight-medium;
+      font-size: @text-md;
+      color: var(--text);
+    }
+  }
+}
+
+@media (max-width: @case-study-nav-collapse) and (prefers-reduced-motion: reduce) {
+  .case-study-header-sections,
+  .case-study-header-sections.is-open {
+    transition: none;
   }
 }
 
