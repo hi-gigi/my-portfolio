@@ -45,14 +45,17 @@
 }
 
 .case-study-body {
+  // Space between ordinary blocks — paragraph to paragraph, paragraph
+  // to image, etc.
   > * + * {
-    margin-top: @space-5;
+    margin-top: @space-6;
   }
 
   // Section titles ("Project Overview", "Problem Space", …) — the
-  // major beats of the case study.
+  // major beats of the case study. Generous space above so a new
+  // section reads as a real break from what came before.
   h2 {
-    margin-top: @space-8;
+    margin-top: @space-9;
     margin-bottom: 0;
     font-size: @case-study-text-h2;
     font-weight: @weight-semibold;
@@ -62,7 +65,7 @@
   // one level down; a whisper of accent-alt in --muted, just enough
   // warmth to read as a deliberate callout label without shouting.
   h3 {
-    margin-top: @space-6;
+    margin-top: @space-7;
     margin-bottom: 0;
     font-size: @case-study-text-h3;
     font-weight: @weight-semibold;
@@ -74,14 +77,14 @@
   // larger than body copy is what carries the hierarchy at this depth,
   // not another colour.
   h4 {
-    margin-top: @space-5;
+    margin-top: @space-6;
     margin-bottom: 0;
     font-size: @case-study-text-h4;
     font-weight: @weight-bold;
   }
 
   // A heading sits closer to the content it introduces than to
-  // whatever came before it — the default sibling gap (@space-5) is
+  // whatever came before it — the default sibling gap (@space-6) is
   // too generous for this specific relationship.
   h2 + *,
   h3 + * {
