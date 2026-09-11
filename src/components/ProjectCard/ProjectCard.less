@@ -14,11 +14,14 @@
   }
 }
 
-// Thumbnail is inset by the card's padding — framed, never full-bleed.
-// An <img>, a <video> loop, or (with no media yet) an empty panel.
+// Thumbnail is a fixed-size, fixed-ratio panel — every tile reads the
+// same regardless of the source image's own dimensions. The media
+// sits inset within it (never cropped or stretched to fill); an
+// <img>, a <video> loop, or (with no media yet) an empty panel.
 .card-media {
   aspect-ratio: 3 / 2;
   margin-bottom: @space-4;
+  padding: @space-3;
   border-radius: calc(@radius - 2px); // concentric with the card corner
   overflow: hidden;
   background: var(--bg);
@@ -28,7 +31,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform @ease-slow;
   }
 }
