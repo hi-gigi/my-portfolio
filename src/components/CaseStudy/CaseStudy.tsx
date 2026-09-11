@@ -15,7 +15,7 @@ interface CaseStudyProps {
 export function CaseStudy({ project, blocks }: CaseStudyProps) {
   return (
     <article className="case-study">
-      <header className="case-study-header">
+      <header className="case-study-intro">
         {project.labels.length > 0 && (
           <p className="case-study-eyebrow">{project.labels.join(" · ")}</p>
         )}
