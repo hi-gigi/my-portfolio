@@ -26,6 +26,36 @@ newest date first; within a date, newest entry first.
 
 ## 2026-09-11
 
+### Correction: the "sticky" screenshot weirdness was a real bug, not tool flakiness
+
+The entry below blamed the browser-automation tool for inconsistent
+screenshots after making `CaseStudyHeader` sticky. That was wrong.
+Real cause, found when the user asked "what do you call this" about
+the title-block screenshot: **`CaseStudy.tsx`'s article header
+(eyebrow/h1/lede) and the new `CaseStudyHeader` nav bar both used the
+class `.case-study-header`**, defined in two separate `.less` files
+(`CaseStudy.less` and `CaseStudyHeader.less`) that both end up in the
+same bundle. The title block was silently inheriting the nav bar's
+`position: sticky; top: 0; z-index: @z-header` — so there were **two**
+elements trying to stick to the same spot. Past a certain scroll
+position the later one (the title block, later in DOM order) would
+paint over the real nav bar, which is exactly the "header disappears"
+symptom from the screenshots.
+
+Fixed: renamed the title block's class to `.case-study-intro`
+(`CaseStudy.tsx` + `CaseStudy.less`) — no more collision. Verified via
+`getComputedStyle`: nav bar is `sticky`, title block is back to
+`static`.
+
+**Lesson for this session**: don't default to "the tool is flaky" when
+a screenshot looks wrong twice in a row — a real CSS bug produced
+exactly that appearance. The DOM-inspection checks I ran (position,
+rect, ancestor transform/filter/contain) were all technically correct
+answers to the wrong question, since I never checked for a duplicate
+class name owning the same selector elsewhere in the bundle.
+
+---
+
 ### CaseStudyHeader made sticky again (reverts the "not sticky" call below)
 
 Direct follow-up, same day — turns out sticky was wanted after all.
