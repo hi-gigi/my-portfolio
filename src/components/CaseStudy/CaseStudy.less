@@ -66,6 +66,15 @@
     font-weight: @weight-bold;
   }
 
+  // A heading sits closer to the content it introduces than to
+  // whatever came before it — the default sibling gap (@space-5) is
+  // too generous for this specific relationship.
+  h2 + *,
+  h3 + *,
+  h4 + * {
+    margin-top: @space-3;
+  }
+
   ul,
   ol {
     padding-left: @space-5;
