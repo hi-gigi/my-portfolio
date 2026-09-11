@@ -1,0 +1,97 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+// Case studies read as long-form text; cap narrower than the site's
+// 1280px grid measure for a comfortable line length. One-off, so it
+// stays local rather than joining the global token set.
+@case-study-measure: 44rem;
+
+// Not a `<section>`, so it falls outside the `main > section` global
+// centering rule — replicate the inline gutter here directly.
+.case-study {
+  max-width: @case-study-measure;
+  margin-inline: auto;
+  padding-block: @space-6 @space-9;
+  padding-inline: @pad;
+}
+
+.case-study-back {
+  .eyebrow-label();
+  display: inline-block;
+  margin-bottom: @space-7;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--text);
+  }
+}
+
+.case-study-header {
+  margin-bottom: @space-8;
+}
+
+.case-study-eyebrow {
+  .eyebrow-label();
+  margin: 0 0 @space-4;
+}
+
+.case-study-header h1 {
+  margin: 0 0 @space-4;
+}
+
+.case-study-lede {
+  font-size: @text-md;
+  color: var(--muted);
+  margin: 0;
+}
+
+.case-study-body {
+  > * + * {
+    margin-top: @space-5;
+  }
+
+  h2 {
+    margin-top: @space-8;
+  }
+
+  h3 {
+    margin-top: @space-6;
+  }
+
+  ul,
+  ol {
+    padding-left: @space-5;
+
+    li + li {
+      margin-top: @space-3;
+    }
+  }
+
+  li {
+    line-height: @leading-body;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: @radius;
+    background: var(--tonal);
+  }
+}
+
+.case-study-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 16rem;
+  padding: @space-5;
+  border: 1px dashed var(--muted);
+  border-radius: @radius;
+  background: var(--tonal);
+  text-align: center;
+
+  span {
+    .eyebrow-label();
+  }
+}

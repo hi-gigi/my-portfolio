@@ -4,7 +4,7 @@
 //  site is editing this file.
 // ============================================================
 
-import type { PortfolioContent } from "./types";
+import type { PortfolioContent, Project } from "./types";
 
 const EMAIL = "mailto:hizhuojiaqi@gmail.com";
 
@@ -149,3 +149,12 @@ export const content: PortfolioContent = {
     ],
   },
 };
+
+/** Looks up a project by id across every work group. Used by case study pages. */
+export function findProject(id: string): Project | undefined {
+  for (const group of content.work.groups) {
+    const project = group.projects.find((p) => p.id === id);
+    if (project) return project;
+  }
+  return undefined;
+}

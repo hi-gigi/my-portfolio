@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { NavItem, SocialLink } from "@/model/types";
 import { ArrowUpRightIcon } from "../icons";
 import "./NavMenu.less";
@@ -32,11 +33,19 @@ export function NavMenu({
       className={isOpen ? "nav is-open" : "nav"}
     >
       <div className="nav-links">
-        {items.map((item) => (
-          <a key={item.href} href={item.href} onClick={onNavigate}>
-            {item.label}
-          </a>
-        ))}
+        {items.map((item) =>
+          item.href.startsWith("#") ? (
+            // In-page anchor (#work, #about) — route home first if we're
+            // on a case study page, then let useScrollToHash handle it.
+            <Link key={item.href} to={`/${item.href}`} onClick={onNavigate}>
+              {item.label}
+            </Link>
+          ) : (
+            <a key={item.href} href={item.href} onClick={onNavigate}>
+              {item.label}
+            </a>
+          ),
+        )}
       </div>
 
       <a

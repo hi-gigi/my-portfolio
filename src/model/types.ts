@@ -101,6 +101,28 @@ export interface PortfolioContent {
   footer: FooterContent;
 }
 
+// ---- Case studies -------------------------------------------
+// A case study is a long-form article rendered one block at a time,
+// in order. `Project` (above) still owns the id/title/blurb/labels
+// used for the header and the card that links here.
+
+/** A plain bullet, or a bolded lead-in followed by its description. */
+export type CaseStudyListItem = string | { label: string; text: string };
+
+export type CaseStudyBlock =
+  | { kind: "heading"; id: string; text: string }
+  | { kind: "subheading"; text: string }
+  | { kind: "paragraph"; text: string }
+  | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }
+  /** `src` omitted renders a labelled placeholder panel until real art lands. */
+  | { kind: "image"; src?: string; alt: string };
+
+export interface CaseStudyContent {
+  /** Matches a `Project.id` from `WorkContent`. */
+  id: string;
+  blocks: CaseStudyBlock[];
+}
+
 // ---- Theme ------------------------------------------------
 export type ThemeMode = "light" | "dark";
 export type ThemePreference = ThemeMode | "system";

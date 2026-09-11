@@ -8,6 +8,11 @@
   border: 1px solid var(--tonal);
   border-radius: @radius;
   transition: border-color @ease;
+  // A linked card (one with a case study) renders as an <a>; the whole
+  // tile is the click target, so it shouldn't pick up the global
+  // link-underline treatment meant for inline text links.
+  color: inherit;
+  text-decoration: none;
 
   &:hover {
     border-color: var(--accent);

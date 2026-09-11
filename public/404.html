@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Jiaqi Zhuo — Design Portfolio</title>
+    <script>
+      // Single Page Apps for GitHub Pages — GH Pages has no server-side
+      // router, so it 404s any deep link (e.g. /work/ai-search) that
+      // isn't a real file. This is GH Pages' 404 fallback: encode the
+      // path into a query string and redirect to the app's index,
+      // which decodes it back with history.replaceState (see the
+      // matching script in index.html) before React Router ever sees it.
+      // Adapted from https://github.com/rafgraph/spa-github-pages
+      var segmentCount = 1; // keep "/my-portfolio" — the Pages project path
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + segmentCount)
+            .join("/") +
+          "/?p=/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(segmentCount)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash,
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

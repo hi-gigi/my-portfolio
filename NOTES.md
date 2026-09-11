@@ -9,8 +9,10 @@ newest date first; within a date, newest entry first.
 
 - **node** is at `/opt/homebrew/bin` and is NOT on the Bash tool's default
   PATH — prefix commands with `export PATH="/opt/homebrew/bin:$PATH";`.
-- **Content model** lives entirely in `src/model/content.ts` + `types.ts`;
-  every view is presentational. Editing the site = editing `content.ts`.
+- **Content model** lives in `src/model/` + `types.ts`; every view is
+  presentational. Site copy = `content.ts`; each case study is its own
+  file under `src/model/caseStudies/` (too long to keep in `content.ts`),
+  indexed by `src/model/caseStudies/index.ts`.
 - **Design tokens** are the single source of truth in `src/styles/tokens.less`
   (colour, type scale, spacing, motion). Component `.less` files must not
   hardcode hex/px/rem for anything a token covers.
@@ -19,6 +21,82 @@ newest date first; within a date, newest entry first.
   `--port 5173`.
 - **Deploy**: push to `main` → GitHub Actions builds `dist/` and publishes
   to Pages. Repo setting: Pages → Source must be "GitHub Actions".
+
+---
+
+## 2026-09-11
+
+### First case study page — AI-powered search (`/work/ai-search`)
+
+Added client-side routing and built out the first real case study page,
+sourced from the copy on the live Webflow site
+(jiaqizhuo.com/ai-answer-in-search). Deliberately plain layout per
+request — one column, text and images, no sidebar/TOC/sticky nav yet;
+that's a later pass.
+
+**Routing** — added `react-router-dom` (`BrowserRouter`, basename
+`import.meta.env.BASE_URL` so it works at both dev `/` and prod
+`/my-portfolio/`).
+- `App.tsx` now composes a `Layout` (Cursor + Header + `<Routes>` +
+  Footer) instead of one flat page. Home (`/`) renders the old
+  Hero/Work/About stack unchanged; `/work/:id` renders `CaseStudyPage`.
+- `CaseStudyPage` (`src/components/CaseStudy/CaseStudyPage.tsx`) looks
+  up the project + case study by id and redirects home (`<Navigate>`)
+  if either is missing — so linking a project without a written case
+  study just fails safe instead of 404ing.
+- **GH Pages deep-link fix**: static hosting 404s on a direct hit to
+  `/my-portfolio/work/ai-search` (no server-side router). Added the
+  standard rafgraph `public/404.html` ⇄ `index.html` redirect-and-decode
+  pair (`?p=` query trick + `history.replaceState`) — untested against
+  the live deploy yet, verify after the next push.
+- **Nav had to become route-aware**: `NavMenu`'s `#work`/`#about` links
+  and the header wordmark (`#top`) are now `react-router-dom` `Link`s
+  (`to="/#work"` etc.) instead of plain `<a>` — a plain anchor from
+  `/work/ai-search` would never navigate home. New
+  `presenters/useScrollToHash.ts` replicates the browser's native
+  hash-scroll on every route/hash change (SPA nav doesn't get it for
+  free); reuses the existing global `scroll-behavior: smooth`, so it's
+  already reduced-motion-safe.
+
+**Content model** — new block-based `CaseStudyContent` type
+(`types.ts`): `heading` (id-bearing, for future anchor nav) /
+`subheading` / `paragraph` / `list` (plain strings or `{label, text}` —
+rendered `**label** — text`) / `image`. `findProject(id)` added to
+`content.ts` so the page header (title/blurb/labels) stays sourced from
+the existing `Project`, not duplicated into the case study file.
+
+**Images are placeholders, on purpose** — first pass pulled the real
+screenshots from the Webflow CDN, but was told to back that out; every
+`image` block currently omits `src` and renders a dashed-border
+`.case-study-image-placeholder` panel showing its `alt` text instead.
+**Next**: swap in real screenshots (user will upload) — just add `src`
+pointing at a file under `public/case-studies/ai-search/` to each block
+in `src/model/caseStudies/ai-search.ts`.
+
+**`ProjectCard` now links conditionally** — `getCaseStudy(id)` decides
+whether a tile renders as a `<Link to="/work/:id">` (case study exists)
+or an inert `<article>` (doesn't yet — "Coming soon" and the four other
+projects). Only linked cards get `data-cursor-label="View case study"`
+now; previously every card claimed it regardless of whether a page
+existed. **Non-obvious CSS fix**: the linked `<a class="card">` picked
+up the global `a { text-decoration: underline }` rule on its nested
+`h4`/`p` text (decoration paints through descendants even though it's
+not an inherited property) — added `color: inherit; text-decoration:
+none` to `.card` in `ProjectCard.less` to cancel it.
+
+**Also hit**: after `npm install react-router-dom` mid-session, the
+already-running Vite dev server threw `Invalid hook call` / duplicate-
+React errors — stale `node_modules/.vite` dep-optimizer cache from
+before the install. Fixed by `rm -rf node_modules/.vite` + restarting
+the dev server. Expect this any time a dependency is added while a dev
+server is already up.
+
+Verified: `tsc -b --noEmit` + `npm run build` clean; dev-server
+walkthrough — direct load of `/work/ai-search`, card click-through from
+`/`, "← Back to work" back to `/#work`, dark mode, mobile (375px)
+reflow, "Coming soon" card confirmed non-interactive. **Not yet
+verified**: the actual GH Pages deploy (404.html redirect round-trip
+only really provable after a live push).
 
 ---
 

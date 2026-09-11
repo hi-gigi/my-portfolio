@@ -41,6 +41,28 @@
         } catch (e) {}
       })();
     </script>
+
+    <!-- Undo the 404.html redirect (see public/404.html) before React
+         Router mounts, restoring the real deep-linked path via
+         history.replaceState. No-op on a normal navigation. -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "p" && l.search[1] !== undefined) {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash,
+          );
+        }
+      })(window.location);
+    </script>
   </head>
   <body>
     <div id="root"></div>
