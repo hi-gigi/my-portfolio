@@ -48,14 +48,12 @@
   }
 
   // Subsection titles ("Timeline", "My Role & Contribution", …) —
-  // one level down; a muted-down accent reads as a callout label
-  // rather than a second heading size, without shouting. Blended
-  // with --muted (not full-strength --accent-alt) so it stays a
-  // quiet tint, not a saturated coral.
+  // one level down; a whisper of accent-alt in --muted, just enough
+  // warmth to read as a deliberate callout label without shouting.
   h3 {
     margin-top: @space-6;
     font-weight: @weight-semibold;
-    color: color-mix(in srgb, var(--accent-alt) 55%, var(--muted));
+    color: color-mix(in srgb, var(--accent-alt) 30%, var(--muted));
   }
 
   // One tier below a subheading (e.g. the named options under a
