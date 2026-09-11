@@ -158,3 +158,10 @@ export function findProject(id: string): Project | undefined {
   }
   return undefined;
 }
+
+/** Every project except `excludeId`, flattened across groups in their existing order. */
+export function getOtherProjects(excludeId: string): Project[] {
+  return content.work.groups
+    .flatMap((group) => group.projects)
+    .filter((project) => project.id !== excludeId);
+}

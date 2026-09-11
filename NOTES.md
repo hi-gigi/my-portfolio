@@ -26,6 +26,41 @@ newest date first; within a date, newest entry first.
 
 ## 2026-09-11
 
+### "More work" section at the bottom of case study pages
+
+Every case study now ends with a "More work" section — a `.card-grid`-
+style grid of every *other* project (current one excluded), reusing
+`ProjectCard` as-is. Matches the "View other projects" section on the
+original Webflow page, except this one excludes the current project
+(the Webflow version listed it too, which reads as a CMS-collection
+default rather than an intentional choice).
+
+- `getOtherProjects(excludeId)` in `content.ts`: flattens
+  `work.groups`, filters out the current id, keeps existing order.
+- `CaseStudyPage` computes it and passes it to `CaseStudy` as
+  `otherProjects`; `CaseStudy.tsx` renders the section (skipped
+  entirely if empty) after `.case-study-body`.
+- Reuses `ProjectCard` directly — so a project without its own case
+  study yet (everything except `ai-search` right now) shows up
+  correctly as a non-clickable tile here too, same rule as the home
+  page grid, no special-casing needed.
+- **New grid class, not a reuse of Work.less's `.card-grid`**:
+  `.case-study-more-grid`, scoped in `CaseStudy.less`, same 2-col /
+  1-col-under-`@bp-cards-stack` rule duplicated rather than imported.
+  Deliberate, given the class-collision bug from earlier today —
+  scoped-and-duplicated over shared-and-global for anything that isn't
+  already exported through its own component file (`ProjectCard.less`
+  *is* imported, since `ProjectCard.tsx` owns it directly).
+
+Verified: `tsc -b --noEmit` + `npm run build` clean. Browser check on
+`/work/ai-search` — "More work" lists the other 5 projects (ai-search
+itself absent), 2-col at 1000px / 1-col under 600px, and a project
+without a case study (Document Discovery) renders as a plain
+non-clickable tile, confirming `ProjectCard`'s existing link-or-not
+logic carries over correctly into this new context.
+
+---
+
 ### Correction: the "sticky" screenshot weirdness was a real bug, not tool flakiness
 
 The entry below blamed the browser-automation tool for inconsistent

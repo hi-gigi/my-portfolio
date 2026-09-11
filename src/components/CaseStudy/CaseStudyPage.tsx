@@ -1,5 +1,5 @@
 import { Navigate, useParams } from "react-router-dom";
-import { findProject } from "@/model/content";
+import { findProject, getOtherProjects } from "@/model/content";
 import { getCaseStudy } from "@/model/caseStudies";
 import { CaseStudy } from "./CaseStudy";
 
@@ -13,5 +13,11 @@ export function CaseStudyPage() {
     return <Navigate to="/" replace />;
   }
 
-  return <CaseStudy project={project} blocks={caseStudy.blocks} />;
+  return (
+    <CaseStudy
+      project={project}
+      blocks={caseStudy.blocks}
+      otherProjects={getOtherProjects(project.id)}
+    />
+  );
 }

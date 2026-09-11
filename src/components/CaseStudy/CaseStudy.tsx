@@ -1,9 +1,12 @@
 import type { CaseStudyBlock, CaseStudyListItem, Project } from "@/model/types";
+import { ProjectCard } from "../ProjectCard";
 import "./CaseStudy.less";
 
 interface CaseStudyProps {
   project: Project;
   blocks: CaseStudyBlock[];
+  /** Shown as "More work" at the bottom of the page. */
+  otherProjects: Project[];
 }
 
 /**
@@ -12,7 +15,7 @@ interface CaseStudyProps {
  * deliberately plain for now — text and images, one column; a real
  * layout pass comes later.
  */
-export function CaseStudy({ project, blocks }: CaseStudyProps) {
+export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
   return (
     <article className="case-study">
       <header className="case-study-intro">
@@ -28,6 +31,17 @@ export function CaseStudy({ project, blocks }: CaseStudyProps) {
           <CaseStudyBlockView key={index} block={block} />
         ))}
       </div>
+
+      {otherProjects.length > 0 && (
+        <section className="case-study-more">
+          <h2 className="section-title">More work</h2>
+          <div className="case-study-more-grid">
+            {otherProjects.map((otherProject) => (
+              <ProjectCard key={otherProject.id} project={otherProject} />
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   );
 }
