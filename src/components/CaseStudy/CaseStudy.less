@@ -81,9 +81,14 @@
   // whatever came before it — the default sibling gap (@space-5) is
   // too generous for this specific relationship.
   h2 + *,
-  h3 + *,
-  h4 + * {
+  h3 + * {
     margin-top: @space-3;
+  }
+
+  // h4 sits tighter still — it's a small run-in label one step above
+  // body text, not a section break.
+  h4 + * {
+    margin-top: @space-2;
   }
 
   ul,
