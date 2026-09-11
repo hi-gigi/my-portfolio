@@ -9,7 +9,7 @@ import type { CaseStudyContent } from "../types";
 export const aiSearch: CaseStudyContent = {
   id: "ai-search",
   blocks: [
-    { kind: "heading", id: "overview", text: "Project Overview" },
+    { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
       kind: "paragraph",
       text: "Lucid's document list is the primary surface people use to find the decisions, workflows, and infrastructure documentation their teams have created and stored — but beyond basic filters, search itself could only match keywords, not understand what someone was actually asking.",
@@ -56,7 +56,7 @@ export const aiSearch: CaseStudyContent = {
       ],
     },
 
-    { kind: "heading", id: "problem-space", text: "Problem Space" },
+    { kind: "heading", id: "problem-space", text: "Problem Space", navLabel: "Problem space" },
     {
       kind: "paragraph",
       text: "Search has always mattered at Lucid. People build technical workflows, cloud infrastructure diagrams, product roadmaps, and org charts inside the product — and finding that knowledge again has long been a priority, one we've kept investing in across accuracy, performance, and usability.",

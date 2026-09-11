@@ -110,7 +110,12 @@ export interface PortfolioContent {
 export type CaseStudyListItem = string | { label: string; text: string };
 
 export type CaseStudyBlock =
-  | { kind: "heading"; id: string; text: string }
+  /**
+   * Also an in-page nav target — every heading becomes a jump link in
+   * the header while its case study is open. `navLabel` overrides the
+   * on-page `text` for that link (e.g. "Overview" vs. "Project Overview").
+   */
+  | { kind: "heading"; id: string; text: string; navLabel?: string }
   | { kind: "subheading"; text: string }
   | { kind: "paragraph"; text: string }
   | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }

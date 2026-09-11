@@ -15,7 +15,7 @@ interface HeaderProps {
 const NAV_ID = "primary-nav";
 
 export function Header({ wordmark, nav, resume }: HeaderProps) {
-  const { theme, menu } = useHeaderPresenter();
+  const { theme, menu, nav: resolvedNav } = useHeaderPresenter(nav);
 
   return (
     <header className="site-header">
@@ -44,7 +44,7 @@ export function Header({ wordmark, nav, resume }: HeaderProps) {
 
         <NavMenu
           id={NAV_ID}
-          items={nav}
+          items={resolvedNav}
           resume={resume}
           isOpen={menu.isOpen}
           onNavigate={menu.close}

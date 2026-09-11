@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { NavItem, SocialLink } from "@/model/types";
 import { ArrowUpRightIcon } from "../icons";
 import "./NavMenu.less";
@@ -26,6 +26,8 @@ export function NavMenu({
   onNavigate,
   containerRef,
 }: NavMenuProps) {
+  const { pathname } = useLocation();
+
   return (
     <nav
       id={id}
@@ -33,19 +35,36 @@ export function NavMenu({
       className={isOpen ? "nav is-open" : "nav"}
     >
       <div className="nav-links">
-        {items.map((item) =>
-          item.href.startsWith("#") ? (
-            // In-page anchor (#work, #about) — route home first if we're
-            // on a case study page, then let useScrollToHash handle it.
-            <Link key={item.href} to={`/${item.href}`} onClick={onNavigate}>
-              {item.label}
-            </Link>
-          ) : (
+        {items.map((item) => {
+          if (item.href.startsWith("#")) {
+            // In-page anchor — jumps to a section on *this* page
+            // (home's #work/#about, or a case study's own headings).
+            // useScrollToHash does the actual scrolling.
+            return (
+              <Link
+                key={item.href}
+                to={`${pathname}${item.href}`}
+                onClick={onNavigate}
+              >
+                {item.label}
+              </Link>
+            );
+          }
+          if (item.href.startsWith("/")) {
+            // Absolute in-app path (e.g. "/#work" from a case study,
+            // routing home before scrolling to its Work section).
+            return (
+              <Link key={item.href} to={item.href} onClick={onNavigate}>
+                {item.label}
+              </Link>
+            );
+          }
+          return (
             <a key={item.href} href={item.href} onClick={onNavigate}>
               {item.label}
             </a>
-          ),
-        )}
+          );
+        })}
       </div>
 
       <a

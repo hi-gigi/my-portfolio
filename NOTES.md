@@ -26,6 +26,59 @@ newest date first; within a date, newest entry first.
 
 ## 2026-09-11
 
+### Case study header: back button + in-page section nav
+
+Follow-up to the case study page below, same day. Moved "← Back to
+work" out of the article body and into the header's nav row, and
+added jump links to each case study section (Overview / Problem space
+/ Key considerations / Solution) alongside it — same treatment the
+Webflow page had as a sticky TOC.
+
+- `Header.presenter.ts` now takes `siteNav` and returns a resolved
+  `nav`: on a `/work/:id` route (`useMatch("/work/:id")`) it swaps in
+  `[Back to work, ...section links]`; everywhere else it's the normal
+  Work/About/Contact from `content.ts`. Header/NavMenu stay dumb —
+  they just render whatever `nav` array they're given.
+- New `CaseStudyBlock` field: `heading` blocks can carry an optional
+  `navLabel` (short form for the nav pill, e.g. "Overview" vs. the
+  on-page "Project Overview"); `getCaseStudySections(id)` in
+  `model/caseStudies/index.ts` pulls the `{id, label}` list straight
+  from a case study's own heading blocks — no separate TOC data to
+  keep in sync.
+- **`NavMenu` link resolution generalized**: a `#foo` href now
+  resolves relative to *whatever page it's rendered on*
+  (`${pathname}${href}` via `useLocation`), not hardcoded to home. An
+  absolute `/#work` href still forces a cross-page jump (that's what
+  "Back to work" uses from a case study page). This one rule now
+  correctly serves both home's own `#work`/`#about` links and each
+  case study's in-page section links with no special-casing per page.
+- Removed the standalone `.case-study-back` link + styles from
+  `CaseStudy.tsx`/`.less` — superseded by the header version.
+
+**Hit again**: mid-edit HMR briefly threw `Invalid hook call` /
+`Link is not defined` in the console — same class of issue as the
+`.vite` cache problem noted below, this time just a stale module in
+an already-open tab. A hard reload (or a fresh tab) showed it was never
+broken; the DOM/rendered content was correct the whole time. Lesson:
+don't trust console errors from a tab that's been open through several
+edits — open a fresh tab (or reload) before concluding something's
+actually broken.
+
+**Also noted, not fixed**: the mobile hamburger button
+(`.nav-toggle`) hangs the browser-automation tool's click action
+(30s timeout) — reproduces identically on the untouched homepage nav,
+so it's a pre-existing quirk in the tool/click-handling combo, not a
+regression from this change. Real-user click behavior unverified by
+automation here; spot check manually if it matters.
+
+Verified: `tsc -b --noEmit` + `npm run build` clean; desktop
+walkthrough on `/work/ai-search` — header shows Back + 4 section
+links + Résumé, each section link scrolls to the right heading, Back
+returns to `/#work`, and the normal Work/About/Contact nav is back on
+`/`.
+
+---
+
 ### First case study page — AI-powered search (`/work/ai-search`)
 
 Added client-side routing and built out the first real case study page,

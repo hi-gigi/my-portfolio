@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { CaseStudyBlock, CaseStudyListItem, Project } from "@/model/types";
 import "./CaseStudy.less";
 
@@ -16,10 +15,6 @@ interface CaseStudyProps {
 export function CaseStudy({ project, blocks }: CaseStudyProps) {
   return (
     <article className="case-study">
-      <Link to="/#work" className="case-study-back">
-        ← Back to work
-      </Link>
-
       <header className="case-study-header">
         {project.labels.length > 0 && (
           <p className="case-study-eyebrow">{project.labels.join(" · ")}</p>
