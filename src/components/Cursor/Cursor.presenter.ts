@@ -25,8 +25,13 @@ const INTERACTIVE = "a, button, .btn, [role='button'], label, summary";
 /** Any element carrying a contextual cursor label (see ProjectCard). */
 const LABEL_TARGET = "[data-cursor-label]";
 
-/** Gap in px between the pointer and the contextual label pill. */
-const LABEL_GAP = 12;
+/**
+ * Gap in px between the pointer and the contextual label pill. Label
+ * targets are always links, so the disc is also swollen to its "hot"
+ * (48px, 24px radius) size whenever the pill is visible — the gap has
+ * to clear that radius or the pill's near corner sits inside the disc.
+ */
+const LABEL_GAP = 20;
 
 export interface CursorViewModel {
   /** False on touch / reduced-motion — the view renders nothing. */
