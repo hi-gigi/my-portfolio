@@ -8,6 +8,7 @@
 
 import type { CaseStudyBlock, CaseStudyContent } from "../types";
 import { aiSearch } from "./ai-search";
+import { documentDiscovery } from "./document-discovery";
 
 function isHeading(
   block: CaseStudyBlock,
@@ -17,6 +18,7 @@ function isHeading(
 
 export const caseStudies: Record<string, CaseStudyContent> = {
   [aiSearch.id]: aiSearch,
+  [documentDiscovery.id]: documentDiscovery,
 };
 
 export function getCaseStudy(id: string): CaseStudyContent | undefined {
