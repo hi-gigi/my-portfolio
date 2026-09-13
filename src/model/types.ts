@@ -139,6 +139,8 @@ export type CaseStudyBlock =
   | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }
   /** `src` omitted renders a labelled placeholder panel until real art lands. */
   | { kind: "image"; src?: string; alt: string }
+  /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */
+  | { kind: "video"; src?: string; alt: string }
   /**
    * A single card holding one or more metrics side by side, divided by
    * a rule (vertical on wide screens, horizontal once stacked). `period`

@@ -44,6 +44,14 @@
   margin-bottom: @space-8;
 }
 
+// When the page opens straight into an image/video instead of a
+// heading, the header-to-first-heading gap above reads as too much
+// air before a piece of media — tighten it to the same rhythm as the
+// gap between two ordinary body blocks (`.case-study-body > * + *`).
+.case-study-intro--tight {
+  margin-bottom: @space-6;
+}
+
 .case-study-eyebrow {
   .eyebrow-label();
   margin: 0 0 @space-4;
@@ -153,7 +161,8 @@
     font-weight: @weight-semibold;
   }
 
-  img {
+  img,
+  video {
     display: block;
     width: 100%;
     height: auto;
@@ -332,7 +341,7 @@
   }
 }
 
-.case-study-image-placeholder {
+.case-study-media-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;

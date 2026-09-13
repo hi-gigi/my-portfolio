@@ -17,9 +17,12 @@ interface CaseStudyProps {
  * layout pass comes later.
  */
 export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
+  const leadsWithMedia = blocks[0]?.kind === "image" || blocks[0]?.kind === "video";
+
   return (
     <article className="case-study">
-      <header className="case-study-intro">
+      <header className={leadsWithMedia ? "case-study-intro case-study-intro--tight" : "case-study-intro"}>
+
         {project.labels.length > 0 && (
           <p className="case-study-eyebrow">{project.labels.join(" · ")}</p>
         )}
@@ -83,7 +86,16 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
       return block.src ? (
         <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
       ) : (
-        <div className="case-study-image-placeholder" role="img" aria-label={block.alt}>
+        <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
+          <span>{block.alt}</span>
+        </div>
+      );
+
+    case "video":
+      return block.src ? (
+        <video src={block.src} controls playsInline preload="metadata" aria-label={block.alt} />
+      ) : (
+        <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
           <span>{block.alt}</span>
         </div>
       );
