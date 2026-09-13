@@ -22,7 +22,6 @@ export const content: PortfolioContent = {
   nav: [
     { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
-    { label: "Contact", href: EMAIL },
   ],
 
   hero: {
