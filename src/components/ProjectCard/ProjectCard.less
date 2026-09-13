@@ -1,21 +1,51 @@
 @import (reference) "../../styles/tokens.less";
 
+// Lets the hover ring below animate smoothly — an unregistered custom
+// property can't be interpolated, so browsers without this just get a
+// static (non-spinning) gradient ring on hover.
+@property --card-ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .card {
   display: flex;
   flex-direction: column;
   padding: @space-3;
-  background: var(--tonal);
-  border: 1px solid var(--tonal);
+  border: 3px solid transparent;
   border-radius: @radius;
-  transition: border-color @ease;
   // A linked card (one with a case study) renders as an <a>; the whole
   // tile is the click target, so it shouldn't pick up the global
   // link-underline treatment meant for inline text links.
   color: inherit;
   text-decoration: none;
 
+  // Double-background trick: the padding-box layer is the card's own
+  // surface; the border-box layer only shows through the 1px ring
+  // around it. Swapping that ring to a conic-gradient on hover — and
+  // spinning it via the angle above — draws a moving border with no
+  // extra elements.
+  background:
+    linear-gradient(var(--tonal), var(--tonal)) padding-box,
+    linear-gradient(var(--tonal), var(--tonal)) border-box;
+
   &:hover {
-    border-color: var(--accent);
+    background:
+      linear-gradient(var(--tonal), var(--tonal)) padding-box,
+      conic-gradient(from var(--card-ring-angle), var(--accent), @wash-2, var(--accent-alt), var(--accent)) border-box;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card:hover {
+    animation: card-ring-spin 3s linear infinite;
+  }
+}
+
+@keyframes card-ring-spin {
+  to {
+    --card-ring-angle: 360deg;
   }
 }
 
