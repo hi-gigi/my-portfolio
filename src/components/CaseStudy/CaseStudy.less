@@ -199,22 +199,43 @@
   grid-template-rows: subgrid;
 }
 
+// The vertical rule is a pseudo-element rather than a border so it can
+// stop short of the bottom (`bottom: @space-3 + @space-2`) — a
+// border-left would run the item's full height and butt straight into
+// the horizontal note divider below with no breathing room.
 .case-study-stat + .case-study-stat {
+  position: relative;
   padding-left: @space-5;
-  border-left: 1px solid color-mix(in srgb, var(--muted) 35%, var(--tonal));
+}
+
+.case-study-stat + .case-study-stat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: calc(@space-3 + @space-2);
+  left: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--muted) 35%, var(--tonal));
 }
 
 @media (max-width: @bp-cards-stack) {
   .case-study-stat + .case-study-stat {
     padding-left: 0;
     padding-top: @space-4;
-    border-left: none;
     border-top: 1px solid color-mix(in srgb, var(--muted) 35%, var(--tonal));
+  }
+
+  .case-study-stat + .case-study-stat::before {
+    content: none;
   }
 }
 
+// No margin-top here — the gap before this divider comes from
+// .case-study-stat-description/-details' margin-bottom below, so it
+// matches the gap before the stacked-mobile inter-stat divider exactly
+// instead of stacking an extra offset on top of it.
 .case-study-stats-note {
-  margin: @space-4 0 0;
+  margin: 0;
   padding-top: @space-4;
   border-top: 1px solid color-mix(in srgb, var(--muted) 35%, var(--tonal));
   font-size: @text-2xs;
@@ -237,13 +258,18 @@
 // Same margin-top as .case-study-stat-details below — both sit in the
 // grid's 3rd row, so they need matching offsets to start flush with
 // each other across columns.
+// margin-bottom is the one source of "gap before a divider" for this
+// card — both the stacked-mobile inter-stat divider
+// (`.case-study-stat + .case-study-stat`) and the note divider
+// (`.case-study-stats-note`) sit flush against their preceding element,
+// so reusing this value for both is what keeps their gaps matching.
 .case-study-stat-description {
-  margin: @space-4 0 0;
+  margin: @space-4 0 @space-4;
   color: var(--muted);
 }
 
 .case-study-stat-details {
-  margin: @space-4 0 0;
+  margin: @space-4 0 @space-4;
 }
 
 .case-study-stat-detail-row {
@@ -261,7 +287,7 @@
   }
 
   & + & {
-    margin-top: @space-1;
+    margin-top: 0;
   }
 }
 
