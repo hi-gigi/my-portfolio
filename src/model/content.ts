@@ -4,6 +4,7 @@
 //  site is editing this file.
 // ============================================================
 
+import { getCaseStudy } from "./caseStudies";
 import type { PortfolioContent, Project } from "./types";
 
 const EMAIL = "mailto:hizhuojiaqi@gmail.com";
@@ -158,9 +159,15 @@ export function findProject(id: string): Project | undefined {
   return undefined;
 }
 
-/** Every project except `excludeId`, flattened across groups in their existing order. */
-export function getOtherProjects(excludeId: string): Project[] {
+/**
+ * Up to `limit` other projects to surface as "More work" on a case
+ * study page — in `content.ts` order (already the curated priority
+ * order), skipping anything without a case study of its own so the
+ * picks are always clickable.
+ */
+export function getOtherProjects(excludeId: string, limit = 3): Project[] {
   return content.work.groups
     .flatMap((group) => group.projects)
-    .filter((project) => project.id !== excludeId);
+    .filter((project) => project.id !== excludeId && getCaseStudy(project.id))
+    .slice(0, limit);
 }

@@ -15,13 +15,29 @@
 @case-study-text-h3: 1.15rem; //   18.4px — close to h4 on purpose; colour + weight carry the distinction, not size
 @case-study-text-h4: 1.05rem; //   16.8px — a touch above body copy, not a heading-sized jump
 
+// Three cards need more room per row than the home page's own 2-up
+// grid does, so it drops to 2 at a wider point than @bp-cards-stack
+// (which then takes it the rest of the way to 1) — tuned to hand each
+// card about the same width it has right at that grid's own stack
+// point, rather than letting them get narrower first.
+@bp-more-grid-3col: 900px;
+
 // Not a `<section>`, so it falls outside the `main > section` global
-// centering rule — replicate the inline gutter here directly.
+// centering rule — replicate the inline gutter here directly. Capped
+// at the site's own @measure so the header above and the "More work"
+// grid below can use the full width; the reading column itself is
+// narrowed again below, on `.case-study-intro`/`.case-study-body`.
 .case-study {
-  max-width: @case-study-measure;
+  max-width: @measure;
   margin-inline: auto;
   padding-block: @space-8 @space-9;
   padding-inline: @pad;
+}
+
+.case-study-intro,
+.case-study-body {
+  max-width: @case-study-measure;
+  margin-inline: auto;
 }
 
 .case-study-intro {
@@ -152,14 +168,39 @@
 
 .case-study-more-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: @space-5;
 }
 
-// Same stack point as the home page's own card grid (Work.less).
+@media (max-width: @bp-more-grid-3col) {
+  .case-study-more-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: @bp-cards-stack) {
   .case-study-more-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+// A grid item (not a sibling below the grid) so it can fall into the
+// empty cell next to the 3rd card at the 2-column breakpoint instead
+// of always sitting on its own row. `.btn.btn-secondary` gives it the
+// site's standard button surface — `justify-self: start` keeps that
+// button from stretching to the full row width it spans by default.
+.case-study-more-back {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+// At 2 columns, 3 cards leave one cell open on the second row — let
+// this link sit there, centred, rather than spanning its own full row.
+@media (min-width: (@bp-cards-stack + 1px)) and (max-width: @bp-more-grid-3col) {
+  .case-study-more-back {
+    grid-column: auto;
+    align-self: center;
+    justify-self: center;
   }
 }
 

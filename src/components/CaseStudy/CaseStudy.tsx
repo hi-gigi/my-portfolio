@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { CaseStudyBlock, CaseStudyListItem, CaseStudyStat, Project } from "@/model/types";
 import { ProjectCard } from "../ProjectCard";
 import "./CaseStudy.less";
@@ -5,7 +6,7 @@ import "./CaseStudy.less";
 interface CaseStudyProps {
   project: Project;
   blocks: CaseStudyBlock[];
-  /** Shown as "More work" at the bottom of the page. */
+  /** Curated picks shown as "More work" at the bottom of the page. */
   otherProjects: Project[];
 }
 
@@ -34,11 +35,14 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
 
       {otherProjects.length > 0 && (
         <section className="case-study-more">
-          <h2 className="section-title">More work</h2>
+          <h2 className="section-title">Explore more work</h2>
           <div className="case-study-more-grid">
             {otherProjects.map((otherProject) => (
               <ProjectCard key={otherProject.id} project={otherProject} />
             ))}
+            <Link to="/#work" className="case-study-more-back btn btn-secondary">
+              ← View all work
+            </Link>
           </div>
         </section>
       )}
