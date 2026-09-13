@@ -8,7 +8,8 @@
 
   --cursor-dot-size: 7px;
   --cursor-disc-size: 22px;
-  --cursor-disc-size-hot: 48px;
+  --cursor-disc-size-hot: 36px;
+  --cursor-disc-size-pressed: 14px;
 }
 
 .cursor__disc,
@@ -56,6 +57,14 @@
   height: var(--cursor-disc-size-hot);
 }
 
+// Pressed wins over hot (same specificity, later in source) — the disc
+// compresses to give click/drag feedback, e.g. while dragging a text
+// selection.
+.cursor__disc.is-pressed {
+  width: var(--cursor-disc-size-pressed);
+  height: var(--cursor-disc-size-pressed);
+}
+
 .cursor__label {
   display: inline-flex;
   align-items: center;
@@ -93,31 +102,6 @@
   opacity: 1;
 }
 
-// Click effect — a ring that expands and fades from the press point.
-.cursor__ping {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: @z-cursor;
-  width: var(--cursor-disc-size);
-  height: var(--cursor-disc-size);
-  border: 1.5px solid var(--accent);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: cursor-ping 0.5s ease-out forwards;
-}
-
-@keyframes cursor-ping {
-  from {
-    transform: translate(-50%, -50%) scale(0.4);
-    opacity: 0.7;
-  }
-  to {
-    transform: translate(-50%, -50%) scale(2.8);
-    opacity: 0;
-  }
-}
-
 // Hide the native cursor wherever ours is active. The element list
 // mirrors INTERACTIVE in the presenter — extend both together if the
 // site gains real form controls.
@@ -136,8 +120,7 @@ body.has-custom-cursor summary {
 @media (prefers-reduced-motion: reduce) {
   .cursor__disc,
   .cursor__dot,
-  .cursor__label,
-  .cursor__ping {
+  .cursor__label {
     display: none;
   }
 }

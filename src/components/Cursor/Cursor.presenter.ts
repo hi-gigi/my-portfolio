@@ -126,18 +126,13 @@ export function useCursor(): CursorViewModel {
     };
     const onLeave = () => setVisible(false);
 
-    // Click effect — a quick ring that expands out from the press point.
     const onDown = (event: PointerEvent) => {
       if (event.pointerType === "touch") return;
-      const ping = document.createElement("div");
-      ping.className = "cursor__ping";
-      ping.style.left = `${event.clientX}px`;
-      ping.style.top = `${event.clientY}px`;
-      disc.parentElement?.appendChild(ping);
-      const drop = () => ping.remove();
-      ping.addEventListener("animationend", drop, { once: true });
-      window.setTimeout(drop, 600);
+      disc.classList.add("is-pressed");
     };
+    // The disc compresses for the duration of the press — covers clicks
+    // and drags alike (e.g. dragging out a text selection).
+    const onUp = () => disc.classList.remove("is-pressed");
 
     const tick = () => {
       discX += (targetX - discX) * DISC_LERP;
@@ -149,23 +144,26 @@ export function useCursor(): CursorViewModel {
     document.body.classList.add("has-custom-cursor");
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
+    window.addEventListener("pointerup", onUp, { passive: true });
+    window.addEventListener("pointercancel", onUp, { passive: true });
     document.documentElement.addEventListener("pointerleave", onLeave);
     window.addEventListener("blur", onLeave);
+    window.addEventListener("blur", onUp);
     frame = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
       document.documentElement.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("blur", onLeave);
+      window.removeEventListener("blur", onUp);
       document.body.classList.remove("has-custom-cursor");
-      disc.parentElement
-        ?.querySelectorAll(".cursor__ping")
-        .forEach((p) => p.remove());
       for (const el of [dot, disc, label]) {
         el.style.transform = "";
-        el.classList.remove("is-visible", "is-hot");
+        el.classList.remove("is-visible", "is-hot", "is-pressed");
       }
     };
   }, [enabled]);
