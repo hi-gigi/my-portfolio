@@ -26,7 +26,11 @@ export const aiSearch: CaseStudyContent = {
         { label: "July–August 2026", text: "External release" },
       ],
     },
-    { kind: "image", alt: "The AI answer, expanded, above Lucid's traditional document search results" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ai-search/overview-ai-answer-expanded.png`,
+      alt: "The AI answer, expanded, above Lucid's traditional document search results",
+    },
     { kind: "subheading", text: "My Role & Contribution" },
     { kind: "paragraph", text: "Lead designer on a 0-to-1 AI initiative.", emphasis: true },
     {
