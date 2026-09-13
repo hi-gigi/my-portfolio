@@ -43,6 +43,17 @@
   }
 }
 
+// A `comingSoon` project (see model/types.ts) isn't actually
+// clickable — the accent ring implies it is, so this one gets a flat,
+// single-tone ring instead, and no spin. Reused by any future project
+// marked the same way.
+.card--coming-soon:hover {
+  animation: none;
+  background:
+    linear-gradient(var(--tonal), var(--tonal)) padding-box,
+    linear-gradient(var(--muted), var(--muted)) border-box;
+}
+
 @keyframes card-ring-spin {
   to {
     --card-ring-angle: 360deg;

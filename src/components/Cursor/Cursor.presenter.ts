@@ -103,6 +103,7 @@ export function useCursor(): CursorViewModel {
         disc.classList.remove("is-visible", "is-hot");
         const text = host.dataset.cursorLabel ?? "";
         if (labelText && labelText.textContent !== text) labelText.textContent = text;
+        label.classList.toggle("no-arrow", host.dataset.cursorArrow === "false");
         centre(label, targetX, targetY);
         label.classList.add("is-visible");
       } else {
@@ -153,7 +154,7 @@ export function useCursor(): CursorViewModel {
       document.body.classList.remove("has-custom-cursor");
       for (const el of [dot, disc, label]) {
         el.style.transform = "";
-        el.classList.remove("is-visible", "is-hot", "is-pressed");
+        el.classList.remove("is-visible", "is-hot", "is-pressed", "no-arrow");
       }
     };
   }, [enabled]);

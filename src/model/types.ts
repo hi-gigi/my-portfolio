@@ -52,6 +52,12 @@ export interface Project {
    * left paused when the visitor prefers reduced motion. `image` is its poster.
    */
   video?: string;
+  /**
+   * Not yet written up — renders as an inert tile with a "Coming soon"
+   * cursor label and a flat (non-accent) hover ring instead of the
+   * usual "View case study" link treatment.
+   */
+  comingSoon?: boolean;
 }
 
 export interface WorkGroup {

@@ -3,6 +3,12 @@
 // wrapper — same pattern as Hero's `--hero-*` scale.
 @import (reference) "../../styles/tokens.less";
 
+// Dedicated crossfade for the dot/disc <-> label swap on tile hover —
+// a touch slower than @ease and eased with the site's own decelerate
+// curve (see @ease-swap in tokens.less) so entering/leaving a project
+// tile reads as one continuous motion, not a snap.
+@cursor-swap: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
 .cursor {
   display: contents;
 
@@ -33,7 +39,7 @@
   background: #fff;
   mix-blend-mode: difference;
   transition:
-    opacity @ease,
+    opacity @cursor-swap,
     width @ease,
     height @ease;
 }
@@ -44,7 +50,7 @@
   border-radius: 50%;
   background: var(--accent);
   will-change: transform;
-  transition: opacity @ease;
+  transition: opacity @cursor-swap;
 }
 
 .cursor__disc.is-visible,
@@ -66,6 +72,13 @@
 }
 
 .cursor__label {
+  // Position only — the presenter sets `transform: translate(...)`
+  // here every pointermove, so this element can never also transition
+  // `transform` (see `.cursor__label-inner` for the swell).
+  transition: opacity @cursor-swap;
+}
+
+.cursor__label-inner {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
@@ -77,16 +90,20 @@
   // arbitrary content — project thumbnails are light UI screenshots, so
   // in dark theme the cream fill dissolves into them. The ring gives a
   // two-tone edge: whichever of fill / ring matches the surface behind
-  // it, the other one still separates. box-shadow, not border, so the
-  // geometry the presenter measures (offsetWidth/Height) is unchanged.
+  // it, the other one still separates.
   box-shadow: 0 0 0 1px var(--bg);
   font-family: @font-mono;
   font-size: @text-xs;
   line-height: 1;
   white-space: nowrap;
-  // Only the fade is eased — the position is set every pointermove, so
-  // transitioning transform would make the pill lag the cursor.
-  transition: opacity @ease;
+  // Starts small and swells to full size in step with the fade — the
+  // same "grow into place" feeling as the disc swelling over a button.
+  transform: scale(0.7);
+  transition: transform @cursor-swap;
+}
+
+.cursor__label.is-visible .cursor__label-inner {
+  transform: scale(1);
 }
 
 // Arrow is an inline SVG, not a glyph — the ↗ / → glyphs aren't in the
@@ -96,6 +113,12 @@
   width: 0.8em;
   height: 0.8em;
   flex: none;
+}
+
+// Non-actionable labels (e.g. "Coming soon" tiles) opt out of the
+// arrow via [data-cursor-arrow="false"] — see Cursor.presenter.
+.cursor__label.no-arrow .cursor__label-arrow {
+  display: none;
 }
 
 .cursor__label.is-visible {

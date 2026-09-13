@@ -82,12 +82,12 @@ export const content: PortfolioContent = {
           },
           {
             id: "distributed-admin-controls",
-            title:
-              "(Coming soon) Distributed admin controls for Enterprise accounts",
+            title: "Distributed admin controls for Enterprise accounts",
             blurb:
               "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
             labels: ["Systems Thinking", "Design Strategy", "0→1"],
             image: thumb("distributed-admin-controls.png"),
+            comingSoon: true,
           },
         ],
       },

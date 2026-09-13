@@ -17,11 +17,13 @@ interface ProjectCardProps {
  *   4. labels
  *
  * Renders as a link to the case study when one exists (`caseStudies`),
- * otherwise as an inert tile — no "View case study" cursor label for
- * projects that don't have a page yet.
+ * otherwise as an inert tile. Setting `comingSoon` on the project (see
+ * model/content.ts) is what drives the "Coming soon" cursor label,
+ * title prefix, and flat hover ring — no other wiring needed to mark
+ * a future project this way.
  */
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { id, title, blurb, labels, image, video } = project;
+  const { id, title, blurb, labels, image, video, comingSoon } = project;
   const { ref, play, pause } = useCardVideo();
   const hasMedia = Boolean(image || video);
   const hasCaseStudy = Boolean(getCaseStudy(id));
@@ -46,7 +48,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   const body = (
     <div className="card-body">
-      <h4>{title}</h4>
+      <h4>{comingSoon ? `(Coming soon) ${title}` : title}</h4>
       <p>{blurb}</p>
       {labels.length > 0 && (
         <ul className="card-labels">
@@ -75,7 +77,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <article
-      className="card"
+      className={comingSoon ? "card card--coming-soon" : "card"}
+      data-cursor-label={comingSoon ? "Coming soon" : undefined}
+      data-cursor-arrow={comingSoon ? "false" : undefined}
       onMouseEnter={video ? play : undefined}
       onMouseLeave={video ? pause : undefined}
     >
