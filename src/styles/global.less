@@ -17,6 +17,11 @@
 html {
   // keep anchor links (#work, #about) clear of the sticky header
   scroll-padding-top: @space-9;
+  // Belt-and-suspenders: nothing should ever be wider than the
+  // viewport, but a horizontal scrollbar reads as broken the moment
+  // it appears (including for a single frame mid-resize), so clip
+  // rather than scroll if something briefly does overflow.
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: no-preference) {
