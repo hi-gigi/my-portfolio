@@ -10,6 +10,7 @@ import type { CaseStudyBlock, CaseStudyContent } from "../types";
 import { aiSearch } from "./ai-search";
 import { documentDiscovery } from "./document-discovery";
 import { hasbroPulse } from "./hasbro-pulse";
+import { ibmSolutionGateway } from "./ibm-solution-gateway";
 import { licenseRequestJustification } from "./license-request-justification";
 
 function isHeading(
@@ -23,6 +24,7 @@ export const caseStudies: Record<string, CaseStudyContent> = {
   [documentDiscovery.id]: documentDiscovery,
   [licenseRequestJustification.id]: licenseRequestJustification,
   [hasbroPulse.id]: hasbroPulse,
+  [ibmSolutionGateway.id]: ibmSolutionGateway,
 };
 
 export function getCaseStudy(id: string): CaseStudyContent | undefined {
