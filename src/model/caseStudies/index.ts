@@ -9,6 +9,8 @@
 import type { CaseStudyBlock, CaseStudyContent } from "../types";
 import { aiSearch } from "./ai-search";
 import { documentDiscovery } from "./document-discovery";
+import { hasbroPulse } from "./hasbro-pulse";
+import { licenseRequestJustification } from "./license-request-justification";
 
 function isHeading(
   block: CaseStudyBlock,
@@ -19,6 +21,8 @@ function isHeading(
 export const caseStudies: Record<string, CaseStudyContent> = {
   [aiSearch.id]: aiSearch,
   [documentDiscovery.id]: documentDiscovery,
+  [licenseRequestJustification.id]: licenseRequestJustification,
+  [hasbroPulse.id]: hasbroPulse,
 };
 
 export function getCaseStudy(id: string): CaseStudyContent | undefined {

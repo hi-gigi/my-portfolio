@@ -1,4 +1,4 @@
-import type { CaseStudyBlock, CaseStudyListItem, Project } from "@/model/types";
+import type { CaseStudyBlock, CaseStudyListItem, CaseStudyStat, Project } from "@/model/types";
 import { ProjectCard } from "../ProjectCard";
 import "./CaseStudy.less";
 
@@ -83,7 +83,40 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
           <span>{block.alt}</span>
         </div>
       );
+
+    case "stats":
+      return (
+        <div className="case-study-stats">
+          {block.period && <p className="case-study-stats-period">{block.period}</p>}
+          <div className="case-study-stats-grid">
+            {block.items.map((stat, index) => (
+              <StatCard key={index} stat={stat} />
+            ))}
+          </div>
+          {block.note && <p className="case-study-stats-note">{block.note}</p>}
+        </div>
+      );
   }
+}
+
+function StatCard({ stat }: { stat: CaseStudyStat }) {
+  return (
+    <div className="case-study-stat">
+      <p className="case-study-stat-label">{stat.label}</p>
+      <p className="case-study-stat-value">{stat.value}</p>
+      {stat.description && <p className="case-study-stat-description">{stat.description}</p>}
+      {stat.details && stat.details.length > 0 && (
+        <dl className="case-study-stat-details">
+          {stat.details.map((detail, index) => (
+            <div className="case-study-stat-detail-row" key={index}>
+              <dt>{detail.label}</dt>
+              <dd>{detail.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </div>
+  );
 }
 
 function ListItem({ item }: { item: CaseStudyListItem }) {

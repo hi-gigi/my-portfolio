@@ -163,6 +163,108 @@
   }
 }
 
+// One card holding every metric, divided by a rule rather than each
+// metric getting its own boxed card — reads as one dataset, not a
+// grid of unrelated tiles.
+.case-study-stats {
+  padding: @space-5;
+  border-radius: @radius;
+  background: var(--tonal);
+}
+
+.case-study-stats-period {
+  .eyebrow-label();
+  margin: 0 0 @space-4;
+}
+
+// Explicit row tracks (label / value / body) shared by every stat via
+// subgrid, so e.g. a one-line description and a two-line detail list
+// still start flush with each other instead of drifting out of sync.
+.case-study-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto auto;
+  column-gap: @space-5;
+}
+
+@media (max-width: @bp-cards-stack) {
+  .case-study-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.case-study-stat {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+}
+
+.case-study-stat + .case-study-stat {
+  padding-left: @space-5;
+  border-left: 1px solid color-mix(in srgb, var(--muted) 35%, var(--tonal));
+}
+
+@media (max-width: @bp-cards-stack) {
+  .case-study-stat + .case-study-stat {
+    padding-left: 0;
+    padding-top: @space-4;
+    border-left: none;
+    border-top: 1px solid color-mix(in srgb, var(--muted) 35%, var(--tonal));
+  }
+}
+
+.case-study-stats-note {
+  margin: @space-4 0 0;
+  padding-top: @space-4;
+  border-top: 1px solid color-mix(in srgb, var(--muted) 35%, var(--tonal));
+  font-size: @text-2xs;
+  color: var(--muted);
+}
+
+.case-study-stat-label {
+  .eyebrow-label();
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.case-study-stat-value {
+  margin: @space-2 0 0;
+  font-size: 2.5rem;
+  font-weight: @weight-bold;
+  line-height: @leading-tight;
+}
+
+// Same margin-top as .case-study-stat-details below — both sit in the
+// grid's 3rd row, so they need matching offsets to start flush with
+// each other across columns.
+.case-study-stat-description {
+  margin: @space-4 0 0;
+  color: var(--muted);
+}
+
+.case-study-stat-details {
+  margin: @space-4 0 0;
+}
+
+.case-study-stat-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: @space-3;
+
+  dt {
+    color: var(--muted);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: @weight-semibold;
+  }
+
+  & + & {
+    margin-top: @space-1;
+  }
+}
+
 .case-study-image-placeholder {
   display: flex;
   align-items: center;

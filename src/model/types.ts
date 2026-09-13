@@ -109,6 +109,15 @@ export interface PortfolioContent {
 /** A plain bullet, or a bolded lead-in followed by its description. */
 export type CaseStudyListItem = string | { label: string; text: string };
 
+/** One metric card — e.g. "Adoption · 4 weeks post-launch" → "53.6%". */
+export interface CaseStudyStat {
+  label: string;
+  value: string;
+  description?: string;
+  /** Optional comparison rows under the description, e.g. with/without a variant. */
+  details?: { label: string; value: string }[];
+}
+
 export type CaseStudyBlock =
   /**
    * Also an in-page nav target — every heading becomes a jump link in
@@ -123,7 +132,15 @@ export type CaseStudyBlock =
   | { kind: "paragraph"; text: string; emphasis?: boolean }
   | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }
   /** `src` omitted renders a labelled placeholder panel until real art lands. */
-  | { kind: "image"; src?: string; alt: string };
+  | { kind: "image"; src?: string; alt: string }
+  /**
+   * A single card holding one or more metrics side by side, divided by
+   * a rule (vertical on wide screens, horizontal once stacked). `period`
+   * is a shared timeframe shown once above every metric, instead of
+   * repeating it in each `CaseStudyStat.label`. `note` is a footnote
+   * spanning the full card width, below every metric.
+   */
+  | { kind: "stats"; items: CaseStudyStat[]; period?: string; note?: string };
 
 export interface CaseStudyContent {
   /** Matches a `Project.id` from `WorkContent`. */
