@@ -9,6 +9,11 @@ import type { CaseStudyContent } from "../types";
 export const aiSearch: CaseStudyContent = {
   id: "ai-search",
   blocks: [
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ai-search/overview-ai-answer-expanded.png`,
+      alt: "The AI answer, expanded, above Lucid's traditional document search results",
+    },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
       kind: "paragraph",
@@ -25,11 +30,6 @@ export const aiSearch: CaseStudyContent = {
         { label: "June–July 2026", text: "Concept to internal release" },
         { label: "July–August 2026", text: "External release" },
       ],
-    },
-    {
-      kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ai-search/overview-ai-answer-expanded.png`,
-      alt: "The AI answer, expanded, above Lucid's traditional document search results",
     },
     { kind: "subheading", text: "My Role & Contribution" },
     { kind: "paragraph", text: "Lead designer on a 0-to-1 AI initiative.", emphasis: true },
