@@ -5,8 +5,9 @@
 //    · disc  — white circle in mix-blend-mode: difference, lags the
 //              pointer and swells over interactive targets
 //    · dot   — small accent dot, tracks the pointer exactly
-//    · label — a pill that appears over any [data-cursor-label]
-//              element, showing that element's text (project tiles)
+//    · label — a pill that replaces the disc/dot over any
+//              [data-cursor-label] element (project tiles), centred
+//              on the pointer and showing that element's text
 //  The view only renders the three nodes and hands back their refs.
 // ============================================================
 
@@ -24,14 +25,6 @@ const INTERACTIVE = "a, button, .btn, [role='button'], label, summary";
 
 /** Any element carrying a contextual cursor label (see ProjectCard). */
 const LABEL_TARGET = "[data-cursor-label]";
-
-/**
- * Gap in px between the pointer and the contextual label pill. Label
- * targets are always links, so the disc is also swollen to its "hot"
- * (48px, 24px radius) size whenever the pill is visible — the gap has
- * to clear that radius or the pill's near corner sits inside the disc.
- */
-const LABEL_GAP = 20;
 
 export interface CursorViewModel {
   /** False on touch / reduced-motion — the view renders nothing. */
@@ -77,9 +70,8 @@ export function useCursor(): CursorViewModel {
     let discX = targetX;
     let discY = targetY;
     let visible = false;
+
     let frame = 0;
-    let labelW = 0;
-    let labelH = 0;
 
     const centre = (el: HTMLElement, x: number, y: number) => {
       el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
@@ -87,9 +79,11 @@ export function useCursor(): CursorViewModel {
     const setVisible = (next: boolean) => {
       if (next === visible) return;
       visible = next;
-      dot.classList.toggle("is-visible", next);
-      disc.classList.toggle("is-visible", next);
-      if (!next) label.classList.remove("is-visible");
+      if (!next) {
+        dot.classList.remove("is-visible");
+        disc.classList.remove("is-visible");
+        label.classList.remove("is-visible");
+      }
     };
 
     const onMove = (event: PointerEvent) => {
@@ -99,26 +93,22 @@ export function useCursor(): CursorViewModel {
       centre(dot, targetX, targetY);
 
       const el = event.target instanceof Element ? event.target : null;
-      disc.classList.toggle("is-hot", !!el?.closest(INTERACTIVE));
-
       const host = el?.closest<HTMLElement>(LABEL_TARGET) ?? null;
+
       if (host) {
+        // The label replaces the disc/dot entirely — centred on the
+        // pointer, it doubles as the cursor, so there's one shape near
+        // the text instead of a swollen disc competing with the pill.
+        dot.classList.remove("is-visible");
+        disc.classList.remove("is-visible", "is-hot");
         const text = host.dataset.cursorLabel ?? "";
-        if (labelText && labelText.textContent !== text) {
-          labelText.textContent = text;
-          labelW = label.offsetWidth;
-          labelH = label.offsetHeight;
-        }
-        // Sit the pill just off the pointer, but flip it to the other
-        // side / below when it would spill past a viewport edge, so it's
-        // always fully readable — including in the rightmost tile column.
-        const flipX = targetX + LABEL_GAP + labelW > window.innerWidth;
-        const flipY = targetY - LABEL_GAP - labelH < 0;
-        const offsetX = flipX ? `calc(-100% - ${LABEL_GAP}px)` : `${LABEL_GAP}px`;
-        const offsetY = flipY ? `${LABEL_GAP}px` : `calc(-100% - ${LABEL_GAP}px)`;
-        label.style.transform = `translate(${targetX}px, ${targetY}px) translate(${offsetX}, ${offsetY})`;
+        if (labelText && labelText.textContent !== text) labelText.textContent = text;
+        centre(label, targetX, targetY);
         label.classList.add("is-visible");
       } else {
+        dot.classList.add("is-visible");
+        disc.classList.add("is-visible");
+        disc.classList.toggle("is-hot", !!el?.closest(INTERACTIVE));
         label.classList.remove("is-visible");
       }
 
