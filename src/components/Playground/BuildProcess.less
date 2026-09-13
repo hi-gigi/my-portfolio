@@ -1,0 +1,122 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+.build-process-scrubber {
+  display: flex;
+  gap: @space-3;
+  margin-bottom: @space-6;
+  padding-bottom: @space-2;
+  overflow-x: auto;
+}
+
+.build-process-step {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: @space-1;
+  width: 11rem;
+  padding: @space-3 @space-4;
+  text-align: left;
+  font: inherit;
+  color: var(--muted);
+  background: var(--tonal);
+  border: 1px solid transparent;
+  border-radius: @radius;
+  cursor: pointer;
+  transition: border-color @ease, color @ease;
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &.is-active {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+}
+
+.build-process-step-index {
+  font-family: @font-mono;
+  font-size: @text-2xs;
+  color: var(--muted);
+}
+
+.build-process-step-title {
+  font-size: @text-sm;
+  font-weight: @weight-medium;
+  // Clamp to two lines so uneven title lengths keep every step the
+  // same height in the row.
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.build-process-detail {
+  padding: @space-6;
+  background: var(--tonal);
+  border-radius: @radius;
+}
+
+.build-process-label {
+  .eyebrow-label();
+  margin: 0 0 @space-2;
+
+  & + .build-process-label {
+    margin-top: @space-5;
+  }
+}
+
+.build-process-prompt {
+  margin: 0;
+  font-family: @font-heading;
+  font-size: @text-md;
+  font-style: italic;
+}
+
+.build-process-output {
+  margin: @space-2 0 0;
+  padding: @space-4;
+  overflow-x: auto;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  line-height: @leading-body;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: @radius;
+
+  code {
+    white-space: pre;
+  }
+}
+
+.build-process-edit {
+  margin: @space-2 0 0;
+}
+
+.build-process-rationale {
+  margin: @space-5 0 0;
+  padding-top: @space-5;
+  border-top: 1px solid var(--bg);
+  color: var(--muted);
+  font-size: @text-sm;
+}
+
+.build-process-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: @space-4;
+  margin-top: @space-5;
+}
+
+.build-process-nav-count {
+  font-family: @font-mono;
+  font-size: @text-xs;
+  color: var(--muted);
+}
+
+.build-process .btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

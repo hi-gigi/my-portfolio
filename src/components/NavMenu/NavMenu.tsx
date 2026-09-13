@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { NavItem, SocialLink } from "@/model/types";
 import { ArrowUpRightIcon } from "../icons";
 import "./NavMenu.less";
@@ -15,8 +16,10 @@ interface NavMenuProps {
 /**
  * The primary navigation. On wide screens it is an inline row in the
  * header; at/below @bp-nav-collapse the same markup becomes the
- * full-width dropdown (see NavMenu.less). Only ever rendered on the
- * home route, so its `#work`/`#about` items are plain in-page anchors.
+ * full-width dropdown (see NavMenu.less). Rendered on every non-case-
+ * study route, so items route through `Link` rather than plain
+ * anchors — `/#work`/`/#about` need to navigate home before jumping
+ * to the anchor when they're clicked from elsewhere (e.g. /playground).
  */
 export function NavMenu({
   id,
@@ -34,9 +37,9 @@ export function NavMenu({
     >
       <div className="nav-links">
         {items.map((item) => (
-          <a key={item.href} href={item.href} onClick={onNavigate}>
+          <Link key={item.href} to={item.href} onClick={onNavigate}>
             {item.label}
-          </a>
+          </Link>
         ))}
       </div>
 

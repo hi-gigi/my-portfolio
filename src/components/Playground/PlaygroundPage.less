@@ -1,0 +1,96 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+// Docks directly under the sticky site header (@header-height), one
+// step below it in the stacking order.
+@playground-tabs-z: (@z-header - 1);
+
+.playground-eyebrow {
+  .eyebrow-label();
+  margin: 0 0 @space-3;
+}
+
+.playground-intro {
+  padding-block: @space-8 @space-6;
+}
+
+.playground-lede {
+  margin: 0;
+  max-width: 55ch;
+  font-size: @text-md;
+  color: var(--muted);
+}
+
+// Full-bleed bar (background + border span the viewport); the link
+// row itself is centred and capped, same split as .site-header /
+// .site-header-inner.
+.playground-tabs {
+  position: sticky;
+  top: @header-height;
+  z-index: @playground-tabs-z;
+  background: var(--bg);
+  border-bottom: 1px solid var(--tonal);
+}
+
+.playground-tabs-inner {
+  display: flex;
+  gap: @space-6;
+  max-width: @measure;
+  margin-inline: auto;
+  padding-inline: @pad;
+  overflow-x: auto;
+
+  a {
+    padding-block: @space-3;
+    font-family: @font-mono;
+    font-size: @text-xs;
+    letter-spacing: @tracking-wide;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color @ease, border-color @ease;
+
+    &:hover {
+      color: var(--text);
+    }
+
+    &.is-active {
+      color: var(--text);
+      border-color: var(--accent-alt);
+    }
+  }
+}
+
+.playground-module {
+  padding-block: @space-8;
+}
+
+.playground-closing {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-block: @space-9;
+  text-align: center;
+
+  p {
+    max-width: 50ch;
+    margin: @space-4 auto 0;
+    color: var(--muted);
+  }
+}
+
+.playground-closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: @space-3;
+  margin-top: @space-6;
+}
+
+// Shared by every module's demo caption.
+.playground-caption {
+  margin: @space-4 0 0;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  color: var(--muted);
+}

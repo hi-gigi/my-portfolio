@@ -154,6 +154,80 @@ export interface CaseStudyContent {
   blocks: CaseStudyBlock[];
 }
 
+// ---- Playground -------------------------------------------
+// Content for the standalone /playground page — three modules under
+// one thesis ("same system, three lenses"): the design tokens, the
+// interaction layer, and the AI workflow that builds both.
+
+export interface PlaygroundNavItem {
+  /** Also the target section's `id`, for the anchor-scroll tabs. */
+  id: string;
+  label: string;
+}
+
+/** One live control in the design explorer — a range input bound to a `--pg-*` custom property. */
+export interface DesignExplorerControl {
+  id: "hue" | "radius" | "scale";
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  default: number;
+  /** Appended to the displayed value, e.g. "px" or "°". */
+  unit: string;
+}
+
+export interface DesignExplorerContent {
+  caption: string;
+  controls: DesignExplorerControl[];
+}
+
+export interface MotionSwatch {
+  id: string;
+  name: string;
+  /** One-line technique tag, e.g. "IntersectionObserver + CSS transition". */
+  technique: string;
+  description: string;
+}
+
+export interface MotionSandboxContent {
+  caption: string;
+  swatches: MotionSwatch[];
+}
+
+/** One step in the AI build-process replay — a real prompt/output/edit from this repo's own history. */
+export interface BuildStep {
+  id: string;
+  title: string;
+  prompt: string;
+  outputLabel: string;
+  output: string;
+  edit: string;
+  rationale: string;
+}
+
+export interface BuildProcessContent {
+  caption: string;
+  steps: BuildStep[];
+}
+
+export interface PlaygroundClosing {
+  heading: string;
+  body: string;
+  workLink: SocialLink;
+  contactLink: SocialLink;
+}
+
+export interface PlaygroundContent {
+  eyebrow: string;
+  lede: string;
+  nav: PlaygroundNavItem[];
+  designExplorer: DesignExplorerContent;
+  motionSandbox: MotionSandboxContent;
+  buildProcess: BuildProcessContent;
+  closing: PlaygroundClosing;
+}
+
 // ---- Theme ------------------------------------------------
 export type ThemeMode = "light" | "dark";
 export type ThemePreference = ThemeMode | "system";

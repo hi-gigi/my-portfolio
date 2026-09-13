@@ -1,0 +1,110 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+.design-explorer {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) 1fr;
+  gap: @space-7;
+  align-items: start;
+}
+
+@media (max-width: @bp-cards-stack) {
+  .design-explorer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.design-explorer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: @space-5;
+  padding: @space-5;
+  background: var(--tonal);
+  border-radius: @radius;
+}
+
+.design-explorer-control {
+  display: flex;
+  flex-direction: column;
+  gap: @space-2;
+}
+
+.design-explorer-control-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  color: var(--muted);
+}
+
+.design-explorer-control-value {
+  color: var(--text);
+}
+
+.design-explorer-control input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-alt);
+}
+
+// The whole demo: three real components below all read the same
+// three `--pg-*` properties the controls just wrote — no LESS
+// recompile, no rebuild.
+.design-explorer-preview {
+  display: flex;
+  flex-direction: column;
+  gap: @space-5;
+  padding: @space-6;
+  background: var(--bg);
+  border: 1px solid var(--tonal);
+  border-radius: @radius;
+
+  .btn {
+    border-radius: var(--pg-radius);
+  }
+
+  .btn-primary:hover {
+    background: var(--pg-accent);
+    color: var(--pg-accent-text);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--pg-accent);
+  }
+
+  .badge {
+    border-radius: var(--pg-radius);
+    background: var(--pg-accent);
+    color: var(--pg-accent-text);
+  }
+}
+
+.design-explorer-preview-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: @space-3;
+}
+
+.pg-card {
+  padding: @space-5;
+  background: var(--tonal);
+  border-radius: var(--pg-radius);
+}
+
+.pg-card-eyebrow {
+  .eyebrow-label();
+  margin: 0 0 @space-2;
+}
+
+.pg-card-title {
+  margin: 0 0 @space-2;
+  font-family: @font-heading;
+  font-weight: @weight-semibold;
+  font-size: calc(@text-md * var(--pg-scale));
+}
+
+.pg-card-body {
+  margin: 0;
+  color: var(--muted);
+  font-size: calc(@text-sm * var(--pg-scale));
+}

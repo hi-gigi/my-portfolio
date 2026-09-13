@@ -5,6 +5,7 @@ import { Cursor } from "./components/Cursor";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { PlaygroundPage } from "./components/Playground";
 import { Work } from "./components/Work";
 import { content } from "./model/content";
 import { useScrollToHash } from "./presenters/useScrollToHash";
@@ -44,6 +45,7 @@ function Layout() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/work/:id" element={<CaseStudyPage />} />
+          <Route path="/playground" element={<PlaygroundPage />} />
         </Routes>
       </main>
 

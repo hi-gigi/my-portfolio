@@ -1,0 +1,152 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+.motion-sandbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: @space-5;
+}
+
+@media (max-width: @bp-cards-stack) {
+  .motion-sandbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.motion-swatch {
+  padding: @space-5;
+  background: var(--tonal);
+  border-radius: @radius;
+}
+
+.motion-swatch-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 128px;
+  margin-bottom: @space-4;
+  background: var(--bg);
+  border-radius: @radius;
+  overflow: hidden;
+}
+
+.motion-swatch-name {
+  margin: 0 0 @space-1;
+  font-family: @font-heading;
+  font-weight: @weight-semibold;
+}
+
+// The technique tag — visible below the name always, not tucked
+// behind a hover/tooltip only a mouse user would ever find.
+.motion-swatch-technique {
+  .eyebrow-label();
+  margin: 0 0 @space-2;
+}
+
+.motion-swatch-description {
+  margin: 0;
+  color: var(--muted);
+  font-size: @text-sm;
+}
+
+// ---- Magnetic hover ------------------------------------------
+.motion-magnetic-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.motion-magnetic-dot {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform @ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-magnetic-dot {
+    transition: none;
+  }
+}
+
+// ---- Scroll reveal ---------------------------------------------
+.motion-reveal-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.motion-reveal-card {
+  padding: @space-3 @space-4;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  color: var(--muted);
+  background: var(--tonal);
+  border-radius: @radius;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity @ease-slow, transform @ease-slow;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal-card {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// ---- Spinning ring -----------------------------------------
+// Same technique as ProjectCard.less's hover ring, duplicated and
+// scoped here rather than imported — this swatch isn't the real
+// card, just an isolated look at the mechanism.
+@property --motion-ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.motion-ring-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  color: var(--muted);
+  border-radius: @radius;
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    linear-gradient(var(--bg), var(--bg)) border-box;
+  border: 3px solid transparent;
+
+  &:hover {
+    background:
+      linear-gradient(var(--bg), var(--bg)) padding-box,
+      conic-gradient(from var(--motion-ring-angle), var(--accent), @wash-2, var(--accent-alt), var(--accent)) border-box;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ring-tile:hover {
+    animation: motion-ring-spin 3s linear infinite;
+  }
+}
+
+@keyframes motion-ring-spin {
+  to {
+    --motion-ring-angle: 360deg;
+  }
+}
