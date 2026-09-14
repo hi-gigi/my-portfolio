@@ -186,7 +186,10 @@
 
   img,
   video {
-    box-shadow: 0 12px 24px -18px color-mix(in srgb, var(--text) 30%, transparent);
+    // Shadows read as dark regardless of theme — unlike the panel
+    // background, this should never flip with --text (which goes
+    // light in dark mode and would turn the "shadow" into a pale glow).
+    box-shadow: 0 12px 24px -18px rgba(0, 0, 0, 0.35);
   }
 }
 
