@@ -83,14 +83,14 @@ export const aiSearch: CaseStudyContent = {
     { kind: "subheading", text: "Initial prototype" },
     {
       kind: "paragraph",
-      text: "An engineer on the search team built a coded prototype that layered AI directly into doclist search and demoed it to the team. It proved the potential — AI surfaced accurate matches based on what was asked — but it also surfaced two problems.",
+      text: "An engineer on the search team built a coded prototype that layered AI directly into doclist search and demoed it to the team. It proved the potential — **AI surfaced accurate matches based on what was asked** — but it also surfaced two problems.",
     },
     {
       kind: "list",
       ordered: true,
       items: [
-        "Performance, and the perception of it. AI-generated results took meaningfully longer to load than a normal search. And because nothing on screen indicated AI was involved, that delay didn't read as a new capability warming up — it just felt like search had gotten slower.",
-        "The traditional results format showed its limits. Reusing the existing layout for AI-generated results caused two distinct issues: no way to tell why a document was surfaced as a match — the format didn't explain its own reasoning — and no way to represent a narrowed, high-confidence set, since a layout built for scanning a long list had no way to hold a precise few.",
+        "**Performance, and the perception of it.** AI-generated results took meaningfully longer to load than a normal search. And because nothing on screen indicated AI was involved, that delay didn't read as a new capability warming up — it just felt like search had gotten slower.",
+        "**The traditional results format showed its limits.** Reusing the existing layout for AI-generated results caused two distinct issues: no way to tell why a document was surfaced as a match — the format didn't explain its own reasoning — and no way to represent a narrowed, high-confidence set, since a layout built for scanning a long list had no way to hold a precise few.",
       ],
     },
     { kind: "paragraph", text: "These two problems shaped the decisions that followed." },

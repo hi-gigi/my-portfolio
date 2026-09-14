@@ -158,7 +158,7 @@ function StatCard({ stat }: { stat: CaseStudyStat }) {
 
 function ListItem({ item }: { item: CaseStudyListItem }) {
   if (typeof item === "string") {
-    return <li>{item}</li>;
+    return <li>{renderInlineText(item)}</li>;
   }
   return (
     <li>
