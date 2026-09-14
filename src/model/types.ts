@@ -134,8 +134,14 @@ export type CaseStudyBlock =
   | { kind: "subheading"; text: string }
   /** One tier below a subheading — e.g. the named options under a "Decision #N" subheading. */
   | { kind: "subsubheading"; text: string }
-  /** `emphasis` renders as a bolder lead-in sentence, e.g. right under a subheading. */
-  | { kind: "paragraph"; text: string; emphasis?: boolean }
+  /**
+   * `emphasis` renders as a bolder lead-in sentence, e.g. right under
+   * a subheading. `continuation` pulls this paragraph closer to the
+   * one directly above it — for a claim immediately followed by the
+   * evidence/detail for it, read as one unit rather than two separate
+   * ideas.
+   */
+  | { kind: "paragraph"; text: string; emphasis?: boolean; continuation?: boolean }
   | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }
   /** `src` omitted renders a labelled placeholder panel until real art lands. */
   | { kind: "image"; src?: string; alt: string }

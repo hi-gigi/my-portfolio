@@ -1,7 +1,23 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { CaseStudyBlock, CaseStudyListItem, CaseStudyStat, Project } from "@/model/types";
 import { ProjectCard } from "../ProjectCard";
 import "./CaseStudy.less";
+
+/**
+ * Splits on `**bold**` markers and returns plain strings interleaved
+ * with `<strong>` nodes — the only inline markup case-study copy
+ * supports, for calling out a phrase mid-paragraph without breaking
+ * it into a separate block.
+ */
+function renderInlineText(text: string): ReactNode {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  if (parts.length === 1) return text;
+
+  return parts.map((part, index) =>
+    index % 2 === 1 ? <strong key={index}>{part}</strong> : part,
+  );
+}
 
 interface CaseStudyProps {
   project: Project;
@@ -64,12 +80,13 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
     case "subsubheading":
       return <h4>{block.text}</h4>;
 
-    case "paragraph":
-      return (
-        <p className={block.emphasis ? "case-study-emphasis" : undefined}>
-          {block.text}
-        </p>
-      );
+    case "paragraph": {
+      const classes = [
+        block.emphasis && "case-study-emphasis",
+        block.continuation && "case-study-continuation",
+      ].filter(Boolean).join(" ");
+      return <p className={classes || undefined}>{renderInlineText(block.text)}</p>;
+    }
 
     case "list": {
       const ListTag = block.ordered ? "ol" : "ul";

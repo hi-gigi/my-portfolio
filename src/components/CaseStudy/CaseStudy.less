@@ -75,6 +75,26 @@
     margin-top: @space-6;
   }
 
+  // Dimmed slightly relative to full --text so an inline `**bold**`
+  // span (which resets to full --text below) reads as a clear pop
+  // rather than just a weight change on an otherwise identically dark
+  // line. Dark mode dims further (65% vs 78%) — --text and --muted
+  // sit closer together in the dark palette, so the light-mode ratio
+  // wasn't enough gap for the same pop.
+  p {
+    color: color-mix(in srgb, var(--text) 78%, var(--muted));
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) & {
+        color: color-mix(in srgb, var(--text) 65%, var(--muted));
+      }
+    }
+
+    :root[data-theme="dark"] & {
+      color: color-mix(in srgb, var(--text) 65%, var(--muted));
+    }
+  }
+
   // Section titles ("Project Overview", "Problem Space", …) — the
   // major beats of the case study. Generous space above so a new
   // section reads as a real break from what came before.
@@ -133,6 +153,26 @@
     margin-top: @space-3;
   }
 
+  // A paragraph that elaborates on the one directly above it (e.g. a
+  // claim immediately followed by the evidence for it) — same "read
+  // as one unit" gap as the intro-to-list case above, plus a bullet
+  // and matching list indent so it visually reads as a sub-point of
+  // that paragraph rather than a new one. Two class selectors so it
+  // wins over the sibling-gap rule at the top of this block despite
+  // matching later in the cascade.
+  > .case-study-continuation {
+    position: relative;
+    margin-top: @space-3;
+    padding-left: @space-5;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: @space-2;
+      color: var(--muted);
+    }
+  }
+
   ul,
   ol {
     padding-left: @space-5;
@@ -144,14 +184,19 @@
 
   li {
     line-height: @leading-body;
+  }
 
-    // Browser-default bold (700) has no real Inter face to render
-    // with, so it was rendering as a heavy synthetic/faux bold. Inter
-    // 600 is now loaded (index.html) specifically so this can pin to
-    // a real face instead.
-    strong {
-      font-weight: @weight-semibold;
-    }
+  // Browser-default bold (700) has no real Inter face to render with,
+  // so it was rendering as a heavy synthetic/faux bold. Inter 600 is
+  // loaded (index.html) specifically so every <strong> — list-item
+  // lead-ins and inline `**bold**` spans in paragraphs alike — can pin
+  // to a real face instead.
+  strong {
+    font-weight: @weight-semibold;
+    // Full contrast against the dimmed `p` color above — this is what
+    // makes a bolded span (list-item lead-ins and inline `**bold**`
+    // spans alike) pop rather than just look a bit heavier.
+    color: var(--text);
   }
 
   // A lead-in sentence right under a subheading ("Lead designer on a
@@ -159,6 +204,7 @@
   // lead-ins, for the same "this introduces what follows" role.
   .case-study-emphasis {
     font-weight: @weight-semibold;
+    color: var(--text);
   }
 
   img,
