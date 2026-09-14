@@ -178,10 +178,11 @@
 .case-study-media-frame {
   padding: @space-7;
   border-radius: @radius * 3;
-  background: radial-gradient(
-    120% 100% at 50% -10%,
-    color-mix(in srgb, var(--accent) 14%, var(--tonal)) 0%,
-    color-mix(in srgb, var(--text) 8%, var(--tonal)) 100%
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 18%, var(--tonal)) 0%,
+    var(--tonal) 55%,
+    color-mix(in srgb, var(--text) 6%, var(--tonal)) 100%
   );
 
   img,
