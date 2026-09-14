@@ -75,13 +75,15 @@
     margin-top: @space-6;
   }
 
-  // Dimmed slightly relative to full --text so an inline `**bold**`
-  // span (which resets to full --text below) reads as a clear pop
-  // rather than just a weight change on an otherwise identically dark
-  // line. Dark mode dims further (65% vs 78%) — --text and --muted
-  // sit closer together in the dark palette, so the light-mode ratio
-  // wasn't enough gap for the same pop.
-  p {
+  // Dimmed slightly relative to full --text so a <strong> span (an
+  // inline `**bold**` in a paragraph, or a list-item lead-in label —
+  // both reset to full --text below) reads as a clear pop rather than
+  // just a weight change on an otherwise identically dark line. Dark
+  // mode dims further (65% vs 78%) — --text and --muted sit closer
+  // together in the dark palette, so the light-mode ratio wasn't
+  // enough gap for the same pop.
+  p,
+  li {
     color: color-mix(in srgb, var(--text) 78%, var(--muted));
 
     @media (prefers-color-scheme: dark) {
