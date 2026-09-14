@@ -171,6 +171,32 @@
   }
 }
 
+// Inset panel behind a real screenshot/clip — the image floats on a
+// warm gradient card instead of sitting flush against the page
+// background, echoing how product marketing pages (e.g. Cursor's)
+// frame a UI screenshot rather than dropping it in edge to edge.
+.case-study-media-frame {
+  padding: @space-7;
+  border-radius: @radius * 3;
+  background: radial-gradient(
+    120% 100% at 50% -10%,
+    color-mix(in srgb, var(--accent) 14%, var(--tonal)) 0%,
+    color-mix(in srgb, var(--text) 8%, var(--tonal)) 100%
+  );
+
+  img,
+  video {
+    box-shadow: 0 24px 48px -24px color-mix(in srgb, var(--text) 45%, transparent);
+  }
+}
+
+@media (max-width: @bp-cards-stack) {
+  .case-study-media-frame {
+    padding: @space-4;
+    border-radius: @radius * 2;
+  }
+}
+
 .case-study-more {
   margin-top: @space-9;
 }

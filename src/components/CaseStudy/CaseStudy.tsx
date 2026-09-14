@@ -84,7 +84,9 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
 
     case "image":
       return block.src ? (
-        <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+        <div className="case-study-media-frame">
+          <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+        </div>
       ) : (
         <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
           <span>{block.alt}</span>
@@ -93,7 +95,9 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
 
     case "video":
       return block.src ? (
-        <video src={block.src} controls playsInline preload="metadata" aria-label={block.alt} />
+        <div className="case-study-media-frame">
+          <video src={block.src} controls playsInline preload="metadata" aria-label={block.alt} />
+        </div>
       ) : (
         <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
           <span>{block.alt}</span>
