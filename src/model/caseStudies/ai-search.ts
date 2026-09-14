@@ -63,19 +63,20 @@ export const aiSearch: CaseStudyContent = {
     { kind: "heading", id: "problem-space", text: "Problem Space", navLabel: "Problem space" },
     {
       kind: "paragraph",
-      text: "Search has always mattered at Lucid. People build technical workflows, cloud infrastructure diagrams, product roadmaps, and org charts inside the product — and finding that knowledge again has long been a priority, one we've kept investing in across accuracy, performance, and usability.",
+      text: "Search has always mattered at Lucid. People build technical workflows, cloud infrastructure diagrams, product roadmaps, and org charts inside the product — and **finding that knowledge again has long been a priority**, one we've kept investing in across accuracy, performance, and usability.",
     },
     {
       kind: "paragraph",
-      text: "Prior research reflected this directly: across 35+ calls, users consistently said the thing they searched for lived inside their documents, not in the title. Search could only return a list of vague matches, leaving them to open each one and check.",
+      continuation: true,
+      text: "Prior research reflected this directly: across 35+ calls, users consistently said **the thing they searched for lived inside their documents, not in the title**. Search could only return a list of vague matches, leaving them to open each one and check.",
     },
     {
       kind: "paragraph",
-      text: "At the same time, what people expect from search has been shifting. Search itself has been moving along a spectrum — from retrieval toward answering — and that shift has raised the bar for what people expect a search experience to do.",
+      text: "At the same time, what people expect from search has been shifting. Search itself has been **moving along a spectrum — from retrieval toward answering** — and that shift has raised the bar for what people expect a search experience to do.",
     },
     {
       kind: "paragraph",
-      text: "At this particular moment, both were true — search still mattered as much as ever, and generative AI had finally made a better version of it possible. That's the opportunity this project set out to act on.",
+      text: "At this particular moment, both were true — search still mattered as much as ever, and generative AI had finally made a better version of it possible. **That's the opportunity this project set out to act on.**",
     },
 
     { kind: "heading", id: "key-considerations", text: "Key considerations" },
@@ -163,29 +164,29 @@ export const aiSearch: CaseStudyContent = {
     { kind: "subheading", text: "The Experience, End to End" },
     {
       kind: "paragraph",
-      text: 'Signaling AI-powered search. New sparkle icon and placeholder text — "What are you looking for?" — nudge people to ask, not just type keywords. That shift in input is what intent-aware search depends on.',
+      text: '**Signaling AI-powered search.** New sparkle icon and placeholder text — "What are you looking for?" — nudge people to ask, not just type keywords. That shift in input is what intent-aware search depends on.',
     },
     { kind: "image", alt: "New sparkle icon and placeholder text signal AI-powered search" },
     {
       kind: "paragraph",
-      text: 'Fast by default, AI layered on top. Traditional results load instantly; the AI answer appears above them in a loading state, so AI\'s presence is felt right away — then settles into a collapsed view once ready, showing just the top match: a bolded clickable title plus a one-line summary generated fresh for that query. "Show more" expands the rest.',
+      text: '**Fast by default, AI layered on top.** Traditional results load instantly; the AI answer appears above them in a loading state, so AI\'s presence is felt right away — then settles into a collapsed view once ready, showing just the top match: a bolded clickable title plus a one-line summary generated fresh for that query. "Show more" expands the rest.',
     },
     { kind: "image", alt: "Traditional results load instantly while the AI answer loads above them" },
     {
       kind: "paragraph",
-      text: 'Deeper answers, with a seamless hand-off. Expanding reveals every matched document with its own generated summary, plus an embedded "Chat more with Lucid AI..." input. Typing a follow-up there shows a quiet "Prompt sent to Lucid AI" confirmation, then opens the conversation in Lucid\'s AI hub, carrying the original query and answer forward so nothing restarts cold. Search stays fast and scoped; the hub takes over for deeper conversation.',
+      text: '**Deeper answers, with a seamless hand-off.** Expanding reveals every matched document with its own generated summary, plus an embedded "Chat more with Lucid AI..." input. Typing a follow-up there shows a quiet "Prompt sent to Lucid AI" confirmation, then opens the conversation in Lucid\'s AI hub, carrying the original query and answer forward so nothing restarts cold. Search stays fast and scoped; the hub takes over for deeper conversation.',
     },
     { kind: "image", alt: "Expanded AI answer with an embedded hand-off to Lucid's AI hub" },
 
     { kind: "subheading", text: "New components, built for the AI experience" },
     {
       kind: "paragraph",
-      text: 'Resolving ambiguity with a chip. Ambiguous names — "documents Peter shared with me" — surface a dropdown to disambiguate. The selected person renders as a chip in both the search input and the AI answer itself ("Found 3 roadmaps shared by Sarah Chen in the last 7 days"), resolving the ambiguity without a back-and-forth and staying visible as confirmation.',
+      text: '**Resolving ambiguity with a chip.** Ambiguous names — "documents Peter shared with me" — surface a dropdown to disambiguate. The selected person renders as a chip in both the search input and the AI answer itself ("Found 3 roadmaps shared by Sarah Chen in the last 7 days"), resolving the ambiguity without a back-and-forth and staying visible as confirmation.',
     },
     { kind: "image", alt: "A person chip resolves an ambiguous name in both the query and the AI answer" },
     {
       kind: "paragraph",
-      text: "Compact answers via inline links. Each AI result flows as a single block — a clickable document title followed directly by its summary — rather than a separate row or card. That compactness is what keeps both the collapsed and expanded states tight enough to sit above the full traditional results.",
+      text: "**Compact answers via inline links.** Each AI result flows as a single block — a clickable document title followed directly by its summary — rather than a separate row or card. That compactness is what keeps both the collapsed and expanded states tight enough to sit above the full traditional results.",
     },
     { kind: "image", alt: "Compact AI results rendered as inline linked titles with summaries" },
   ],
