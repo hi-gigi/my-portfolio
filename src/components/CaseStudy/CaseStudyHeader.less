@@ -50,7 +50,8 @@
 }
 
 a.case-study-header-sections-link {
-  &:hover {
+  &:hover,
+  &.is-active {
     color: var(--text);
   }
 
@@ -68,8 +69,12 @@ a.case-study-header-sections-link {
     transition: transform @ease-slow;
   }
 
+  // The active section's underline stays drawn in rather than only
+  // appearing on hover/focus — it's the "you are here" marker for
+  // whichever section is currently scrolled into view.
   &:hover::after,
-  &:focus-visible::after {
+  &:focus-visible::after,
+  &.is-active::after {
     transform: scaleX(1);
     transform-origin: left;
   }
@@ -168,6 +173,14 @@ a.case-study-header-sections-link {
       font-weight: @weight-medium;
       font-size: @text-md;
       color: var(--text);
+
+      // Full-contrast --text is already the resting color here (unlike
+      // the inline row, which is --muted until hovered/active), so the
+      // active marker is a color shift instead — same accent-alt as
+      // the inline row's underline.
+      &.is-active {
+        color: var(--accent-alt);
+      }
     }
   }
 

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getCaseStudySections } from "@/model/caseStudies";
+import { useActiveSection } from "@/presenters/useActiveSection";
 import { useNavMenu } from "@/presenters/useNavMenu";
 import { useOverflowNav } from "@/presenters/useOverflowNav";
 import { useTheme } from "@/presenters/useTheme";
@@ -27,8 +28,12 @@ const SECTIONS_ID = "case-study-sections";
  */
 export function CaseStudyHeader({ caseStudyId }: CaseStudyHeaderProps) {
   const theme = useTheme();
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const sections = getCaseStudySections(caseStudyId);
+  const activeId = useActiveSection(
+    sections.map((section) => section.id),
+    hash ? decodeURIComponent(hash.slice(1)) : undefined,
+  );
   const menu = useNavMenu();
   const { isCollapsed, containerRef, siblingRef, measureRef } = useOverflowNav(
     sections.map((section) => section.label).join("|"),
@@ -88,7 +93,11 @@ export function CaseStudyHeader({ caseStudyId }: CaseStudyHeaderProps) {
                 <Link
                   key={section.id}
                   to={`${pathname}#${section.id}`}
-                  className="case-study-header-sections-link"
+                  className={
+                    section.id === activeId
+                      ? "case-study-header-sections-link is-active"
+                      : "case-study-header-sections-link"
+                  }
                   onClick={menu.close}
                 >
                   {section.label}
