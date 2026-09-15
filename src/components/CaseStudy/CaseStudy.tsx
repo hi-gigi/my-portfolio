@@ -99,6 +99,85 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
       );
     }
 
+    case "split":
+      return (
+        <div className="case-study-split">
+          <div className="case-study-split-main">
+            {block.content.map((text, index) => (
+              <p key={index}>{renderInlineText(text)}</p>
+            ))}
+            <div className="case-study-split-timeline">
+              <h3 className="case-study-split-label">Timeline</h3>
+              <div className="case-study-stepper">
+                {block.timeline.map((step, index) => (
+                  <p className="case-study-step" key={index}>
+                    <span className="case-study-step-date">{step.date}</span>
+                    {step.label}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+          <aside className="case-study-split-sidebar">
+            <div className="case-study-split-block">
+              <h3 className="case-study-split-label">My role</h3>
+              <p className="case-study-split-role-title">
+                <strong>{block.sidebar.role.title}</strong>
+              </p>
+              <ul className="case-study-split-role-list">
+                {block.sidebar.role.items.map((item, index) => (
+                  <li key={index}>{renderInlineText(item)}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="case-study-split-block">
+              <h3 className="case-study-split-label">Collaborators</h3>
+              <div className="case-study-split-team-list">
+                {block.sidebar.collaborators.map((collaborator, index) => (
+                  <div className="case-study-split-team" key={index}>
+                    <p className="case-study-split-team-name">
+                      <strong>{collaborator.name}</strong>
+                    </p>
+                    {collaborator.tag && (
+                      <p className="case-study-split-team-tag">{collaborator.tag}</p>
+                    )}
+                    <p className="case-study-split-team-text">{renderInlineText(collaborator.text)}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </div>
+      );
+
+    case "beats":
+      return (
+        <div className="case-study-beats">
+          {block.items.map((beat, index) =>
+            beat.conclusion ? (
+              <div className="case-study-beat-conclusion" key={index}>
+                <p className="case-study-beat-body">
+                  <strong>{renderInlineText(beat.text)}</strong>
+                </p>
+              </div>
+            ) : (
+              <div className="case-study-beat" key={index}>
+                <span className="case-study-beat-num">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  {beat.label && (
+                    <p className="case-study-beat-label">
+                      <strong>{beat.label}</strong>
+                    </p>
+                  )}
+                  <p className="case-study-beat-body">{renderInlineText(beat.text)}</p>
+                  {beat.cite && <div className="case-study-beat-cite">{renderInlineText(beat.cite)}</div>}
+                </div>
+              </div>
+            ),
+          )}
+        </div>
+      );
+
     case "image":
       return block.src ? (
         <div className="case-study-media-frame">

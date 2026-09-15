@@ -16,67 +16,56 @@ export const aiSearch: CaseStudyContent = {
     },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
-      kind: "paragraph",
-      text: "Lucid's document list is the primary surface people use to find the decisions, workflows, and infrastructure documentation their teams have created and stored — but beyond basic filters, search itself could only match keywords, not understand what someone was actually asking.",
-    },
-    {
-      kind: "paragraph",
-      text: "I led this 0-to-1 initiative from concept through delivery, incorporating a generative-AI experience into Lucid's core search. The system reads intent in what someone types and, when there's enough to work with, surfaces a compact AI-generated answer above the traditional results, automatically. Released internally in July and externally in August 2026; adoption metrics are being tracked post-launch.",
-    },
-    { kind: "subheading", text: "Timeline" },
-    {
-      kind: "list",
-      items: [
-        { label: "June–July 2026", text: "Concept to internal release" },
-        { label: "July–August 2026", text: "External release" },
+      kind: "split",
+      content: [
+        "Lucid's document list is the primary surface people use to find the decisions, workflows, and infrastructure documentation their teams have created and stored — but beyond basic filters, search itself could only match keywords, not understand what someone was actually asking.",
+        "I led this 0-to-1 initiative from concept through delivery, incorporating a generative-AI experience into Lucid's core search. The system reads intent in what someone types and, when there's enough to work with, surfaces a compact AI-generated answer above the traditional results, automatically. Released internally in July and externally in August 2026; adoption metrics are being tracked post-launch.",
       ],
-    },
-    { kind: "subheading", text: "My Role & Contribution" },
-    { kind: "paragraph", text: "Lead designer on a 0-to-1 AI initiative.", emphasis: true },
-    {
-      kind: "list",
-      items: [
-        "Owned design end to end, from concept to external release.",
-        "Proposed and aligned the team on key decisions — when AI kicks in, and how AI answers are surfaced.",
-        "Designed and aligned with the Design System team on new components needed for the AI experience.",
+      timeline: [
+        { date: "Jun–Jul 2026", label: "Concept → internal release" },
+        { date: "Jul–Aug 2026", label: "External release" },
       ],
-    },
-    { kind: "subheading", text: "Teams & Collaborators" },
-    {
-      kind: "list",
-      items: [
-        {
-          label: "Search team (PM, engineers, ML engineer)",
-          text: "My direct scrum team. Collaborated from design through delivery on how AI shows up in the search experience — the interaction details on the results page.",
+      sidebar: {
+        role: {
+          title: "Lead Designer, 0-to-1 AI initiative",
+          items: [
+            "Owned design end to end, concept to external release",
+            "Drove key decisions — when AI kicks in, how answers surface",
+            "Aligned with the Design System team on new AI components",
+          ],
         },
-        {
-          label: "AI Hub team (designer, engineers)",
-          text: "Owns Lucid's doclist AI hub experience. Worked closely with them on what counts as a good AI answer — how results are evaluated and how confidence is determined.",
-        },
-        {
-          label: "Design System",
-          text: "Partnered to design new components needed for the AI experience (inline button, inline user chip).",
-        },
-      ],
+        collaborators: [
+          {
+            name: "Search & AI Hub teams",
+            tag: "PM · engineers · ML engineer · UX intern",
+            text: "The scrum teams I worked with — covering how people interact with AI-powered search, how answers are surfaced, and how confidence in those answers is evaluated.",
+          },
+          {
+            name: "Design System team",
+            text: "Partnered to design and deliver new components needed for the AI experience (inline button, inline user chip).",
+          },
+        ],
+      },
     },
 
     { kind: "heading", id: "problem-space", text: "Problem Space", navLabel: "Problem space" },
     {
-      kind: "paragraph",
-      text: "Search has always mattered at Lucid. People build technical workflows, cloud infrastructure diagrams, product roadmaps, and org charts inside the product — and **finding that knowledge again has long been a priority**, one we've kept investing in across accuracy, performance, and usability.",
-    },
-    {
-      kind: "paragraph",
-      continuation: true,
-      text: "Prior research reflected this directly: across 35+ calls, users consistently said **the thing they searched for lived inside their documents, not in the title**. Search could only return a list of vague matches, leaving them to open each one and check.",
-    },
-    {
-      kind: "paragraph",
-      text: "At the same time, what people expect from search has been shifting. Search itself has been **moving along a spectrum — from retrieval toward answering** — and that shift has raised the bar for what people expect a search experience to do.",
-    },
-    {
-      kind: "paragraph",
-      text: "At this particular moment, both were true — search still mattered as much as ever, and generative AI had finally made a better version of it possible. **That's the opportunity this project set out to act on.**",
+      kind: "beats",
+      items: [
+        {
+          label: "Search has always mattered",
+          text: "People build technical workflows, cloud infrastructure diagrams, product roadmaps, and org charts inside Lucid — and **finding that knowledge again has long been a priority**, one we've kept investing in across accuracy, performance, and usability.",
+          cite: "Across 35+ research calls, users consistently said **the thing they searched for lived inside their documents, not in the title** — search could only return a list of vague matches, leaving them to open each one and check.",
+        },
+        {
+          label: "Expectations have shifted",
+          text: "What people expect from search has been moving too. Search itself has been **moving along a spectrum — from retrieval toward answering** — raising the bar for what a search experience is supposed to do.",
+        },
+        {
+          conclusion: true,
+          text: "At this particular moment, both were true — search still mattered as much as ever, and generative AI had finally made a better version of it possible. That's the opportunity this project set out to act on.",
+        },
+      ],
     },
 
     { kind: "heading", id: "key-considerations", text: "Key considerations" },

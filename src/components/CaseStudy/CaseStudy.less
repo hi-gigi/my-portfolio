@@ -22,6 +22,23 @@
 // point, rather than letting them get narrower first.
 @bp-more-grid-3col: 900px;
 
+// Gap before a new h2 section ("Problem Space", "Solution", …) — bigger
+// than the shared @space-9 (96px) scale tops out at, so it's a local
+// literal rather than a token. useActiveSection.ts's scroll-spy
+// TRIGGER_PX is derived from this exact value (@header-height + this)
+// — keep the two in sync if this changes again.
+@case-study-section-gap: 144px;
+
+// A `.case-study-beat`'s number column width, and that column plus its
+// gap to the text (@space-4, 16px = 1rem at the site's root size) —
+// each written as its own literal rather than computed from the other,
+// since Less doesn't convert units when mixing rem with px. The
+// conclusion beat has no number of its own, but still needs its text
+// starting at @case-study-beat-indent to stay aligned with the beats
+// above and below it.
+@case-study-beat-num-width: 2.5rem;
+@case-study-beat-indent: 3.5rem;
+
 // Not a `<section>`, so it falls outside the `main > section` global
 // centering rule — replicate the inline gutter here directly. Capped
 // at the site's own @measure so the header above and the "More work"
@@ -101,7 +118,7 @@
   // major beats of the case study. Generous space above so a new
   // section reads as a real break from what came before.
   h2 {
-    margin-top: @space-9;
+    margin-top: @case-study-section-gap;
     margin-bottom: 0;
     font-size: @case-study-text-h2;
     font-weight: @weight-semibold;
@@ -207,6 +224,212 @@
   .case-study-emphasis {
     font-weight: @weight-semibold;
     color: var(--text);
+  }
+
+  // An editorial two-column opener — narrative on the left, Timeline /
+  // Role / Collaborators as glanceable facts in a sidebar on the right.
+  // Replaces the plain paragraph-then-heading flow for a section that
+  // would otherwise read as a wall of text. Columns stay equal width
+  // (rather than favoring the narrative) so the sidebar's shorter lines
+  // keep its column short enough to end close to the narrative column.
+  .case-study-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: @space-6;
+    align-items: start;
+  }
+
+  @media (max-width: @bp-cards-stack) {
+    .case-study-split {
+      grid-template-columns: 1fr;
+      gap: @space-5;
+    }
+  }
+
+  .case-study-split-main > * + * {
+    margin-top: @space-4;
+  }
+
+  // The Timeline block reads as a distinct facts section, not another
+  // narrative paragraph — give it the same larger gap the rest of the
+  // page uses between major blocks (`.case-study-body > * + *` below),
+  // rather than the tighter paragraph-to-paragraph rhythm above.
+  .case-study-split-main > .case-study-split-timeline {
+    margin-top: @space-6;
+  }
+
+  .case-study-split-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: @space-4;
+    padding: @space-4 @space-5;
+    border-radius: @radius;
+    background: var(--tonal);
+  }
+
+  .case-study-split-block + .case-study-split-block {
+    padding-top: @space-4;
+    border-top: 1px solid color-mix(in srgb, var(--muted) 30%, var(--tonal));
+  }
+
+  // Real <h3>s (see CaseStudy.tsx) for document structure, but styled
+  // back to the original mono eyebrow-label look rather than inheriting
+  // the shared `.case-study-body h3` heading style below.
+  .case-study-split-label {
+    .eyebrow-label();
+    margin: 0 0 @space-4;
+  }
+
+  // The shared `h3 + *` rule further down adds its own @space-4 above
+  // whatever follows an <h3> — zero it out here so this label's own
+  // margin-bottom is the only thing setting the gap to its content,
+  // scoped to just this split layout rather than every h3 on the page.
+  .case-study-split-label + * {
+    margin-top: 0;
+  }
+
+  // Date and label share one line per step, not two — kept the sidebar
+  // from running noticeably taller than the narrative it sits beside.
+  .case-study-stepper {
+    display: flex;
+    flex-direction: column;
+    gap: @space-2;
+  }
+
+  .case-study-step {
+    margin: 0;
+    font-size: @text-sm;
+    line-height: 1.4;
+  }
+
+  // Keeps eyebrow-label's size/weight/color, but switches off its mono
+  // face and letter-spacing (tuned for mono's tighter default spacing)
+  // in favor of the site's body font, so the date reads as part of the
+  // same line as the label next to it rather than a distinct mono tag.
+  .case-study-step-date {
+    .eyebrow-label();
+    font-family: @font-body;
+    letter-spacing: normal;
+    margin-right: @space-2;
+  }
+
+  // Weight + full-brightness color come from the <strong> wrapping the
+  // title text, not this class — same reset every inline `**bold**`
+  // span and list lead-in already gets against the dimmed body color.
+  .case-study-split-role-title {
+    margin: 0 0 @space-2;
+  }
+
+  .case-study-split-role-list {
+    margin: 0;
+    padding-left: 1.1em;
+    font-size: @text-sm;
+  }
+
+  .case-study-split-role-list li + li {
+    margin-top: @space-2;
+  }
+
+  .case-study-split-team-list {
+    display: flex;
+    flex-direction: column;
+    gap: @space-3;
+  }
+
+  // Same <strong>-driven brightness reset as .case-study-split-role-title above.
+  .case-study-split-team-name {
+    margin: 0;
+  }
+
+  // Plain muted, like .case-study-step-date's roster/timestamp
+  // treatment — recedes as a quiet meta detail rather than the
+  // accent-tinted pop this used to have, which stood out too much
+  // against the sidebar's otherwise calm palette.
+  .case-study-split-team-tag {
+    .eyebrow-label();
+    margin: 2px 0 0;
+  }
+
+  // Color is left to the standard dimmed `p` treatment above — matches
+  // .case-study-split-role-list's <li> color instead of the flatter
+  // var(--muted) this used to set explicitly, which read noticeably
+  // lighter than the role bullets right above it in the same sidebar.
+  .case-study-split-team-text {
+    margin: 2px 0 0;
+    font-size: @text-sm;
+  }
+
+  // A short numbered argument (e.g. two premises building to a
+  // conclusion) — the number and label make the logic legible before
+  // the sentences are read. `.case-study-beat-body`'s color is left to
+  // the standard dimmed `p` treatment above; only the conclusion beat
+  // (below) resets it to full brightness, since that's the one line
+  // meant to read as the payoff rather than another premise.
+  .case-study-beats {
+    display: flex;
+    flex-direction: column;
+    gap: @space-6;
+  }
+
+  .case-study-beat {
+    display: grid;
+    grid-template-columns: @case-study-beat-num-width 1fr;
+    gap: @space-4;
+  }
+
+  .case-study-beat-num {
+    padding-top: 2px;
+    font-family: @font-mono;
+    font-size: @text-sm;
+    color: color-mix(in srgb, var(--accent-alt) 55%, var(--muted));
+  }
+
+  .case-study-beat-label {
+    margin: 0 0 @space-2;
+  }
+
+  .case-study-beat-body {
+    margin: 0;
+  }
+
+  // A demoted citation under a beat's claim — its own muted tone
+  // (rather than the standard dimmed-`p` mix) reads as evidence set
+  // apart from the argument's own voice. A `div`, not a `p`, so it
+  // isn't caught by the `p, li` dimming rule above and this color
+  // actually applies.
+  .case-study-beat-cite {
+    margin: @space-3 0 0;
+    padding-left: @space-4;
+    border-left: 2px solid color-mix(in srgb, var(--muted) 35%, var(--bg));
+    font-size: @text-sm;
+    color: var(--muted);
+  }
+
+  // The argument's payoff, not another peer premise — the same tonal
+  // card surface as the Overview sidebar, with an accent-bordered
+  // callout and a body <strong> wrapper (see CaseStudy.tsx) resetting
+  // it to full brightness the same way any other bolded span pops out
+  // of the dimmed body color. No number
+  // of its own (it isn't a third premise), but its left padding still
+  // lands the text at @case-study-beat-indent — the same offset the
+  // numbered beats' text sits at — so the two line up. The accent bar
+  // is an absolutely-positioned pseudo-element rather than a
+  // border-left specifically so it doesn't consume any of that padding
+  // and throw the alignment off by its own width.
+  .case-study-beat-conclusion {
+    position: relative;
+    padding: @space-4 @space-5 @space-4 @case-study-beat-indent;
+    border-radius: @radius;
+    background: var(--tonal);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      border-radius: @radius 0 0 @radius;
+      background: var(--accent-alt);
+    }
   }
 
   img,

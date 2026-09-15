@@ -124,6 +124,39 @@ export interface CaseStudyStat {
   details?: { label: string; value: string }[];
 }
 
+/** One dated step in a `split` block's Timeline column, e.g. "Jun–Jul 2026" → "Concept → internal release". */
+export interface CaseStudySplitStep {
+  date: string;
+  label: string;
+}
+
+/** One collaborator entry in a `split` block's sidebar. `tag` is an optional roster line under the name. */
+export interface CaseStudySplitCollaborator {
+  name: string;
+  tag?: string;
+  text: string;
+}
+
+/** The right-hand "at a glance" facts column of a `split` block. */
+export interface CaseStudySplitSidebar {
+  role: { title: string; items: string[] };
+  collaborators: CaseStudySplitCollaborator[];
+}
+
+/**
+ * One step in a `beats` block's numbered argument. `cite` is an
+ * optional nested citation/evidence line, demoted below the beat's own
+ * claim. `conclusion` marks the beat as the argument's payoff — it
+ * renders with a tinted, accent-bordered treatment and no label,
+ * rather than as another peer premise.
+ */
+export interface CaseStudyBeat {
+  label?: string;
+  text: string;
+  cite?: string;
+  conclusion?: boolean;
+}
+
 export type CaseStudyBlock =
   /**
    * Also an in-page nav target — every heading becomes a jump link in
@@ -143,6 +176,15 @@ export type CaseStudyBlock =
    */
   | { kind: "paragraph"; text: string; emphasis?: boolean; continuation?: boolean }
   | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }
+  /**
+   * An editorial two-column opener: `content` paragraphs and `timeline`
+   * read as the narrative on the left, while `sidebar` holds Role and
+   * Collaborators as glanceable facts on the right. Stacks to one
+   * column on narrow screens.
+   */
+  | { kind: "split"; content: string[]; timeline: CaseStudySplitStep[]; sidebar: CaseStudySplitSidebar }
+  /** A short numbered argument — e.g. two premises building to a conclusion. */
+  | { kind: "beats"; items: CaseStudyBeat[] }
   /** `src` omitted renders a labelled placeholder panel until real art lands. */
   | { kind: "image"; src?: string; alt: string }
   /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */

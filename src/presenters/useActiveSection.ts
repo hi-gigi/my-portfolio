@@ -9,17 +9,18 @@ import { useEffect, useRef, useState } from "react";
 
 // Trigger line = the sticky header's own height (tokens.less'
 // @header-height, 64px) plus a section heading's own top margin
-// (@space-9, 96px) = 160px. A heading's `getBoundingClientRect().top`
-// is its border-box edge, which sits *below* that margin — so this
-// line falls where the blank gap before the heading (not the heading
-// text itself) starts sliding under the header, activating the tab
-// as soon as the reader is visibly done with the previous section
-// rather than waiting for the new heading's text to already be there.
-// It's also comfortably past `scroll-padding-top: @space-9` in
+// (CaseStudy.less' @case-study-section-gap, 144px) = 208px. A
+// heading's `getBoundingClientRect().top` is its border-box edge,
+// which sits *below* that margin — so this line falls where the blank
+// gap before the heading (not the heading text itself) starts sliding
+// under the header, activating the tab as soon as the reader is
+// visibly done with the previous section rather than waiting for the
+// new heading's text to already be there.
+// It's also comfortably past `scroll-padding-top: @space-9` (96px) in
 // global.less (the offset scrollIntoView() lands a heading at), so a
 // just-clicked link's section already satisfies this same line at
 // rest — no separate, narrower allowance needed for that case.
-const TRIGGER_PX = 160;
+const TRIGGER_PX = 208;
 
 // Upper bound on how long a click-triggered scroll is allowed to
 // suppress natural scroll-spy evaluation, for browsers that don't
