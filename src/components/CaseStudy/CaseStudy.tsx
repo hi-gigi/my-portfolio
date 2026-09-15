@@ -90,8 +90,9 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
 
     case "list": {
       const ListTag = block.ordered ? "ol" : "ul";
+      const hasIcons = block.items.some((item) => typeof item === "object" && "icon" in item);
       return (
-        <ListTag>
+        <ListTag className={hasIcons ? "case-study-list-icon" : undefined}>
           {block.items.map((item, index) => (
             <ListItem key={index} item={item} />
           ))}
@@ -238,6 +239,16 @@ function StatCard({ stat }: { stat: CaseStudyStat }) {
 function ListItem({ item }: { item: CaseStudyListItem }) {
   if (typeof item === "string") {
     return <li>{renderInlineText(item)}</li>;
+  }
+  if ("icon" in item) {
+    return (
+      <li className="case-study-list-icon-item">
+        <span className="case-study-list-icon-tile">
+          <img src={item.icon} alt="" loading="lazy" decoding="async" />
+        </span>
+        <span className="case-study-list-icon-text">{renderInlineText(item.text)}</span>
+      </li>
+    );
   }
   return (
     <li>

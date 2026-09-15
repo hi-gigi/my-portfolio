@@ -205,6 +205,44 @@
     line-height: @leading-body;
   }
 
+  // A list whose items carry an icon (`CaseStudyListItem`'s `icon`
+  // variant) drops the numbered/bulleted marker in favor of an icon
+  // tile per item — the icon itself is the marker.
+  .case-study-list-icon {
+    padding-left: 0;
+    list-style: none;
+
+    li + li {
+      margin-top: @space-5;
+    }
+  }
+
+  .case-study-list-icon-item {
+    display: flex;
+    align-items: flex-start;
+    gap: @space-4;
+  }
+
+  .case-study-list-icon-tile {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: @radius;
+    background: var(--tonal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .case-study-list-icon-text {
+    padding-top: @space-1;
+  }
+
   // Browser-default bold (700) has no real Inter face to render with,
   // so it was rendering as a heavy synthetic/faux bold. Inter 600 is
   // loaded (index.html) specifically so every <strong> — list-item

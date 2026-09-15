@@ -112,8 +112,13 @@ export interface PortfolioContent {
 // in order. `Project` (above) still owns the id/title/blurb/labels
 // used for the header and the card that links here.
 
-/** A plain bullet, or a bolded lead-in followed by its description. */
-export type CaseStudyListItem = string | { label: string; text: string };
+/**
+ * A plain bullet, a bolded lead-in followed by its description, or a
+ * bullet paired with a small icon tile (e.g. `**Label.** rest of the
+ * sentence` — inline bold same as the plain-string case, just with an
+ * icon alongside).
+ */
+export type CaseStudyListItem = string | { label: string; text: string } | { text: string; icon: string };
 
 /** One metric card — e.g. "Adoption · 4 weeks post-launch" → "53.6%". */
 export interface CaseStudyStat {
