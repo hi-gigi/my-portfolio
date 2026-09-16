@@ -68,6 +68,13 @@ export interface WorkGroup {
    */
   label: string;
   projects: Project[];
+  /**
+   * "grid" (default) is the two-up image-on-top tile. "row" is a
+   * full-width horizontal card — thumbnail on the left, title/blurb/
+   * tags on the right — used to set an older/differently-scoped batch
+   * of work apart from the main grid.
+   */
+  layout?: "grid" | "row";
 }
 
 export interface WorkContent {

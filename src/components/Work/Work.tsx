@@ -12,7 +12,7 @@ export function Work({ title, groups }: WorkContent) {
           {group.label && (
             <h3 className="work-group-title">{group.label}</h3>
           )}
-          <div className="card-grid">
+          <div className={group.layout === "row" ? "row-list" : "card-grid"}>
             {group.projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

@@ -97,6 +97,7 @@ export const content: PortfolioContent = {
       },
       {
         label: "Internships · 2018–2019",
+        layout: "row",
         projects: [
           {
             id: "hasbro-pulse",

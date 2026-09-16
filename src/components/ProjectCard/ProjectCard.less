@@ -124,3 +124,63 @@
     border-radius: @radius-btn;
   }
 }
+
+// Row layout (see `WorkGroup.layout` in Work.tsx): thumbnail on the
+// left, tags/title/blurb stacked on the right — same tokens and
+// components as the grid tile, just rearranged to read as a
+// full-width list rather than a stack of image-on-top tiles.
+.row-list .card {
+  flex-direction: row;
+  gap: @space-5;
+}
+
+.row-list .card-media {
+  flex: 0 0 180px;
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent;
+
+  img,
+  video {
+    object-fit: cover;
+  }
+}
+
+// Stretched (the row's default cross-axis stretch) to the thumbnail's
+// height, so title/blurb sit near its top edge and the tags — pushed
+// down by their own auto margin — land near its bottom edge. `gap`
+// is the floor for that spacing — it still applies once the auto
+// margin collapses to 0 on the stacked mobile layout, where there's no
+// extra height to push into.
+//
+// The top/bottom padding grows this column past the thumbnail's own
+// height, so the next row starts a bit further from the text than
+// from the image — the thumbnail (stretched, `object-fit: cover`)
+// just crops to fill the taller card without any visible gap of its
+// own.
+.row-list .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: @space-3;
+  padding-top: @space-2;
+  padding-bottom: @space-2;
+
+  h4 {
+    margin-bottom: 0; // spacing now comes from the flex `gap` above
+  }
+}
+
+.row-list .card-labels {
+  margin: auto 0 0;
+}
+
+@media (max-width: @bp-cards-stack) {
+  .row-list .card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .row-list .card-media {
+    flex-basis: auto;
+  }
+}

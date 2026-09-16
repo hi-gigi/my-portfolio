@@ -27,3 +27,12 @@
     grid-template-columns: 1fr; // stack on narrow screens
   }
 }
+
+// Full-width horizontal rows — an alternate to `.card-grid` for a
+// group that should read apart from the main tile grid (see
+// `WorkGroup.layout` and the `.row-list` rules in ProjectCard.less).
+.row-list {
+  display: flex;
+  flex-direction: column;
+  gap: @space-5;
+}
