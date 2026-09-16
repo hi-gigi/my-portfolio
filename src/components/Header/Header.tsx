@@ -14,10 +14,10 @@ interface HeaderProps {
 const NAV_ID = "primary-nav";
 
 export function Header({ wordmark, nav, resume }: HeaderProps) {
-  const { theme, menu } = useHeaderPresenter();
+  const { theme, menu, scrolled } = useHeaderPresenter();
 
   return (
-    <header className="site-header">
+    <header className="site-header" data-scrolled={scrolled || undefined}>
       <div className="site-header-inner">
         <div className="brand">
           <a className="wordmark" href="#top">
