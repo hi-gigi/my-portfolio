@@ -19,52 +19,38 @@ export const documentDiscovery: CaseStudyContent = {
   blocks: [
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
-      kind: "paragraph",
-      text: "As enterprise customers stored more sensitive IP in Lucid, they needed stronger data governance and compliance tooling to adopt and expand with confidence. But admins had no visibility into the documents their users created or the content across their workspace.",
-    },
-    {
-      kind: "paragraph",
-      text: "I led this 0-to-1 initiative from research through delivery, defining and shipping a V1 document discovery experience for a new Document Admin role. The solution enabled admins to search account-owned content by user, date, and keyword — providing the visibility needed for security and legal workflows.",
-    },
-    {
-      kind: "paragraph",
-      text: "Launched to a beta group, the feature received strong customer feedback and established the foundation for Lucid's Enterprise Shield add-on, which has since surpassed $xxM in iARR.",
-    },
-    { kind: "subheading", text: "Timeline" },
-    {
-      kind: "list",
-      items: [
-        { label: "March 2022 – July 2022", text: "Document discovery (Beta version)" },
+      kind: "split",
+      content: [
+        "As enterprise customers stored more sensitive IP in Lucid, they needed stronger data governance and compliance tooling to adopt and expand with confidence. But admins had no visibility into the documents their users created or the content across their workspace.",
+        "I led this 0-to-1 initiative from research through delivery, defining and shipping a V1 document discovery experience for a new Document Admin role. The solution enabled admins to search account-owned content by user, date, and keyword — providing the visibility needed for security and legal workflows.",
+        "Launched to a beta group, the feature received strong customer feedback and established the foundation for Lucid's Enterprise Shield add-on, which has since surpassed $xxM in iARR.",
       ],
-    },
-    { kind: "subheading", text: "My Role & Contribution" },
-    { kind: "paragraph", text: "Sole UX designer on a 0-to-1 initiative.", emphasis: true },
-    {
-      kind: "list",
-      items: [
-        "Owned design end to end — from ideation through Alpha and Beta delivery.",
-        "Drove discovery and synthesis, reframing document discovery from a single feature into a problem space spanning access control, retention, and legal hold.",
-        "Scoped and sequenced V1 under tight constraints — deciding what to build first and why.",
-      ],
-    },
-    { kind: "subheading", text: "Teams & Collaborators" },
-    {
-      kind: "list",
-      items: [
-        { label: "PM", text: "Co-led discovery research, scoping, and prioritization." },
-        {
-          label: "Customer Success",
-          text: "Recruited admins with documented document management or retention needs for research.",
+      timeline: [{ date: "March 2022 – July 2022", label: "Document discovery (Beta version)" }],
+      sidebar: {
+        role: {
+          title: "Sole UX designer on a 0-to-1 initiative",
+          items: [
+            "Owned design end to end — from ideation through Alpha and Beta delivery",
+            "Drove discovery and synthesis, reframing document discovery from a single feature into a problem space spanning access control, retention, and legal hold",
+            "Scoped and sequenced V1 under tight constraints — deciding what to build first and why",
+          ],
         },
-        {
-          label: "Internal IT, Security & Legal",
-          text: "Consulted as subject matter experts during discovery, and partnered with Security and Legal throughout development to ensure the feature met data privacy and compliance requirements.",
-        },
-        {
-          label: "Engineering",
-          text: "Collaborated throughout design and delivery to assess technical effort and scope tradeoffs.",
-        },
-      ],
+        collaborators: [
+          { name: "PM", text: "Co-led discovery research, scoping, and prioritization." },
+          {
+            name: "Customer Success",
+            text: "Recruited admins with documented document management or retention needs for research.",
+          },
+          {
+            name: "Internal IT, Security & Legal",
+            text: "Consulted as subject matter experts during discovery, and partnered with Security and Legal throughout development to ensure the feature met data privacy and compliance requirements.",
+          },
+          {
+            name: "Engineering",
+            text: "Collaborated throughout design and delivery to assess technical effort and scope tradeoffs.",
+          },
+        ],
+      },
     },
 
     { kind: "heading", id: "problem-space", text: "Problem Space", navLabel: "Problem space" },

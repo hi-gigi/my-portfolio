@@ -16,43 +16,34 @@ export const licenseRequestJustification: CaseStudyContent = {
   blocks: [
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
-      kind: "paragraph",
-      text: "With the macro economy shifting in 2022, we'd spent months identifying and resolving frictions across the admin licensing and purchasing flows. License grants improved — but a large pool of pending requests still sat unactioned. The flow wasn't the problem anymore. The question was: why weren't admins acting?",
-    },
-    {
-      kind: "paragraph",
-      text: "By giving end users a voice in the process, we helped admins feel more confident and make more informed decisions when approving or denying license requests.",
-    },
-    { kind: "subheading", text: "Timeline" },
-    {
-      kind: "list",
-      items: [
+      kind: "split",
+      content: [
+        "With the macro economy shifting in 2022, we'd spent months identifying and resolving frictions across the admin licensing and purchasing flows. License grants improved — but a large pool of pending requests still sat unactioned. The flow wasn't the problem anymore. The question was: why weren't admins acting?",
+        "By giving end users a voice in the process, we helped admins feel more confident and make more informed decisions when approving or denying license requests.",
+      ],
+      timeline: [
         {
-          label: "January 2023 – May 2023",
-          text: "Justification appears directly in the license request, giving admins the context to decide.",
+          date: "January 2023 – May 2023",
+          label: "Justification appears directly in the license request, giving admins the context to decide.",
         },
       ],
-    },
-    { kind: "subheading", text: "My Role & Contribution" },
-    { kind: "paragraph", text: "Lead and sole UX designer", emphasis: true },
-    {
-      kind: "list",
-      items: [
-        "Owned the end-to-end experience across both user types: the end-user request flow and the admin review experience",
-        "Led the project from ideation through release — research, iterative design, and defining success metrics",
-      ],
-    },
-    { kind: "subheading", text: "Teams & Collaborators" },
-    {
-      kind: "list",
-      items: [
-        { label: "Enterprise scrum team", text: "1 PM, 5 engineers, 1 QA" },
-        {
-          label: "Engagement & Virality team",
-          text: "Aligned on changes to the request flow (a flow they owned) and coordinated on A/B testing",
+      sidebar: {
+        role: {
+          title: "Lead and sole UX designer",
+          items: [
+            "Owned the end-to-end experience across both user types: the end-user request flow and the admin review experience",
+            "Led the project from ideation through release — research, iterative design, and defining success metrics",
+          ],
         },
-        { label: "Analytics team", text: "Co-defined what to track and designed the measurement plan" },
-      ],
+        collaborators: [
+          { name: "Enterprise scrum team", text: "1 PM, 5 engineers, 1 QA" },
+          {
+            name: "Engagement & Virality team",
+            text: "Aligned on changes to the request flow (a flow they owned) and coordinated on A/B testing",
+          },
+          { name: "Analytics team", text: "Co-defined what to track and designed the measurement plan" },
+        ],
+      },
     },
 
     { kind: "heading", id: "problem-space", text: "Problem Space", navLabel: "Problem space" },
