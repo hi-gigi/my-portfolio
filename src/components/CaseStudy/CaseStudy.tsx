@@ -193,7 +193,17 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
     case "video":
       return block.src ? (
         <div className="case-study-media-frame">
-          <video src={block.src} controls playsInline preload="metadata" aria-label={block.alt} />
+          <div className="case-study-video-crop">
+            <video
+              src={block.src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-label={block.alt}
+            />
+          </div>
         </div>
       ) : (
         <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>

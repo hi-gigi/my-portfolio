@@ -10,8 +10,8 @@ export const aiSearch: CaseStudyContent = {
   id: "ai-search",
   blocks: [
     {
-      kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ai-search/overview-ai-answer-expanded.png`,
+      kind: "video",
+      src: `${import.meta.env.BASE_URL}case-studies/ai-search/overview-video.mp4`,
       alt: "The AI answer, expanded, above Lucid's traditional document search results",
     },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },

@@ -502,6 +502,21 @@
   }
 }
 
+// Trims a sliver off the bottom of the video (empty chrome in the
+// recording) by rendering it into a shorter box and anchoring the
+// crop to the top, rather than shipping a re-encoded clip.
+.case-study-video-crop {
+  overflow: hidden;
+  border-radius: @radius;
+  aspect-ratio: 1920 / 1060;
+
+  video {
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
 @media (max-width: @bp-cards-stack) {
   .case-study-media-frame {
     padding: @space-4;
