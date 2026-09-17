@@ -1,63 +1,24 @@
 @import (reference) "../../styles/tokens.less";
 
-// Lets the hover ring below animate smoothly — an unregistered custom
-// property can't be interpolated, so browsers without this just get a
-// static (non-spinning) gradient ring on hover.
-@property --card-ring-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
 .card {
   display: flex;
   flex-direction: column;
   padding: @space-3;
-  border: 3px solid transparent;
   border-radius: @radius;
   // A linked card (one with a case study) renders as an <a>; the whole
   // tile is the click target, so it shouldn't pick up the global
   // link-underline treatment meant for inline text links.
   color: inherit;
   text-decoration: none;
-
-  // Double-background trick: the padding-box layer is the card's own
-  // surface; the border-box layer only shows through the 1px ring
-  // around it. Swapping that ring to a conic-gradient on hover — and
-  // spinning it via the angle above — draws a moving border with no
-  // extra elements.
-  background:
-    linear-gradient(var(--tonal), var(--tonal)) padding-box,
-    linear-gradient(var(--tonal), var(--tonal)) border-box;
-
-  &:hover {
-    background:
-      linear-gradient(var(--tonal), var(--tonal)) padding-box,
-      conic-gradient(from var(--card-ring-angle), var(--accent), @wash-2, var(--accent-alt), var(--accent)) border-box;
-  }
+  background: var(--tonal);
+  transition: background-color @ease-slow;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .card:hover {
-    animation: card-ring-spin 3s linear infinite;
-  }
-}
-
-// A `comingSoon` project (see model/types.ts) isn't actually
-// clickable — the accent ring implies it is, so this one gets a flat,
-// single-tone ring instead, and no spin. Reused by any future project
-// marked the same way.
-.card--coming-soon:hover {
-  animation: none;
-  background:
-    linear-gradient(var(--tonal), var(--tonal)) padding-box,
-    linear-gradient(var(--muted), var(--muted)) border-box;
-}
-
-@keyframes card-ring-spin {
-  to {
-    --card-ring-angle: 360deg;
-  }
+// A faint warm tint toward the accent hue — kept close to --tonal on
+// purpose, just enough to read as "responding" without becoming a
+// colour statement.
+.card:hover {
+  background-color: color-mix(in srgb, var(--tonal), var(--accent) 6%);
 }
 
 // Thumbnail is a fixed-size, fixed-ratio panel — every tile reads the

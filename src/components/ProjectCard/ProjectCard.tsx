@@ -18,9 +18,9 @@ interface ProjectCardProps {
  *
  * Renders as a link to the case study when one exists (`caseStudies`),
  * otherwise as an inert tile. Setting `comingSoon` on the project (see
- * model/content.ts) is what drives the "Coming soon" cursor label,
- * title prefix, and flat hover ring — no other wiring needed to mark
- * a future project this way.
+ * model/content.ts) is what drives the "Coming soon" cursor label and
+ * title prefix — no other wiring needed to mark a future project this
+ * way.
  */
 export function ProjectCard({ project }: ProjectCardProps) {
   const { id, title, blurb, labels, image, video, comingSoon } = project;
@@ -77,7 +77,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <article
-      className={comingSoon ? "card card--coming-soon" : "card"}
+      className="card"
       data-cursor-label={comingSoon ? "Coming soon" : undefined}
       data-cursor-arrow={comingSoon ? "false" : undefined}
       onMouseEnter={video ? play : undefined}
