@@ -4,6 +4,7 @@ import { getCaseStudySections } from "@/model/caseStudies";
 import { useActiveSection } from "@/presenters/useActiveSection";
 import { useNavMenu } from "@/presenters/useNavMenu";
 import { useOverflowNav } from "@/presenters/useOverflowNav";
+import { useScrolled } from "@/presenters/useScrolled";
 import { useTheme } from "@/presenters/useTheme";
 import { ThemeToggle } from "../ThemeToggle";
 import { CloseIcon, HamburgerIcon } from "../icons";
@@ -18,8 +19,8 @@ const SECTIONS_ID = "case-study-sections";
 /**
  * The header shown while a case study is open — a separate bar from
  * the site's main `Header`, not a variant of it. No wordmark, no
- * Résumé CTA, and (unlike the site header) not sticky. Left: back
- * link + theme toggle. Right: this case study's own section links
+ * Résumé CTA. Left: back link + theme toggle. Right: this case
+ * study's own section links
  * (from its heading blocks). Case studies vary from 4 to 6 sections
  * with labels of different lengths, so whether the row fits is
  * measured directly (useOverflowNav) rather than assumed from a
@@ -38,6 +39,7 @@ export function CaseStudyHeader({ caseStudyId }: CaseStudyHeaderProps) {
   const { isCollapsed, containerRef, siblingRef, measureRef } = useOverflowNav(
     sections.map((section) => section.label).join("|"),
   );
+  const scrolled = useScrolled();
 
   // The dropdown-only state (open/closed) is meaningless once the row no
   // longer needs a hamburger — drop it so it can't reappear stale next
@@ -47,7 +49,7 @@ export function CaseStudyHeader({ caseStudyId }: CaseStudyHeaderProps) {
   }, [isCollapsed, menu.close]);
 
   return (
-    <header className="case-study-header">
+    <header className="case-study-header" data-scrolled={scrolled || undefined}>
       <div
         ref={containerRef}
         className={

@@ -1,12 +1,33 @@
 @import (reference) "../../styles/tokens.less";
 @import (reference) "../../styles/mixins.less";
 
+// Translucent + blurred ("liquid glass") background, matching the
+// site header (Header.less) — content scrolls visibly beneath it,
+// with a solid fallback for browsers without backdrop-filter. The
+// divider only appears once `data-scrolled` is set (see useScrolled).
 .case-study-header {
   position: sticky;
   top: 0;
   z-index: @z-header;
-  background: var(--bg);
-  border-bottom: 1px solid var(--tonal);
+  background: color-mix(in srgb, var(--bg) 65%, transparent);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border-bottom: 1px solid transparent;
+  transition: border-color @ease;
+
+  &[data-scrolled] {
+    border-bottom-color: color-mix(in srgb, var(--tonal) 70%, transparent);
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .case-study-header {
+    background: var(--bg);
+
+    &[data-scrolled] {
+      border-bottom-color: var(--tonal);
+    }
+  }
 }
 
 .case-study-header-inner {
