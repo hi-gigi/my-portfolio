@@ -17,6 +17,11 @@ import type { CaseStudyContent } from "../types";
 export const documentDiscovery: CaseStudyContent = {
   id: "document-discovery",
   blocks: [
+    {
+      kind: "video",
+      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/overview-video.mp4`,
+      alt: "An admin searching and auditing documents across the account in the Document Discovery page",
+    },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
       kind: "split",
