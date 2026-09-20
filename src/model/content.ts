@@ -35,7 +35,7 @@ export const content: PortfolioContent = {
       words: ["builder", "systems thinker", "strategist"],
     },
     headline:
-      "I turn ambiguity into direction—and direction into intuitive, scalable products.",
+      "I turn ambiguity into direction—\nand direction into intuitive,\nscalable products.",
     photo: { src: PHOTO_URL, alt: "Portrait of Jiaqi Zhuo" },
     lede: [
       "I shape what's worth building in ",

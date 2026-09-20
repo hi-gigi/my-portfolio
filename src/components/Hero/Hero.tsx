@@ -92,7 +92,7 @@ export function Hero({
         src={photo.src}
         alt={photo.alt}
         width={800}
-        height={800}
+        height={829}
         decoding="async"
       />
     </section>
