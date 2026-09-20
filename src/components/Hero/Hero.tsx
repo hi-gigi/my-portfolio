@@ -10,7 +10,7 @@ const SOCIAL_ICONS: Record<SocialIcon, ComponentType<{ className?: string }>> = 
   email: MailIcon,
 };
 
-export function Hero({ eyebrow, headline, lede, meta, actions, socials }: HeroContent) {
+export function Hero({ eyebrow, headline, lede, actions, socials }: HeroContent) {
   // `null` = reduced motion: show every word statically instead of typing.
   const typed = useTypewriter(eyebrow.words);
 
@@ -18,9 +18,10 @@ export function Hero({ eyebrow, headline, lede, meta, actions, socials }: HeroCo
     <section id="intro" className="intro">
       <p
         className="eyebrow"
-        aria-label={`${eyebrow.prefix} ${eyebrow.words.join(", ")}`}
+        aria-label={`${eyebrow.lead ? `${eyebrow.lead} ` : ""}${eyebrow.prefix} ${eyebrow.words.join(", ")}`}
       >
         <span aria-hidden="true">
+          {eyebrow.lead && <span className="eyebrow-lead">{eyebrow.lead} </span>}
           {eyebrow.prefix}{" "}
           <span className="typed">
             {typed ?? eyebrow.words.join(" / ")}
@@ -32,8 +33,6 @@ export function Hero({ eyebrow, headline, lede, meta, actions, socials }: HeroCo
       <h1>{headline}</h1>
 
       <p className="lede">{lede}</p>
-
-      <p className="eyebrow intro-meta">{meta}</p>
 
       <div className="intro-actions">
         {actions.map((action) => (

@@ -30,13 +30,13 @@ export const content: PortfolioContent = {
 
   hero: {
     eyebrow: {
+      lead: "8+ years ·",
       prefix: "Senior Product Designer &",
       words: ["builder", "systems thinker", "strategist"],
     },
     headline:
       "I turn ambiguity into direction—and direction into intuitive products.",
     lede: "I shape what's worth building in complex, technical spaces, and design with and for AI.",
-    meta: "8+ years · Enterprise B2B and end-user products",
     actions: [{ label: "View work", href: "#work", variant: "primary" }],
     socials: [
       {
@@ -56,10 +56,10 @@ export const content: PortfolioContent = {
   },
 
   work: {
-    title: "Selected work · 2020–present",
+    title: "Selected work",
     groups: [
       {
-        label: "",
+        label: "Enterprise B2B and end-user products · 2020–present",
         projects: [
           {
             id: "ai-search",

@@ -9,7 +9,7 @@
   --hero-title-size: @text-xl;
   --hero-title-leading: @leading-tight;
   --hero-title-weight: @{weight-semibold};
-  --hero-lede-size: clamp(@text-base, 0.95rem + 0.3vw, @text-md);
+  --hero-lede-size: clamp(@text-base, 0.75rem + 1vw, 1.25rem); // 16px → 20px
 }
 
 .eyebrow {
@@ -24,16 +24,20 @@
   font-size: var(--hero-eyebrow-size);
 }
 
-.intro .intro-meta {
-  margin: 0 0 @space-6;
-}
-
 .intro h1 {
   margin: 0 0 @space-5;
   font-weight: var(--hero-title-weight);
   font-size: var(--hero-title-size);
   line-height: var(--hero-title-leading);
   max-width: 26ch;
+  text-wrap: balance;
+}
+
+// Tenure lead-in is dropped on phones so the eyebrow stays at two lines.
+.eyebrow-lead {
+  @media (max-width: @bp-cards-stack) {
+    display: none;
+  }
 }
 
 // Typed words share the eyebrow's line on wider screens; on phones they
@@ -77,7 +81,10 @@
 }
 
 .intro .lede {
+  margin-bottom: @space-6;
   font-size: var(--hero-lede-size);
+  max-width: 34ch; // about the headline's rendered width
+  text-wrap: balance;
 }
 
 .intro-actions {

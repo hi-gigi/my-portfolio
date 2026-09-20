@@ -31,6 +31,8 @@ export interface HeroSocial {
 
 export interface HeroContent {
   eyebrow: {
+    /** Leads the eyebrow on wider screens only (hidden on phones to keep it short). */
+    lead?: string;
     prefix: string;
     /** Typed out one after another after the prefix. */
     words: string[];
@@ -38,8 +40,6 @@ export interface HeroContent {
   headline: string;
   /** Sub-line under the headline. */
   lede: string;
-  /** Small mono line under the lede — e.g. experience summary. */
-  meta: string;
   actions: HeroAction[];
   /** Icon-only links (LinkedIn / GitHub / email) shown beside the actions. */
   socials: HeroSocial[];
