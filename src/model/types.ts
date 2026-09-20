@@ -31,8 +31,6 @@ export interface HeroSocial {
 
 export interface HeroContent {
   eyebrow: {
-    /** Leads the eyebrow on wider screens only (hidden on phones to keep it short). */
-    lead?: string;
     prefix: string;
     /** Typed out one after another after the prefix. */
     words: string[];

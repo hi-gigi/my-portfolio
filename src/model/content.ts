@@ -30,7 +30,6 @@ export const content: PortfolioContent = {
 
   hero: {
     eyebrow: {
-      lead: "8+ years ·",
       prefix: "Senior Product Designer &",
       words: ["builder", "systems thinker", "strategist"],
     },

@@ -33,13 +33,6 @@
   text-wrap: balance;
 }
 
-// Tenure lead-in is dropped on phones so the eyebrow stays at two lines.
-.eyebrow-lead {
-  @media (max-width: @bp-cards-stack) {
-    display: none;
-  }
-}
-
 // Typed words share the eyebrow's line on wider screens; on phones they
 // drop to their own line so a long word can't wrap mid-animation and shift
 // everything below. The caret is always present so the line never collapses

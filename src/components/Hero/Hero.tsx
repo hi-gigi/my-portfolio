@@ -18,10 +18,9 @@ export function Hero({ eyebrow, headline, lede, actions, socials }: HeroContent)
     <section id="intro" className="intro">
       <p
         className="eyebrow"
-        aria-label={`${eyebrow.lead ? `${eyebrow.lead} ` : ""}${eyebrow.prefix} ${eyebrow.words.join(", ")}`}
+        aria-label={`${eyebrow.prefix} ${eyebrow.words.join(", ")}`}
       >
         <span aria-hidden="true">
-          {eyebrow.lead && <span className="eyebrow-lead">{eyebrow.lead} </span>}
           {eyebrow.prefix}{" "}
           <span className="typed">
             {typed ?? eyebrow.words.join(" / ")}
