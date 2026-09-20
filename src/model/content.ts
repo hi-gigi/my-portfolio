@@ -13,6 +13,7 @@ const EMAIL = "mailto:hizhuojiaqi@gmail.com";
 // dev. The PDF lives at `public/jiaqi-zhuo-resume.pdf`; project
 // thumbnails at `public/thumbs/<id>.{png,jpg}`.
 const RESUME_URL = `${import.meta.env.BASE_URL}jiaqi-zhuo-resume.pdf`;
+const PHOTO_URL = `${import.meta.env.BASE_URL}jiaqi.webp`;
 const thumb = (file: string) => `${import.meta.env.BASE_URL}thumbs/${file}`;
 
 export const content: PortfolioContent = {
@@ -34,8 +35,15 @@ export const content: PortfolioContent = {
       words: ["builder", "systems thinker", "strategist"],
     },
     headline:
-      "I turn ambiguity into direction—and direction into intuitive products.",
-    lede: "I shape what's worth building in complex, technical spaces, and design with and for AI.",
+      "I turn ambiguity into direction—and direction into intuitive, scalable products.",
+    photo: { src: PHOTO_URL, alt: "Portrait of Jiaqi Zhuo" },
+    lede: [
+      "I shape what's worth building in ",
+      { mark: "complex, technical spaces" },
+      "—and design with and for ",
+      { mark: "AI" },
+      ".",
+    ],
     actions: [{ label: "View work", href: "#work", variant: "primary" }],
     socials: [
       {

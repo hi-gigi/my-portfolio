@@ -10,6 +10,40 @@
   --hero-title-leading: @leading-tight;
   --hero-title-weight: @{weight-semibold};
   --hero-lede-size: clamp(@text-base, 0.75rem + 1vw, 1.25rem); // 16px → 20px
+
+  // Copy on the left, portrait centred in the space that's left over on
+  // the right (so the gaps either side of it match); the photo moves above
+  // the text on narrow screens.
+  display: grid;
+  // Copy column hugs the headline (scales with its font size) so the space
+  // beside the photo is measured from where the text visibly ends.
+  grid-template-columns: fit-content(calc(var(--hero-title-size) * 11.5)) minmax(0, 1fr);
+  align-items: center;
+
+  @media (max-width: @bp-hero-stack) {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: @space-6;
+  }
+}
+
+.intro-photo {
+  width: clamp(220px, 28vw, 340px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: @radius-photo;
+  justify-self: center;
+  margin-inline: @space-4; // minimum breathing room each side when space is tight
+  // The portrait is a transparent cutout; the tonal card gives the rounded
+  // corners something to show.
+  background: var(--tonal);
+
+  @media (max-width: @bp-hero-stack) {
+    grid-row: 1;
+    justify-self: start;
+    margin-inline: 0;
+    width: 120px;
+  }
 }
 
 .eyebrow {
@@ -76,8 +110,22 @@
 .intro .lede {
   margin-bottom: @space-6;
   font-size: var(--hero-lede-size);
-  max-width: 34ch; // about the headline's rendered width
+  max-width: 46ch; // two balanced lines, about the headline's rendered width
   text-wrap: balance;
+}
+
+// Highlighter marker on the lede's key phrases — a static, light coral wash.
+.lede-mark {
+  --mark-height: 35%; // share of the line box the marker covers
+  --mark-wash: color-mix(in srgb, var(--accent) 28%, transparent);
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+  border-radius: 2px;
+  color: var(--text);
+  font-weight: 500;
+  background: linear-gradient(var(--mark-wash), var(--mark-wash)) no-repeat 0 78% / 100% var(--mark-height);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .intro-actions {

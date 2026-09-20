@@ -36,8 +36,10 @@ export interface HeroContent {
     words: string[];
   };
   headline: string;
-  /** Sub-line under the headline. */
-  lede: string;
+  /** Portrait shown beside the text. */
+  photo: { src: string; alt: string };
+  /** Sub-line under the headline; `{ mark }` pieces get the highlighter. */
+  lede: Array<string | { mark: string }>;
   actions: HeroAction[];
   /** Icon-only links (LinkedIn / GitHub / email) shown beside the actions. */
   socials: HeroSocial[];
