@@ -35,15 +35,15 @@
     justify-self: start;
     width: 120px;
 
-    // Room to actually play the puzzle on a phone.
-    &.is-playing {
-      width: min(100%, 320px);
-    }
-
-    // The controls sit just below the photo (outside its box); keep the copy
-    // from sliding underneath them.
+    // While the puzzle is open (playing, or solved and not yet closed), stay
+    // expanded: room to actually play on a phone, and wide enough for the
+    // controls to sit on one row. It only shrinks back when the visitor
+    // clicks the X.
+    // The controls sit just below the photo (outside its box), so the copy
+    // gets pushed down to clear them.
     &.is-playing,
     &.is-solved {
+      width: min(100%, 320px);
       margin-bottom: calc(var(--puzzle-control) + @space-3);
     }
   }
