@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { HeroContent, SocialIcon } from "@/model/types";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "../icons";
 import { useTypewriter } from "@/presenters/useTypewriter";
+import { PortraitPuzzle } from "./PortraitPuzzle";
 import "./Hero.less";
 
 const SOCIAL_ICONS: Record<
@@ -87,14 +88,7 @@ export function Hero({
         </div>
       </div>
 
-      <img
-        className="intro-photo"
-        src={photo.src}
-        alt={photo.alt}
-        width={800}
-        height={829}
-        decoding="async"
-      />
+      <PortraitPuzzle {...photo} />
     </section>
   );
 }

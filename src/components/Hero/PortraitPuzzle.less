@@ -1,0 +1,493 @@
+@import (reference) "../../styles/tokens.less";
+@import (reference) "../../styles/mixins.less";
+
+// The portrait doubles as a sliding-tile puzzle (`--puzzle-size` per side,
+// set from PUZZLE_SIZE). The wrapper itself is
+// sized and placed by `.intro-photo` in Hero.less.
+.portrait {
+  --puzzle-gap: @space-1;
+  --puzzle-control: 36px;
+  position: relative;
+  // Lets the controls adapt to the photo's width, not the viewport's.
+  container-type: inline-size;
+}
+
+.portrait-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: @radius-photo;
+  // The portrait is a transparent cutout; the tonal card gives the rounded
+  // corners something to show.
+  background: var(--tonal);
+}
+
+// ---- Puzzle board ------------------------------------------
+.puzzle {
+  position: absolute;
+  inset: 0;
+  border-radius: @radius-photo;
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: @space-1;
+  }
+}
+
+// Each tile is a 1/3-size window onto the photo, moved into its slot by
+// `--col` / `--row`. The gap between tiles shows the page background.
+.puzzle-tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(
+    (100% - (var(--puzzle-size) - 1) * var(--puzzle-gap)) / var(--puzzle-size)
+  );
+  height: calc(
+    (100% - (var(--puzzle-size) - 1) * var(--puzzle-gap)) / var(--puzzle-size)
+  );
+  padding: 0;
+  border: 0;
+  border-radius: @radius;
+  background-color: var(--tonal);
+  background-repeat: no-repeat;
+  background-size: calc(var(--puzzle-size) * 100%) auto;
+  background-position: var(--bg-x) var(--bg-y);
+  transform: translate(
+    calc(var(--col) * (100% + var(--puzzle-gap))),
+    calc(var(--row) * (100% + var(--puzzle-gap)))
+  );
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius @ease-slow,
+    opacity @ease-slow,
+    filter @ease;
+  cursor: default;
+
+  &.is-movable {
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(1.12);
+    }
+  }
+
+  // The gap stays invisible until the puzzle is solved.
+  &.is-blank {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+// Solved: close the gaps and reveal the last tile.
+.is-solved {
+  --puzzle-gap: 0px;
+
+  .puzzle-tile {
+    border-radius: 0;
+
+    &.is-blank {
+      opacity: 1;
+    }
+  }
+}
+
+// Piece number, so it is easy to see where each one belongs.
+.puzzle-number {
+  position: absolute;
+  top: @space-2;
+  left: @space-2;
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 @space-1;
+  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  border-radius: @radius-btn;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  line-height: 1;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  transition: opacity @ease-slow;
+}
+
+// Numbers fade out as the picture comes together.
+.is-solved .puzzle-number {
+  opacity: 0;
+}
+
+// ---- Win celebration ---------------------------------------
+// A rainbow outline races once around the portrait...
+@property --ring-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.portrait.is-solved::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: 3;
+  padding: 4px;
+  border-radius: calc(@radius-photo + 4px);
+  background: conic-gradient(
+    from var(--ring-angle),
+    var(--rainbow-1),
+    var(--rainbow-2),
+    var(--rainbow-3),
+    var(--rainbow-4),
+    var(--rainbow-5),
+    var(--rainbow-6),
+    var(--rainbow-7),
+    var(--rainbow-1)
+  );
+  // Keep only the 4px ring: punch the content box out of the gradient.
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: portrait-ring 2.2s ease-in-out;
+  }
+}
+
+@keyframes portrait-ring {
+  0% {
+    --ring-angle: 0deg;
+    opacity: 0;
+  }
+  20% {
+    --ring-angle: 120deg;
+    opacity: 1;
+  }
+  75% {
+    --ring-angle: 300deg;
+    opacity: 1;
+  }
+  100% {
+    --ring-angle: 360deg;
+    opacity: 0;
+  }
+}
+
+// ...and a light rain of brand-coral confetti falls through the photo (it is
+// clipped to the photo's rounded box, so it never spills outside). Each
+// piece animates its fall, sway, spin and fade separately. Distances are in
+// `cqw`, so it scales with the photo.
+.confetti {
+  --confetti-1: var(--accent);
+  --confetti-2: var(--accent-alt);
+  --confetti-3: @wash-3;
+  --confetti-4: var(--coral-text);
+  --confetti-5: @wash-2;
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  border-radius: @radius-photo;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  width: var(--size);
+  height: calc(var(--size) * 0.55);
+  background: var(--color);
+  animation:
+    confetti-fall var(--dur) cubic-bezier(0.25, 0.2, 0.75, 0.9) var(--delay) both,
+    confetti-sway var(--dur) ease-in-out var(--delay) both,
+    confetti-spin var(--dur) linear var(--delay) both,
+    confetti-fade var(--dur) linear var(--delay) both;
+
+  &.is-round {
+    height: var(--size);
+    border-radius: 50%;
+  }
+}
+
+@keyframes confetti-fall {
+  from {
+    transform: translateY(var(--start));
+  }
+  to {
+    transform: translateY(var(--fall));
+  }
+}
+
+@keyframes confetti-sway {
+  0%,
+  50%,
+  100% {
+    translate: 0 0;
+  }
+  25% {
+    translate: var(--sway) 0;
+  }
+  75% {
+    translate: calc(var(--sway) * -1) 0;
+  }
+}
+
+@keyframes confetti-spin {
+  to {
+    rotate: var(--spin);
+  }
+}
+
+// Hidden until its turn (the delay); it only fades once it has fallen past
+// the photo's bottom edge, so it crosses the whole picture at full colour.
+@keyframes confetti-fade {
+  0% {
+    opacity: 0;
+  }
+  8%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// ---- Sparkles (top-left corner) -----------------------------
+// Fills its tile; `.is-corner` sizes it to the photo's top-left tile.
+.portrait-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+  color: var(--text);
+  pointer-events: none;
+
+  path {
+    vector-effect: non-scaling-stroke; // same line weight at any tile size
+  }
+
+  &.is-corner {
+    width: calc(100% / var(--puzzle-size));
+    height: calc(100% / var(--puzzle-size));
+  }
+}
+
+// ---- Controls ----------------------------------------------
+// Shared look for the round action button and the small pills.
+.portrait-action,
+.portrait-status,
+.portrait-sizes {
+  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.portrait-action {
+  display: grid;
+  place-items: center;
+  width: var(--puzzle-control);
+  height: var(--puzzle-control);
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color @ease, background-color @ease;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+
+  // At rest: a corner button over the photo.
+  &.is-corner {
+    position: absolute;
+    top: @space-3;
+    right: @space-3;
+    z-index: 2;
+  }
+}
+
+// Callout for the corner button. It appears at once on hover or keyboard
+// focus: above the photo on wide screens, beside it when the photo is small
+// and stacked above the copy. Its arrow points back at the button.
+.portrait-callout {
+  --callout-bg: var(--text);
+  position: absolute;
+  bottom: calc(100% + @space-3);
+  right: 0;
+  z-index: 3;
+  width: max-content;
+  max-width: min(220px, 90vw);
+  padding: @space-2 @space-3;
+  border-radius: @radius;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  letter-spacing: @tracking-wide;
+  color: var(--bg);
+  background: var(--callout-bg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.1s ease, visibility 0.1s;
+
+  // Arrow, centred over the button.
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    right: calc(@space-3 + var(--puzzle-control) / 2 - 5px);
+    width: 10px;
+    height: 10px;
+    background: var(--callout-bg);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: @bp-hero-stack) {
+    top: @space-3;
+    right: auto;
+    bottom: auto;
+    left: calc(100% + @space-3);
+    max-width: 180px;
+
+    &::after {
+      top: calc(var(--puzzle-control) / 2 - 5px);
+      right: auto;
+      bottom: auto;
+      left: -5px;
+    }
+  }
+}
+
+.portrait-action:hover + .portrait-callout,
+.portrait-action:focus-visible + .portrait-callout {
+  opacity: 1;
+  visibility: visible;
+}
+
+.portrait-action-glyph {
+  width: 16px;
+  height: 16px;
+}
+
+// While playing (and after a win) the controls drop below the board so
+// they never cover a piece. They wrap onto a second row if the photo is narrow.
+.portrait-controls {
+  position: absolute;
+  top: calc(100% + @space-3);
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: @space-2;
+}
+
+.portrait-controls-end {
+  display: flex;
+  align-items: center;
+  gap: @space-2;
+  margin-left: auto;
+}
+
+.portrait-status {
+  display: flex;
+  align-items: center;
+  gap: @space-1;
+  height: var(--puzzle-control);
+  margin: 0;
+  padding: 0 @space-3;
+  border-radius: 999px;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  letter-spacing: @tracking-wide;
+  white-space: nowrap;
+}
+
+.portrait-status.is-solved {
+  border-color: var(--accent);
+}
+
+.portrait-status-glyph {
+  width: 14px;
+  height: 14px;
+  color: var(--coral-text);
+}
+
+// Narrow photo: keep the controls on one line by dropping the word "moves"
+// (still read out to screen readers).
+@container (max-width: 279px) {
+  .portrait-status-word {
+    .sr-only();
+  }
+
+  .portrait-size {
+    padding: 0 @space-2;
+  }
+}
+
+// Segmented 2×2 / 3×3 picker.
+.portrait-sizes {
+  display: flex;
+  height: var(--puzzle-control);
+  padding: 3px;
+  border-radius: 999px;
+}
+
+.portrait-size {
+  padding: 0 @space-3;
+  border: 0;
+  border-radius: 999px;
+  font-family: @font-mono;
+  font-size: @text-xs;
+  letter-spacing: @tracking-wide;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  transition: color @ease, background-color @ease;
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &[aria-checked="true"] {
+    color: var(--accent-text);
+    background: var(--accent);
+    cursor: default;
+  }
+}
+
+// Little celebration when the whole picture comes back.
+.is-solved .portrait-img {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: portrait-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@keyframes portrait-pop {
+  0% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .puzzle-tile {
+    transition: none;
+  }
+}

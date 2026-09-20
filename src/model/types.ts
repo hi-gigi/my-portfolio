@@ -37,7 +37,14 @@ export interface HeroContent {
   };
   headline: string;
   /** Portrait shown beside the text. */
-  photo: { src: string; alt: string; width: number; height: number };
+  photo: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    /** Callout on the shuffle button: the portrait doubles as a sliding puzzle. */
+    hint: string;
+  };
   /** Sub-line under the headline; `{ mark }` pieces get the highlighter. */
   lede: Array<string | { mark: string }>;
   actions: HeroAction[];

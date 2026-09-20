@@ -24,21 +24,28 @@
   }
 }
 
+// Wrapper for the portrait (see PortraitPuzzle) — sized and placed here.
 .intro-photo {
   width: clamp(220px, 28vw, 340px);
-  height: auto;
   aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: @radius-photo;
   justify-self: end;
-  // The portrait is a transparent cutout; the tonal card gives the rounded
-  // corners something to show.
-  background: var(--tonal);
 
   @media (max-width: @bp-hero-stack) {
     grid-row: 1;
     justify-self: start;
     width: 120px;
+
+    // Room to actually play the puzzle on a phone.
+    &.is-playing {
+      width: min(100%, 320px);
+    }
+
+    // The controls sit just below the photo (outside its box); keep the copy
+    // from sliding underneath them.
+    &.is-playing,
+    &.is-solved {
+      margin-bottom: calc(var(--puzzle-control) + @space-3);
+    }
   }
 }
 
