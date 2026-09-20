@@ -41,7 +41,7 @@ export const content: PortfolioContent = {
       alt: "Portrait of Jiaqi Zhuo",
       width: 800,
       height: 829,
-      hint: "Psst — my portrait is a sliding puzzle",
+      hint: "Psst… my portrait is a sliding puzzle 😄",
     },
     lede: [
       "I shape what's worth building in ",
