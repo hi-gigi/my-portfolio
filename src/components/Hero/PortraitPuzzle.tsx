@@ -33,6 +33,14 @@ const ARROWS: Record<string, Direction> = {
   ArrowRight: "right",
 };
 
+/**
+ * How big the photo sits inside its card, as a fraction of the card's width.
+ * Below 1 the card keeps its size and the photo gets a margin at the top and
+ * sides, resting on the bottom edge. (Avoid exactly 1 / size — the tile maths
+ * below divides by `1 - PHOTO_SCALE * size`.)
+ */
+const PHOTO_SCALE = 0.8;
+
 /** Four-point star outline, centred on (cx, cy), `r` from centre to tip. */
 const star = (cx: number, cy: number, r: number): string => {
   const c = r * 0.2;
@@ -104,13 +112,16 @@ export function PortraitPuzzle({
     if (status === "playing") boardRef.current?.focus({ preventScroll: true });
   }, [status]);
 
-  // Tiles are sized to the photo's cover-crop inside the square: the image
-  // is one full board wide, and any extra height is trimmed evenly top and
-  // bottom.
-  const aspect = Math.max(height / width, 1);
-  const extra = size * aspect - size;
-  const bgY = (row: number) => ((row + extra / 2) / (extra + size - 1)) * 100;
-  const bgX = (col: number) => (col / (size - 1)) * 100;
+  // Each tile is a window onto the card, and the photo sits inset in the card
+  // (centred, resting on the bottom edge). `background-position` percentages
+  // are measured against (tile − image), hence the division by that gap.
+  const aspect = height / width;
+  const bgX = (col: number) =>
+    ((((1 - PHOTO_SCALE) * size) / 2 - col) / (1 - PHOTO_SCALE * size)) * 100;
+  const bgY = (row: number) =>
+    ((size * (1 - PHOTO_SCALE * aspect) - row) /
+      (1 - PHOTO_SCALE * size * aspect)) *
+    100;
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape") return puzzle.reset();
@@ -146,7 +157,13 @@ export function PortraitPuzzle({
       className={`intro-photo portrait${showTiles ? " is-playing" : ""}${
         status === "solved" ? " is-solved" : ""
       }`}
-      style={{ "--puzzle-size": size } as CSSProperties}
+      style={
+        {
+          "--puzzle-size": size,
+          "--photo-scale": PHOTO_SCALE,
+          "--photo-aspect": aspect,
+        } as CSSProperties
+      }
     >
       {showTiles ? (
         <div

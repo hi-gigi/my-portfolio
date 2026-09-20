@@ -12,11 +12,19 @@
   container-type: inline-size;
 }
 
+// The card keeps its size; the photo sits inside it at `--photo-scale`,
+// centred and resting on the bottom edge. Padding (percentages are of the
+// card's width) leaves the margin at the top and sides, and `contain` fits
+// the whole photo into what is left.
 .portrait-img {
   display: block;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  padding-inline: calc((1 - var(--photo-scale)) / 2 * 100%);
+  padding-top: calc((1 - var(--photo-scale) * var(--photo-aspect)) * 100%);
+  object-fit: contain;
+  object-position: 50% 100%;
   border-radius: @radius-photo;
   // The portrait is a transparent cutout; the tonal card gives the rounded
   // corners something to show.
@@ -52,7 +60,7 @@
   border-radius: @radius;
   background-color: var(--tonal);
   background-repeat: no-repeat;
-  background-size: calc(var(--puzzle-size) * 100%) auto;
+  background-size: calc(var(--puzzle-size) * var(--photo-scale) * 100%) auto;
   background-position: var(--bg-x) var(--bg-y);
   transform: translate(
     calc(var(--col) * (100% + var(--puzzle-gap))),
