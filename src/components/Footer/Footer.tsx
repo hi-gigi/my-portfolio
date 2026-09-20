@@ -2,14 +2,14 @@ import type { FooterContent } from "@/model/types";
 import { useFooterPresenter } from "./Footer.presenter";
 import "./Footer.less";
 
-export function Footer({ name, links }: FooterContent) {
+export function Footer({ credit, links }: FooterContent) {
   const { year } = useFooterPresenter();
 
   return (
     <footer className="site-footer">
       <div className="site-footer-inner">
         <p>
-          &copy; {year} {name}
+          &copy; {year} &middot; {credit}
         </p>
         <p className="footer-links">
           {links.map((link) => (

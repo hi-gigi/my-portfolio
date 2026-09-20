@@ -37,7 +37,7 @@ export interface HeroContent {
   };
   headline: string;
   /** Portrait shown beside the text. */
-  photo: { src: string; alt: string };
+  photo: { src: string; alt: string; width: number; height: number };
   /** Sub-line under the headline; `{ mark }` pieces get the highlighter. */
   lede: Array<string | { mark: string }>;
   actions: HeroAction[];
@@ -106,7 +106,7 @@ export interface SocialLink {
 }
 
 export interface FooterContent {
-  name: string;
+  credit: string;
   links: SocialLink[];
 }
 

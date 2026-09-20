@@ -36,7 +36,12 @@ export const content: PortfolioContent = {
     },
     headline:
       "I turn ambiguity into direction—\nand direction into intuitive,\nscalable products.",
-    photo: { src: PHOTO_URL, alt: "Portrait of Jiaqi Zhuo" },
+    photo: {
+      src: PHOTO_URL,
+      alt: "Portrait of Jiaqi Zhuo",
+      width: 800,
+      height: 829,
+    },
     lede: [
       "I shape what's worth building in ",
       { mark: "complex, technical spaces" },
@@ -149,7 +154,7 @@ export const content: PortfolioContent = {
   },
 
   footer: {
-    name: "Jiaqi Zhuo",
+    credit: "Designed and built by Jiaqi Zhuo",
     links: [
       {
         label: "LinkedIn",
