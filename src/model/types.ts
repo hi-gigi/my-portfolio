@@ -30,10 +30,16 @@ export interface HeroSocial {
 }
 
 export interface HeroContent {
-  eyebrow: string;
+  eyebrow: {
+    prefix: string;
+    /** Typed out one after another after the prefix. */
+    words: string[];
+  };
   headline: string;
-  /** One entry per rendered line. */
-  lede: string[];
+  /** Sub-line under the headline. */
+  lede: string;
+  /** Small mono line under the lede — e.g. experience summary. */
+  meta: string;
   actions: HeroAction[];
   /** Icon-only links (LinkedIn / GitHub / email) shown beside the actions. */
   socials: HeroSocial[];

@@ -9,7 +9,7 @@
   --hero-title-size: @text-xl;
   --hero-title-leading: @leading-tight;
   --hero-title-weight: @{weight-semibold};
-  --hero-lede-size: clamp(@text-sm, 0.9rem + 0.2vw, @text-base);
+  --hero-lede-size: clamp(@text-base, 0.95rem + 0.3vw, @text-md);
 }
 
 .eyebrow {
@@ -24,6 +24,10 @@
   font-size: var(--hero-eyebrow-size);
 }
 
+.intro .intro-meta {
+  margin: 0 0 @space-6;
+}
+
 .intro h1 {
   margin: 0 0 @space-5;
   font-weight: var(--hero-title-weight);
@@ -32,8 +36,41 @@
   max-width: 26ch;
 }
 
+// Typed words share the eyebrow's line on wider screens; on phones they
+// drop to their own line so a long word can't wrap mid-animation and shift
+// everything below. The caret is always present so the line never collapses
+// between words.
+.typed {
+  display: block;
+  color: var(--coral-text);
+
+  @media (min-width: 30em) {
+    display: inline;
+  }
+}
+
+// Terminal-style block cursor, follows the word's colour.
+.typed-caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  margin-left: 0.1em;
+  vertical-align: -0.2em;
+  background: currentColor;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: typed-caret-blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes typed-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 .lede {
-  margin: 0 0 @space-6;
+  margin: 0 0 @space-3;
   font-size: @text-md;
   color: var(--muted);
   max-width: 55ch;

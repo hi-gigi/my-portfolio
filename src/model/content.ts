@@ -29,13 +29,14 @@ export const content: PortfolioContent = {
   ],
 
   hero: {
-    eyebrow: "Product Designer & Generalist",
+    eyebrow: {
+      prefix: "Senior Product Designer &",
+      words: ["builder", "systems thinker", "strategist"],
+    },
     headline:
-      "8+ years in Enterprise B2B. Sharp in ambiguous, technical spaces — move fast, think strategically, and build with AI.",
-    lede: [
-      "Currently Senior UX Designer II @ Lucid Software",
-      "M.S. Human-Computer Interaction, Indiana University Bloomington",
-    ],
+      "I turn ambiguity into direction—and direction into intuitive products.",
+    lede: "I shape what's worth building in complex, technical spaces, and design with and for AI.",
+    meta: "8+ years · Enterprise B2B and end-user products",
     actions: [{ label: "View work", href: "#work", variant: "primary" }],
     socials: [
       {

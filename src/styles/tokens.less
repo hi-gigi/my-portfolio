@@ -32,6 +32,9 @@
 @palette-accent: #fb9280;
 @palette-accent-alt: #f76a6a;
 @palette-accent-text: #201f1c;
+// Coral for *text* on the light bg — the raw accent is ~2:1 there; this
+// is ~4.6:1. Dark mode reuses the accent (~8:1 on the dark bg).
+@palette-coral-text-light: #c2432f;
 
 // Warm accent washes — light-mode tints, use sparingly
 @wash-1: #fff3db;
@@ -124,6 +127,7 @@
   --accent: @{palette-accent};
   --accent-alt: @{palette-accent-alt};
   --accent-text: @{palette-accent-text};
+  --coral-text: @{palette-coral-text-light};
 }
 
 @media (prefers-color-scheme: dark) {
@@ -132,6 +136,7 @@
     --text: @{palette-text-dark};
     --muted: @{palette-muted-dark};
     --tonal: @{palette-tonal-dark};
+    --coral-text: @{palette-accent};
   }
 }
 
@@ -140,4 +145,5 @@
   --text: @{palette-text-dark};
   --muted: @{palette-muted-dark};
   --tonal: @{palette-tonal-dark};
+  --coral-text: @{palette-accent};
 }

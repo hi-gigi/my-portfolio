@@ -1,6 +1,7 @@
-import { Fragment, type ComponentType } from "react";
+import type { ComponentType } from "react";
 import type { HeroContent, SocialIcon } from "@/model/types";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "../icons";
+import { useTypewriter } from "@/presenters/useTypewriter";
 import "./Hero.less";
 
 const SOCIAL_ICONS: Record<SocialIcon, ComponentType<{ className?: string }>> = {
@@ -9,21 +10,30 @@ const SOCIAL_ICONS: Record<SocialIcon, ComponentType<{ className?: string }>> = 
   email: MailIcon,
 };
 
-export function Hero({ eyebrow, headline, lede, actions, socials }: HeroContent) {
+export function Hero({ eyebrow, headline, lede, meta, actions, socials }: HeroContent) {
+  // `null` = reduced motion: show every word statically instead of typing.
+  const typed = useTypewriter(eyebrow.words);
+
   return (
     <section id="intro" className="intro">
-      <p className="eyebrow">{eyebrow}</p>
+      <p
+        className="eyebrow"
+        aria-label={`${eyebrow.prefix} ${eyebrow.words.join(", ")}`}
+      >
+        <span aria-hidden="true">
+          {eyebrow.prefix}{" "}
+          <span className="typed">
+            {typed ?? eyebrow.words.join(" / ")}
+            {typed !== null && <span className="typed-caret" />}
+          </span>
+        </span>
+      </p>
 
       <h1>{headline}</h1>
 
-      <p className="lede">
-        {lede.map((line, index) => (
-          <Fragment key={line}>
-            {index > 0 && <br />}
-            {line}
-          </Fragment>
-        ))}
-      </p>
+      <p className="lede">{lede}</p>
+
+      <p className="eyebrow intro-meta">{meta}</p>
 
       <div className="intro-actions">
         {actions.map((action) => (
