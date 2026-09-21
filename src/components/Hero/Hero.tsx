@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import type { HeroContent, SocialIcon } from "@/model/types";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "../icons";
+import { useThemeSwapCount } from "@/presenters/useThemeSwapCount";
 import { useTypewriter } from "@/presenters/useTypewriter";
 import { PortraitPuzzle } from "./PortraitPuzzle";
 import "./Hero.less";
@@ -24,6 +25,8 @@ export function Hero({
 }: HeroContent) {
   // `null` = reduced motion: show every word statically instead of typing.
   const typed = useTypewriter(eyebrow.words);
+  // Keying the marks on this remounts them, so the draw-in replays on each light/dark swap.
+  const themeSwaps = useThemeSwapCount();
 
   return (
     <section id="intro" className="intro">
@@ -48,7 +51,7 @@ export function Hero({
             typeof part === "string" ? (
               part
             ) : (
-              <mark key={i} className="lede-mark">
+              <mark key={`${themeSwaps}-${i}`} className="lede-mark">
                 {part.mark}
               </mark>
             ),
