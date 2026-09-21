@@ -139,6 +139,23 @@
   box-decoration-break: clone;
 }
 
+// Draw the marker in once on load, left to right, one phrase after another.
+@keyframes lede-mark-draw {
+  from {
+    background-size: 0% var(--mark-height);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lede-mark {
+    animation: lede-mark-draw 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s backwards;
+
+    &:nth-of-type(2) {
+      animation-delay: 0.6s;
+    }
+  }
+}
+
 // Slightly stronger wash on the dark background, where the light one reads faint.
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .lede-mark {
