@@ -127,7 +127,8 @@
 // Highlighter marker on the lede's key phrases — a static, light coral wash.
 .lede-mark {
   --mark-height: 35%; // share of the line box the marker covers
-  --mark-wash: color-mix(in srgb, var(--accent) 28%, transparent);
+  --mark-strength: 28%;
+  --mark-wash: color-mix(in srgb, var(--accent) var(--mark-strength), transparent);
   padding: 0 0.12em;
   margin: 0 -0.12em;
   border-radius: 2px;
@@ -136,6 +137,17 @@
   background: linear-gradient(var(--mark-wash), var(--mark-wash)) no-repeat 0 78% / 100% var(--mark-height);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+}
+
+// Slightly stronger wash on the dark background, where the light one reads faint.
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .lede-mark {
+    --mark-strength: 36%;
+  }
+}
+
+:root[data-theme="dark"] .lede-mark {
+  --mark-strength: 36%;
 }
 
 .intro-actions {
