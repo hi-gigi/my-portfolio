@@ -531,23 +531,17 @@
   }
 }
 
-// A grid item (not a sibling below the grid) so it can fall into the
-// empty cell next to the 3rd card at the 2-column breakpoint instead
-// of always sitting on its own row. `.btn.btn-secondary` gives it the
-// site's standard button surface — `justify-self: start` keeps that
-// button from stretching to the full row width it spans by default.
-.case-study-more-back {
-  grid-column: 1 / -1;
-  justify-self: start;
-}
+// Section title on the left, the back link on the right. The title's own
+// bottom margin moves to the row so the two stay centred on one line.
+.case-study-more-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: @space-4;
+  margin-bottom: @space-6;
 
-// At 2 columns, 3 cards leave one cell open on the second row — let
-// this link sit there, centred, rather than spanning its own full row.
-@media (min-width: (@bp-cards-stack + 1px)) and (max-width: @bp-more-grid-3col) {
-  .case-study-more-back {
-    grid-column: auto;
-    align-self: center;
-    justify-self: center;
+  .section-title {
+    margin: 0;
   }
 }
 

@@ -54,14 +54,16 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
 
       {otherProjects.length > 0 && (
         <section className="case-study-more">
-          <h2 className="section-title">Explore more work</h2>
+          <div className="case-study-more-head">
+            <h2 className="section-title">Explore more work</h2>
+            <Link to="/#work" className="btn btn-secondary">
+              ← View all work
+            </Link>
+          </div>
           <div className="case-study-more-grid">
             {otherProjects.map((otherProject) => (
               <ProjectCard key={otherProject.id} project={otherProject} />
             ))}
-            <Link to="/#work" className="case-study-more-back btn btn-secondary">
-              ← View all work
-            </Link>
           </div>
         </section>
       )}
