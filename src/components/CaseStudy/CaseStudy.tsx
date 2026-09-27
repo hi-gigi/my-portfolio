@@ -11,18 +11,33 @@ type LightboxItem = { src: string; alt: string };
 type LightboxState = { items: LightboxItem[]; index: number };
 
 /**
- * Splits on `**bold**` markers and returns plain strings interleaved
- * with `<strong>` nodes — the only inline markup case-study copy
- * supports, for calling out a phrase mid-paragraph without breaking
- * it into a separate block.
+ * Splits on `**bold**` and `[text](url)` markers and returns plain
+ * strings interleaved with `<strong>`/`<a>` nodes — the only inline
+ * markup case-study copy supports, for calling out a phrase or linking
+ * out mid-paragraph without breaking it into a separate block.
  */
 function renderInlineText(text: string): ReactNode {
-  const parts = text.split(/\*\*(.+?)\*\*/g);
-  if (parts.length === 1) return text;
+  const pattern = /\*\*(.+?)\*\*|\[(.+?)\]\((.+?)\)/g;
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
 
-  return parts.map((part, index) =>
-    index % 2 === 1 ? <strong key={index}>{part}</strong> : part,
-  );
+  while ((match = pattern.exec(text))) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
+    if (match[1] !== undefined) {
+      nodes.push(<strong key={match.index}>{match[1]}</strong>);
+    } else {
+      nodes.push(
+        <a key={match.index} href={match[3]} target="_blank" rel="noopener noreferrer">
+          {match[2]}
+        </a>,
+      );
+    }
+    lastIndex = pattern.lastIndex;
+  }
+  if (nodes.length === 0) return text;
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+  return nodes;
 }
 
 interface CaseStudyProps {
@@ -408,6 +423,18 @@ function CaseStudyBlockView({
             ))}
           </div>
           {block.note && <p className="case-study-stats-note">{block.note}</p>}
+        </div>
+      );
+
+    case "quote-list":
+      return (
+        <div className="case-study-quotes">
+          {block.items.map((item, index) => (
+            <blockquote className="case-study-quote" key={index}>
+              <p className="case-study-quote-text">{renderInlineText(item.text)}</p>
+              <cite className="case-study-quote-attribution">{item.attribution}</cite>
+            </blockquote>
+          ))}
         </div>
       );
   }

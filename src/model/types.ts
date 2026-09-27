@@ -267,7 +267,13 @@ export type CaseStudyBlock =
    * repeating it in each `CaseStudyStat.label`. `note` is a footnote
    * spanning the full card width, below every metric.
    */
-  | { kind: "stats"; items: CaseStudyStat[]; period?: string; note?: string };
+  | { kind: "stats"; items: CaseStudyStat[]; period?: string; note?: string }
+  /**
+   * User quotes stacked as an editorial blockquote list — each entry an
+   * accent-bordered quote with its attribution below. `text` supports
+   * the same `**bold**` markup as `paragraph`.
+   */
+  | { kind: "quote-list"; items: { text: string; attribution: string }[] };
 
 export interface CaseStudyContent {
   /** Matches a `Project.id` from `WorkContent`. */

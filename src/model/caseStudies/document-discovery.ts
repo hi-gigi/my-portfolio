@@ -7,9 +7,7 @@
 //  Content only — layout is being iterated on separately from what
 //  Webflow had, so this reuses the same block vocabulary as
 //  ai-search.ts rather than reproducing the old page's structure
-//  (callout boxes, quote carousel, etc.). Research and Key Decisions
-//  art has landed; Solution/Impact screenshots and testimonials still
-//  need to — those image blocks remain placeholders.
+//  (callout boxes, quote carousel, etc.). All art has landed.
 // ============================================================
 
 import type { CaseStudyContent } from "../types";
@@ -268,7 +266,32 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "paragraph",
       text: "The feature shipped within the quarter. Early beta feedback validated the direction.",
     },
-    { kind: "image", alt: "Direct feedback from beta customers" },
+    { kind: "subheading", text: "Beta admin quotes" },
+    {
+      kind: "quote-list",
+      items: [
+        {
+          text: "I used the Document Admin feature the other week. User was having a share problem and I was able to verify the document was fine and sharable. **Was nice to have that tool in my back pocket**.",
+          attribution: "IT admin, Enterprise customer",
+        },
+        {
+          text: "**I can now check the documents on my account for compliance**, and reach out to the owner if I need them to remove sensitive information.",
+          attribution: "Security admin, Enterprise customer",
+        },
+        {
+          text: "**This works pretty darn fast** — I used a colleague's name and it found all 1.5k documents they had in a few seconds.",
+          attribution: "Account owner, Enterprise customer",
+        },
+        {
+          text: "I'd love to be able to search by whether documents have been shared outside the domain — **but this is a great MVP, and gives us plenty to start with.**",
+          attribution: "Admin, Enterprise customer",
+        },
+        {
+          text: "**Very useful in troubleshooting sharing issues.**",
+          attribution: "IT admin, Enterprise customer",
+        },
+      ],
+    },
     { kind: "subheading", text: "A foundation that kept growing" },
     {
       kind: "media-split",
@@ -302,7 +325,7 @@ export const documentDiscovery: CaseStudyContent = {
     },
     {
       kind: "paragraph",
-      text: "Document Discovery was Lucid's first real step into compliance — and it changed how the company thought about the space. The foundation it laid was reused for content inspection and beyond, and it made the case that advanced security and compliance were worth monetizing. That thinking became the Lucid Enterprise Shield add-on, launched in Q3 2024 and past $xxM+ iARR.",
+      text: "Document Discovery was Lucid's first real step into compliance — and it changed how the company thought about the space. The foundation it laid was reused for content inspection and beyond, and it made the case that advanced security and compliance were worth monetizing. That thinking became the [Lucid Enterprise Shield add-on](https://lucid.co/enterprise/enterprise-shield), launched in Q3 2024 and past $xxM+ iARR.",
     },
   ],
 };

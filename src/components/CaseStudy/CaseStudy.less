@@ -291,6 +291,38 @@
     color: var(--text);
   }
 
+  // An inline `[text](url)` link (e.g. citing the Enterprise Shield
+  // add-on). Overrides the global `a` rule's var(--text) + static
+  // underline: coral text alone marks it as a link against the dimmed
+  // `p` color above, and the underline draws in from the left on
+  // hover/focus and retracts to the right on leave — the same
+  // transform-origin swap as .nav a's underline, so the two "this is a
+  // link" cues on the site read as one motion language.
+  a {
+    position: relative;
+    color: var(--coral-text);
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform @ease-slow;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
   // A lead-in sentence right under a subheading ("Lead designer on a
   // 0-to-1 AI initiative.") — same weight as the <strong> list
   // lead-ins, for the same "this introduces what follows" role.
@@ -512,6 +544,12 @@
     height: auto;
     border-radius: @radius;
     background: var(--tonal);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-body a::after {
+    transition: none;
   }
 }
 
@@ -1032,6 +1070,39 @@
   & + & {
     margin-top: 0;
   }
+}
+
+// An editorial list of beta-user quotes — each entry an accent-bordered
+// blockquote, same left-rule treatment as .case-study-beat-cite but
+// applied to the quote itself (the quote is the evidence here, not a
+// demoted citation under some other claim).
+// One card holding every quote, same "reads as one dataset" pattern as
+// .case-study-stats, rather than each quote floating loose in the column.
+.case-study-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: @space-6;
+  padding: @space-5;
+  border-radius: @radius;
+  background: var(--tonal);
+}
+
+.case-study-quote {
+  margin: 0;
+  padding-left: @space-5;
+  border-left: 2px solid color-mix(in srgb, var(--accent-alt) 55%, var(--bg));
+}
+
+.case-study-quote-text {
+  margin: 0;
+}
+
+// Small-caps role/segment line, same treatment as .case-study-split-team-tag.
+.case-study-quote-attribution {
+  .eyebrow-label();
+  display: block;
+  margin-top: @space-2;
+  font-style: normal;
 }
 
 .case-study-media-placeholder {
