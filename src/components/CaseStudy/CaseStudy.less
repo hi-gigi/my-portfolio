@@ -598,15 +598,29 @@
   }
 }
 
+// A brief label under an image, inside its own frame — same quiet
+// treatment as the other small meta lines (.case-study-quote
+// -attribution, .case-study-stats-period), not a real caption
+// competing with body copy. Centered under the image rather than
+// left-aligned with the frame's edge, since it reads as a caption for
+// the whole panel, not another line of body text.
+.case-study-caption {
+  .eyebrow-label();
+  margin: @space-2 0 0;
+  text-align: center;
+  font-style: normal;
+}
+
 // A standalone image opens full-size in the lightbox — plain button
-// reset around the frame so the click target covers the whole panel.
-// No `padding: 0` here: the frame classes' own padding is what reveals
-// the gradient/panel background around the image, not incidental
-// button spacing to strip away.
+// reset around just the image (the frame classes' own padding/background
+// live on the parent panel now, so a caption can sit in that same
+// padding below the image instead of outside the panel).
 .case-study-media-frame-button {
   display: block;
   width: 100%;
+  padding: 0;
   border: none;
+  background: none;
   cursor: zoom-in;
 
   &:focus-visible {
@@ -637,8 +651,14 @@
 
 // Each item opens full-size in the lightbox — plain button reset plus
 // a hover/focus cue so the row still reads as "click to enlarge" even
-// though the images themselves are the only visible content.
+// though the images themselves are the only visible content. The grid
+// item itself is just this wrapper (holding the button + its own
+// caption); the interactive styling lives on the button inside it.
 .case-study-image-row-item {
+  min-width: 0;
+}
+
+.case-study-image-row-item-button {
   display: block;
   width: 100%;
   padding: 0;

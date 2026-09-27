@@ -214,22 +214,24 @@ export type CaseStudyBlock =
    * `src` omitted renders a labelled placeholder panel until real art
    * lands. `lightbox` opens the image full-size on click — for a dense
    * diagram/chart where the inline size alone isn't enough to read;
-   * most images don't need it.
+   * most images don't need it. `caption` is a brief label shown below
+   * the image, distinct from `alt` (which stays screen-reader-only).
    */
-  | { kind: "image"; src?: string; alt: string; lightbox?: boolean }
+  | { kind: "image"; src?: string; alt: string; lightbox?: boolean; caption?: string }
   /**
    * Several images side by side once there's room — e.g. a set of
    * parallel persona cards. Stacks to one column below `@bp-image-row`.
    * Each item renders the same placeholder-until-`src`-lands behavior
-   * as a standalone `image` block.
+   * as a standalone `image` block, including its own `caption`.
    */
-  | { kind: "image-row"; items: { src?: string; alt: string }[] }
+  | { kind: "image-row"; items: { src?: string; alt: string; caption?: string }[] }
   /**
    * One image at a time, auto-advancing on a timer and looping — e.g.
    * a short flow of screenshots. Freezes on the first image instead of
-   * animating when the visitor prefers reduced motion.
+   * animating when the visitor prefers reduced motion. Each item's
+   * `caption` swaps with it as the carousel advances.
    */
-  | { kind: "carousel"; items: { src?: string; alt: string }[] }
+  | { kind: "carousel"; items: { src?: string; alt: string; caption?: string }[] }
   /**
    * Side-by-side content columns (e.g. paired callouts) once there's
    * room, stacking to one column below `@bp-columns`. Each entry is
@@ -244,7 +246,7 @@ export type CaseStudyBlock =
    */
   | {
       kind: "media-split";
-      content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" }>[];
+      content: Extract<CaseStudyBlock, { kind: "subheading" | "subsubheading" | "paragraph" }>[];
       media: Extract<CaseStudyBlock, { kind: "image" | "video" }>;
     }
   /**

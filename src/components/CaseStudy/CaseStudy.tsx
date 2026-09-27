@@ -331,18 +331,21 @@ function CaseStudyBlockView({
           </div>
         );
       }
-      return block.lightbox ? (
-        <button
-          type="button"
-          className={`${frameClass} case-study-media-frame-button`}
-          data-cursor-icon="zoom"
-          onClick={() => onImageClick?.([{ src: block.src!, alt: block.alt }], 0)}
-        >
-          <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
-        </button>
-      ) : (
+      return (
         <div className={frameClass}>
-          <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+          {block.lightbox ? (
+            <button
+              type="button"
+              className="case-study-media-frame-button"
+              data-cursor-icon="zoom"
+              onClick={() => onImageClick?.([{ src: block.src!, alt: block.alt }], 0)}
+            >
+              <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+            </button>
+          ) : (
+            <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+          )}
+          {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>
       );
 
@@ -358,15 +361,17 @@ function CaseStudyBlockView({
           <div className="case-study-image-row">
             {block.items.map((item, index) =>
               item.src ? (
-                <button
-                  key={index}
-                  type="button"
-                  className="case-study-image-row-item"
-                  data-cursor-icon="zoom"
-                  onClick={() => onImageClick?.(clickable, clickable.findIndex((i) => i === item))}
-                >
-                  <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
-                </button>
+                <div className="case-study-image-row-item" key={index}>
+                  <button
+                    type="button"
+                    className="case-study-image-row-item-button"
+                    data-cursor-icon="zoom"
+                    onClick={() => onImageClick?.(clickable, clickable.findIndex((i) => i === item))}
+                  >
+                    <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+                  </button>
+                  {item.caption && <p className="case-study-caption">{item.caption}</p>}
+                </div>
               ) : (
                 <div key={index} className="case-study-media-placeholder" role="img" aria-label={item.alt}>
                   <span>{item.alt}</span>
@@ -454,7 +459,7 @@ function CaseStudyCarousel({
   frameClass,
   onImageClick,
 }: {
-  items: { src?: string; alt: string }[];
+  items: { src?: string; alt: string; caption?: string }[];
   frameClass: string;
   onImageClick?: (items: LightboxItem[], index: number) => void;
 }) {
@@ -557,6 +562,7 @@ function CaseStudyCarousel({
           ))}
         </div>
       )}
+      {activeItem?.caption && <p className="case-study-caption">{activeItem.caption}</p>}
     </div>
   );
 }

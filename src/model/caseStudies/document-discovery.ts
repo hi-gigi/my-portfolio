@@ -88,6 +88,7 @@ export const documentDiscovery: CaseStudyContent = {
         kind: "image",
         src: `${import.meta.env.BASE_URL}case-studies/document-discovery/competitor-research.png`,
         alt: "Competitive research comparing eDiscovery, retention, and legal hold across Microsoft Purview, Google Vault, Box, Slack, Miro, Figma, Notion, and Zoom",
+        caption: "Competitor & market research matrix",
       },
     },
     {
@@ -112,6 +113,7 @@ export const documentDiscovery: CaseStudyContent = {
         kind: "image",
         src: `${import.meta.env.BASE_URL}case-studies/document-discovery/research-synthesis.png`,
         alt: "Admin call notes and synthesis, organized into document discovery and retention/legal hold themes",
+        caption: "Interview synthesis and affinity mapping",
       },
     },
 
@@ -126,14 +128,17 @@ export const documentDiscovery: CaseStudyContent = {
         {
           src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-it-support.png`,
           alt: "Persona: James Miller, IT support — keeps the account running day to day and enforces retention policy at the scale of the entire account",
+          caption: "Persona: IT support",
         },
         {
           src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-legal-compliance.png`,
           alt: "Persona: Sarah Johnson, Legal & Compliance Counsel — leads document-related work during investigations and legal hold",
+          caption: "Persona: Legal",
         },
         {
           src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-security.png`,
           alt: "Persona: David Anderson, Security Engineer — safeguards the account by monitoring for sensitive content and compliance gaps",
+          caption: "Persona: Security Engineer",
         },
       ],
     },
@@ -223,6 +228,7 @@ export const documentDiscovery: CaseStudyContent = {
       src: `${import.meta.env.BASE_URL}case-studies/document-discovery/capability-ranking.png`,
       alt: "Capability areas ranked by admin impact and urgency: Document Visibility (V1 scope), Document Controls, Legal Hold, Retention",
       lightbox: true,
+      caption: "Capability areas ranked by impact and urgency",
     },
     {
       kind: "paragraph",
@@ -259,14 +265,17 @@ export const documentDiscovery: CaseStudyContent = {
         {
           src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-1-search.png`,
           alt: "Searching the account by keyword, user, and created date in Document Discovery",
+          caption: "Searching by keyword, user, and date",
         },
         {
           src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-2-results.png`,
           alt: "Search results listing matched documents with owner, collaborators, and dates",
+          caption: "Search results",
         },
         {
           src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-3-bulk-export.png`,
           alt: "Selecting multiple documents to bulk-export as PDF or metadata",
+          caption: "Bulk export",
         },
       ],
     },
@@ -316,6 +325,7 @@ export const documentDiscovery: CaseStudyContent = {
         src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-search-filters.png`,
         alt: "A later, deepened search with filters for access type, document type, external access, classification, and status, plus saved queries",
         lightbox: true,
+        caption: "Deepened search filters and saved queries",
       },
     },
     {
@@ -331,6 +341,7 @@ export const documentDiscovery: CaseStudyContent = {
         src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-document-actions.png`,
         alt: "An expanded document action menu with edit classification, transfer ownership, move location, remove external access, and mark for permanent deletion",
         lightbox: true,
+        caption: "Expanded document actions",
       },
     },
     {
