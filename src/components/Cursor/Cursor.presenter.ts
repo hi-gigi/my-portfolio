@@ -23,8 +23,11 @@ const DISC_LERP = 0.18;
 /** Targets that swell the disc. Extend if the site grows form controls. */
 const INTERACTIVE = "a, button, .btn, [role='button'], label, summary";
 
-/** Any element carrying a contextual cursor label (see ProjectCard). */
-const LABEL_TARGET = "[data-cursor-label]";
+/**
+ * Any element carrying a contextual cursor label (see ProjectCard) or
+ * an icon-only cursor (e.g. a magnifier over a clickable image).
+ */
+const LABEL_TARGET = "[data-cursor-label], [data-cursor-icon]";
 
 export interface CursorViewModel {
   /** False on touch / reduced-motion — the view renders nothing. */
@@ -101,9 +104,13 @@ export function useCursor(): CursorViewModel {
         // the text instead of a swollen disc competing with the pill.
         dot.classList.remove("is-visible");
         disc.classList.remove("is-visible", "is-hot");
-        const text = host.dataset.cursorLabel ?? "";
-        if (labelText && labelText.textContent !== text) labelText.textContent = text;
-        label.classList.toggle("no-arrow", host.dataset.cursorArrow === "false");
+        const iconMode = !!host.dataset.cursorIcon;
+        label.classList.toggle("icon-mode", iconMode);
+        if (!iconMode) {
+          const text = host.dataset.cursorLabel ?? "";
+          if (labelText && labelText.textContent !== text) labelText.textContent = text;
+          label.classList.toggle("no-arrow", host.dataset.cursorArrow === "false");
+        }
         centre(label, targetX, targetY);
         label.classList.add("is-visible");
       } else {
@@ -154,7 +161,7 @@ export function useCursor(): CursorViewModel {
       document.body.classList.remove("has-custom-cursor");
       for (const el of [dot, disc, label]) {
         el.style.transform = "";
-        el.classList.remove("is-visible", "is-hot", "is-pressed", "no-arrow");
+        el.classList.remove("is-visible", "is-hot", "is-pressed", "no-arrow", "icon-mode");
       }
     };
   }, [enabled]);

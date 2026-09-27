@@ -271,12 +271,34 @@ export const documentDiscovery: CaseStudyContent = {
     { kind: "image", alt: "Direct feedback from beta customers" },
     { kind: "subheading", text: "A foundation that kept growing" },
     {
-      kind: "paragraph",
-      text: "Following V1, we deepened search so admins could pull exactly the documents they needed — filtering by multiple users, team folders, ownership type (owned vs. accessible), and whether a document had external shares.",
+      kind: "media-split",
+      content: [
+        {
+          kind: "paragraph",
+          text: "Following V1, we deepened search so admins could pull exactly the documents they needed — filtering by multiple users, team folders, ownership type (owned vs. accessible), and whether a document had external shares.",
+        },
+      ],
+      media: {
+        kind: "image",
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-search-filters.png`,
+        alt: "A later, deepened search with filters for access type, document type, external access, classification, and status, plus saved queries",
+        lightbox: true,
+      },
     },
     {
-      kind: "paragraph",
-      text: "Later releases went beyond discovery into action: document ownership transfer, external link revocation, external user removal, relocation to team folders, and bulk classification labeling — giving admins progressively more control over account content.",
+      kind: "media-split",
+      content: [
+        {
+          kind: "paragraph",
+          text: "Later releases went beyond discovery into action: document ownership transfer, external link revocation, external user removal, relocation to team folders, and bulk classification labeling — giving admins progressively more control over account content.",
+        },
+      ],
+      media: {
+        kind: "image",
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-document-actions.png`,
+        alt: "An expanded document action menu with edit classification, transfer ownership, move location, remove external access, and mark for permanent deletion",
+        lightbox: true,
+      },
     },
     {
       kind: "paragraph",

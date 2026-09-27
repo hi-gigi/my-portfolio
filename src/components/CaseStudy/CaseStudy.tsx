@@ -320,8 +320,7 @@ function CaseStudyBlockView({
         <button
           type="button"
           className={`${frameClass} case-study-media-frame-button`}
-          data-cursor-label="Click to open"
-          data-cursor-arrow="false"
+          data-cursor-icon="zoom"
           onClick={() => onImageClick?.([{ src: block.src!, alt: block.alt }], 0)}
         >
           <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
@@ -348,8 +347,7 @@ function CaseStudyBlockView({
                   key={index}
                   type="button"
                   className="case-study-image-row-item"
-                  data-cursor-label="Click to open"
-                  data-cursor-arrow="false"
+                  data-cursor-icon="zoom"
                   onClick={() => onImageClick?.(clickable, clickable.findIndex((i) => i === item))}
                 >
                   <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
@@ -453,14 +451,8 @@ function CaseStudyCarousel({
     <div className={frameClass}>
       <div
         className="case-study-carousel"
-        data-cursor-label={activeItem?.src ? "Click to open" : undefined}
-        data-cursor-arrow="false"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
-        onClick={() => {
-          if (!activeItem?.src) return;
-          onImageClick?.(clickable, clickable.findIndex((i) => i === activeItem));
-        }}
       >
         {items.map((item, i) =>
           item.src ? (
@@ -482,6 +474,20 @@ function CaseStudyCarousel({
               <span>{item.alt}</span>
             </div>
           ),
+        )}
+        {/*
+          A separate hit layer, not the label/click on the carousel div
+          itself — the nav buttons are its siblings, positioned above it
+          (z-index), so hovering/clicking them hits the button instead of
+          this layer rather than bubbling through an ancestor's
+          data-cursor-label and onClick.
+        */}
+        {activeItem?.src && (
+          <div
+            className="case-study-carousel-hit"
+            data-cursor-icon="zoom"
+            onClick={() => onImageClick?.(clickable, clickable.findIndex((i) => i === activeItem))}
+          />
         )}
         {items.length > 1 && (
           <>

@@ -121,20 +121,50 @@
   display: none;
 }
 
+// Icon-only mode ([data-cursor-icon="zoom"]) — a round chip with a
+// magnifier instead of the text pill, for images that open full-size.
+// Hidden by default; swapped in for the text/arrow pair below.
+.cursor__label-icon {
+  display: none;
+  width: 20px;
+  height: 20px;
+}
+
+.cursor__label.icon-mode .cursor__label-inner {
+  gap: 0;
+  padding: @space-1;
+  border-radius: 50%;
+}
+
+.cursor__label.icon-mode .cursor__label-text,
+.cursor__label.icon-mode .cursor__label-arrow {
+  display: none;
+}
+
+.cursor__label.icon-mode .cursor__label-icon {
+  display: block;
+}
+
 .cursor__label.is-visible {
   opacity: 1;
 }
 
 // Hide the native cursor wherever ours is active. The element list
 // mirrors INTERACTIVE in the presenter — extend both together if the
-// site gains real form controls.
+// site gains real form controls. [data-cursor-label]/[data-cursor-icon]
+// covers plain non-interactive elements (e.g. the carousel's hit
+// layer) that carry a custom cursor but aren't a real button/link —
+// without this, their own `cursor: zoom-in` etc. shows through
+// alongside our pill, looking like two overlapping cursors.
 body.has-custom-cursor,
 body.has-custom-cursor a,
 body.has-custom-cursor button,
 body.has-custom-cursor .btn,
 body.has-custom-cursor [role="button"],
 body.has-custom-cursor label,
-body.has-custom-cursor summary {
+body.has-custom-cursor summary,
+body.has-custom-cursor [data-cursor-label],
+body.has-custom-cursor [data-cursor-icon] {
   cursor: none;
 }
 
