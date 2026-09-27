@@ -7,9 +7,9 @@
 //  Content only — layout is being iterated on separately from what
 //  Webflow had, so this reuses the same block vocabulary as
 //  ai-search.ts rather than reproducing the old page's structure
-//  (callout boxes, quote carousel, etc.). Real art (personas, ranking
-//  chart, screenshots, testimonials) still needs to land — every
-//  image block below is a placeholder.
+//  (callout boxes, quote carousel, etc.). Research and Key Decisions
+//  art has landed; Solution/Impact screenshots and testimonials still
+//  need to — those image blocks remain placeholders.
 // ============================================================
 
 import type { CaseStudyContent } from "../types";
@@ -82,6 +82,11 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "paragraph",
       text: "Benchmarked in two directions: the industry leaders in document governance and compliance (Google Vault, Microsoft 365, Slack, Box) to learn from the mature standard, and canvas-based competitors to understand what document management and governance mean in a visual-collaboration product like Lucid.",
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/competitor-research.png`,
+      alt: "Competitive research comparing eDiscovery, retention, and legal hold across Microsoft Purview, Google Vault, Box, Slack, Miro, Figma, Notion, and Zoom",
+    },
     { kind: "subheading", text: "External admin interviews" },
     {
       kind: "paragraph",
@@ -96,17 +101,42 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "paragraph",
       text: "Consulted internal IT, Security, and Legal teams to deepen our understanding of these roles and the tools they already use to accomplish similar goals.",
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/research-synthesis.png`,
+      alt: "Admin call notes and synthesis, organized into document discovery and retention/legal hold themes",
+    },
 
     { kind: "subheading", text: "Key personas" },
     {
       kind: "paragraph",
       text: 'From the synthesis, we identified three distinct admin personas with meaningfully different needs. The personas made clear that "document discovery" wasn\'t a single feature — it was a problem space spanning access control, retention, and legal hold.',
     },
-    { kind: "image", alt: "Three admin personas surfaced from research synthesis" },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-it-support.png`,
+          alt: "Persona: James Miller, IT support — keeps the account running day to day and enforces retention policy at the scale of the entire account",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-legal-compliance.png`,
+          alt: "Persona: Sarah Johnson, Legal & Compliance Counsel — leads document-related work during investigations and legal hold",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-security.png`,
+          alt: "Persona: David Anderson, Security Engineer — safeguards the account by monitoring for sensitive content and compliance gaps",
+        },
+      ],
+    },
 
     { kind: "subheading", text: "Key needs identified from discovery research" },
     { kind: "paragraph", text: "Across the three personas, the needs converged into four capability areas." },
-    { kind: "subsubheading", text: "Document Visibility" },
+    {
+      kind: "subsubheading",
+      text: "Document Visibility",
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-visibility.png`,
+    },
     {
       kind: "paragraph",
       text: "Before admins can do anything else, they need to see what's in their account and who owns it.",
@@ -118,7 +148,11 @@ export const documentDiscovery: CaseStudyContent = {
         "Open and audit what's inside a document",
       ],
     },
-    { kind: "subsubheading", text: "Document Controls" },
+    {
+      kind: "subsubheading",
+      text: "Document Controls",
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-controls.png`,
+    },
     { kind: "paragraph", text: "Once admins find what they're looking for, they need to act on it." },
     {
       kind: "list",
@@ -129,7 +163,11 @@ export const documentDiscovery: CaseStudyContent = {
         "Bulk-export documents for legal and audit review",
       ],
     },
-    { kind: "subsubheading", text: "Legal Hold" },
+    {
+      kind: "subsubheading",
+      text: "Legal Hold",
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-legal-hold.png`,
+    },
     {
       kind: "paragraph",
       text: "During an active investigation, admins need to secure the relevant records before anything is lost.",
@@ -141,7 +179,11 @@ export const documentDiscovery: CaseStudyContent = {
         "Prevent those documents from being deleted until the investigation closes",
       ],
     },
-    { kind: "subsubheading", text: "Retention Compliance" },
+    {
+      kind: "subsubheading",
+      text: "Retention Compliance",
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-retention-compliance.png`,
+    },
     {
       kind: "paragraph",
       text: "Retention isn't one-size-fits-all: each company sets its own policies by data classification, and they classify Lucid content in different ways.",
@@ -160,7 +202,11 @@ export const documentDiscovery: CaseStudyContent = {
       text: "Research surfaced four distinct capability areas. Given the constraints — one scrum team, three engineers, and a deadline to deliver to the customer by end of quarter — we prioritized ruthlessly.",
     },
     { kind: "paragraph", text: "We ranked capabilities in order of admin impact and urgency:" },
-    { kind: "image", alt: "Capability areas ranked by admin impact and urgency" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/capability-ranking.png`,
+      alt: "Capability areas ranked by admin impact and urgency: Document Visibility (V1 scope), Document Controls, Legal Hold, Retention",
+    },
     {
       kind: "paragraph",
       text: "We scoped V1 entirely to Document Visibility, with a clear goal: get a solid, tested foundation in front of customers quickly and use their feedback to sequence what came next.",

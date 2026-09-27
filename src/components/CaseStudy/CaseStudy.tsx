@@ -1,8 +1,11 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { CaseStudyBlock, CaseStudyListItem, CaseStudyStat, Project } from "@/model/types";
 import { ProjectCard } from "../ProjectCard";
 import "./CaseStudy.less";
+
+/** What `image-row`'s lightbox is currently showing, or `null` when closed. */
+type LightboxImage = { src: string; alt: string };
 
 /**
  * Splits on `**bold**` markers and returns plain strings interleaved
@@ -34,6 +37,18 @@ interface CaseStudyProps {
  */
 export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
   const leadsWithMedia = blocks[0]?.kind === "image" || blocks[0]?.kind === "video";
+  const [lightboxImage, setLightboxImage] = useState<LightboxImage | null>(null);
+
+  // Escape closes the lightbox — the click-outside/close-button paths
+  // are handled directly on the overlay's own elements below.
+  useEffect(() => {
+    if (!lightboxImage) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightboxImage(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [lightboxImage]);
 
   return (
     <article className="case-study">
@@ -48,7 +63,7 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
 
       <div className="case-study-body">
         {blocks.map((block, index) => (
-          <CaseStudyBlockView key={index} block={block} lead={index === 0} />
+          <CaseStudyBlockView key={index} block={block} lead={index === 0} onImageClick={setLightboxImage} />
         ))}
       </div>
 
@@ -67,6 +82,26 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
           </div>
         </section>
       )}
+
+      {lightboxImage && (
+        <div
+          className="case-study-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightboxImage.alt}
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            type="button"
+            className="case-study-lightbox-close"
+            aria-label="Close"
+            onClick={() => setLightboxImage(null)}
+          >
+            ×
+          </button>
+          <img src={lightboxImage.src} alt={lightboxImage.alt} onClick={(event) => event.stopPropagation()} />
+        </div>
+      )}
     </article>
   );
 }
@@ -74,8 +109,19 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
 /**
  * `lead` marks the page's first block — an overview video gets the
  * roomy media frame; every other image/video gets the compact one.
+ * `onImageClick` opens an `image-row` item full-size in the lightbox —
+ * those images run small enough side by side that the row alone isn't
+ * enough to read one closely.
  */
-function CaseStudyBlockView({ block, lead = false }: { block: CaseStudyBlock; lead?: boolean }) {
+function CaseStudyBlockView({
+  block,
+  lead = false,
+  onImageClick,
+}: {
+  block: CaseStudyBlock;
+  lead?: boolean;
+  onImageClick?: (image: LightboxImage) => void;
+}) {
   const frameClass = lead ? "case-study-media-frame" : "case-study-media-frame case-study-media-frame--compact";
 
   switch (block.kind) {
@@ -86,7 +132,16 @@ function CaseStudyBlockView({ block, lead = false }: { block: CaseStudyBlock; le
       return <h3>{block.text}</h3>;
 
     case "subsubheading":
-      return <h4>{block.text}</h4>;
+      return block.icon ? (
+        <h4 className="case-study-subsubheading-icon">
+          <span className="case-study-list-icon-tile">
+            <img src={block.icon} alt="" />
+          </span>
+          {block.text}
+        </h4>
+      ) : (
+        <h4>{block.text}</h4>
+      );
 
     case "paragraph": {
       const classes = [
@@ -209,6 +264,33 @@ function CaseStudyBlockView({ block, lead = false }: { block: CaseStudyBlock; le
       ) : (
         <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
           <span>{block.alt}</span>
+        </div>
+      );
+
+    case "image-row":
+      // One shared media-frame panel behind the whole row (rather than
+      // one per image, like a standalone `image` block gets) — the set
+      // reads as a single grouped artifact instead of separate tiles.
+      return (
+        <div className={frameClass}>
+          <div className="case-study-image-row">
+            {block.items.map((item, index) =>
+              item.src ? (
+                <button
+                  key={index}
+                  type="button"
+                  className="case-study-image-row-item"
+                  onClick={() => onImageClick?.({ src: item.src!, alt: item.alt })}
+                >
+                  <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+                </button>
+              ) : (
+                <div key={index} className="case-study-media-placeholder" role="img" aria-label={item.alt}>
+                  <span>{item.alt}</span>
+                </div>
+              ),
+            )}
+          </div>
         </div>
       );
 

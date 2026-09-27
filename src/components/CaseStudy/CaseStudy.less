@@ -146,6 +146,16 @@
     font-weight: @weight-bold;
   }
 
+  // A subsubheading paired with a category icon (e.g. one of several
+  // parallel capability areas) — the icon tile is the same 44px marker
+  // `.case-study-list-icon-tile` uses, just sitting beside a heading
+  // instead of a list item.
+  .case-study-subsubheading-icon {
+    display: flex;
+    align-items: center;
+    gap: @space-3;
+  }
+
   // A heading sits closer to the content it introduces than to
   // whatever came before it — the default sibling gap (@space-6) is
   // too generous for this specific relationship.
@@ -527,6 +537,53 @@
   }
 }
 
+// A set of parallel images (e.g. persona cards) — side by side once
+// there's room for each to stay legible, stacked below that rather
+// than at a fixed column count, since the reading column's own width
+// (not just the viewport) determines how much three-across can shrink.
+@bp-image-row: 700px;
+
+.case-study-image-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: @space-4;
+}
+
+// Each item opens full-size in the lightbox — plain button reset plus
+// a hover/focus cue so the row still reads as "click to enlarge" even
+// though the images themselves are the only visible content.
+.case-study-image-row-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: inherit;
+  cursor: zoom-in;
+  transition: opacity 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  img {
+    pointer-events: none;
+  }
+}
+
+@media (max-width: @bp-image-row) {
+  .case-study-image-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 // Text beside its screenshot, within the same reading column as
 // everything else. Side by side once there's room; stacks
 // text-then-media below that.
@@ -739,5 +796,59 @@
 
   span {
     .eyebrow-label();
+  }
+}
+
+// Full-size view for a clicked `image-row` item — below @z-cursor (the
+// custom cursor should still render above it) but above everything
+// else, including the sticky header.
+@case-study-lightbox-z: 500;
+
+.case-study-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: @case-study-lightbox-z;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: @space-7;
+  background: rgba(0, 0, 0, 0.8);
+  cursor: zoom-out;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: @radius;
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+    cursor: default;
+  }
+}
+
+.case-study-lightbox-close {
+  position: fixed;
+  top: @space-5;
+  right: @space-5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
   }
 }

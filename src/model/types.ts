@@ -190,8 +190,13 @@ export type CaseStudyBlock =
    */
   | { kind: "heading"; id: string; text: string; navLabel?: string }
   | { kind: "subheading"; text: string }
-  /** One tier below a subheading — e.g. the named options under a "Decision #N" subheading. */
-  | { kind: "subsubheading"; text: string }
+  /**
+   * One tier below a subheading — e.g. the named options under a
+   * "Decision #N" subheading. `icon` renders a small icon tile beside
+   * the text — e.g. a category glyph for one of several parallel
+   * capability areas.
+   */
+  | { kind: "subsubheading"; text: string; icon?: string }
   /**
    * `emphasis` renders as a bolder lead-in sentence, e.g. right under
    * a subheading. `continuation` pulls this paragraph closer to the
@@ -212,6 +217,13 @@ export type CaseStudyBlock =
   | { kind: "beats"; items: CaseStudyBeat[] }
   /** `src` omitted renders a labelled placeholder panel until real art lands. */
   | { kind: "image"; src?: string; alt: string }
+  /**
+   * Several images side by side once there's room — e.g. a set of
+   * parallel persona cards. Stacks to one column below `@bp-image-row`.
+   * Each item renders the same placeholder-until-`src`-lands behavior
+   * as a standalone `image` block.
+   */
+  | { kind: "image-row"; items: { src?: string; alt: string }[] }
   /**
    * Text (`content`: subsubheading/paragraph blocks) beside a single
    * image or video (`media`) on wide screens; stacks text-then-media
