@@ -297,7 +297,11 @@ function CaseStudyBlockView({
 
     case "media-split":
       return (
-        <div className={`case-study-media-split${block.alignBottom ? " case-study-media-split--align-end" : ""}`}>
+        <div
+          className={`case-study-media-split${block.alignBottom ? " case-study-media-split--align-end" : ""}${
+            block.stacked ? " case-study-media-split--stacked" : ""
+          }`}
+        >
           <div className="case-study-media-split-text">
             {block.content.map((item, index) => (
               <CaseStudyBlockView key={index} block={item} />
@@ -343,7 +347,13 @@ function CaseStudyBlockView({
               <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
             </button>
           ) : (
-            <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+            <img
+              src={block.src}
+              alt={block.alt}
+              loading="lazy"
+              decoding="async"
+              className={block.roomy ? "case-study-image--rounded" : undefined}
+            />
           )}
           {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>

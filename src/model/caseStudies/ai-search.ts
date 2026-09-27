@@ -13,6 +13,7 @@ export const aiSearch: CaseStudyContent = {
       kind: "video",
       src: `${import.meta.env.BASE_URL}case-studies/ai-search/overview-video.mp4`,
       alt: "The AI answer, expanded, above Lucid's traditional document search results",
+      caption: "Searching with a natural query surfaces an AI answer above the traditional results",
     },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
@@ -91,27 +92,23 @@ export const aiSearch: CaseStudyContent = {
     { kind: "paragraph", text: "These two problems shaped the decisions that followed." },
 
     { kind: "subheading", text: "Decision #1: When should AI kick in? Opt-in, or intent-aware?" },
+    { kind: "subsubheading", text: "First idea: an AI toggle" },
     {
-      kind: "media-split",
-      content: [
-        { kind: "subsubheading", text: "First idea: an AI toggle" },
-        {
-          kind: "paragraph",
-          text: "If users chose to turn AI mode on themselves, they'd likely expect it to take a moment — making the latency easier to accept.",
-        },
-        { kind: "subsubheading", text: "The problem" },
-        {
-          kind: "paragraph",
-          text: "AI answer quality depends heavily on what the user gives it to work with. A user who opted in and typed a single keyword would get a slow answer that was no better than traditional search — the toggle put the burden on users to know when AI would actually help, with no protection against turning it on for a query it couldn't do anything with.",
-        },
-        { kind: "subsubheading", text: "The decision: make the system decide" },
-        {
-          kind: "paragraph",
-          text: "Intent-aware search evaluates how much information is in the query itself, and only runs the AI answer when there's enough signal to make it worthwhile. Sparse, keyword-style queries stay fast and get traditional results; specific, question-style queries get the richer AI experience — automatically, with no mode for the user to discover or manage.",
-        },
-      ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle.png`, alt: "Early exploration of an AI mode toggle in the search bar" },
+      kind: "paragraph",
+      text: "If users chose to turn AI mode on themselves, they'd likely expect it to take a moment — making the latency easier to accept.",
     },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle.png`, alt: "Early exploration of an AI mode toggle in the search bar", caption: "Early AI toggle exploration", roomy: true },
+    { kind: "subsubheading", text: "The problem" },
+    {
+      kind: "paragraph",
+      text: "AI answer quality depends heavily on what the user gives it to work with. A user who opted in and typed a single keyword would get a slow answer that was no better than traditional search — the toggle put the burden on users to know when AI would actually help, with no protection against turning it on for a query it couldn't do anything with.",
+    },
+    { kind: "subsubheading", text: "The decision: make the system decide" },
+    {
+      kind: "paragraph",
+      text: "Intent-aware search evaluates how much information is in the query itself, and only runs the AI answer when there's enough signal to make it worthwhile. Sparse, keyword-style queries stay fast and get traditional results; specific, question-style queries get the richer AI experience — automatically, with no mode for the user to discover or manage.",
+    },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle-let-system-decide.png`, alt: "The system evaluates query intent automatically, with no mode for the user to manage", caption: "The system decides — no mode for the user to discover or manage" },
 
     { kind: "subheading", text: "Decision #2: Where should the AI answer live? A separate tab, or inline above the results?" },
     { kind: "subsubheading", text: "The alternative" },
@@ -119,7 +116,7 @@ export const aiSearch: CaseStudyContent = {
       kind: "paragraph",
       text: 'A separate "AI answer" tab next to "All results," appearing only once AI had something to show. Clean separation, but it put a click between the user and the answer — they\'d have to notice the tab and switch views before finding out whether AI found anything.',
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative.png`, alt: "A separate AI answer tab, explored and rejected" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative.png`, alt: "A separate AI answer tab, explored and rejected", caption: "Separate AI answer tab (rejected)" },
     { kind: "subsubheading", text: "The decision: inline, above the traditional results, collapsed by default" },
     { kind: "paragraph", text: "This resolved three things at once." },
     {
@@ -131,7 +128,7 @@ export const aiSearch: CaseStudyContent = {
         },
       ],
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-performance.png`, alt: "Performance: results appear instantly while the AI answer loads above them" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-performance.png`, alt: "Performance: results appear instantly while the AI answer loads above them", caption: "Traditional results appear instantly, the AI answer loads above them" },
     {
       kind: "list",
       items: [
@@ -141,7 +138,7 @@ export const aiSearch: CaseStudyContent = {
         },
       ],
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-rationale.png`, alt: "Rationale: each AI result shows why it matched" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-rationale.png`, alt: "Rationale: each AI result shows why it matched", caption: "Each document returns with a short summary explaining why it matched" },
     {
       kind: "list",
       items: [
@@ -151,7 +148,7 @@ export const aiSearch: CaseStudyContent = {
         },
       ],
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-format.png`, alt: "Format: a compact, collapsed AI answer above the full results list" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-format.png`, alt: "Format: a compact, collapsed AI answer above the full results list", caption: "A compact, collapsible answer" },
 
     { kind: "subheading", text: "Decision #3: Where should follow-up conversation happen? In search, or in the AI hub?" },
     { kind: "subsubheading", text: "The obvious path" },
@@ -161,6 +158,7 @@ export const aiSearch: CaseStudyContent = {
     },
     {
       kind: "media-split",
+      stacked: true,
       content: [
         { kind: "subsubheading", text: "The decision: hand off instead" },
         {
@@ -172,7 +170,7 @@ export const aiSearch: CaseStudyContent = {
           text: 'The AI answer includes a "Chat more with Lucid AI" input. Submitting it carries the original query and the AI\'s answer into the hub, so follow-up picks up in context instead of starting cold. Search stays scoped to what it does best — get people to an answer quickly — while deeper conversation lives where it\'s already built to happen.',
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-3-handoff.png`, alt: "Handing off a follow-up question from search into Lucid's AI hub" },
+      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-3-handoff.png`, alt: "Handing off a follow-up question from search into Lucid's AI hub", caption: "Handing off follow-up conversation to Lucid's AI hub" },
     },
 
     { kind: "heading", id: "solution", text: "Solution" },
@@ -185,7 +183,7 @@ export const aiSearch: CaseStudyContent = {
           text: '**Signaling AI-powered search.** New sparkle icon and placeholder text — "What are you looking for?" — nudge people to ask, not just type keywords. That shift in input is what intent-aware search depends on.',
         },
       ],
-      media: { kind: "image", alt: "New sparkle icon and placeholder text signal AI-powered search" },
+      media: { kind: "image", alt: "New sparkle icon and placeholder text signal AI-powered search", caption: "Signaling AI-powered search" },
     },
     {
       kind: "media-split",
@@ -195,7 +193,7 @@ export const aiSearch: CaseStudyContent = {
           text: '**Fast by default, AI layered on top.** Traditional results load instantly; the AI answer appears above them in a loading state, so AI\'s presence is felt right away — then settles into a collapsed view once ready, showing just the top match: a bolded clickable title plus a one-line summary generated fresh for that query. "Show more" expands the rest.',
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-fast-by-default.png`, alt: "Traditional results load instantly while the AI answer loads above them" },
+      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-fast-by-default.png`, alt: "Traditional results load instantly while the AI answer loads above them", caption: "Fast by default, AI layered on top" },
     },
     {
       kind: "media-split",
@@ -205,9 +203,9 @@ export const aiSearch: CaseStudyContent = {
           text: '**Deeper answers, with a seamless hand-off.** Expanding reveals every matched document with its own generated summary, plus an embedded "Chat more with Lucid AI..." input. Typing a follow-up there shows a quiet "Prompt sent to Lucid AI" confirmation, then opens the conversation in Lucid\'s AI hub, carrying the original query and answer forward so nothing restarts cold. Search stays fast and scoped; the hub takes over for deeper conversation.',
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer.png`, alt: "Expanded AI answer with an embedded hand-off to Lucid's AI hub" },
+      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer.png`, alt: "Expanded AI answer with an embedded hand-off to Lucid's AI hub", caption: "Deeper answer, with a seamless hand-off" },
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-2.png`, alt: "Expanded AI answer with an embedded hand-off to Lucid's AI hub, continued" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-2.png`, alt: "Expanded AI answer with an embedded hand-off to Lucid's AI hub, continued", caption: "Deeper answer, continued" },
 
     { kind: "subheading", text: "New components, built for the AI experience" },
     {
@@ -218,7 +216,7 @@ export const aiSearch: CaseStudyContent = {
           text: '**Resolving ambiguity with a chip.** Ambiguous names — "documents Peter shared with me" — surface a dropdown to disambiguate. The selected person renders as a chip in both the search input and the AI answer itself ("Found 3 roadmaps shared by Sarah Chen in the last 7 days"), resolving the ambiguity without a back-and-forth and staying visible as confirmation.',
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-person-chip.png`, alt: "A person chip resolves an ambiguous name in both the query and the AI answer" },
+      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-person-chip.png`, alt: "A person chip resolves an ambiguous name in both the query and the AI answer", caption: "Resolving ambiguity with a person chip" },
     },
     {
       kind: "media-split",
@@ -228,7 +226,7 @@ export const aiSearch: CaseStudyContent = {
           text: "**Compact answers via inline links.** Each AI result flows as a single block — a clickable document title followed directly by its summary — rather than a separate row or card. That compactness is what keeps both the collapsed and expanded states tight enough to sit above the full traditional results.",
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-inline-links.png`, alt: "Compact AI results rendered as inline linked titles with summaries" },
+      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-inline-links.png`, alt: "Compact AI results rendered as inline linked titles with summaries", caption: "Compact answers via inline links" },
     },
   ],
 };

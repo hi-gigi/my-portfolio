@@ -20,10 +20,12 @@ export const licenseRequestJustification: CaseStudyContent = {
         {
           src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/end-user-add-justification.png`,
           alt: "End user adding a justification note when requesting a license",
+          caption: "End user adds a justification note",
         },
         {
           src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/admin-review-justification.png`,
           alt: "Admin reviewing a pending license request alongside the user's justification",
+          caption: "Admin reviews the justification",
         },
       ],
     },

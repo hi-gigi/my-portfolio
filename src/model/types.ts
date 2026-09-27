@@ -216,8 +216,12 @@ export type CaseStudyBlock =
    * diagram/chart where the inline size alone isn't enough to read;
    * most images don't need it. `caption` is a brief label shown below
    * the image, distinct from `alt` (which stays screen-reader-only).
+   * `roomy` rounds the image's own corners even in the compact frame
+   * (which otherwise keeps every image square-cornered) — for an
+   * image whose own content (e.g. a flat white card) reads oddly
+   * sharp-edged without it.
    */
-  | { kind: "image"; src?: string; alt: string; lightbox?: boolean; caption?: string }
+  | { kind: "image"; src?: string; alt: string; lightbox?: boolean; caption?: string; roomy?: boolean }
   /**
    * Several images side by side once there's room — e.g. a set of
    * parallel persona cards. Stacks to one column below `@bp-image-row`.
@@ -244,13 +248,16 @@ export type CaseStudyBlock =
    * image or video (`media`) on wide screens; stacks text-then-media
    * once the screen narrows. Columns align to the top by default;
    * `alignBottom` instead lines up their bottom edges, for a longer
-   * text block that nearly matches the media's height.
+   * text block that nearly matches the media's height. `stacked`
+   * forces the narrow-screen text-then-media layout at every width,
+   * for a row where side-by-side reads too cramped.
    */
   | {
       kind: "media-split";
       content: Extract<CaseStudyBlock, { kind: "subheading" | "subsubheading" | "paragraph" }>[];
       media: Extract<CaseStudyBlock, { kind: "image" | "video" }>;
       alignBottom?: boolean;
+      stacked?: boolean;
     }
   /**
    * Like `media-split`, but for a small fixed-size icon tile (e.g. a

@@ -584,6 +584,13 @@
   video {
     border-radius: 0;
   }
+
+  // Opt-out for an image whose own content (e.g. a flat white card)
+  // reads oddly sharp-edged without rounding, even at this otherwise
+  // square-cornered size.
+  img.case-study-image--rounded {
+    border-radius: @radius;
+  }
 }
 
 @media (max-width: @bp-cards-stack) {
@@ -881,6 +888,13 @@
     grid-template-columns: minmax(0, 1fr);
     gap: @space-5;
   }
+}
+
+// Forces the narrow-screen text-then-media stack at every width,
+// instead of only once the screen narrows past @bp-media-split.
+.case-study-media-split--stacked {
+  grid-template-columns: minmax(0, 1fr);
+  gap: @space-5;
 }
 
 // A capability's icon beside its own heading/paragraph/list, rather
