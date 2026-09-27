@@ -225,6 +225,19 @@ export type CaseStudyBlock =
    */
   | { kind: "image-row"; items: { src?: string; alt: string }[] }
   /**
+   * One image at a time, auto-advancing on a timer and looping — e.g.
+   * a short flow of screenshots. Freezes on the first image instead of
+   * animating when the visitor prefers reduced motion.
+   */
+  | { kind: "carousel"; items: { src?: string; alt: string }[] }
+  /**
+   * Side-by-side content columns (e.g. paired callouts) once there's
+   * room, stacking to one column below `@bp-columns`. Each entry is
+   * the blocks for one column — most commonly a subsubheading +
+   * paragraph pair.
+   */
+  | { kind: "columns"; items: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[][] }
+  /**
    * Text (`content`: subsubheading/paragraph blocks) beside a single
    * image or video (`media`) on wide screens; stacks text-then-media
    * once the screen narrows.

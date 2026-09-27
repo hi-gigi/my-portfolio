@@ -1,11 +1,14 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { CaseStudyBlock, CaseStudyListItem, CaseStudyStat, Project } from "@/model/types";
+import { ChevronLeftIcon, ChevronRightIcon } from "../icons";
 import { ProjectCard } from "../ProjectCard";
 import "./CaseStudy.less";
 
-/** What `image-row`'s lightbox is currently showing, or `null` when closed. */
-type LightboxImage = { src: string; alt: string };
+type LightboxItem = { src: string; alt: string };
+
+/** The lightbox's full slide set and which one is showing, or `null` when closed — supports prev/next across the set it was opened from. */
+type LightboxState = { items: LightboxItem[]; index: number };
 
 /**
  * Splits on `**bold**` markers and returns plain strings interleaved
@@ -37,18 +40,27 @@ interface CaseStudyProps {
  */
 export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
   const leadsWithMedia = blocks[0]?.kind === "image" || blocks[0]?.kind === "video";
-  const [lightboxImage, setLightboxImage] = useState<LightboxImage | null>(null);
+  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+  const lightboxOpen = lightbox !== null;
 
-  // Escape closes the lightbox — the click-outside/close-button paths
-  // are handled directly on the overlay's own elements below.
+  // Escape closes the lightbox; arrow keys step through its slide set
+  // when it was opened from more than one image (a carousel or row).
+  // The click-outside/close-button/nav-button paths are handled
+  // directly on the overlay's own elements below.
   useEffect(() => {
-    if (!lightboxImage) return;
+    if (!lightboxOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setLightboxImage(null);
+      if (event.key === "Escape") setLightbox(null);
+      if (event.key === "ArrowLeft") {
+        setLightbox((s) => (s ? { ...s, index: (s.index - 1 + s.items.length) % s.items.length } : s));
+      }
+      if (event.key === "ArrowRight") {
+        setLightbox((s) => (s ? { ...s, index: (s.index + 1) % s.items.length } : s));
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [lightboxImage]);
+  }, [lightboxOpen]);
 
   return (
     <article className="case-study">
@@ -63,7 +75,12 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
 
       <div className="case-study-body">
         {blocks.map((block, index) => (
-          <CaseStudyBlockView key={index} block={block} lead={index === 0} onImageClick={setLightboxImage} />
+          <CaseStudyBlockView
+            key={index}
+            block={block}
+            lead={index === 0}
+            onImageClick={(items, i) => setLightbox({ items, index: i })}
+          />
         ))}
       </div>
 
@@ -83,23 +100,53 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
         </section>
       )}
 
-      {lightboxImage && (
+      {lightbox && (
         <div
           className="case-study-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={lightboxImage.alt}
-          onClick={() => setLightboxImage(null)}
+          aria-label={lightbox.items[lightbox.index].alt}
+          onClick={() => setLightbox(null)}
         >
           <button
             type="button"
             className="case-study-lightbox-close"
             aria-label="Close"
-            onClick={() => setLightboxImage(null)}
+            onClick={() => setLightbox(null)}
           >
             ×
           </button>
-          <img src={lightboxImage.src} alt={lightboxImage.alt} onClick={(event) => event.stopPropagation()} />
+          {lightbox.items.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="case-study-lightbox-nav case-study-lightbox-nav--prev"
+                aria-label="Previous image"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setLightbox((s) => (s ? { ...s, index: (s.index - 1 + s.items.length) % s.items.length } : s));
+                }}
+              >
+                <ChevronLeftIcon />
+              </button>
+              <button
+                type="button"
+                className="case-study-lightbox-nav case-study-lightbox-nav--next"
+                aria-label="Next image"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setLightbox((s) => (s ? { ...s, index: (s.index + 1) % s.items.length } : s));
+                }}
+              >
+                <ChevronRightIcon />
+              </button>
+            </>
+          )}
+          <img
+            src={lightbox.items[lightbox.index].src}
+            alt={lightbox.items[lightbox.index].alt}
+            onClick={(event) => event.stopPropagation()}
+          />
         </div>
       )}
     </article>
@@ -109,9 +156,9 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
 /**
  * `lead` marks the page's first block — an overview video gets the
  * roomy media frame; every other image/video gets the compact one.
- * `onImageClick` opens an `image-row` item full-size in the lightbox —
- * those images run small enough side by side that the row alone isn't
- * enough to read one closely.
+ * `onImageClick` opens an image full-size in the lightbox — given the
+ * full slide set it can navigate (e.g. every image in the same row or
+ * carousel) and which one was clicked.
  */
 function CaseStudyBlockView({
   block,
@@ -120,7 +167,7 @@ function CaseStudyBlockView({
 }: {
   block: CaseStudyBlock;
   lead?: boolean;
-  onImageClick?: (image: LightboxImage) => void;
+  onImageClick?: (items: LightboxItem[], index: number) => void;
 }) {
   const frameClass = lead ? "case-study-media-frame" : "case-study-media-frame case-study-media-frame--compact";
 
@@ -275,7 +322,7 @@ function CaseStudyBlockView({
           className={`${frameClass} case-study-media-frame-button`}
           data-cursor-label="Click to open"
           data-cursor-arrow="false"
-          onClick={() => onImageClick?.({ src: block.src!, alt: block.alt })}
+          onClick={() => onImageClick?.([{ src: block.src!, alt: block.alt }], 0)}
         >
           <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
         </button>
@@ -285,10 +332,13 @@ function CaseStudyBlockView({
         </div>
       );
 
-    case "image-row":
+    case "image-row": {
       // One shared media-frame panel behind the whole row (rather than
       // one per image, like a standalone `image` block gets) — the set
       // reads as a single grouped artifact instead of separate tiles.
+      const clickable: LightboxItem[] = block.items.filter(
+        (item): item is LightboxItem => Boolean(item.src),
+      );
       return (
         <div className={frameClass}>
           <div className="case-study-image-row">
@@ -300,7 +350,7 @@ function CaseStudyBlockView({
                   className="case-study-image-row-item"
                   data-cursor-label="Click to open"
                   data-cursor-arrow="false"
-                  onClick={() => onImageClick?.({ src: item.src!, alt: item.alt })}
+                  onClick={() => onImageClick?.(clickable, clickable.findIndex((i) => i === item))}
                 >
                   <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
                 </button>
@@ -311,6 +361,23 @@ function CaseStudyBlockView({
               ),
             )}
           </div>
+        </div>
+      );
+    }
+
+    case "carousel":
+      return <CaseStudyCarousel items={block.items} frameClass={frameClass} onImageClick={onImageClick} />;
+
+    case "columns":
+      return (
+        <div className="case-study-columns">
+          {block.items.map((column, index) => (
+            <div className="case-study-columns-item" key={index}>
+              {column.map((item, i) => (
+                <CaseStudyBlockView key={i} block={item} />
+              ))}
+            </div>
+          ))}
         </div>
       );
 
@@ -346,6 +413,119 @@ function CaseStudyBlockView({
         </div>
       );
   }
+}
+
+/** How long each slide holds before advancing. */
+const CAROUSEL_INTERVAL_MS = 4000;
+
+/**
+ * One image at a time, auto-advancing on a timer and looping. Owns its
+ * own state (current slide) rather than living inline in the big
+ * switch, since a hook needs a component that always renders it, not
+ * one call among many in a conditional branch.
+ */
+function CaseStudyCarousel({
+  items,
+  frameClass,
+  onImageClick,
+}: {
+  items: { src?: string; alt: string }[];
+  frameClass: string;
+  onImageClick?: (items: LightboxItem[], index: number) => void;
+}) {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const clickable: LightboxItem[] = items.filter((item): item is LightboxItem => Boolean(item.src));
+
+  // Re-armed on every index change (including its own tick) so a
+  // manual prev/next or dot click always buys a full interval before
+  // the next auto-advance, instead of competing with it.
+  useEffect(() => {
+    if (items.length <= 1 || paused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % items.length), CAROUSEL_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [items.length, paused, index]);
+
+  const activeItem = items[index];
+
+  return (
+    <div className={frameClass}>
+      <div
+        className="case-study-carousel"
+        data-cursor-label={activeItem?.src ? "Click to open" : undefined}
+        data-cursor-arrow="false"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onClick={() => {
+          if (!activeItem?.src) return;
+          onImageClick?.(clickable, clickable.findIndex((i) => i === activeItem));
+        }}
+      >
+        {items.map((item, i) =>
+          item.src ? (
+            <img
+              key={i}
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+              className={i === index ? "is-active" : undefined}
+            />
+          ) : (
+            <div
+              key={i}
+              className={`case-study-media-placeholder${i === index ? " is-active" : ""}`}
+              role="img"
+              aria-label={item.alt}
+            >
+              <span>{item.alt}</span>
+            </div>
+          ),
+        )}
+        {items.length > 1 && (
+          <>
+            <button
+              type="button"
+              className="case-study-carousel-nav case-study-carousel-nav--prev"
+              aria-label="Previous slide"
+              onClick={(event) => {
+                event.stopPropagation();
+                setIndex((i) => (i - 1 + items.length) % items.length);
+              }}
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              type="button"
+              className="case-study-carousel-nav case-study-carousel-nav--next"
+              aria-label="Next slide"
+              onClick={(event) => {
+                event.stopPropagation();
+                setIndex((i) => (i + 1) % items.length);
+              }}
+            >
+              <ChevronRightIcon />
+            </button>
+          </>
+        )}
+      </div>
+      {items.length > 1 && (
+        <div className="case-study-carousel-dots">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Show slide ${i + 1} of ${items.length}`}
+              aria-current={i === index}
+              className={i === index ? "is-active" : undefined}
+              onClick={() => setIndex(i)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function StatCard({ stat }: { stat: CaseStudyStat }) {

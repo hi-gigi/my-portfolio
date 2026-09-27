@@ -169,6 +169,40 @@ export function ResetIcon({ className }: IconProps) {
   );
 }
 
+export function ChevronLeftIcon({ className }: IconProps) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M15 6l-6 6 6 6" />
+    </svg>
+  );
+}
+
+export function ChevronRightIcon({ className }: IconProps) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M9 6l6 6-6 6" />
+    </svg>
+  );
+}
+
 export function CheckIcon({ className }: IconProps) {
   return (
     <svg

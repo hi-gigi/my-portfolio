@@ -226,18 +226,42 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "paragraph",
       text: "We added a Document Discovery page to the admin panel, allowing document admins to search across the account by users, creation date, and keywords.",
     },
-    { kind: "image", alt: "Document Discovery page in the admin panel" },
-    { kind: "subsubheading", text: "Callout #1 — A new admin role" },
     {
-      kind: "paragraph",
-      text: "Viewing document content is a highly sensitive permission — only a few people in an organization should have it, and their actions need to be auditable. Rather than granting it to all existing admins, we introduced a dedicated Document Admin role to enforce that boundary.",
+      kind: "columns",
+      items: [
+        [
+          { kind: "subsubheading", text: "Callout #1 — A new admin role" },
+          {
+            kind: "paragraph",
+            text: "Viewing document content is a highly sensitive permission — only a few people in an organization should have it, and their actions need to be auditable. Rather than granting it to all existing admins, we introduced a dedicated Document Admin role to enforce that boundary.",
+          },
+        ],
+        [
+          { kind: "subsubheading", text: "Callout #2 — Keyword search scope" },
+          {
+            kind: "paragraph",
+            text: "We deliberately extended keyword search beyond document titles to include document content. Admins need to cast as wide a net as possible — naming conventions vary across users, and sensitive information is often buried inside a document, not surfaced in its title. Additional criteria let admins narrow from there.",
+          },
+        ],
+      ],
     },
-    { kind: "subsubheading", text: "Callout #2 — Keyword search scope" },
     {
-      kind: "paragraph",
-      text: "We deliberately extended keyword search beyond document titles to include document content. Admins need to cast as wide a net as possible — naming conventions vary across users, and sensitive information is often buried inside a document, not surfaced in its title. Additional criteria let admins narrow from there.",
+      kind: "carousel",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-1-search.png`,
+          alt: "Searching the account by keyword, user, and created date in Document Discovery",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-2-results.png`,
+          alt: "Search results listing matched documents with owner, collaborators, and dates",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-3-bulk-export.png`,
+          alt: "Selecting multiple documents to bulk-export as PDF or metadata",
+        },
+      ],
     },
-    { kind: "image", alt: "Keyword search scope extended to document content" },
 
     { kind: "heading", id: "impact", text: "Impact", navLabel: "Impact" },
     {

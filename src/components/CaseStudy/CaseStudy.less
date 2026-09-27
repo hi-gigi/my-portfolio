@@ -599,6 +599,140 @@
   }
 }
 
+// No media-frame panel here (unlike a standalone `image` block) — the
+// slide fills the space on its own, just with rounded corners of its
+// own rather than a background card behind it.
+.case-study-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: @radius;
+  cursor: zoom-in;
+  // Matches this carousel's own screenshots (2928×1858) — revisit if a
+  // future carousel's slides need a different ratio.
+  aspect-ratio: 2928 / 1858;
+
+  img,
+  .case-study-media-placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  img.is-active,
+  .case-study-media-placeholder.is-active {
+    opacity: 1;
+  }
+}
+
+// Prev/next controls, overlaid on the slide itself rather than beside
+// it — the dots below already carry position; these are for jumping
+// there directly instead of waiting out the auto-advance.
+.case-study-carousel-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(0, 0, 0, 0.65);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+}
+
+.case-study-carousel-nav--prev {
+  left: @space-3;
+}
+
+.case-study-carousel-nav--next {
+  right: @space-3;
+}
+
+@media (max-width: @bp-cards-stack) {
+  .case-study-carousel-nav {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.case-study-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: @space-2;
+  margin-top: @space-4;
+
+  button {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--muted) 50%, transparent);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &.is-active {
+      background: var(--accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Paired content columns (e.g. two callouts) — side by side once each
+// column has room to read comfortably, stacked below that.
+@bp-columns: 700px;
+
+.case-study-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: @space-6;
+  align-items: start;
+}
+
+@media (max-width: @bp-columns) {
+  .case-study-columns {
+    grid-template-columns: 1fr;
+    gap: @space-5;
+  }
+}
+
 // Text beside its screenshot, within the same reading column as
 // everything else. Side by side once there's room; stacks
 // text-then-media below that.
@@ -925,5 +1059,68 @@
   &:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
+  }
+}
+
+// Prev/next across the lightbox's slide set — fixed to the viewport
+// edges (unlike the carousel's own nav, which sits on the slide
+// itself) since the lightbox image is centred and shrinks to fit.
+.case-study-lightbox-nav {
+  position: fixed;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+
+  svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+}
+
+.case-study-lightbox-nav--prev {
+  left: @space-5;
+}
+
+.case-study-lightbox-nav--next {
+  right: @space-5;
+}
+
+@media (max-width: @bp-cards-stack) {
+  .case-study-lightbox-nav {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .case-study-lightbox-nav--prev {
+    left: @space-3;
+  }
+
+  .case-study-lightbox-nav--next {
+    right: @space-3;
   }
 }
