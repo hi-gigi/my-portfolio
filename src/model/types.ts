@@ -242,12 +242,15 @@ export type CaseStudyBlock =
   /**
    * Text (`content`: subsubheading/paragraph blocks) beside a single
    * image or video (`media`) on wide screens; stacks text-then-media
-   * once the screen narrows.
+   * once the screen narrows. Columns align to the top by default;
+   * `alignBottom` instead lines up their bottom edges, for a longer
+   * text block that nearly matches the media's height.
    */
   | {
       kind: "media-split";
       content: Extract<CaseStudyBlock, { kind: "subheading" | "subsubheading" | "paragraph" }>[];
       media: Extract<CaseStudyBlock, { kind: "image" | "video" }>;
+      alignBottom?: boolean;
     }
   /**
    * Like `media-split`, but for a small fixed-size icon tile (e.g. a
@@ -261,7 +264,7 @@ export type CaseStudyBlock =
       content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[];
     }
   /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */
-  | { kind: "video"; src?: string; alt: string }
+  | { kind: "video"; src?: string; alt: string; caption?: string }
   /**
    * A single card holding one or more metrics side by side, divided by
    * a rule (vertical on wide screens, horizontal once stacked). `period`

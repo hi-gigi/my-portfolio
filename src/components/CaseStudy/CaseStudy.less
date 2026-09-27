@@ -558,7 +558,7 @@
 // background, echoing how product marketing pages (e.g. Cursor's)
 // frame a UI screenshot rather than dropping it in edge to edge.
 .case-study-media-frame {
-  padding: @space-7;
+  padding: @space-6;
   border-radius: @radius * 3;
   background: radial-gradient(
     120% 100% at 50% -10%,
@@ -852,6 +852,21 @@
   // past the top edge of the media; start both at the row's top.
   .case-study-media-split-text > :first-child {
     margin-top: 0;
+  }
+}
+
+// A text column long enough to nearly match the media's height reads
+// oddly top-aligned, with a gap only at the bottom — line up the
+// bottom edges instead for that case.
+.case-study-media-split--align-end {
+  align-items: end;
+
+  // Tuned so this column's total height matches the image beside it,
+  // so the top edges land flush too (not just the bottom, which
+  // `align-items: end` alone guarantees) — a fixed value tied to this
+  // specific text/image pairing, not a reusable spacing step.
+  .case-study-media-split-text > h3:nth-of-type(2) {
+    margin-top: 60px;
   }
 }
 

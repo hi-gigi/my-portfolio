@@ -19,6 +19,7 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "video",
       src: `${import.meta.env.BASE_URL}case-studies/document-discovery/overview-video.mp4`,
       alt: "An admin searching and auditing documents across the account in the Document Discovery page",
+      caption: "Document discovery beta",
     },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
@@ -93,6 +94,7 @@ export const documentDiscovery: CaseStudyContent = {
     },
     {
       kind: "media-split",
+      alignBottom: true,
       content: [
         { kind: "subheading", text: "External admin interviews" },
         {

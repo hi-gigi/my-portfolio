@@ -14,6 +14,19 @@ import type { CaseStudyContent } from "../types";
 export const licenseRequestJustification: CaseStudyContent = {
   id: "license-request-justification",
   blocks: [
+    {
+      kind: "carousel",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/end-user-add-justification.png`,
+          alt: "End user adding a justification note when requesting a license",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/admin-review-justification.png`,
+          alt: "Admin reviewing a pending license request alongside the user's justification",
+        },
+      ],
+    },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
       kind: "split",

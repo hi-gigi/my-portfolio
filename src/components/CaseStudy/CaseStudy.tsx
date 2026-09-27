@@ -54,7 +54,7 @@ interface CaseStudyProps {
  * layout pass comes later.
  */
 export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
-  const leadsWithMedia = blocks[0]?.kind === "image" || blocks[0]?.kind === "video";
+  const leadsWithMedia = blocks[0]?.kind === "image" || blocks[0]?.kind === "video" || blocks[0]?.kind === "carousel";
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
   const lightboxOpen = lightbox !== null;
 
@@ -297,7 +297,7 @@ function CaseStudyBlockView({
 
     case "media-split":
       return (
-        <div className="case-study-media-split">
+        <div className={`case-study-media-split${block.alignBottom ? " case-study-media-split--align-end" : ""}`}>
           <div className="case-study-media-split-text">
             {block.content.map((item, index) => (
               <CaseStudyBlockView key={index} block={item} />
@@ -411,6 +411,7 @@ function CaseStudyBlockView({
             preload="auto"
             aria-label={block.alt}
           />
+          {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>
       ) : (
         <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
