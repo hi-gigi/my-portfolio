@@ -114,17 +114,12 @@ export const aiSearch: CaseStudyContent = {
     },
 
     { kind: "subheading", text: "Decision #2: Where should the AI answer live? A separate tab, or inline above the results?" },
+    { kind: "subsubheading", text: "The alternative" },
     {
-      kind: "media-split",
-      content: [
-        { kind: "subsubheading", text: "The alternative" },
-        {
-          kind: "paragraph",
-          text: 'A separate "AI answer" tab next to "All results," appearing only once AI had something to show. Clean separation, but it put a click between the user and the answer — they\'d have to notice the tab and switch views before finding out whether AI found anything.',
-        },
-      ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative.png`, alt: "A separate AI answer tab, explored and rejected" },
+      kind: "paragraph",
+      text: 'A separate "AI answer" tab next to "All results," appearing only once AI had something to show. Clean separation, but it put a click between the user and the answer — they\'d have to notice the tab and switch views before finding out whether AI found anything.',
     },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative.png`, alt: "A separate AI answer tab, explored and rejected" },
     { kind: "subsubheading", text: "The decision: inline, above the traditional results, collapsed by default" },
     { kind: "paragraph", text: "This resolved three things at once." },
     {
@@ -134,18 +129,28 @@ export const aiSearch: CaseStudyContent = {
           label: "Performance",
           text: 'Traditional results appear immediately; the AI answer shows a loading state above them, so AI\'s presence is felt immediately, even before it has an answer. Once ready, it settles into a collapsed view — just the top match, visible without any extra click. A "Show more" click expands the rest.',
         },
+      ],
+    },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-performance.png`, alt: "Performance: results appear instantly while the AI answer loads above them" },
+    {
+      kind: "list",
+      items: [
         {
           label: "Rationale",
           text: "Each result shows the document name alongside a summary generated for that query, so a user can tell why it matched without opening the document to check.",
         },
+      ],
+    },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-rationale.png`, alt: "Rationale: each AI result shows why it matched" },
+    {
+      kind: "list",
+      items: [
         {
           label: "Format",
           text: "Since AI could often narrow a broad query down to just a few documents, the answer was kept compact rather than sized for a long list — leaving the rest of the page for the full traditional results, for anyone who wanted to browse rather than rely on the narrowed answer.",
         },
       ],
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-performance.png`, alt: "Performance: results appear instantly while the AI answer loads above them" },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-rationale.png`, alt: "Rationale: each AI result shows why it matched" },
     { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-format.png`, alt: "Format: a compact, collapsed AI answer above the full results list" },
 
     { kind: "subheading", text: "Decision #3: Where should follow-up conversation happen? In search, or in the AI hub?" },
