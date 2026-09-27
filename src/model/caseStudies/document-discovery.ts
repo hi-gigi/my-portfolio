@@ -75,34 +75,44 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "paragraph",
       text: 'Before any design could happen, the problem space had to be defined from scratch. There was no existing feature and no shared understanding of what "document discovery" even meant in the context of Lucid\'s product. We ran a multi-method discovery effort across three streams.',
     },
-    { kind: "subheading", text: "Competitive & market research" },
     {
-      kind: "paragraph",
-      text: "Benchmarked in two directions: the industry leaders in document governance and compliance (Google Vault, Microsoft 365, Slack, Box) to learn from the mature standard, and canvas-based competitors to understand what document management and governance mean in a visual-collaboration product like Lucid.",
+      kind: "media-split",
+      content: [
+        { kind: "subheading", text: "Competitive & market research" },
+        {
+          kind: "paragraph",
+          text: "Benchmarked in two directions: the industry leaders in document governance and compliance (Google Vault, Microsoft 365, Slack, Box) to learn from the mature standard, and canvas-based competitors to understand what document management and governance mean in a visual-collaboration product like Lucid.",
+        },
+      ],
+      media: {
+        kind: "image",
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/competitor-research.png`,
+        alt: "Competitive research comparing eDiscovery, retention, and legal hold across Microsoft Purview, Google Vault, Box, Slack, Miro, Figma, Notion, and Zoom",
+      },
     },
     {
-      kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/competitor-research.png`,
-      alt: "Competitive research comparing eDiscovery, retention, and legal hold across Microsoft Purview, Google Vault, Box, Slack, Miro, Figma, Notion, and Zoom",
-    },
-    { kind: "subheading", text: "External admin interviews" },
-    {
-      kind: "paragraph",
-      text: "Talked to 7 admins across pharma, financial services, healthcare, aerospace & defense, enterprise tech, and media & entertainment.",
-    },
-    {
-      kind: "paragraph",
-      text: "The goal was to deeply understand their needs and use cases around document discovery, management, and retention — and to help define what those concepts meant specifically in the context of Lucid.",
-    },
-    { kind: "subheading", text: "Internal subject matter expert interviews" },
-    {
-      kind: "paragraph",
-      text: "Consulted internal IT, Security, and Legal teams to deepen our understanding of these roles and the tools they already use to accomplish similar goals.",
-    },
-    {
-      kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/research-synthesis.png`,
-      alt: "Admin call notes and synthesis, organized into document discovery and retention/legal hold themes",
+      kind: "media-split",
+      content: [
+        { kind: "subheading", text: "External admin interviews" },
+        {
+          kind: "paragraph",
+          text: "Talked to 7 admins across pharma, financial services, healthcare, aerospace & defense, enterprise tech, and media & entertainment.",
+        },
+        {
+          kind: "paragraph",
+          text: "The goal was to deeply understand their needs and use cases around document discovery, management, and retention — and to help define what those concepts meant specifically in the context of Lucid.",
+        },
+        { kind: "subheading", text: "Internal subject matter expert interviews" },
+        {
+          kind: "paragraph",
+          text: "Consulted internal IT, Security, and Legal teams to deepen our understanding of these roles and the tools they already use to accomplish similar goals.",
+        },
+      ],
+      media: {
+        kind: "image",
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/research-synthesis.png`,
+        alt: "Admin call notes and synthesis, organized into document discovery and retention/legal hold themes",
+      },
     },
 
     { kind: "subheading", text: "Key personas" },
