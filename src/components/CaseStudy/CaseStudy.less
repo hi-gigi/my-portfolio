@@ -188,6 +188,13 @@
     margin-top: @space-2;
   }
 
+  // ...but a media frame right under the label needs a bit more air
+  // than plain text would — the frame's own padding makes @space-2
+  // read as cramped.
+  h4 + .case-study-media-frame {
+    margin-top: @space-4;
+  }
+
   // A standalone image running straight into the next label reads as
   // cramped at the standard block gap — the frame's own padding and
   // shadow already crowd its bottom edge, so it needs more air than
@@ -576,21 +583,23 @@
 }
 
 // Everything but the lead overview video: same panel, tighter inset.
+// Video stays flush with the square-cornered frame; images round their
+// own corners (below, via .case-study-media-frame-button).
 .case-study-media-frame--compact {
   padding: @space-4;
   border-radius: 0;
 
-  img,
   video {
     border-radius: 0;
   }
+}
 
-  // Opt-out for an image whose own content (e.g. a flat white card)
-  // reads oddly sharp-edged without rounding, even at this otherwise
-  // square-cornered size.
-  img.case-study-image--rounded {
-    border-radius: @radius;
-  }
+// One-off: this search-bar screenshot reads oversized at the standard
+// compact inset — extra side padding shrinks just this image rather
+// than changing the compact frame everywhere.
+.case-study-media-frame--compact:has(img[src*="ai-toggle-let-system-decide"]) {
+  padding-left: @space-8;
+  padding-right: @space-8;
 }
 
 @media (max-width: @bp-cards-stack) {
@@ -602,6 +611,11 @@
   .case-study-media-frame--compact {
     padding: @space-3;
     border-radius: 0;
+  }
+
+  .case-study-media-frame--compact:has(img[src*="ai-toggle-let-system-decide"]) {
+    padding-left: @space-6;
+    padding-right: @space-6;
   }
 }
 
@@ -687,6 +701,7 @@
   }
 
   img {
+    border-radius: @radius;
     pointer-events: none;
   }
 }

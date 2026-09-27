@@ -212,16 +212,11 @@ export type CaseStudyBlock =
   | { kind: "beats"; items: CaseStudyBeat[] }
   /**
    * `src` omitted renders a labelled placeholder panel until real art
-   * lands. `lightbox` opens the image full-size on click — for a dense
-   * diagram/chart where the inline size alone isn't enough to read;
-   * most images don't need it. `caption` is a brief label shown below
-   * the image, distinct from `alt` (which stays screen-reader-only).
-   * `roomy` rounds the image's own corners even in the compact frame
-   * (which otherwise keeps every image square-cornered) — for an
-   * image whose own content (e.g. a flat white card) reads oddly
-   * sharp-edged without it.
+   * lands. Every image opens full-size in the lightbox on click and
+   * gets rounded corners. `caption` is a brief label shown below the
+   * image, distinct from `alt` (which stays screen-reader-only).
    */
-  | { kind: "image"; src?: string; alt: string; lightbox?: boolean; caption?: string; roomy?: boolean }
+  | { kind: "image"; src?: string; alt: string; caption?: string }
   /**
    * Several images side by side once there's room — e.g. a set of
    * parallel persona cards. Stacks to one column below `@bp-image-row`.

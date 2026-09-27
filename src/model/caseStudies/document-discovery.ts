@@ -229,7 +229,6 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "image",
       src: `${import.meta.env.BASE_URL}case-studies/document-discovery/capability-ranking.png`,
       alt: "Capability areas ranked by admin impact and urgency: Document Visibility (V1 scope), Document Controls, Legal Hold, Retention",
-      lightbox: true,
       caption: "Capability areas ranked by impact and urgency",
     },
     {
@@ -326,7 +325,6 @@ export const documentDiscovery: CaseStudyContent = {
         kind: "image",
         src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-search-filters.png`,
         alt: "A later, deepened search with filters for access type, document type, external access, classification, and status, plus saved queries",
-        lightbox: true,
         caption: "Deepened search filters and saved queries",
       },
     },
@@ -342,7 +340,6 @@ export const documentDiscovery: CaseStudyContent = {
         kind: "image",
         src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-document-actions.png`,
         alt: "An expanded document action menu with edit classification, transfer ownership, move location, remove external access, and mark for permanent deletion",
-        lightbox: true,
         caption: "Expanded document actions",
       },
     },

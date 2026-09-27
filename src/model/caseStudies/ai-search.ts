@@ -97,7 +97,7 @@ export const aiSearch: CaseStudyContent = {
       kind: "paragraph",
       text: "If users chose to turn AI mode on themselves, they'd likely expect it to take a moment — making the latency easier to accept.",
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle.png`, alt: "Early exploration of an AI mode toggle in the search bar", caption: "Early AI toggle exploration", roomy: true },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle.png`, alt: "Early exploration of an AI mode toggle in the search bar", caption: "Early AI toggle exploration" },
     { kind: "subsubheading", text: "The problem" },
     {
       kind: "paragraph",
@@ -156,21 +156,15 @@ export const aiSearch: CaseStudyContent = {
       kind: "paragraph",
       text: "Build conversation directly into search — turn the AI answer into the start of a chat thread on the results page.",
     },
+    { kind: "subsubheading", text: "The decision: hand off instead" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-3-handoff.png`, alt: "Handing off a follow-up question from search into Lucid's AI hub", caption: "Handing off follow-up conversation to Lucid's AI hub" },
     {
-      kind: "media-split",
-      stacked: true,
-      content: [
-        { kind: "subsubheading", text: "The decision: hand off instead" },
-        {
-          kind: "paragraph",
-          text: "Lucid already has an AI hub built for back-and-forth with Lucid AI. Building a second, parallel conversational experience inside search would have meant maintaining two chat patterns for the same capability, and blurred what each surface was for — search is where people go to find something fast; the hub is where they go to think something through.",
-        },
-        {
-          kind: "paragraph",
-          text: 'The AI answer includes a "Chat more with Lucid AI" input. Submitting it carries the original query and the AI\'s answer into the hub, so follow-up picks up in context instead of starting cold. Search stays scoped to what it does best — get people to an answer quickly — while deeper conversation lives where it\'s already built to happen.',
-        },
-      ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-3-handoff.png`, alt: "Handing off a follow-up question from search into Lucid's AI hub", caption: "Handing off follow-up conversation to Lucid's AI hub" },
+      kind: "paragraph",
+      text: "Lucid already has an AI hub built for back-and-forth with Lucid AI. Building a second, parallel conversational experience inside search would have meant maintaining two chat patterns for the same capability, and blurred what each surface was for — search is where people go to find something fast; the hub is where they go to think something through.",
+    },
+    {
+      kind: "paragraph",
+      text: 'The AI answer includes a "Chat more with Lucid AI" input. Submitting it carries the original query and the AI\'s answer into the hub, so follow-up picks up in context instead of starting cold. Search stays scoped to what it does best — get people to an answer quickly — while deeper conversation lives where it\'s already built to happen.',
     },
 
     { kind: "heading", id: "solution", text: "Solution" },

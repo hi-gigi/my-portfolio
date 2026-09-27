@@ -337,24 +337,14 @@ function CaseStudyBlockView({
       }
       return (
         <div className={frameClass}>
-          {block.lightbox ? (
-            <button
-              type="button"
-              className="case-study-media-frame-button"
-              data-cursor-icon="zoom"
-              onClick={() => onImageClick?.([{ src: block.src!, alt: block.alt }], 0)}
-            >
-              <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
-            </button>
-          ) : (
-            <img
-              src={block.src}
-              alt={block.alt}
-              loading="lazy"
-              decoding="async"
-              className={block.roomy ? "case-study-image--rounded" : undefined}
-            />
-          )}
+          <button
+            type="button"
+            className="case-study-media-frame-button"
+            data-cursor-icon="zoom"
+            onClick={() => onImageClick?.([{ src: block.src!, alt: block.alt }], 0)}
+          >
+            <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+          </button>
           {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>
       );
