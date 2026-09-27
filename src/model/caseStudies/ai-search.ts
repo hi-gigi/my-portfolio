@@ -190,7 +190,12 @@ export const aiSearch: CaseStudyContent = {
           text: '**Signaling AI-powered search.** New sparkle icon and placeholder text — "What are you looking for?" — nudge people to ask, not just type keywords. That shift in input is what intent-aware search depends on.',
         },
       ],
-      media: { kind: "image", alt: "New sparkle icon and placeholder text signal AI-powered search", caption: "Signaling AI-powered search" },
+      media: {
+        kind: "image",
+        src: `${import.meta.env.BASE_URL}case-studies/ai-search/signaling-ai-capability.png`,
+        alt: "New sparkle icon and placeholder text signal AI-powered search",
+        caption: "Signaling AI-powered search",
+      },
     },
     {
       kind: "media-split",
