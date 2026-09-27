@@ -116,7 +116,20 @@ export const aiSearch: CaseStudyContent = {
       kind: "paragraph",
       text: 'A separate "AI answer" tab next to "All results," appearing only once AI had something to show. Clean separation, but it put a click between the user and the answer — they\'d have to notice the tab and switch views before finding out whether AI found anything.',
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative.png`, alt: "A separate AI answer tab, explored and rejected", caption: "Separate AI answer tab (rejected)" },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative-1.png`,
+          alt: "The default 'All results' tab, with a separate 'AI answer' tab beside it",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative-2.png`,
+          alt: "The AI answer, hidden behind a separate tab a user has to notice and click into",
+        },
+      ],
+      caption: "Separate AI answer tab (rejected)",
+    },
     { kind: "subsubheading", text: "The decision: inline, above the traditional results, collapsed by default" },
     { kind: "paragraph", text: "This resolved three things at once." },
     {

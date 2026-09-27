@@ -379,6 +379,7 @@ function CaseStudyBlockView({
               ),
             )}
           </div>
+          {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>
       );
     }

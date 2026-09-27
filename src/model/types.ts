@@ -218,12 +218,15 @@ export type CaseStudyBlock =
    */
   | { kind: "image"; src?: string; alt: string; caption?: string }
   /**
-   * Several images side by side once there's room — e.g. a set of
-   * parallel persona cards. Stacks to one column below `@bp-image-row`.
-   * Each item renders the same placeholder-until-`src`-lands behavior
-   * as a standalone `image` block, including its own `caption`.
+   * Several images side by side once there's room. Stacks to one
+   * column below `@bp-image-row`. Each item renders the same
+   * placeholder-until-`src`-lands behavior as a standalone `image`
+   * block. Give each item its own `caption` when they're distinct
+   * subjects (e.g. parallel persona cards); use the row-level
+   * `caption` instead when the images are one pair (e.g. before/after)
+   * captioned as a single artifact.
    */
-  | { kind: "image-row"; items: { src?: string; alt: string; caption?: string }[] }
+  | { kind: "image-row"; items: { src?: string; alt: string; caption?: string }[]; caption?: string }
   /**
    * One image at a time, auto-advancing on a timer and looping — e.g.
    * a short flow of screenshots. Freezes on the first image instead of
