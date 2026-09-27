@@ -128,7 +128,7 @@
   // one level down; a whisper of accent-alt in --muted, just enough
   // warmth to read as a deliberate callout label without shouting.
   h3 {
-    margin-top: @space-7;
+    margin-top: @space-8;
     margin-bottom: 0;
     font-size: @case-study-text-h3;
     font-weight: @weight-semibold;
@@ -541,6 +541,18 @@
   .case-study-media-split-text > * + * {
     margin-top: @space-4;
   }
+
+  // The body's own heading top margin would push the text column down
+  // past the top edge of the media; start both at the row's top.
+  .case-study-media-split-text > :first-child {
+    margin-top: 0;
+  }
+}
+
+// More air between a "Decision #N" subheading and its row than the
+// default heading-to-content gap.
+.case-study h3 + .case-study-media-split {
+  margin-top: @space-6;
 }
 
 @media (max-width: @bp-media-split) {
