@@ -295,31 +295,31 @@
   // add-on). Overrides the global `a` rule's var(--text) + static
   // underline: coral text alone marks it as a link against the dimmed
   // `p` color above, and the underline draws in from the left on
-  // hover/focus and retracts to the right on leave — the same
-  // transform-origin swap as .nav a's underline, so the two "this is a
-  // link" cues on the site read as one motion language.
+  // hover/focus and retracts to the right on leave — the same motion
+  // .nav a's underline uses, but done as an animated background rather
+  // than that rule's absolutely-positioned ::after: a case-study link
+  // sits inside a wrapping paragraph (unlike a single-line nav item),
+  // and a wrapped inline element's ::after positions against the union
+  // of every line it spans rather than each line individually, so the
+  // bar lands in the wrong place once the link text breaks across two
+  // lines. `box-decoration-break: clone` gives the background its own
+  // box per line instead, so each wrapped fragment draws its own
+  // underline.
   a {
-    position: relative;
     color: var(--coral-text);
     text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 0% 1px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: background-size @ease-slow, background-position @ease-slow;
 
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 1px;
-      background: currentColor;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform @ease-slow;
-    }
-
-    &:hover::after,
-    &:focus-visible::after {
-      transform: scaleX(1);
-      transform-origin: left;
+    &:hover,
+    &:focus-visible {
+      background-position: 0% 100%;
+      background-size: 100% 1px;
     }
   }
 
@@ -548,7 +548,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .case-study-body a::after {
+  .case-study-body a {
     transition: none;
   }
 }
