@@ -146,16 +146,6 @@
     font-weight: @weight-bold;
   }
 
-  // A subsubheading paired with a category icon (e.g. one of several
-  // parallel capability areas) — the icon tile is the same 44px marker
-  // `.case-study-list-icon-tile` uses, just sitting beside a heading
-  // instead of a list item.
-  .case-study-subsubheading-icon {
-    display: flex;
-    align-items: center;
-    gap: @space-3;
-  }
-
   // A heading sits closer to the content it introduces than to
   // whatever came before it — the default sibling gap (@space-6) is
   // too generous for this specific relationship.
@@ -537,6 +527,31 @@
   }
 }
 
+// A standalone image opens full-size in the lightbox — plain button
+// reset around the frame so the click target covers the whole panel.
+// No `padding: 0` here: the frame classes' own padding is what reveals
+// the gradient/panel background around the image, not incidental
+// button spacing to strip away.
+.case-study-media-frame-button {
+  display: block;
+  width: 100%;
+  border: none;
+  cursor: zoom-in;
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  // Rounded on the image only — the outer panel (`.case-study-media
+  // -frame--compact`) stays sharp-cornered like every other image's,
+  // scoped to just the one image that opts into the lightbox.
+  img {
+    border-radius: @radius;
+    pointer-events: none;
+  }
+}
+
 // A set of parallel images (e.g. persona cards) — side by side once
 // there's room for each to stay legible, stacked below that rather
 // than at a fixed column count, since the reading column's own width
@@ -617,6 +632,66 @@
     grid-template-columns: minmax(0, 1fr);
     gap: @space-5;
   }
+}
+
+// A capability's icon beside its own heading/paragraph/list, rather
+// than the icon sitting inline with just the heading text — the icon
+// tile stays fixed-size (unlike `media-split`'s media, which fills a
+// column) and sits flush with the first line of content, not centred
+// against the whole, taller stack once a list is involved.
+.case-study-icon-split {
+  display: flex;
+  gap: @space-4;
+  align-items: flex-start;
+}
+
+// Below this, the icon's fixed 128px width leaves too little room for
+// the text beside it (a narrow column of heavily-wrapped words) — stack
+// icon-above-content instead, same as `image-row` drops to one column.
+@bp-icon-split: 500px;
+
+@media (max-width: @bp-icon-split) {
+  .case-study-icon-split {
+    flex-direction: column;
+  }
+}
+
+// A double tile: the outer square follows the theme like any other
+// tonal surface, while the inner one stays fixed white — these icons
+// are dark line art drawn for a light backdrop, so a theme-following
+// inner square would wash them out in dark mode.
+.case-study-icon-split-icon {
+  flex: none;
+  width: 128px;
+  height: 128px;
+  border-radius: @radius * 2;
+  background: var(--tonal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // The white inner square, sized smaller than the tile so the outer
+  // tonal ring stays visible around it. Overrides `.case-study-body
+  // img`'s own `background`/`border-radius` (var(--tonal) — dark in
+  // dark mode) with fixed values instead of just resetting them away.
+  img {
+    width: 88px;
+    height: 88px;
+    padding: @space-1;
+    border-radius: @radius * 2;
+    background: #fff;
+    box-sizing: border-box;
+  }
+}
+
+.case-study-icon-split-content > * + * {
+  margin-top: @space-4;
+}
+
+// The body's own heading top margin would otherwise push the heading
+// down below the icon's own top edge instead of lining up with it.
+.case-study-icon-split-content > :first-child {
+  margin-top: 0;
 }
 
 .case-study-more {

@@ -133,66 +133,74 @@ export const documentDiscovery: CaseStudyContent = {
     { kind: "subheading", text: "Key needs identified from discovery research" },
     { kind: "paragraph", text: "Across the three personas, the needs converged into four capability areas." },
     {
-      kind: "subsubheading",
-      text: "Document Visibility",
+      kind: "icon-split",
       icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-visibility.png`,
-    },
-    {
-      kind: "paragraph",
-      text: "Before admins can do anything else, they need to see what's in their account and who owns it.",
-    },
-    {
-      kind: "list",
-      items: [
-        "Pull account-owned documents by user, content, or other criteria",
-        "Open and audit what's inside a document",
+      content: [
+        { kind: "subsubheading", text: "Document Visibility" },
+        {
+          kind: "paragraph",
+          text: "Before admins can do anything else, they need to see what's in their account and who owns it.",
+        },
+        {
+          kind: "list",
+          items: [
+            "Pull account-owned documents by user, content, or other criteria",
+            "Open and audit what's inside a document",
+          ],
+        },
       ],
     },
     {
-      kind: "subsubheading",
-      text: "Document Controls",
+      kind: "icon-split",
       icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-controls.png`,
-    },
-    { kind: "paragraph", text: "Once admins find what they're looking for, they need to act on it." },
-    {
-      kind: "list",
-      items: [
-        "Revoke external access to protect company assets",
-        "Reassign ownership or adjust access to handle day-to-day requests",
-        "Redact PII and other sensitive content within a document",
-        "Bulk-export documents for legal and audit review",
+      content: [
+        { kind: "subsubheading", text: "Document Controls" },
+        { kind: "paragraph", text: "Once admins find what they're looking for, they need to act on it." },
+        {
+          kind: "list",
+          items: [
+            "Revoke external access to protect company assets",
+            "Reassign ownership or adjust access to handle day-to-day requests",
+            "Redact PII and other sensitive content within a document",
+            "Bulk-export documents for legal and audit review",
+          ],
+        },
       ],
     },
     {
-      kind: "subsubheading",
-      text: "Legal Hold",
+      kind: "icon-split",
       icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-legal-hold.png`,
-    },
-    {
-      kind: "paragraph",
-      text: "During an active investigation, admins need to secure the relevant records before anything is lost.",
-    },
-    {
-      kind: "list",
-      items: [
-        "Quickly pull documents tied to a specific user or project under investigation",
-        "Prevent those documents from being deleted until the investigation closes",
+      content: [
+        { kind: "subsubheading", text: "Legal Hold" },
+        {
+          kind: "paragraph",
+          text: "During an active investigation, admins need to secure the relevant records before anything is lost.",
+        },
+        {
+          kind: "list",
+          items: [
+            "Quickly pull documents tied to a specific user or project under investigation",
+            "Prevent those documents from being deleted until the investigation closes",
+          ],
+        },
       ],
     },
     {
-      kind: "subsubheading",
-      text: "Retention Compliance",
+      kind: "icon-split",
       icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-retention-compliance.png`,
-    },
-    {
-      kind: "paragraph",
-      text: "Retention isn't one-size-fits-all: each company sets its own policies by data classification, and they classify Lucid content in different ways.",
-    },
-    {
-      kind: "list",
-      items: [
-        "Set retention periods for Lucid content, compliant with company policy",
-        "Maintain a central holding account for documents that must be preserved",
+      content: [
+        { kind: "subsubheading", text: "Retention Compliance" },
+        {
+          kind: "paragraph",
+          text: "Retention isn't one-size-fits-all: each company sets its own policies by data classification, and they classify Lucid content in different ways.",
+        },
+        {
+          kind: "list",
+          items: [
+            "Set retention periods for Lucid content, compliant with company policy",
+            "Maintain a central holding account for documents that must be preserved",
+          ],
+        },
       ],
     },
 
@@ -206,6 +214,7 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "image",
       src: `${import.meta.env.BASE_URL}case-studies/document-discovery/capability-ranking.png`,
       alt: "Capability areas ranked by admin impact and urgency: Document Visibility (V1 scope), Document Controls, Legal Hold, Retention",
+      lightbox: true,
     },
     {
       kind: "paragraph",

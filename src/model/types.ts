@@ -190,13 +190,8 @@ export type CaseStudyBlock =
    */
   | { kind: "heading"; id: string; text: string; navLabel?: string }
   | { kind: "subheading"; text: string }
-  /**
-   * One tier below a subheading — e.g. the named options under a
-   * "Decision #N" subheading. `icon` renders a small icon tile beside
-   * the text — e.g. a category glyph for one of several parallel
-   * capability areas.
-   */
-  | { kind: "subsubheading"; text: string; icon?: string }
+  /** One tier below a subheading — e.g. the named options under a "Decision #N" subheading. */
+  | { kind: "subsubheading"; text: string }
   /**
    * `emphasis` renders as a bolder lead-in sentence, e.g. right under
    * a subheading. `continuation` pulls this paragraph closer to the
@@ -215,8 +210,13 @@ export type CaseStudyBlock =
   | { kind: "split"; content: string[]; timeline: CaseStudySplitStep[]; sidebar: CaseStudySplitSidebar }
   /** A short numbered argument — e.g. two premises building to a conclusion. */
   | { kind: "beats"; items: CaseStudyBeat[] }
-  /** `src` omitted renders a labelled placeholder panel until real art lands. */
-  | { kind: "image"; src?: string; alt: string }
+  /**
+   * `src` omitted renders a labelled placeholder panel until real art
+   * lands. `lightbox` opens the image full-size on click — for a dense
+   * diagram/chart where the inline size alone isn't enough to read;
+   * most images don't need it.
+   */
+  | { kind: "image"; src?: string; alt: string; lightbox?: boolean }
   /**
    * Several images side by side once there's room — e.g. a set of
    * parallel persona cards. Stacks to one column below `@bp-image-row`.
@@ -233,6 +233,17 @@ export type CaseStudyBlock =
       kind: "media-split";
       content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" }>[];
       media: Extract<CaseStudyBlock, { kind: "image" | "video" }>;
+    }
+  /**
+   * Like `media-split`, but for a small fixed-size icon tile (e.g. a
+   * capability glyph) instead of a full image/video — the icon never
+   * grows to fill a column the way `media-split`'s media does.
+   * `content` may also include `list` blocks, unlike `media-split`.
+   */
+  | {
+      kind: "icon-split";
+      icon: string;
+      content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[];
     }
   /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */
   | { kind: "video"; src?: string; alt: string }

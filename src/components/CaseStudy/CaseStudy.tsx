@@ -132,16 +132,7 @@ function CaseStudyBlockView({
       return <h3>{block.text}</h3>;
 
     case "subsubheading":
-      return block.icon ? (
-        <h4 className="case-study-subsubheading-icon">
-          <span className="case-study-list-icon-tile">
-            <img src={block.icon} alt="" />
-          </span>
-          {block.text}
-        </h4>
-      ) : (
-        <h4>{block.text}</h4>
-      );
+      return <h4>{block.text}</h4>;
 
     case "paragraph": {
       const classes = [
@@ -251,19 +242,46 @@ function CaseStudyBlockView({
             ))}
           </div>
           <div className="case-study-media-split-media">
-            <CaseStudyBlockView block={block.media} />
+            <CaseStudyBlockView block={block.media} onImageClick={onImageClick} />
+          </div>
+        </div>
+      );
+
+    case "icon-split":
+      return (
+        <div className="case-study-icon-split">
+          <span className="case-study-icon-split-icon">
+            <img src={block.icon} alt="" />
+          </span>
+          <div className="case-study-icon-split-content">
+            {block.content.map((item, index) => (
+              <CaseStudyBlockView key={index} block={item} />
+            ))}
           </div>
         </div>
       );
 
     case "image":
-      return block.src ? (
+      if (!block.src) {
+        return (
+          <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
+            <span>{block.alt}</span>
+          </div>
+        );
+      }
+      return block.lightbox ? (
+        <button
+          type="button"
+          className={`${frameClass} case-study-media-frame-button`}
+          data-cursor-label="Click to open"
+          data-cursor-arrow="false"
+          onClick={() => onImageClick?.({ src: block.src!, alt: block.alt })}
+        >
+          <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
+        </button>
+      ) : (
         <div className={frameClass}>
           <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
-        </div>
-      ) : (
-        <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
-          <span>{block.alt}</span>
         </div>
       );
 
@@ -280,6 +298,8 @@ function CaseStudyBlockView({
                   key={index}
                   type="button"
                   className="case-study-image-row-item"
+                  data-cursor-label="Click to open"
+                  data-cursor-arrow="false"
                   onClick={() => onImageClick?.({ src: item.src!, alt: item.alt })}
                 >
                   <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
