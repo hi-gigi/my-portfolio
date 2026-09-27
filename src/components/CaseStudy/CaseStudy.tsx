@@ -48,7 +48,7 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
 
       <div className="case-study-body">
         {blocks.map((block, index) => (
-          <CaseStudyBlockView key={index} block={block} />
+          <CaseStudyBlockView key={index} block={block} lead={index === 0} />
         ))}
       </div>
 
@@ -71,7 +71,13 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
   );
 }
 
-function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
+/**
+ * `lead` marks the page's first block — an overview video gets the
+ * roomy media frame; every other image/video gets the compact one.
+ */
+function CaseStudyBlockView({ block, lead = false }: { block: CaseStudyBlock; lead?: boolean }) {
+  const frameClass = lead ? "case-study-media-frame" : "case-study-media-frame case-study-media-frame--compact";
+
   switch (block.kind) {
     case "heading":
       return <h2 id={block.id}>{block.text}</h2>;
@@ -181,9 +187,23 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
         </div>
       );
 
+    case "media-split":
+      return (
+        <div className="case-study-media-split">
+          <div className="case-study-media-split-text">
+            {block.content.map((item, index) => (
+              <CaseStudyBlockView key={index} block={item} />
+            ))}
+          </div>
+          <div className="case-study-media-split-media">
+            <CaseStudyBlockView block={block.media} />
+          </div>
+        </div>
+      );
+
     case "image":
       return block.src ? (
-        <div className="case-study-media-frame">
+        <div className={frameClass}>
           <img src={block.src} alt={block.alt} loading="lazy" decoding="async" />
         </div>
       ) : (
@@ -194,7 +214,7 @@ function CaseStudyBlockView({ block }: { block: CaseStudyBlock }) {
 
     case "video":
       return block.src ? (
-        <div className="case-study-media-frame">
+        <div className={frameClass}>
           <video
             src={block.src}
             autoPlay

@@ -212,6 +212,16 @@ export type CaseStudyBlock =
   | { kind: "beats"; items: CaseStudyBeat[] }
   /** `src` omitted renders a labelled placeholder panel until real art lands. */
   | { kind: "image"; src?: string; alt: string }
+  /**
+   * Text (`content`: subsubheading/paragraph blocks) beside a single
+   * image or video (`media`) on wide screens; stacks text-then-media
+   * once the screen narrows.
+   */
+  | {
+      kind: "media-split";
+      content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" }>[];
+      media: Extract<CaseStudyBlock, { kind: "image" | "video" }>;
+    }
   /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */
   | { kind: "video"; src?: string; alt: string }
   /**

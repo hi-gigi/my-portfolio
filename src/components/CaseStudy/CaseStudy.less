@@ -504,10 +504,49 @@
   }
 }
 
+// Everything but the lead overview video: same panel, tighter inset.
+.case-study-media-frame--compact {
+  padding: @space-4;
+  border-radius: 0;
+
+  img,
+  video {
+    border-radius: 0;
+  }
+}
+
 @media (max-width: @bp-cards-stack) {
   .case-study-media-frame {
     padding: @space-4;
     border-radius: @radius * 2;
+  }
+
+  .case-study-media-frame--compact {
+    padding: @space-3;
+    border-radius: 0;
+  }
+}
+
+// Text beside its screenshot, within the same reading column as
+// everything else. Side by side once there's room; stacks
+// text-then-media below that.
+@bp-media-split: 1000px;
+
+.case-study-media-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: @space-6;
+  align-items: start;
+
+  .case-study-media-split-text > * + * {
+    margin-top: @space-4;
+  }
+}
+
+@media (max-width: @bp-media-split) {
+  .case-study-media-split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: @space-5;
   }
 }
 
