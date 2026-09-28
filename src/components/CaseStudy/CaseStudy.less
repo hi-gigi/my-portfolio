@@ -702,7 +702,10 @@
   }
 
   img {
-    border-radius: @radius;
+    // Smaller than the standard @radius — each item here renders at
+    // roughly half the width of a standalone image, so the same
+    // corner reads oversized against its finer screenshot detail.
+    border-radius: @radius-btn;
     pointer-events: none;
   }
 }
@@ -875,6 +878,13 @@
   // past the top edge of the media; start both at the row's top.
   .case-study-media-split-text > :first-child {
     margin-top: 0;
+  }
+
+  // A paragraph's own bottom margin would otherwise stack on top of
+  // this row's gap — most visible once stacked, where it doubles the
+  // space between the text and its media below.
+  .case-study-media-split-text > :last-child {
+    margin-bottom: 0;
   }
 }
 
