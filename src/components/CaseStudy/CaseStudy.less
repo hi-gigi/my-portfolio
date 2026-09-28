@@ -601,9 +601,11 @@
 // warm gradient card instead of sitting flush against the page
 // background, echoing how product marketing pages (e.g. Cursor's)
 // frame a UI screenshot rather than dropping it in edge to edge.
+// Square-cornered by design — only the video/image inside rounds its
+// own corners.
 .case-study-media-frame {
   padding: @space-6;
-  border-radius: @radius * 3;
+  border-radius: 0;
   background: radial-gradient(
     120% 100% at 50% -10%,
     color-mix(in srgb, var(--accent) 14%, var(--tonal)) 0%,
@@ -679,7 +681,6 @@
 @media (max-width: @bp-cards-stack) {
   .case-study-media-frame {
     padding: @space-4;
-    border-radius: @radius * 2;
   }
 
   .case-study-media-frame--compact {
@@ -766,9 +767,18 @@
   width: 100%;
   flex: 1 1 auto;
   min-height: 0;
-  padding: 0;
+  // Same inset-panel treatment as `.case-study-media-frame`, at a
+  // smaller scale — each image floats inside its own card instead of
+  // butting straight up against its neighbour with only the grid gap
+  // between them.
+  padding: @space-3;
   border: none;
-  background: none;
+  border-radius: (@radius * 2);
+  background: radial-gradient(
+    120% 100% at 50% -10%,
+    color-mix(in srgb, var(--accent) 14%, var(--tonal)) 0%,
+    color-mix(in srgb, var(--text) 8%, var(--tonal)) 100%
+  );
   font: inherit;
   text-align: inherit;
   cursor: zoom-in;
@@ -798,6 +808,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+@media (max-width: @bp-cards-stack) {
+  .case-study-image-row-item-button {
+    padding: @space-2;
   }
 }
 
@@ -1067,7 +1083,7 @@
   flex: none;
   width: 128px;
   height: 128px;
-  border-radius: @radius * 2;
+  border-radius: (@radius * 2);
   background: var(--tonal);
   display: flex;
   align-items: center;
@@ -1081,7 +1097,7 @@
     width: 88px;
     height: 88px;
     padding: @space-1;
-    border-radius: @radius * 2;
+    border-radius: (@radius * 2);
     background: #fff;
     box-sizing: border-box;
   }
