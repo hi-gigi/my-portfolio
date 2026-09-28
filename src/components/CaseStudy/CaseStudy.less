@@ -642,13 +642,14 @@
 // One-off: these onboarding/upcoming-calendar/notification/live-stream
 // flow screenshots have a transparent background behind blue annotation
 // text and dotted callout lines, authored assuming a white backdrop.
-// The frame's own gradient (dark in dark mode) shows through that
-// transparency and washes out the annotations, so these four get a
-// fixed light panel regardless of site theme instead.
-.case-study-media-frame:has(img[src*="final-onboarding"]),
-.case-study-media-frame:has(img[src*="final-upcoming-calendar"]),
-.case-study-media-frame:has(img[src*="final-notification"]),
-.case-study-media-frame:has(img[src*="final-live-stream"]) {
+// Overriding just the frame div isn't enough — the base `img` rule
+// above paints its own `var(--tonal)` background directly behind the
+// image's transparent pixels (dark in dark mode), on top of the frame.
+// Override that same property on the image itself instead.
+.case-study-body img[src*="final-onboarding"],
+.case-study-body img[src*="final-upcoming-calendar"],
+.case-study-body img[src*="final-notification"],
+.case-study-body img[src*="final-live-stream"] {
   background: @palette-bg-light;
 }
 
