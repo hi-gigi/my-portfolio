@@ -549,7 +549,7 @@
     display: block;
     width: 100%;
     height: auto;
-    border-radius: @radius;
+    border-radius: @radius-image;
     background: var(--tonal);
   }
 }
@@ -658,7 +658,7 @@
   // -frame--compact`) stays sharp-cornered like every other image's,
   // scoped to just the one image that opts into the lightbox.
   img {
-    border-radius: @radius;
+    border-radius: @radius-image;
     pointer-events: none;
   }
 }
@@ -726,7 +726,7 @@
 .case-study-carousel {
   position: relative;
   overflow: hidden;
-  border-radius: @radius;
+  border-radius: @radius-image;
   cursor: zoom-in;
   // Matches this carousel's own screenshots (2928×1858) — revisit if a
   // future carousel's slides need a different ratio.
@@ -1230,7 +1230,7 @@
     max-height: 100%;
     width: auto;
     height: auto;
-    border-radius: @radius;
+    border-radius: @radius-image;
     box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
     cursor: default;
   }
