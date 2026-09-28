@@ -116,9 +116,7 @@
   width: max-content;
 
   @media (prefers-reduced-motion: no-preference) {
-    // Duration scales with the photo count (15 now, was 6) so the
-    // scroll speed — not just the loop length — stays constant.
-    animation: about-marquee-scroll 105s linear infinite;
+    animation: about-marquee-scroll 75s linear infinite;
 
     .about-marquee:hover & {
       animation-play-state: paused;

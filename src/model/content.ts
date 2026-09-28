@@ -173,102 +173,131 @@ export const content: PortfolioContent = {
         ],
       },
     ],
-    // All 16 candidate shots but the one already used above as the
-    // portrait photo (Antelope Canyon — repeating it here would read as
-    // a mistake, not a feature). Ordered in landscape/portrait/portrait
-    // triples: 5 landscape shots vs. 10 portrait ones splits evenly
-    // into that repeating pattern, cyclically (matters because the
-    // strip loops) — never more than 2 portraits in a row anywhere in
-    // the cycle, roughly one landscape breather every 3 frames.
+    // 20 shots (Antelope Canyon is used above as the portrait photo,
+    // so it's excluded here to avoid repeating it). Landscape and
+    // portrait shots are shuffled independently, then interleaved
+    // landscape/portrait/landscape/portrait — a strict alternation
+    // (10 of each) so the strip never runs two of the same
+    // orientation back to back as it loops.
     photos: [
       {
-        src: aboutMarqueePhoto("sierra-sunset.webp"),
-        alt: "The sun setting behind hazy Sierra Nevada ridgelines",
+        src: aboutMarqueePhoto("guilin-river.webp"),
+        alt: "A cormorant fishing bird perched on a bamboo raft, with a stone arch bridge over the river behind it",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("yosemite-half-dome.webp"),
+        alt: "Standing on a forest road in Yosemite with Half Dome rising in the distance",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("wildflower-ridge.webp"),
+        alt: "Yellow wildflowers on a mountainside overlooking a green alpine valley",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("lake-aerial.webp"),
+        alt: "Aerial view of a mountain lake shoreline lined with pine trees",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("tahoe-ebike.webp"),
+        alt: "Standing with an e-bike at a scenic overlook above Lake Tahoe",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("sunset-seagull.webp"),
+        alt: "A seagull flying past the sun setting over the ocean",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("ski-run.webp"),
+        alt: "A snowboarder and skiers descending a run beneath jagged snow-capped peaks",
         width: 933,
         height: 700,
       },
       {
-        src: aboutMarqueePhoto("tahoe-boat.webp"),
-        alt: "A boat anchored in the deep blue water of Lake Tahoe, framed by pine trees",
-        width: 466,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("forest-hike.webp"),
-        alt: "Hiking a sunlit forest trail on a mountainside",
-        width: 559,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("ski-slope.webp"),
-        alt: "Skiers and snowboarders on a snowy run with mountain ridgelines in the distance",
-        width: 933,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("zion-narrows.webp"),
-        alt: "Hiking the Narrows in Zion National Park, wading through the river between canyon walls",
+        src: aboutMarqueePhoto("kalalau-cliffs.webp"),
+        alt: "The jagged green cliffs of Kauai's Kalalau Valley meeting the ocean",
         width: 525,
         height: 700,
       },
       {
-        src: aboutMarqueePhoto("moss-macro.webp"),
-        alt: "Close-up of moss and ferns growing on a fallen tree",
-        width: 525,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("coastal-rocks.webp"),
-        alt: "Waves breaking over rocks along a coastline",
+        src: aboutMarqueePhoto("aerial-coastline.webp"),
+        alt: "Aerial view of waves breaking along a rocky, black-sand coastline",
         width: 1050,
         height: 700,
       },
       {
-        src: aboutMarqueePhoto("redwood-trail.webp"),
-        alt: "Running a sunlit trail through a redwood forest",
-        width: 467,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("tokyo-temple.webp"),
-        alt: "Cherry blossoms hanging over a red temple gate in Tokyo",
-        width: 467,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("burney-falls.webp"),
-        alt: "Water cascading over Burney Falls into a blue pool",
-        width: 1050,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("cherry-blossom.webp"),
-        alt: "Cherry blossoms over a park with snow-capped mountains in the distance",
-        width: 525,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("frosted-trees.webp"),
-        alt: "Frost-covered branches in a misty forest",
-        width: 467,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("green-ridge.webp"),
-        alt: "Hikers on a green wildflower-covered ridge below rocky peaks",
-        width: 1050,
-        height: 700,
-      },
-      {
-        src: aboutMarqueePhoto("sea-turtles.webp"),
+        src: aboutMarqueePhoto("sea-turtles-beach.webp"),
         alt: "Two sea turtles resting on a sandy beach",
         width: 525,
         height: 700,
       },
       {
-        src: aboutMarqueePhoto("tahoe-overlook.webp"),
-        alt: "A stone overlook wall above Lake Tahoe's blue water",
-        width: 341,
+        src: aboutMarqueePhoto("burney-falls.webp"),
+        alt: "Burney Falls cascading over a wide rock face into a blue pool",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("aspen-canopy.webp"),
+        alt: "Looking up through golden aspen trees to a clear blue sky",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("aspen-road.webp"),
+        alt: "Motorcyclists riding a winding road through golden aspen trees",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("zion-narrows.webp"),
+        alt: "Standing in the river through Zion's Narrows, framed by towering canyon walls",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("redwood-light.webp"),
+        alt: "Sunlight filtering through a redwood forest",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("crater-lake.webp"),
+        alt: "Crater Lake's deep blue water beneath rugged mountain ridgelines",
+        width: 467,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("horseshoe-bend.webp"),
+        alt: "Sitting at the edge of Horseshoe Bend, overlooking the Colorado River",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("frosted-trees.webp"),
+        alt: "Frost-covered branches in a foggy forest",
+        width: 467,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("smoky-sunset.webp"),
+        alt: "A hazy red sun setting over silhouetted mountain ridgelines",
+        width: 933,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("tulip-garden.webp"),
+        alt: "Rows of orange tulips leading up a lawn toward a mansion",
+        width: 466,
         height: 700,
       },
     ],
