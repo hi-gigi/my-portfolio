@@ -8,6 +8,7 @@
 
 import type { CaseStudyBlock, CaseStudyContent } from "../types";
 import { aiSearch } from "./ai-search";
+import { distributedAdminControls } from "./distributed-admin-controls";
 import { documentDiscovery } from "./document-discovery";
 import { hasbroPulse } from "./hasbro-pulse";
 import { ibmSolutionGateway } from "./ibm-solution-gateway";
@@ -23,6 +24,7 @@ export const caseStudies: Record<string, CaseStudyContent> = {
   [aiSearch.id]: aiSearch,
   [documentDiscovery.id]: documentDiscovery,
   [licenseRequestJustification.id]: licenseRequestJustification,
+  [distributedAdminControls.id]: distributedAdminControls,
   [hasbroPulse.id]: hasbroPulse,
   [ibmSolutionGateway.id]: ibmSolutionGateway,
 };
