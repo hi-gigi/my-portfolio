@@ -24,11 +24,18 @@
 
 .about-photo {
   width: 100%;
-  aspect-ratio: 388 / 628;
+  // Stretches to match `.about-copy`'s height — the grid row's height is
+  // set by the (usually taller) text column, and this fills it rather
+  // than sizing off its own aspect ratio.
+  height: 100%;
   object-fit: cover;
-  border-radius: @radius-photo;
+  border-radius: @radius;
 
   @media (max-width: @bp-hero-stack) {
+    // Stacked layout has no taller sibling to match, so fall back to the
+    // photo's own aspect ratio instead of an indeterminate 100%.
+    height: auto;
+    aspect-ratio: 760 / 1140;
     max-width: 280px;
   }
 }

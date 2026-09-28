@@ -154,9 +154,7 @@ export const content: PortfolioContent = {
       height: 1140,
     },
     intro: [
-      "Currently a ",
-      { text: "Senior UX Designer II at Lucid Software", href: "https://lucid.co" },
-      ", with 8+ years of experience turning complex, technical problems into scalable B2B enterprise solutions across AI-powered search, enterprise platforms, and growth. Previously interned at IBM and Hasbro.",
+      "Currently a Senior UX Designer II at Lucid Software, with 8+ years of experience turning complex, technical problems into scalable B2B enterprise solutions spanning AI-powered workflows, enterprise platforms, developer and internal tools, and growth. Previously interned at IBM and Hasbro, and hold a Master's in Human-Computer Interaction from Indiana University Bloomington.",
     ],
     sections: [
       {
