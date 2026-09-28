@@ -24,6 +24,27 @@ newest date first; within a date, newest entry first.
 
 ---
 
+## 2026-09-27
+
+### Where things left off
+
+- **About section**: photo is wired up (the canyon shot in
+  `public/about/photo.webp`, stretched to match the copy column's
+  height), copy is polished. Still want to **add more photos** here —
+  candidate shots the user dropped in for review are backed up at
+  `.image-backup/about-candidates/` (outside `public/`, so nothing
+  extra is shipping live) if any of those are worth pulling back in.
+- **Hasbro Pulse case study — image layout**: needs a visible margin
+  added around/between the images; currently reads too tight.
+- **Hasbro Pulse case study — "Other Flows and Features"**
+  (`src/model/caseStudies/hasbro-pulse.ts:648`): the subsubheading
+  exists but has no content under it — no task/strategy list, no
+  image — before the page jumps straight into "About What I've
+  Learned". Images for this subsection are missing and need to be
+  added.
+
+---
+
 ## 2026-09-11
 
 ### "More work" section at the bottom of case study pages
