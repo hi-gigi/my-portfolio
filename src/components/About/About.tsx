@@ -1,4 +1,5 @@
 import type { AboutContent } from "@/model/types";
+import { PhotoMarquee } from "./PhotoMarquee";
 import "./About.less";
 
 export function About({
@@ -8,6 +9,7 @@ export function About({
   photo,
   intro,
   sections,
+  photos,
 }: AboutContent) {
   return (
     <section id="about" className="about">
@@ -58,6 +60,8 @@ export function About({
           ))}
         </div>
       </div>
+
+      <PhotoMarquee photos={photos} />
     </section>
   );
 }

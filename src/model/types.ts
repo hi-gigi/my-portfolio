@@ -124,6 +124,8 @@ export interface AboutContent {
   intro: Array<string | { text: string; href: string }>;
   /** Skimmable sub-sections below the intro — "How I Work", "Outside of Work", etc. */
   sections: AboutSection[];
+  /** Full-bleed auto-scrolling photo strip below the intro/sections. */
+  photos: Array<{ src: string; alt: string; width: number; height: number }>;
 }
 
 export interface SocialLink {

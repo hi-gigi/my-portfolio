@@ -15,6 +15,8 @@ const EMAIL = "mailto:hizhuojiaqi@gmail.com";
 const RESUME_URL = `${import.meta.env.BASE_URL}jiaqi-zhuo-resume.pdf`;
 const PHOTO_URL = `${import.meta.env.BASE_URL}jiaqi.webp`;
 const ABOUT_PHOTO_URL = `${import.meta.env.BASE_URL}about/photo.webp`;
+const aboutMarqueePhoto = (file: string) =>
+  `${import.meta.env.BASE_URL}about/marquee/${file}`;
 const thumb = (file: string) => `${import.meta.env.BASE_URL}thumbs/${file}`;
 
 export const content: PortfolioContent = {
@@ -169,6 +171,105 @@ export const content: PortfolioContent = {
         body: [
           "I'm happiest outdoors — hiking, skiing, or on the tennis court — and often behind a lens, capturing the beauty of nature and the small moments of everyday life.",
         ],
+      },
+    ],
+    // All 16 candidate shots but the one already used above as the
+    // portrait photo (Antelope Canyon — repeating it here would read as
+    // a mistake, not a feature). Ordered in landscape/portrait/portrait
+    // triples: 5 landscape shots vs. 10 portrait ones splits evenly
+    // into that repeating pattern, cyclically (matters because the
+    // strip loops) — never more than 2 portraits in a row anywhere in
+    // the cycle, roughly one landscape breather every 3 frames.
+    photos: [
+      {
+        src: aboutMarqueePhoto("sierra-sunset.webp"),
+        alt: "The sun setting behind hazy Sierra Nevada ridgelines",
+        width: 933,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("tahoe-boat.webp"),
+        alt: "A boat anchored in the deep blue water of Lake Tahoe, framed by pine trees",
+        width: 466,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("forest-hike.webp"),
+        alt: "Hiking a sunlit forest trail on a mountainside",
+        width: 559,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("ski-slope.webp"),
+        alt: "Skiers and snowboarders on a snowy run with mountain ridgelines in the distance",
+        width: 933,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("zion-narrows.webp"),
+        alt: "Hiking the Narrows in Zion National Park, wading through the river between canyon walls",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("moss-macro.webp"),
+        alt: "Close-up of moss and ferns growing on a fallen tree",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("coastal-rocks.webp"),
+        alt: "Waves breaking over rocks along a coastline",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("redwood-trail.webp"),
+        alt: "Running a sunlit trail through a redwood forest",
+        width: 467,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("tokyo-temple.webp"),
+        alt: "Cherry blossoms hanging over a red temple gate in Tokyo",
+        width: 467,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("burney-falls.webp"),
+        alt: "Water cascading over Burney Falls into a blue pool",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("cherry-blossom.webp"),
+        alt: "Cherry blossoms over a park with snow-capped mountains in the distance",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("frosted-trees.webp"),
+        alt: "Frost-covered branches in a misty forest",
+        width: 467,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("green-ridge.webp"),
+        alt: "Hikers on a green wildflower-covered ridge below rocky peaks",
+        width: 1050,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("sea-turtles.webp"),
+        alt: "Two sea turtles resting on a sandy beach",
+        width: 525,
+        height: 700,
+      },
+      {
+        src: aboutMarqueePhoto("tahoe-overlook.webp"),
+        alt: "A stone overlook wall above Lake Tahoe's blue water",
+        width: 341,
+        height: 700,
       },
     ],
   },

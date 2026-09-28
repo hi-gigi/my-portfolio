@@ -100,3 +100,60 @@
 .about-section p + p {
   margin-top: @space-4;
 }
+
+// Full-bleed break-out of `.about`'s own centred/padded column (the
+// global `main > section` rule caps width and adds inline padding) —
+// same `100vw` trick as the header/footer's outer wrappers.
+.about-marquee {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: @space-8;
+  overflow: hidden;
+}
+
+.about-marquee-track {
+  display: flex;
+  width: max-content;
+
+  @media (prefers-reduced-motion: no-preference) {
+    // Duration scales with the photo count (15 now, was 6) so the
+    // scroll speed — not just the loop length — stays constant.
+    animation: about-marquee-scroll 105s linear infinite;
+
+    .about-marquee:hover & {
+      animation-play-state: paused;
+    }
+  }
+}
+
+// Reduced motion: no scroll animation, and the row becomes a normal
+// horizontally-scrollable strip (drag/swipe/trackpad) instead of static
+// off-screen overflow — the duplicated second half is still hidden from
+// the tab order and assistive tech (see the component), so nothing here
+// needs its own visibility rule.
+@media (prefers-reduced-motion: reduce) {
+  .about-marquee {
+    overflow-x: auto;
+  }
+}
+
+.about-marquee-photo {
+  display: block;
+  flex: none;
+  height: clamp(160px, 22vw, 320px);
+  width: auto;
+  // Spacing via margin, not the row's `gap` — see the component
+  // comment: this is what keeps the two back-to-back copies exactly
+  // equal-width halves so `translateX(-50%)` loops seamlessly.
+  margin-right: @space-2;
+  border-radius: @radius-btn;
+}
+
+@keyframes about-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
