@@ -639,6 +639,19 @@
   }
 }
 
+// One-off: these onboarding/upcoming-calendar/notification/live-stream
+// flow screenshots have a transparent background behind blue annotation
+// text and dotted callout lines, authored assuming a white backdrop.
+// The frame's own gradient (dark in dark mode) shows through that
+// transparency and washes out the annotations, so these four get a
+// fixed light panel regardless of site theme instead.
+.case-study-media-frame:has(img[src*="final-onboarding"]),
+.case-study-media-frame:has(img[src*="final-upcoming-calendar"]),
+.case-study-media-frame:has(img[src*="final-notification"]),
+.case-study-media-frame:has(img[src*="final-live-stream"]) {
+  background: @palette-bg-light;
+}
+
 // Everything but the lead overview video: same panel, tighter inset.
 // Images round their own corners (below, via
 // .case-study-media-frame-button); a compact video gets a modest
@@ -934,6 +947,20 @@
     grid-template-columns: 1fr;
     gap: @space-5;
   }
+}
+
+// Reserve each pair's real aspect ratio up front (rather than leaving
+// height to whichever image decodes first) so the two panels in a
+// paired image+quote/persona column never flash a mismatched height
+// while loading.
+.case-study-columns img[src*="quote-icon-marvel"],
+.case-study-columns img[src*="quote-icon-transformers"] {
+  aspect-ratio: 1080 / 859;
+}
+
+.case-study-columns img[src*="persona-hardcore-fan"],
+.case-study-columns img[src*="persona-casual-fan"] {
+  aspect-ratio: 1 / 1;
 }
 
 // Text beside its screenshot, within the same reading column as

@@ -3,23 +3,38 @@
 .about {
   padding-bottom: @space-9;
 
-  // "About" reads as an eyebrow above the name — sit it close.
+  // "About" reads as an eyebrow above the layout — sit it close.
   .section-title {
-    margin-bottom: @space-3;
+    margin-bottom: @space-6;
   }
+}
 
-  p {
-    margin: 0;
-    max-width: 60ch;
+// Photo on the left, copy on the right; photo moves above the copy on
+// narrow screens, same stacking point as the hero.
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 320px) minmax(0, 1fr);
+  column-gap: @space-7;
+
+  @media (max-width: @bp-hero-stack) {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: @space-5;
   }
+}
 
-  p + p {
-    margin-top: @space-4;
+.about-photo {
+  width: 100%;
+  aspect-ratio: 388 / 628;
+  object-fit: cover;
+  border-radius: @radius-photo;
+
+  @media (max-width: @bp-hero-stack) {
+    max-width: 280px;
   }
 }
 
 .about-name {
-  margin: 0 0 @space-5;
+  margin: 0 0 @space-4;
   font-size: @text-lg;
   font-weight: @weight-semibold;
 }
@@ -30,4 +45,51 @@
   font-size: @text-sm;
   font-weight: @weight-body;
   color: var(--muted);
+}
+
+.about-intro {
+  margin: 0 0 @space-6;
+  max-width: 60ch;
+
+  // Same treatment as a case-study body link — coral text, underline
+  // draws in from the left on hover/focus.
+  a {
+    color: var(--coral-text);
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 0% 1px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: background-size @ease-slow, background-position @ease-slow;
+
+    &:hover,
+    &:focus-visible {
+      background-position: 0% 100%;
+      background-size: 100% 1px;
+    }
+  }
+}
+
+.about-section + .about-section {
+  margin-top: @space-6;
+}
+
+.about-heading {
+  margin: 0 0 @space-3;
+  font-size: @text-md;
+  font-weight: @weight-semibold;
+  // Same dusty rose as a case-study h3 — a subheading, not a peer of
+  // the page's own section title.
+  color: color-mix(in srgb, var(--accent-alt) 30%, var(--muted));
+}
+
+.about-section p {
+  margin: 0;
+  max-width: 60ch;
+}
+
+.about-section p + p {
+  margin-top: @space-4;
 }

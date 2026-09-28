@@ -102,14 +102,28 @@ export interface WorkContent {
   groups: WorkGroup[];
 }
 
+/** One skimmable heading + its paragraphs, e.g. "How I Work". */
+export interface AboutSection {
+  heading: string;
+  body: string[];
+}
+
 export interface AboutContent {
   title: string;
-  /** Rendered as "I'm {name}" above the body. */
+  /** Rendered as "I'm {name}" above the intro. */
   name: string;
   /** Phonetic hint shown in muted text after the name, e.g. "/JYAH-chee/". */
   pronunciation?: string;
-  /** One entry per rendered paragraph. */
-  body: string[];
+  photo: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  /** Lead paragraph under the name; a `{ text, href }` part renders as an inline link (e.g. current employer). */
+  intro: Array<string | { text: string; href: string }>;
+  /** Skimmable sub-sections below the intro — "How I Work", "Outside of Work", etc. */
+  sections: AboutSection[];
 }
 
 export interface SocialLink {
@@ -242,12 +256,19 @@ export type CaseStudyBlock =
    */
   | { kind: "carousel"; items: { src?: string; alt: string; caption?: string }[] }
   /**
-   * Side-by-side content columns (e.g. paired callouts) once there's
-   * room, stacking to one column below `@bp-columns`. Each entry is
-   * the blocks for one column — most commonly a subsubheading +
-   * paragraph pair.
+   * Side-by-side content columns (e.g. paired callouts, or an image
+   * stacked with its own text) once there's room, stacking to one
+   * column below `@bp-columns`. Each entry is the blocks for one
+   * column, rendered top to bottom — most commonly a subsubheading +
+   * paragraph pair, or an image followed by one.
    */
-  | { kind: "columns"; items: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[][] }
+  | {
+      kind: "columns";
+      items: Extract<
+        CaseStudyBlock,
+        { kind: "subsubheading" | "paragraph" | "list" | "image" | "quote-list" }
+      >[][];
+    }
   /**
    * Text (`content`: subsubheading/paragraph blocks) beside a single
    * image, video, or image-row (`media`) on wide screens; stacks

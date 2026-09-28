@@ -26,6 +26,12 @@ export const hasbroPulse: CaseStudyContent = {
         "People will find some of the best product offerings and experiences from the brands they love, a glimpse at more behind-the-scenes material and insider details that they can’t get anywhere else.",
       ],
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-pulse-website.png`,
+      alt: "The current Hasbro Pulse website, showing a Marvel Legends product page",
+      caption: "Click to view the current Pulse website",
+    },
     { kind: "subheading", text: "Timeline" },
     {
       kind: "list",
@@ -33,18 +39,29 @@ export const hasbroPulse: CaseStudyContent = {
         { label: "May 2019 – August 2019", text: "11 weeks as a UX Design Intern on Hasbro's Digital Operations Team" },
       ],
     },
-    { kind: "subheading", text: "My Team" },
     {
-      kind: "paragraph",
-      text: "I worked on Digital Operations Team at Hasbro for 11 weeks (From May 2019 to August 2019) as a UX Design Intern.",
-    },
-    {
-      kind: "paragraph",
-      text: "As the only UX designer on the team, I was responsible for both user research and product design. I also collaborated very closely with a product manager, a scrum master, a visual designer (Icon + Motion Design), the development team, and other Brand Teams.",
-    },
-    {
-      kind: "paragraph",
-      text: "We followed an agile development approach to plan, develop, and ship our product.",
+      kind: "media-split",
+      content: [
+        { kind: "subheading", text: "My Team" },
+        {
+          kind: "paragraph",
+          text: "I worked on Digital Operations Team at Hasbro for 11 weeks (From May 2019 to August 2019) as a UX Design Intern.",
+        },
+        {
+          kind: "paragraph",
+          text: "As the only UX designer on the team, I was responsible for both user research and product design. I also collaborated very closely with a product manager, a scrum master, a visual designer (Icon + Motion Design), the development team, and other Brand Teams.",
+        },
+        {
+          kind: "paragraph",
+          text: "We followed an agile development approach to plan, develop, and ship our product.",
+        },
+      ],
+      media: {
+        kind: "image",
+        src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/hero-team-photo.jpeg`,
+        alt: "The Digital Operations Team at Hasbro, posing together in the office",
+        caption: "Digital Operations Team @ Hasbro",
+      },
     },
     { kind: "subheading", text: "My Contribution" },
     {
@@ -63,16 +80,40 @@ export const hasbroPulse: CaseStudyContent = {
       text: "Hasbro Pulse was viewed as an Online Toy Shop where fans only visit occasionally to get the products they want.",
     },
     {
-      kind: "list",
+      kind: "columns",
       items: [
-        {
-          label: "Voice from a Marvel fan",
-          text: "“I get most of the toy information from social media, and Hasbro Pulse is usually just the place for me to make the purchase.”",
-        },
-        {
-          label: "Voice from a Transformers fan",
-          text: "“I only visit Pulse 3-4 times a year, usually after fan events like Comic-Con, Toy Fair… for exclusive products I cannot get elsewhere.”",
-        },
+        [
+          {
+            kind: "image",
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/quote-icon-marvel.png`,
+            alt: "Illustration of a fan following a brand's social media feed",
+          },
+          {
+            kind: "quote-list",
+            items: [
+              {
+                text: "I get most of the toy information from social media, and Hasbro Pulse is usually just the place for me to make the purchase.",
+                attribution: "Voice from a Marvel fan",
+              },
+            ],
+          },
+        ],
+        [
+          {
+            kind: "image",
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/quote-icon-transformers.png`,
+            alt: "Illustration of a fan seeking out exclusive products on the Pulse website",
+          },
+          {
+            kind: "quote-list",
+            items: [
+              {
+                text: "I only visit Pulse 3-4 times a year, usually after fan events like Comic-Con, Toy Fair… for exclusive products I cannot get elsewhere.",
+                attribution: "Voice from a Transformers fan",
+              },
+            ],
+          },
+        ],
       ],
     },
     { kind: "subheading", text: "Problem Statement" },
@@ -101,6 +142,26 @@ export const hasbroPulse: CaseStudyContent = {
         "Notifying fans for the latest updates from the brands they like",
       ],
     },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-enrich.png`,
+          alt: "Icon representing enriching the content type",
+          caption: 'Enriching the content type - deliver "Content to Commerce"',
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-curate.png`,
+          alt: "Icon representing curating content for each individual",
+          caption: "Curating the content presented to each individual",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-notify.png`,
+          alt: "Icon representing notifying fans of the latest updates",
+          caption: "Notifying fans for the latest updates from the brands they like",
+        },
+      ],
+    },
 
     { kind: "subheading", text: "What solution we came up with?" },
     {
@@ -115,25 +176,78 @@ export const hasbroPulse: CaseStudyContent = {
       kind: "paragraph",
       text: "And since some of the new features were very content-driven, I communicated with different brand teams to see the content types that were currently available (on Pulse Website and on social medias) and their future plans for the content generation. Besides, I also generated templates for different content types to ensure consistency of the layouts on the platform.",
     },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/solution-onboarding-preview.png`,
+          alt: "Onboarding screens for setting brand preferences and viewing a personalized news feed",
+          caption: "Brand preferences & personalized news feed",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/solution-features-preview.png`,
+          alt: "Preview of the Upcoming Calendar, My List, Notification Hub, and Live Stream features",
+          caption: "Highlighted features on the app",
+        },
+      ],
+    },
 
     { kind: "subheading", text: "What impacts the solution would bring?" },
-    { kind: "subsubheading", text: "Provide exclusive content fans cannot get anywhere else." },
     {
-      kind: "paragraph",
-      text: "Enrich the content types on Pulse Mobile App by providing upcoming calendar, live stream feature, and behind-the-scene stories. Fans can get exclusive content they crave.",
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-diagram.png`,
+      alt: "Diagram mapping how brand teams' content flows through Hasbro Pulse Mobile to reach fans",
+      caption: "How the three strategies connect brand teams to fans",
     },
-    { kind: "subsubheading", text: "Improve the efficiency of getting relevant information." },
     {
-      kind: "paragraph",
-      text: "Curate the information presented to different users according to their own preferences and providing them with the freedom to customize their notification settings.",
+      kind: "icon-split",
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-exclusive-content.png`,
+      content: [
+        { kind: "subsubheading", text: "Provide exclusive content fans cannot get anywhere else." },
+        {
+          kind: "paragraph",
+          text: "Enrich the content types on Pulse Mobile App by providing upcoming calendar, live stream feature, and behind-the-scene stories. Fans can get exclusive content they crave.",
+        },
+      ],
     },
-    { kind: "subsubheading", text: "Adopt new channel to increase fan engagement." },
     {
-      kind: "paragraph",
-      text: "By taking the advantages of the mobile platform, fans could stay informed and keep track of the products/brands they are interested in by enabling in-app notification.",
+      kind: "icon-split",
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-efficiency.png`,
+      content: [
+        { kind: "subsubheading", text: "Improve the efficiency of getting relevant information." },
+        {
+          kind: "paragraph",
+          text: "Curate the information presented to different users according to their own preferences and providing them with the freedom to customize their notification settings.",
+        },
+      ],
+    },
+    {
+      kind: "icon-split",
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-engagement.png`,
+      content: [
+        { kind: "subsubheading", text: "Adopt new channel to increase fan engagement." },
+        {
+          kind: "paragraph",
+          text: "By taking the advantages of the mobile platform, fans could stay informed and keep track of the products/brands they are interested in by enabling in-app notification.",
+        },
+      ],
     },
 
     { kind: "heading", id: "research", text: "Research", navLabel: "Research" },
+    { kind: "subheading", text: "Process Overview" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/design-process-overview.png`,
+      alt: "Five-step design process: Problem Space Exploration, Opportunities Discovery, Design Scope Definition, Concept Generation and Evaluation, Design Finalization and Delivery",
+      caption: "Process overview",
+    },
+    { kind: "subheading", text: "Project Prompt" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/project-prompt-keywords.png`,
+      alt: "Keywords extracted from the project prompt: Fan Community, Mobile Commerce for Shopify, Curated View of Content, Slick UI",
+      caption: "Extracted keywords from the prompt",
+    },
     { kind: "subheading", text: "Questions I asked" },
     {
       kind: "paragraph",
@@ -149,42 +263,66 @@ export const hasbroPulse: CaseStudyContent = {
     },
 
     { kind: "subheading", text: "Methods I applied" },
-    { kind: "subsubheading", text: "Stakeholder Meetings" },
     {
-      kind: "paragraph",
-      text: "I expected to have a better understanding on the company’s vision of Pulse Mobile App by talking to product management team and other brand teams.",
-    },
-    { kind: "paragraph", text: "And I was also trying to figure out the following questions:" },
-    {
-      kind: "list",
-      items: [
-        "What are the metrics we will use to measure the success of a fan community?",
-        "What are the resources we could utilize in order to build a better fan community?",
+      kind: "icon-split",
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-stakeholder-meetings.png`,
+      content: [
+        { kind: "subsubheading", text: "Stakeholder Meetings" },
+        {
+          kind: "paragraph",
+          text: "I expected to have a better understanding on the company’s vision of Pulse Mobile App by talking to product management team and other brand teams.",
+        },
+        { kind: "paragraph", text: "And I was also trying to figure out the following questions:" },
+        {
+          kind: "list",
+          items: [
+            "What are the metrics we will use to measure the success of a fan community?",
+            "What are the resources we could utilize in order to build a better fan community?",
+          ],
+        },
       ],
     },
-    { kind: "subsubheading", text: "Benchmarking" },
     {
-      kind: "paragraph",
-      text: "I conducted competitive research by analyzing 7 other brands’ mobile applications, with the aim to...",
-    },
-    {
-      kind: "list",
-      items: [
-        "Figure out how other brands define their own fan communities",
-        "Explore other brands’ strategies of crafting an engaging fan community experience for their loyal customers",
-        "Get some inspirations for the design of Pulse Mobile App",
+      kind: "icon-split",
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-benchmarking.png`,
+      content: [
+        { kind: "subsubheading", text: "Benchmarking" },
+        {
+          kind: "paragraph",
+          text: "I conducted competitive research by analyzing 7 other brands’ mobile applications, with the aim to...",
+        },
+        {
+          kind: "list",
+          items: [
+            "Figure out how other brands define their own fan communities",
+            "Explore other brands’ strategies of crafting an engaging fan community experience for their loyal customers",
+            "Get some inspirations for the design of Pulse Mobile App",
+          ],
+        },
       ],
     },
-    { kind: "subsubheading", text: "Internal Fan Interview" },
     {
-      kind: "paragraph",
-      text: "In order to get familiar with fan’s behavior and mental model, I conducted 1-on-1 semi-structured interviews with 7 members from the internal fan community. The questions were mainly focus on these two aspects:",
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/benchmarking-competitor-apps.png`,
+      alt: "Competitive analysis of sneaker and streetwear apps, annotated with notes on their upcoming-release and notification features",
+      caption: "Competitors",
     },
     {
-      kind: "list",
-      items: [
-        "Fan’s current sources of information – where do they get the latest news from the brand they like?",
-        "Fan’s impression on Pulse website – how do they think about the Pulse website?",
+      kind: "icon-split",
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-internal-interview.png`,
+      content: [
+        { kind: "subsubheading", text: "Internal Fan Interview" },
+        {
+          kind: "paragraph",
+          text: "In order to get familiar with fan’s behavior and mental model, I conducted 1-on-1 semi-structured interviews with 7 members from the internal fan community. The questions were mainly focus on these two aspects:",
+        },
+        {
+          kind: "list",
+          items: [
+            "Fan’s current sources of information – where do they get the latest news from the brand they like?",
+            "Fan’s impression on Pulse website – how do they think about the Pulse website?",
+          ],
+        },
       ],
     },
 
@@ -216,6 +354,21 @@ export const hasbroPulse: CaseStudyContent = {
       kind: "paragraph",
       text: "So, where do fans currently get the latest information from the brand they like? From the user interviews, I found there were 3 main sources of information: Social Media, Brand Website, and Google Search.",
     },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-sources-of-information.png`,
+          alt: "Diagram of the three main sources fans use to find information: social media, official websites, and Google search",
+          caption: "Current sources of information",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-content-mostly-toyshop.png`,
+          alt: "Sketch showing that 80% of the current Pulse website's content is about the Toy Shop, versus 20% other information",
+          caption: "Problems with current fan experience",
+        },
+      ],
+    },
     { kind: "subsubheading", text: "Information is now scattered everywhere" },
     {
       kind: "paragraph",
@@ -237,33 +390,52 @@ export const hasbroPulse: CaseStudyContent = {
       kind: "paragraph",
       text: "By talking to Hasbro fans from internal fan community, I defined two main types of users based on how passionate they are about the brand they follow. And I also discovered some differences between the behavioral patterns and the goals of these two types of people.",
     },
-    { kind: "subsubheading", text: "Hardcore Fan" },
     {
-      kind: "paragraph",
-      text: "“When there is a new product release from the brand I like, I want to be informed immediately so that I could buy it to enrich my collectibles before it’s gone.”",
-      emphasis: true,
-    },
-    {
-      kind: "list",
+      kind: "columns",
       items: [
-        "Keep Updated with the latest news",
-        "Keep track of the collectibles he wants",
-        "Get exclusives before they are gone",
-        "Research collectibles",
-      ],
-    },
-    { kind: "subsubheading", text: "Casual Fan" },
-    {
-      kind: "paragraph",
-      text: "“When I read a new Marvel comics, I want to search for peripheral products and read reviews so that I could get high-quality character-inspired action figures.”",
-      emphasis: true,
-    },
-    {
-      kind: "list",
-      items: [
-        "Research collectibles",
-        "Keep track of the collectibles she wants",
-        "Keep Updated with the latest news",
+        [
+          {
+            kind: "image",
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/persona-hardcore-fan.png`,
+            alt: "Illustration representing the Hardcore Fan persona",
+          },
+          { kind: "subsubheading", text: "Hardcore Fan" },
+          {
+            kind: "paragraph",
+            text: "“When there is a new product release from the brand I like, I want to be informed immediately so that I could buy it to enrich my collectibles before it’s gone.”",
+            emphasis: true,
+          },
+          {
+            kind: "list",
+            items: [
+              "Keep Updated with the latest news",
+              "Keep track of the collectibles he wants",
+              "Get exclusives before they are gone",
+              "Research collectibles",
+            ],
+          },
+        ],
+        [
+          {
+            kind: "image",
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/persona-casual-fan.png`,
+            alt: "Illustration representing the Casual Fan persona",
+          },
+          { kind: "subsubheading", text: "Casual Fan" },
+          {
+            kind: "paragraph",
+            text: "“When I read a new Marvel comics, I want to search for peripheral products and read reviews so that I could get high-quality character-inspired action figures.”",
+            emphasis: true,
+          },
+          {
+            kind: "list",
+            items: [
+              "Research collectibles",
+              "Keep track of the collectibles she wants",
+              "Keep Updated with the latest news",
+            ],
+          },
+        ],
       ],
     },
 
@@ -293,10 +465,22 @@ export const hasbroPulse: CaseStudyContent = {
       text: "We want our fans to distinguish different content types at the first glance, and also, be able to take some quick actions without clicking into the detail page.",
     },
     { kind: "paragraph", text: "Keywords: Distinguishable, Shareable" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/card-format-options.png`,
+      alt: "Five card format options explored for the product card, labeled A through E with pros and cons noted",
+      caption: "Different options & iterations",
+    },
     { kind: "subsubheading", text: "Final Decision" },
     {
       kind: "paragraph",
       text: "The above five options of the Product Card were presented to other members on the internal meeting. Based on the readability of the product availability status and the consistency among cards for different content types, we decided to choose option C. And the final design of cards for different content types are shown as below.",
+    },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/card-format-final.png`,
+      alt: "Final card designs for the Product Card and the Story, Product Collection, and Activity Post cards",
+      caption: "Final card design",
     },
 
     { kind: "subheading", text: "Explore the location of Upcoming Calendar" },
@@ -310,6 +494,12 @@ export const hasbroPulse: CaseStudyContent = {
       text: "We view Upcoming Calendar as an important feature that could attract fans to come back constantly, so we want to put it at a visible location in the app.",
     },
     { kind: "paragraph", text: "Keywords: Discoverability" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/upcoming-calendar-iterations.png`,
+      alt: "Two iterations of the Upcoming Calendar's location — first on the Product Catalog page, then moved to the home page after usability testing",
+      caption: "Iterations",
+    },
 
     { kind: "subheading", text: "Explore the entrance of Live Stream Feature" },
     { kind: "subsubheading", text: "Design Consideration & Principle" },
@@ -326,6 +516,12 @@ export const hasbroPulse: CaseStudyContent = {
       text: "I explored the ways how users can access the live stream feature and narrowed to the following two options. I tested both of the options in the usability testing.",
     },
     { kind: "paragraph", text: "Keywords: Discoverability, Intuitiveness" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/live-stream-entrance-options.png`,
+      alt: "Two options tested for the Live Stream entrance — a swipe-down gesture on the feed versus a dedicated entrance icon",
+      caption: "Different options & iterations",
+    },
     { kind: "subsubheading", text: "Final Decision" },
     {
       kind: "paragraph",
@@ -334,6 +530,54 @@ export const hasbroPulse: CaseStudyContent = {
     {
       kind: "paragraph",
       text: "By considering the discoverability and the intuitiveness of the Live Stream feature, we decided to set a specific entrance for it. And I also designed the Live Stream page by considering the large volume of archived videos in the future.",
+    },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/live-stream-entrance-final.png`,
+      alt: "Final Live Stream entrance and page, organized into Live Now, Upcoming Live Streams, and Archived Live Streams",
+      caption: "Final entrance & Live Stream page",
+    },
+
+    { kind: "subheading", text: "Process Documentations and Photos" },
+    {
+      kind: "carousel",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-inspiration.png`,
+          alt: "Annotated screenshots of competitor apps used for inspiration",
+          caption: "Finding inspiration from exemplars on the market",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-lofi-wireframes.png`,
+          alt: "Low-fidelity wireframes prepared for user testing",
+          caption: "Low-fi wireframes for user testing",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-feature-exploration.png`,
+          alt: "Sketches exploring new feature ideas for the app",
+          caption: "New feature exploration",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-interview-scripts.png`,
+          alt: "Scripts written for fan interviews and usability testing sessions",
+          caption: "Scripts for fan interview and testing",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-testing-session-1.png`,
+          alt: "Photo from the first user testing session with an internal fan",
+          caption: "User testing session #1",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-testing-session-2.png`,
+          alt: "Photo from the second user testing session with an internal fan",
+          caption: "User testing session #2",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-affinity-diagram.png`,
+          alt: "Affinity diagram synthesizing interview data on sticky notes",
+          caption: "Interview data synthesis - Affinity Diagram",
+        },
+      ],
     },
 
     { kind: "heading", id: "solution", text: "Final Design", navLabel: "Solution" },
@@ -344,6 +588,11 @@ export const hasbroPulse: CaseStudyContent = {
         { label: "Tasks", text: "Create Account / Log In / Continue as a guest, Set Preferences" },
         { label: "Design Strategies", text: "Curate/Personalize the content presented to each individual" },
       ],
+    },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-onboarding.png`,
+      alt: "Onboarding flow: welcome screen, account creation, brand preference selection, and the personalized feed",
     },
     { kind: "subsubheading", text: "Upcoming Calendar" },
     {
@@ -356,6 +605,11 @@ export const hasbroPulse: CaseStudyContent = {
         { label: "Design Strategies", text: "Enrich the content type, Stay in the know with notification" },
       ],
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-upcoming-calendar.png`,
+      alt: "Upcoming Calendar flow: browsing upcoming products, marking interest, setting notification preferences, and checking My Upcoming list",
+    },
     { kind: "subsubheading", text: "Notification" },
     {
       kind: "list",
@@ -366,6 +620,11 @@ export const hasbroPulse: CaseStudyContent = {
           text: "Stay in the know with notification, Best utilize the advantage of mobile platform",
         },
       ],
+    },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-notification.png`,
+      alt: "Notification flow: the inbox showing read and unread messages, and the notification preference settings",
     },
     { kind: "subsubheading", text: "Live Stream" },
     {
@@ -380,6 +639,11 @@ export const hasbroPulse: CaseStudyContent = {
           text: "Enrich the content type, Boost sales, Increase fan engagement and interaction",
         },
       ],
+    },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-live-stream.png`,
+      alt: "Live Stream flow: accessing the feature, browsing live and upcoming streams, and finding video-related products",
     },
     { kind: "subsubheading", text: "Other Flows and Features" },
 

@@ -14,6 +14,7 @@ const EMAIL = "mailto:hizhuojiaqi@gmail.com";
 // thumbnails at `public/thumbs/<id>.{png,jpg}`.
 const RESUME_URL = `${import.meta.env.BASE_URL}jiaqi-zhuo-resume.pdf`;
 const PHOTO_URL = `${import.meta.env.BASE_URL}jiaqi.webp`;
+const ABOUT_PHOTO_URL = `${import.meta.env.BASE_URL}about/photo.webp`;
 const thumb = (file: string) => `${import.meta.env.BASE_URL}thumbs/${file}`;
 
 export const content: PortfolioContent = {
@@ -146,11 +147,31 @@ export const content: PortfolioContent = {
     title: "About",
     name: "Jiaqi",
     pronunciation: "/JYAH-chee/",
-    body: [
-      "I'm most at home in ambiguity, and comfortable designing in technical, complex domains where the right answer isn't obvious yet.",
-      "I believe design is about solving problems — shifting how people work and live. I enjoy turning complexity into clarity and putting technology to use in inventive ways.",
-      "AI is part of how I think now, not just what I design for. I use it as a thinking partner — a designer who also builds with AI.",
-      "Outside of work, I'm happiest outdoors — hiking, skiing, or on the tennis court — and often behind a lens, capturing the beauty of nature and the small moments of everyday life.",
+    photo: {
+      src: ABOUT_PHOTO_URL,
+      alt: "Jiaqi Zhuo standing in a red-rock slot canyon",
+      width: 760,
+      height: 1140,
+    },
+    intro: [
+      "Currently a ",
+      { text: "Senior UX Designer II at Lucid Software", href: "https://lucid.co" },
+      ", with 8+ years of experience turning complex, technical problems into scalable B2B enterprise solutions across AI-powered search, enterprise platforms, and growth. Previously interned at IBM and Hasbro.",
+    ],
+    sections: [
+      {
+        heading: "How I Work",
+        body: [
+          "I specialize in high-ambiguity spaces where business constraints and user needs carry equal weight.",
+          "What energizes me most is design that shifts how people work — turning complexity into clarity, and making powerful tools feel accessible to everyone. I'm especially drawn to problems at the frontier of AI and enterprise software, where the right design isn't obvious yet.",
+        ],
+      },
+      {
+        heading: "Outside of Work",
+        body: [
+          "I'm happiest outdoors — hiking, skiing, or on the tennis court — and often behind a lens, capturing the beauty of nature and the small moments of everyday life.",
+        ],
+      },
     ],
   },
 
