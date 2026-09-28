@@ -205,23 +205,37 @@ export const aiSearch: CaseStudyContent = {
           text: '**Fast by default, AI layered on top.** Traditional results load instantly; the AI answer appears above them in a loading state, so AI\'s presence is felt right away — then settles into a collapsed view once ready, showing just the top match: a bolded clickable title plus a one-line summary generated fresh for that query. "Show more" expands the rest.',
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-fast-by-default.png`, alt: "Traditional results load instantly while the AI answer loads above them", caption: "Fast by default, AI layered on top" },
+      media: { kind: "video", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-fast-by-default.mp4`, alt: "Traditional results load instantly while the AI answer loads above them", caption: "Fast by default, AI layered on top" },
     },
     {
       kind: "media-split",
+      stacked: true,
       content: [
         {
           kind: "paragraph",
           text: '**Deeper answers, with a seamless hand-off.** Expanding reveals every matched document with its own generated summary, plus an embedded "Chat more with Lucid AI..." input. Typing a follow-up there shows a quiet "Prompt sent to Lucid AI" confirmation, then opens the conversation in Lucid\'s AI hub, carrying the original query and answer forward so nothing restarts cold. Search stays fast and scoped; the hub takes over for deeper conversation.',
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer.png`, alt: "Expanded AI answer with an embedded hand-off to Lucid's AI hub", caption: "Deeper answer, with a seamless hand-off" },
+      media: {
+        kind: "image-row",
+        items: [
+          {
+            src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-1.png`,
+            alt: "The expanded AI answer with an embedded 'Chat more with Lucid AI' input",
+          },
+          {
+            src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-2.png`,
+            alt: "A 'Prompt sent to Lucid AI' confirmation after opening the conversation in Lucid's AI hub",
+          },
+        ],
+        caption: "Deeper answer, with a seamless hand-off",
+      },
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-2.png`, alt: "Expanded AI answer with an embedded hand-off to Lucid's AI hub, continued", caption: "Deeper answer, continued" },
 
     { kind: "subheading", text: "New components, built for the AI experience" },
     {
       kind: "media-split",
+      stacked: true,
       content: [
         {
           kind: "paragraph",
@@ -232,6 +246,7 @@ export const aiSearch: CaseStudyContent = {
     },
     {
       kind: "media-split",
+      stacked: true,
       content: [
         {
           kind: "paragraph",

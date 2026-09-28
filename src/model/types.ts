@@ -243,17 +243,17 @@ export type CaseStudyBlock =
   | { kind: "columns"; items: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[][] }
   /**
    * Text (`content`: subsubheading/paragraph blocks) beside a single
-   * image or video (`media`) on wide screens; stacks text-then-media
-   * once the screen narrows. Columns align to the top by default;
-   * `alignBottom` instead lines up their bottom edges, for a longer
-   * text block that nearly matches the media's height. `stacked`
-   * forces the narrow-screen text-then-media layout at every width,
-   * for a row where side-by-side reads too cramped.
+   * image, video, or image-row (`media`) on wide screens; stacks
+   * text-then-media once the screen narrows. Columns align to the top
+   * by default; `alignBottom` instead lines up their bottom edges, for
+   * a longer text block that nearly matches the media's height.
+   * `stacked` forces the narrow-screen text-then-media layout at every
+   * width, for a row where side-by-side reads too cramped.
    */
   | {
       kind: "media-split";
       content: Extract<CaseStudyBlock, { kind: "subheading" | "subsubheading" | "paragraph" }>[];
-      media: Extract<CaseStudyBlock, { kind: "image" | "video" }>;
+      media: Extract<CaseStudyBlock, { kind: "image" | "video" | "image-row" }>;
       alignBottom?: boolean;
       stacked?: boolean;
     }

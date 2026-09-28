@@ -583,14 +583,15 @@
 }
 
 // Everything but the lead overview video: same panel, tighter inset.
-// Video stays flush with the square-cornered frame; images round their
-// own corners (below, via .case-study-media-frame-button).
+// Images round their own corners (below, via
+// .case-study-media-frame-button); a compact video gets a modest
+// corner of its own rather than sitting flush with the square frame.
 .case-study-media-frame--compact {
   padding: @space-4;
   border-radius: 0;
 
   video {
-    border-radius: 0;
+    border-radius: @radius;
   }
 }
 
@@ -907,9 +908,18 @@
 
 // Forces the narrow-screen text-then-media stack at every width,
 // instead of only once the screen narrows past @bp-media-split.
+// Tighter gap than the side-by-side layout's — text and media read as
+// one unit here, the same way a paragraph hugs the image right below it.
 .case-study-media-split--stacked {
   grid-template-columns: minmax(0, 1fr);
-  gap: @space-5;
+  gap: @space-2;
+}
+
+// Two stacked text+media rows back to back (no heading between them)
+// need more separation than the default block gap, so each still reads
+// as its own unit instead of running into the row above.
+.case-study-media-split + .case-study-media-split {
+  margin-top: @space-8;
 }
 
 // A capability's icon beside its own heading/paragraph/list, rather
