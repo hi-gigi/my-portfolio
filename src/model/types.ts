@@ -71,6 +71,13 @@ export interface Project {
    * usual "View case study" link treatment.
    */
   comingSoon?: boolean;
+  /**
+   * Written up and viewable, but still missing art/final numbers —
+   * unlike `comingSoon` the tile stays a live link to the case study.
+   * Adds a "Work in progress" tag to the card and its cursor label,
+   * and a matching flag on the case study page itself.
+   */
+  wip?: boolean;
 }
 
 export interface WorkGroup {

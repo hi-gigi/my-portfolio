@@ -81,6 +81,7 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
     <article className="case-study">
       <header className={leadsWithMedia ? "case-study-intro case-study-intro--tight" : "case-study-intro"}>
 
+        {project.wip && <p className="case-study-wip-badge">Work in progress</p>}
         {project.labels.length > 0 && (
           <p className="case-study-eyebrow">{project.labels.join(" · ")}</p>
         )}
@@ -175,6 +176,25 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
  * full slide set it can navigate (e.g. every image in the same row or
  * carousel) and which one was clicked.
  */
+/**
+ * Stand-in for an `image`/`video`/`carousel`/`image-row` block with no
+ * `src` yet — a dashed panel flagging that real art lands later, with
+ * the block's `alt` kept underneath as a description of what will go
+ * there. `className` carries the carousel's `is-active` toggle.
+ */
+function MediaPlaceholder({ alt, className }: { alt: string; className?: string }) {
+  return (
+    <div
+      className={className ? `case-study-media-placeholder ${className}` : "case-study-media-placeholder"}
+      role="img"
+      aria-label={alt}
+    >
+      <span className="case-study-media-placeholder-badge">Coming soon</span>
+      <span>{alt}</span>
+    </div>
+  );
+}
+
 function CaseStudyBlockView({
   block,
   lead = false,
@@ -329,11 +349,7 @@ function CaseStudyBlockView({
 
     case "image":
       if (!block.src) {
-        return (
-          <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
-            <span>{block.alt}</span>
-          </div>
-        );
+        return <MediaPlaceholder alt={block.alt} />;
       }
       return (
         <div className={frameClass}>
@@ -373,9 +389,7 @@ function CaseStudyBlockView({
                   {item.caption && <p className="case-study-caption">{item.caption}</p>}
                 </div>
               ) : (
-                <div key={index} className="case-study-media-placeholder" role="img" aria-label={item.alt}>
-                  <span>{item.alt}</span>
-                </div>
+                <MediaPlaceholder key={index} alt={item.alt} />
               ),
             )}
           </div>
@@ -415,9 +429,7 @@ function CaseStudyBlockView({
           {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>
       ) : (
-        <div className="case-study-media-placeholder" role="img" aria-label={block.alt}>
-          <span>{block.alt}</span>
-        </div>
+        <MediaPlaceholder alt={block.alt} />
       );
 
     case "stats":
@@ -499,14 +511,7 @@ function CaseStudyCarousel({
               className={i === index ? "is-active" : undefined}
             />
           ) : (
-            <div
-              key={i}
-              className={`case-study-media-placeholder${i === index ? " is-active" : ""}`}
-              role="img"
-              aria-label={item.alt}
-            >
-              <span>{item.alt}</span>
-            </div>
+            <MediaPlaceholder key={i} alt={item.alt} className={i === index ? "is-active" : undefined} />
           ),
         )}
         {/*

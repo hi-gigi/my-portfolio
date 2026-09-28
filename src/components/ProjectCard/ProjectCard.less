@@ -86,6 +86,17 @@
   }
 }
 
+// Set apart from the plain role/discipline tags beside it — an accent
+// fill instead of the neutral chip, so "still being finished" reads as
+// a flag rather than just another descriptor.
+.card-labels .card-label-wip {
+  // `--coral-text` (not `--accent`) — the raw accent is tuned to sit on
+  // dark fills, not to stand alone as text on this pale tint; it reads
+  // too washed-out against the light-mode background.
+  color: var(--coral-text);
+  background: color-mix(in srgb, var(--accent), transparent 88%);
+}
+
 // Row layout (see `WorkGroup.layout` in Work.tsx): thumbnail on the
 // left, tags/title/blurb stacked on the right — same tokens and
 // components as the grid tile, just rearranged to read as a

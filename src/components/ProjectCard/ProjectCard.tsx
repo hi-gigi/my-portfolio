@@ -20,10 +20,12 @@ interface ProjectCardProps {
  * otherwise as an inert tile. Setting `comingSoon` on the project (see
  * model/content.ts) is what drives the "Coming soon" cursor label and
  * title prefix — no other wiring needed to mark a future project this
- * way.
+ * way. `wip` is the lighter-weight sibling: the case study is live and
+ * linked, just flagged as still being finished, via an extra tag and
+ * a swapped-in cursor label instead of going inert.
  */
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { id, title, blurb, labels, image, video, comingSoon } = project;
+  const { id, title, blurb, labels, image, video, comingSoon, wip } = project;
   const { ref, play, pause } = useCardVideo();
   const hasMedia = Boolean(image || video);
   const hasCaseStudy = Boolean(getCaseStudy(id));
@@ -50,8 +52,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <div className="card-body">
       <h4>{comingSoon ? `(Coming soon) ${title}` : title}</h4>
       <p>{blurb}</p>
-      {labels.length > 0 && (
+      {(labels.length > 0 || wip) && (
         <ul className="card-labels">
+          {wip && <li className="card-label-wip">Work in progress</li>}
           {labels.map((label) => (
             <li key={label}>{label}</li>
           ))}
@@ -65,7 +68,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <Link
         to={`/work/${id}`}
         className="card"
-        data-cursor-label="View case study"
+        data-cursor-label={wip ? "Work in progress" : "View case study"}
         onMouseEnter={video ? play : undefined}
         onMouseLeave={video ? pause : undefined}
       >

@@ -69,6 +69,23 @@
   margin-bottom: @space-6;
 }
 
+// Flags a case study whose write-up is live but still missing art or
+// final numbers — see `Project.wip`. Same accent-chip treatment as the
+// work-grid card's "Work in progress" tag, so the signal reads as one
+// system across the tile and the page it links to.
+.case-study-wip-badge {
+  display: inline-block;
+  margin: 0 0 @space-4;
+  padding: @space-1 @space-2;
+  font-family: @font-mono;
+  font-size: @text-2xs;
+  letter-spacing: @tracking-wide;
+  // `--coral-text`, not `--accent` — see the same note on `.card-label-wip`.
+  color: var(--coral-text);
+  background: color-mix(in srgb, var(--accent), transparent 88%);
+  border-radius: @radius-btn;
+}
+
 .case-study-eyebrow {
   .eyebrow-label();
   margin: 0 0 @space-4;
@@ -1231,8 +1248,10 @@
 
 .case-study-media-placeholder {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: @space-2;
   min-height: 16rem;
   padding: @space-5;
   border: 1px dashed var(--muted);
@@ -1242,6 +1261,13 @@
 
   span {
     .eyebrow-label();
+  }
+
+  // The "still to come" flag, set apart from the alt description below
+  // it — bolder and in the accent colour so it reads first.
+  &-badge {
+    font-weight: @weight-semibold;
+    color: var(--accent);
   }
 }
 
