@@ -4,9 +4,9 @@
 //  labels) comes from the matching Project in content.ts.
 //
 //  Migrated from the Webflow version at jiaqizhuo.com/ibm-solution-gateway.
-//  Copy is verbatim from the live site, reorganized into the same
-//  block vocabulary as the other case studies — no image blocks; real
-//  art can land later.
+//  Copy and imagery are verbatim from the live site, reorganized into
+//  the same block vocabulary as the other case studies. Detailed
+//  product screenshots stay out, per the NDA the copy itself calls out.
 // ============================================================
 
 import type { CaseStudyContent } from "../types";
@@ -14,6 +14,11 @@ import type { CaseStudyContent } from "../types";
 export const ibmSolutionGateway: CaseStudyContent = {
   id: "ibm-solution-gateway",
   blocks: [
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/hero.png`,
+      alt: "A laptop mockup of the IBM Solution Gateway platform, showing a sample solution overview page with descriptions, business drivers, and value propositions",
+    },
     { kind: "heading", id: "introduction", text: "Introduction of My Experience", navLabel: "Introduction" },
     {
       kind: "paragraph",
@@ -40,8 +45,19 @@ export const ibmSolutionGateway: CaseStudyContent = {
       kind: "paragraph",
       text: "Unfortunately, due to NDA, I’m not allowed to disclose the detailed interfaces of this IBM internal platform, even if this new version has been released internally. But I still would love to share some background information of the product I’ve worked on, the lessons I learned from doing design tasks, and the reflections I made on how to be a more professional designer.",
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/program-director-quote.png`,
+      alt: "Patrick McMahon, Program Director – IBM Global Solutions, who managed Jiaqi directly: “I had the privilege to have JiaQi as a UX/UI Design Intern on my software engineering team building and managing an enterprise software application. She was an outstanding contributor to our team, demonstrating an amazing ability to pick up complicated user personas and their business contexts with minimal handholding. She was not only able to retain this knowledge but also able to augment and grow it through organic connections she made while working in other contexts across the application platform. This ability to be able to quickly and seamlessly connect personas, business needs and application capabilities allowed her to significantly contribute to all aspects of our UX and UI functions. She was directly involved in the user experience testing and user interface design for several brand new functions for our platform and her work was of high quality and was very well received by both business and technical teams. Her technical skills in the tools supporting her design work was also very strong. I shocked a number of mid and senior level individuals when I would tell them she was just an intern, when looking at the quality and insightfulness her work demonstrated.”",
+      caption: "Comments from Program Director",
+    },
 
     { kind: "heading", id: "about-product", text: "About the Product", navLabel: "About the product" },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/product-overview-diagram.png`,
+      alt: "Diagram: Offering and solution aligned assets flow into IBM Solution Gateway. Portfolio Managers and Solution Owners create, edit, review, and publish solutions through the Portfolio Management Tool; IBM Sellers and Business Partners search, browse, and reuse solutions through the Solution Catalog to bring IBM's offerings to industry clients.",
+    },
     {
       kind: "paragraph",
       text: "The IBM Solution Gateway (formerly called Asset Hub) is an actively managed environment providing the trusted source for Offering and Solution aligned assets. It includes the full lifecycle of sales, design and delivery artifacts as well as building blocks (code) and productivity tools, and can integrate easily into global and local community environments by providing the ability to deep link into specific views and exports of managed information to other tools.",
@@ -92,6 +108,11 @@ export const ibmSolutionGateway: CaseStudyContent = {
       kind: "paragraph",
       text: "The existing “Moving” feature on the detail editing page only allow users to change the order of the items in the same section through “drag and drop”, and according to the new requirement we got from the product ownership team, we need to design a new “Moving” experience that also enable users to move one or multiple items from one section to another.",
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/moving-experience-options.png`,
+      alt: "Previous moving experience: move an item at a time within the section through Drag & Drop. New requirement on the moving experience: move multiple items at a time within or across sections through Drag & Drop or other more intuitive ways.",
+    },
     { kind: "subsubheading", text: "The challenge:" },
     { kind: "subsubheading", text: "1. The lack of the context for this new requirement." },
     {
@@ -104,6 +125,20 @@ export const ibmSolutionGateway: CaseStudyContent = {
       text: "Previously, users can change the position of an item within the section through “Drag & Drop”. However, since now we would enable users to move items across the section, “Drag & Drop” may no longer be the best practice, because the position of the original section and the destination section can be very far away from each other. I need to come up with a new approach for this new “Moving” requirement that is both intuitive and consistent with the other “moving” experience on this platform.",
     },
     { kind: "subsubheading", text: "My approaches and the lessons I learned:" },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/workshop-1.jpeg`,
+          alt: "Designers sketching moving-experience options on a whiteboard during the Design Thinking Workshop",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/workshop-2.jpeg`,
+          alt: "Designers sketching moving-experience options on a whiteboard during the Design Thinking Workshop",
+        },
+      ],
+      caption: "Designers showed different design options to the stakeholders and the sponsor users",
+    },
     {
       kind: "subsubheading",
       text: "1. It’s important to understand the context of a new feature by asking questions and talking to the real users",
@@ -120,6 +155,20 @@ export const ibmSolutionGateway: CaseStudyContent = {
       kind: "paragraph",
       text: "What I found most valuable from this experience was actually not how users thought about my design proposals, but the reasons behind it and the more exciting thoughts triggered by what’s on the paper. By talking to users, I was educated about how they currently used the “Moving” feature, WHY they had the need to move multiple items to other section, what they liked or disliked about my proposal and WHY, what other expectations they had… After these informative talks, I iterated on the previous designs, and this time, I felt I’m confident on my design decisions and had better rationales to support them.",
     },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/workshop-3.jpeg`,
+          alt: "Sponsor users reviewing printed design proposals with the design team",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/workshop-4.jpeg`,
+          alt: "Sponsor users reviewing printed design proposals with the design team",
+        },
+      ],
+      caption: "Sponsor users commented on the design proposals and actively participated in the design process",
+    },
     { kind: "subsubheading", text: "2. It’s important to get something tangible and move forward." },
     {
       kind: "paragraph",
@@ -135,6 +184,18 @@ export const ibmSolutionGateway: CaseStudyContent = {
     {
       kind: "paragraph",
       text: "In the current experience, the system will just register the file uploaded by the user and link it to the Portfolio Item without doing the validation (see the Figure “the previous flow of contributing a file”). However, in order to avoid creating duplicate file registrations and to better organize the files in the SG Managed Box Folder, we decided to add the Validation step in the process. If some existing files with exact or similar names have been found, users need to take further actions according to the instruction provided (see the Figure “the revised flow of contributing a file”).",
+    },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-flow-previous.png`,
+      alt: 'The previous flow of "contribute a new file": add a file to the Portfolio Item, choose and upload the file, then register the file and link it to the Portfolio Item — a happy path with no validation step.',
+      caption: "The previous flow of contributing a file",
+    },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-flow-revised.png`,
+      alt: 'The revised flow of "contribute a new file": after adding a file, the system checks whether it already exists in the Solution Gateway Managed Box folder. If not, register and link it (happy path). If a new version, create a new version and link it. If linking an existing file, link it to the Portfolio Item. If the filename is a duplicate, the user renames the file to upload it as new.',
+      caption: "The revised flow of contributing a file",
     },
     { kind: "subsubheading", text: "The challenge:" },
     {
@@ -158,6 +219,11 @@ export const ibmSolutionGateway: CaseStudyContent = {
       kind: "paragraph",
       text: "This design option is very convenient for experienced users who have a clear idea about what’s already in the Box Folder and what’s not. They can do a quick search on their own and then decide whether they still want to upload the file. The task of contributing a file can be easily finished through Search-Select-Link or Upload-Validate-Register&Link (two happy paths). But if one way doesn’t work, they need to go back to the first step and choose another way as an alternative.",
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-option-1.png`,
+      alt: "Option 1 workflow: users can either link an existing registered file from the Box Folder to the Portfolio Item, or upload a new file, register it, and link it to the Portfolio Item.",
+    },
     { kind: "subsubheading", text: "For option 2: (See the workflow below)" },
     {
       kind: "paragraph",
@@ -180,6 +246,11 @@ export const ibmSolutionGateway: CaseStudyContent = {
       kind: "paragraph",
       text: "But for the users who intend to link an existing file from the SG Managed Box Folder, there is no quick path for them to do so. And providing four option buttons on the warning popup (see the figure below) might be very confusing for the users - it’s difficult for them to distinguish among these four options with limited text information on the button.",
     },
+    {
+      kind: "image",
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-option-2.png`,
+      alt: "Option 2 workflow: users upload a file, the system validates it against the Box Folder with an exact or fuzzy match, and then presents a warning popup with four follow-up options — use the existing file, create a new version, create a new file, or pass validation on a happy path.",
+    },
     { kind: "subsubheading", text: "My approaches and the lessons I learned:" },
     {
       kind: "subsubheading",
@@ -200,6 +271,21 @@ export const ibmSolutionGateway: CaseStudyContent = {
     {
       kind: "paragraph",
       text: "It’s not just simply the problem of the wording that caused this confusion, but more about the intuitiveness. Providing users with what they need at the time instead of everything was the biggest challenge in this task. The testing we did is a way to help us figure out this question, and it turned out that user’s mental model was different from what we assumed. But we still got useful insights to make iterations on our design proposals and made changes with good reasons.",
+    },
+    {
+      kind: "image-row",
+      items: [
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/usability-testing.jpeg`,
+          alt: "Users testing the two contribute-a-file design options on laptops and a phone during a usability testing session",
+          caption: "Usability testing",
+        },
+        {
+          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/usability-testing-scenarios.png`,
+          alt: "A list of the usability testing scenarios used to evaluate the contribute-a-file design options",
+          caption: "Testing Scenarios",
+        },
+      ],
     },
 
     { kind: "heading", id: "reflection", text: "Refelction", navLabel: "Reflection" },

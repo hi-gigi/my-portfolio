@@ -619,6 +619,26 @@
   }
 }
 
+// One-off: the ISG hero mockup is a near-black screenshot that
+// otherwise has no visible edge against the dark-mode page background.
+// A hairline border (added to the existing shadow, not replacing it)
+// keeps the panel legible without touching every other lead image.
+.case-study-media-frame:has(img[src*="ibm-solution-gateway/hero"]) img {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      box-shadow:
+        0 12px 24px -18px rgba(0, 0, 0, 0.35),
+        0 0 0 1px color-mix(in srgb, var(--text) 18%, transparent);
+    }
+  }
+
+  :root[data-theme="dark"] & {
+    box-shadow:
+      0 12px 24px -18px rgba(0, 0, 0, 0.35),
+      0 0 0 1px color-mix(in srgb, var(--text) 18%, transparent);
+  }
+}
+
 // Everything but the lead overview video: same panel, tighter inset.
 // Images round their own corners (below, via
 // .case-study-media-frame-button); a compact video gets a modest
