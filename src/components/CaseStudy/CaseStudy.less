@@ -700,13 +700,21 @@
 // though the images themselves are the only visible content. The grid
 // item itself is just this wrapper (holding the button + its own
 // caption); the interactive styling lives on the button inside it.
+// Flex column so the button (below) can grow to fill the row's full
+// height — otherwise two screenshots with different aspect ratios sit
+// at different heights, which reads as an unintentional mismatch
+// rather than a deliberate pairing.
 .case-study-image-row-item {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .case-study-image-row-item-button {
   display: block;
   width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 0;
   border: none;
   background: none;
@@ -731,6 +739,14 @@
     // corner reads oversized against its finer screenshot detail.
     border-radius: @radius-btn;
     pointer-events: none;
+
+    // Fill the stretched button rather than sitting at the image's
+    // own natural aspect ratio — matches this item's height to its
+    // row siblings instead of leaving mismatched screenshots at
+    // mismatched heights. `cover` crops rather than distorting.
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 

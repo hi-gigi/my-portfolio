@@ -271,6 +271,11 @@ export const licenseRequestJustification: CaseStudyContent = {
       kind: "carousel",
       items: [
         {
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/pending-requests-page.png`,
+          alt: "User justification shown inline on the pending license requests page, with a filter for requests that include one",
+          caption: "Surfaced on the pending requests page, with a filter",
+        },
+        {
           src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/user-table.png`,
           alt: "User justification visible when an admin edits a user's licenses from the user table",
           caption: "Visible when admins edit licenses from the user table",
@@ -279,11 +284,6 @@ export const licenseRequestJustification: CaseStudyContent = {
           src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/user-details-panel.png`,
           alt: "User justification visible in the expanded user details panel",
           caption: "Visible in the user details panel",
-        },
-        {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/pending-requests-page.png`,
-          alt: "User justification shown inline on the pending license requests page, with a filter for requests that include one",
-          caption: "Surfaced on the pending requests page, with a filter",
         },
         {
           src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/most-recent-requests.png`,
