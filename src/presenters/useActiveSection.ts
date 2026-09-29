@@ -68,7 +68,20 @@ export function useActiveSection(
     setActiveId(hashId);
 
     suppressRef.current = true;
+    const deadline = performance.now() + SUPPRESSION_TIMEOUT_MS;
     const resume = () => {
+      // A `scrollend` can fire before the clicked section has actually
+      // reached the trigger line (e.g. a late-loading web font reflowing
+      // the page mid-scroll) — evaluating now would read a transient,
+      // in-between position and lock onto whatever section the scroll is
+      // still passing through. Keep waiting for the real thing, bounded
+      // by the same deadline this suppression started with.
+      const el = document.getElementById(hashId);
+      const reached = !el || el.getBoundingClientRect().top <= TRIGGER_PX;
+      if (!reached && performance.now() < deadline) {
+        window.addEventListener("scrollend", resume, { once: true });
+        return;
+      }
       suppressRef.current = false;
       evaluateRef.current();
     };

@@ -16,6 +16,17 @@ export function useScrollToHash() {
       window.scrollTo(0, 0);
       return;
     }
-    document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
+    const id = decodeURIComponent(hash.slice(1));
+    const scroll = () => document.getElementById(id)?.scrollIntoView();
+    scroll();
+
+    // A custom web font can still be loading on first visit. If it swaps
+    // in mid-scroll, everything below it reflows taller, leaving the
+    // smooth-scroll's already-computed target short of the heading it was
+    // aiming for (most noticeable on a long jump, e.g. to the last
+    // section). Re-align once fonts have actually settled.
+    if (document.fonts.status !== "loaded") {
+      document.fonts.ready.then(scroll);
+    }
   }, [pathname, hash]);
 }
