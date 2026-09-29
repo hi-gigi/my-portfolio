@@ -57,6 +57,42 @@
   }
 }
 
+// Variants for a thumbnail cropped tighter than the 3:2 frame: drop the
+// inset on the edge(s) it bleeds toward so it runs flush to the card's
+// edge there instead of floating centered with margin on every side,
+// then pull `object-position` to match so `contain`'s own leftover
+// space (from any residual aspect mismatch) collects on the same
+// edges as the dropped padding rather than splitting evenly.
+.card-media--bleed-bottom-right {
+  padding: @space-3 0 0 @space-7;
+
+  img,
+  video {
+    object-position: 100% 100%;
+  }
+}
+
+.card-media--bleed-bottom {
+  padding: @space-3 @space-6 0;
+
+  img,
+  video {
+    object-position: 50% 100%;
+  }
+}
+
+// Wider version of the default even inset — no bleed, just more of it.
+.card-media--padding-loose {
+  padding: @space-5;
+}
+
+// Default inset, but extra breathing room top/bottom — for a thumbnail
+// whose image is narrow enough that it already sits flush against the
+// vertical edges of the default padding box.
+.card-media--padding-loose-vertical {
+  padding: @space-6 @space-3;
+}
+
 // Hover effect for the static-image case; the video case animates itself.
 @media (prefers-reduced-motion: no-preference) {
   .card:hover .card-media img {

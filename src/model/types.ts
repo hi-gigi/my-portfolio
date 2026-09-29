@@ -61,6 +61,21 @@ export interface Project {
   /** Static thumbnail. Absolute or base-relative URL; falls back to an empty panel. */
   image?: string;
   /**
+   * Default thumbnail treatment insets the image evenly on all four
+   * sides. Set this to bleed it flush to one or two edges instead,
+   * dropping the inset margin only there — for a thumbnail cropped
+   * tighter than the frame, so it reads as a screenshot peeking out
+   * from behind the remaining edges rather than a fully framed panel.
+   * "bottom-right" drops both; "bottom" drops just the one.
+   */
+  mediaBleed?: "bottom-right" | "bottom";
+  /**
+   * Default thumbnail inset is a fixed, uniform margin on all four
+   * sides. "loose" widens that margin — for a thumbnail that reads as
+   * cramped at the standard inset, without bleeding it to any edge.
+   */
+  mediaPadding?: "loose" | "loose-vertical";
+  /**
    * Optional looping clip (mp4/webm). Plays on hover, resets on leave, and is
    * left paused when the visitor prefers reduced motion. `image` is its poster.
    */

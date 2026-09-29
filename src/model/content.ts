@@ -84,6 +84,7 @@ export const content: PortfolioContent = {
               "Natural-language queries in, generative answers out — on Lucid's primary search surface.",
             labels: ["AI", "Search", "0→1"],
             image: thumb("ai-search.png"),
+            mediaBleed: "bottom-right",
           },
           {
             id: "document-discovery",
@@ -92,6 +93,7 @@ export const content: PortfolioContent = {
               "A security and compliance foundation that grew into a multi-million dollar add-on.",
             labels: ["Security & Compliance", "Research & Strategy", "0→1"],
             image: thumb("document-discovery.png"),
+            mediaBleed: "bottom",
           },
           {
             id: "license-request-justification",
@@ -100,6 +102,7 @@ export const content: PortfolioContent = {
               "+14.5% improvement in 7-day license approval rate — by giving admins the context to act.",
             labels: ["Growth", "End-to-End", "A/B Test"],
             image: thumb("license-request-justification.jpg"),
+            mediaPadding: "loose",
           },
           {
             id: "distributed-admin-controls",
@@ -108,6 +111,7 @@ export const content: PortfolioContent = {
               "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
             labels: ["Systems Thinking", "Design Strategy", "0→1"],
             image: thumb("distributed-admin-controls.png"),
+            mediaPadding: "loose-vertical",
             wip: true,
           },
         ],

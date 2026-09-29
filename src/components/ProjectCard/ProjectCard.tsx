@@ -25,13 +25,22 @@ interface ProjectCardProps {
  * a swapped-in cursor label instead of going inert.
  */
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { id, title, blurb, labels, image, video, comingSoon, wip } = project;
+  const { id, title, blurb, labels, image, video, comingSoon, wip, mediaBleed, mediaPadding } =
+    project;
   const { ref, play, pause } = useCardVideo();
   const hasMedia = Boolean(image || video);
   const hasCaseStudy = Boolean(getCaseStudy(id));
 
+  const mediaClassName = [
+    "card-media",
+    mediaBleed && `card-media--bleed-${mediaBleed}`,
+    mediaPadding && `card-media--padding-${mediaPadding}`,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   const media = (
-    <div className="card-media" aria-hidden={hasMedia ? undefined : true}>
+    <div className={mediaClassName} aria-hidden={hasMedia ? undefined : true}>
       {video ? (
         <video
           ref={ref}
