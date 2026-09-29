@@ -33,6 +33,20 @@
   overflow: hidden;
   background: var(--bg);
 
+  // Dark mode: most thumbnails are light UI screenshots that don't
+  // exactly match this 3:2 frame, so flat --bg (near-black) showed
+  // through as harsh matting around them. A touch lighter than the
+  // card itself reads as a shallow well instead of a hole in the page.
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      background: color-mix(in srgb, var(--tonal), white 16%);
+    }
+  }
+
+  :root[data-theme="dark"] & {
+    background: color-mix(in srgb, var(--tonal), white 16%);
+  }
+
   img,
   video {
     display: block;
