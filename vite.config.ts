@@ -2,14 +2,14 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Dev serves from "/"; the production build is served from the GitHub
-// Pages project path https://<user>.github.io/my-portfolio/.
-// Honour a PORT assigned by the environment (e.g. the Claude Code
-// preview runner); fall back to Vite's default 5173 for a bare `npm run dev`.
+// Served from the apex of a custom domain (jiaqizhuo.com), so base is "/"
+// for both dev and production. Honour a PORT assigned by the environment
+// (e.g. the Claude Code preview runner); fall back to Vite's default 5173
+// for a bare `npm run dev`.
 const devPort = process.env.PORT ? Number(process.env.PORT) : undefined;
 
-export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/my-portfolio/" : "/",
+export default defineConfig(() => ({
+  base: "/",
   plugins: [react()],
   server: { port: devPort },
   css: {

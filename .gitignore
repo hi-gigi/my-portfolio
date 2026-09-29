@@ -18,3 +18,8 @@ dist-ssr/
 
 # Claude Code local project config (machine-specific paths)
 .claude/
+
+# Design-exploration prototypes (scratch, not part of the built site)
+/*.html
+!/index.html
+.image-backup/

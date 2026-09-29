@@ -8,7 +8,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the MVP layering and the design-token
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/my-portfolio/
+npm run dev        # http://localhost:5173/
 ```
 
 | Script | Does |
@@ -39,7 +39,7 @@ npm run dev        # http://localhost:5173/my-portfolio/
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `dist/` to GitHub Pages. One-time repo setup: **Settings → Pages → Source → GitHub Actions**.
 
-Live at `https://hi-gigi.github.io/my-portfolio/`. If the repo is renamed, update `base` in `vite.config.ts`.
+Live at `https://jiaqizhuo.com` (custom domain via `public/CNAME`).
 
 ## The everyday loop with Claude Code
 
