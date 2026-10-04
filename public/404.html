@@ -11,7 +11,11 @@
       // which decodes it back with history.replaceState (see the
       // matching script in index.html) before React Router ever sees it.
       // Adapted from https://github.com/rafgraph/spa-github-pages
-      var segmentCount = 1; // keep "/my-portfolio" — the Pages project path
+      // 0 because the site is served from the apex of jiaqizhuo.com. It was
+      // 1 when hosted at the "/my-portfolio" Pages project path; leaving it
+      // at 1 on the custom domain treats "/work" as the base, redirects to
+      // "/work/?p=…", which 404s again and loops with a growing query.
+      var segmentCount = 0;
       var l = window.location;
       l.replace(
         l.protocol +
