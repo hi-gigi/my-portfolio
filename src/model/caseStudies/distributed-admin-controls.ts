@@ -20,6 +20,9 @@ export const distributedAdminControls: CaseStudyContent = {
   blocks: [
     {
       kind: "video",
+      src: `${import.meta.env.BASE_URL}case-studies/distributed-admin-controls/overview-video.mp4`,
+      playbackRate: 1.2,
+      startPauseMs: 2000,
       alt: "An admin managing distributed permissions, sharing controls, and license limits across Organizational Groups",
       caption: "Organizational Groups overview",
     },

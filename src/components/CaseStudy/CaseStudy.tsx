@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { CaseStudyBlock, CaseStudyListItem, CaseStudyStat, Project } from "@/model/types";
 import { ChevronLeftIcon, ChevronRightIcon } from "../icons";
@@ -166,6 +166,60 @@ export function CaseStudy({ project, blocks, otherProjects }: CaseStudyProps) {
         </div>
       )}
     </article>
+  );
+}
+
+/**
+ * Looping, muted autoplay video. With `startPauseMs` it holds on the first
+ * frame for that long before every play-through (including the first) —
+ * native `loop` can't do that, so the loop is driven by `ended` instead.
+ */
+function CaseStudyVideo({
+  src,
+  alt,
+  playbackRate,
+  startPauseMs,
+}: {
+  src: string;
+  alt: string;
+  playbackRate?: number;
+  startPauseMs?: number;
+}) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const timer = useRef<number>();
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (playbackRate) el.playbackRate = playbackRate;
+    if (!startPauseMs) return;
+    const playAfterPause = () => {
+      window.clearTimeout(timer.current);
+      el.currentTime = 0;
+      timer.current = window.setTimeout(() => {
+        if (playbackRate) el.playbackRate = playbackRate;
+        void el.play();
+      }, startPauseMs);
+    };
+    el.addEventListener("ended", playAfterPause);
+    playAfterPause();
+    return () => {
+      el.removeEventListener("ended", playAfterPause);
+      window.clearTimeout(timer.current);
+    };
+  }, [playbackRate, startPauseMs]);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      autoPlay={!startPauseMs}
+      loop={!startPauseMs}
+      muted
+      playsInline
+      preload="auto"
+      aria-label={alt}
+    />
   );
 }
 
@@ -417,14 +471,11 @@ function CaseStudyBlockView({
     case "video":
       return block.src ? (
         <div className={frameClass}>
-          <video
+          <CaseStudyVideo
             src={block.src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            aria-label={block.alt}
+            alt={block.alt}
+            playbackRate={block.playbackRate}
+            startPauseMs={block.startPauseMs}
           />
           {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>
