@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import type { CaseStudyBlock, CaseStudyListItem, CaseStudyStat, Project } from "@/model/types";
-import { ChevronLeftIcon, ChevronRightIcon } from "../icons";
+import { ChevronLeftIcon, ChevronRightIcon, PauseIcon, PlayIcon } from "../icons";
 import { ProjectCard } from "../ProjectCard";
 import "./CaseStudy.less";
 
@@ -187,6 +187,17 @@ function CaseStudyVideo({
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const timer = useRef<number>();
+  const [playing, setPlaying] = useState(false);
+
+  // Play/pause toggle. Also cancels a pending start-pause timer so
+  // pressing play during the hold starts right away.
+  const toggle = () => {
+    const el = ref.current;
+    if (!el) return;
+    window.clearTimeout(timer.current);
+    if (el.paused) void el.play();
+    else el.pause();
+  };
 
   useEffect(() => {
     const el = ref.current;
@@ -210,16 +221,28 @@ function CaseStudyVideo({
   }, [playbackRate, startPauseMs]);
 
   return (
-    <video
-      ref={ref}
-      src={src}
-      autoPlay={!startPauseMs}
-      loop={!startPauseMs}
-      muted
-      playsInline
-      preload="auto"
-      aria-label={alt}
-    />
+    <div className="case-study-video">
+      <video
+        ref={ref}
+        src={src}
+        autoPlay={!startPauseMs}
+        loop={!startPauseMs}
+        muted
+        playsInline
+        preload="auto"
+        aria-label={alt}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+      />
+      <button
+        type="button"
+        className="case-study-video-toggle"
+        onClick={toggle}
+        aria-label={playing ? "Pause video" : "Play video"}
+      >
+        {playing ? <PauseIcon /> : <PlayIcon />}
+      </button>
+    </div>
   );
 }
 

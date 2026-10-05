@@ -597,6 +597,58 @@
   }
 }
 
+// Wrapper so the play/pause toggle can sit over the video's corner
+// (not the frame's padding). On hover-capable devices the toggle only
+// appears while hovering the video (or when keyboard-focused); touch
+// has no hover, so it stays visible there.
+.case-study-video {
+  position: relative;
+}
+
+.case-study-video-toggle {
+  position: absolute;
+  right: @space-3;
+  bottom: @space-3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (hover: hover) {
+    opacity: 0;
+
+    .case-study-video:hover &,
+    &:focus-visible {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
 // Inset panel behind a real screenshot/clip — the image floats on a
 // warm gradient card instead of sitting flush against the page
 // background, echoing how product marketing pages (e.g. Cursor's)
