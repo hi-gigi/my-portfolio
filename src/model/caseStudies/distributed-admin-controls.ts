@@ -24,7 +24,7 @@ export const distributedAdminControls: CaseStudyContent = {
       playbackRate: 1.2,
       startPauseMs: 2000,
       alt: "An admin managing distributed permissions, sharing controls, and license limits across Organizational Groups",
-      caption: "Organizational Groups overview",
+      caption: "Remove a custom permission at the organizational group level so it inherits again",
     },
     { kind: "heading", id: "overview", text: "Project Overview", navLabel: "Overview" },
     {
