@@ -23,3 +23,6 @@ dist-ssr/
 /*.html
 !/index.html
 .image-backup/
+
+# Scratch HTML explorations
+_scratch-html/
