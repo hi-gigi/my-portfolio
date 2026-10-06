@@ -23,7 +23,7 @@ export const distributedAdminControls: CaseStudyContent = {
       src: `${import.meta.env.BASE_URL}case-studies/distributed-admin-controls/overview-video.mp4`,
       playbackRate: 1.2,
       startPauseMs: 2000,
-      cropTopPx: 1,
+      cropTopPx: 2,
       alt: "An admin managing distributed permissions, sharing controls, and license limits across Organizational Groups",
       caption: "Remove a custom permission at the organizational group level so it inherits again",
     },
