@@ -179,11 +179,13 @@ function CaseStudyVideo({
   alt,
   playbackRate,
   startPauseMs,
+  cropTopPx,
 }: {
   src: string;
   alt: string;
   playbackRate?: number;
   startPauseMs?: number;
+  cropTopPx?: number;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const timer = useRef<number>();
@@ -220,20 +222,25 @@ function CaseStudyVideo({
     };
   }, [playbackRate, startPauseMs]);
 
+  const videoEl = (
+    <video
+      ref={ref}
+      src={src}
+      autoPlay={!startPauseMs}
+      loop={!startPauseMs}
+      muted
+      playsInline
+      preload="auto"
+      aria-label={alt}
+      style={cropTopPx ? { marginTop: -cropTopPx } : undefined}
+      onPlay={() => setPlaying(true)}
+      onPause={() => setPlaying(false)}
+    />
+  );
+
   return (
     <div className="case-study-video">
-      <video
-        ref={ref}
-        src={src}
-        autoPlay={!startPauseMs}
-        loop={!startPauseMs}
-        muted
-        playsInline
-        preload="auto"
-        aria-label={alt}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-      />
+      {cropTopPx ? <div className="case-study-video-crop">{videoEl}</div> : videoEl}
       <button
         type="button"
         className="case-study-video-toggle"
@@ -499,6 +506,7 @@ function CaseStudyBlockView({
             alt={block.alt}
             playbackRate={block.playbackRate}
             startPauseMs={block.startPauseMs}
+            cropTopPx={block.cropTopPx}
           />
           {block.caption && <p className="case-study-caption">{block.caption}</p>}
         </div>

@@ -314,7 +314,7 @@ export type CaseStudyBlock =
       content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[];
     }
   /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */
-  | { kind: "video"; src?: string; alt: string; caption?: string; playbackRate?: number; startPauseMs?: number }
+  | { kind: "video"; src?: string; alt: string; caption?: string; playbackRate?: number; startPauseMs?: number; cropTopPx?: number }
   /**
    * A single card holding one or more metrics side by side, divided by
    * a rule (vertical on wide screens, horizontal once stacked). `period`

@@ -605,6 +605,20 @@
   position: relative;
 }
 
+// Trims the video's top edge: the clip is taller than its video via a
+// negative top margin, hidden by this wrapper, which carries the
+// rounding and shadow the video would otherwise have.
+.case-study-video-crop {
+  overflow: hidden;
+  border-radius: @radius-image;
+  box-shadow: 0 12px 24px -18px rgba(0, 0, 0, 0.35);
+
+  video {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
 .case-study-video-toggle {
   position: absolute;
   right: @space-3;
