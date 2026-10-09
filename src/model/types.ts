@@ -76,6 +76,11 @@ export interface Project {
    */
   mediaPadding?: "loose" | "loose-vertical";
   /**
+   * Gradient backdrop behind the thumbnail — one of the neutral `--thumb-bg-*`
+   * tokens. Leave unset for a full-bleed image that needs no backdrop.
+   */
+  mediaTone?: "paper" | "linen" | "stone" | "ash";
+  /**
    * Optional looping clip (mp4/webm). Plays on hover, resets on leave, and is
    * left paused when the visitor prefers reduced motion. `image` is its poster.
    */

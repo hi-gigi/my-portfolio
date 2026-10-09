@@ -93,6 +93,52 @@
   padding: @space-6 @space-3;
 }
 
+// Gradient backdrop (`mediaTone`). The selector is deliberately as
+// specific as the dark-mode matting rules above so it wins in both
+// themes; the `--thumb-bg-*` tokens carry the light/dark difference.
+:root .card-media[data-tone] {
+  background: var(--thumb-bg);
+}
+
+// Every toned tile gets the same even inset and corner radius, so the
+// screenshots sit at about the same size whatever each source image's
+// own crop — this replaces the per-project bleed/padding variants for
+// these tiles.
+.card-media[data-tone] {
+  padding: @space-5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // The image box hugs the picture (instead of `contain` letterboxing
+  // inside a fixed box), so the shared corner radius lands on the
+  // image's real corners — and overrides the slightly different radii
+  // baked into each source screenshot.
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: @radius-image;
+  }
+}
+
+.card-media[data-tone="paper"] {
+  --thumb-bg: var(--thumb-bg-paper);
+}
+
+.card-media[data-tone="linen"] {
+  --thumb-bg: var(--thumb-bg-linen);
+}
+
+.card-media[data-tone="stone"] {
+  --thumb-bg: var(--thumb-bg-stone);
+}
+
+.card-media[data-tone="ash"] {
+  --thumb-bg: var(--thumb-bg-ash);
+}
+
 // Hover effect for the static-image case; the video case animates itself.
 @media (prefers-reduced-motion: no-preference) {
   .card:hover .card-media img {
