@@ -83,7 +83,7 @@ export const content: PortfolioContent = {
             blurb:
               "Natural-language queries in, generative answers out — on Lucid's primary search surface.",
             labels: ["AI", "Search", "0→1"],
-            image: thumb("ai-search.png"),
+            image: thumb("ai-search.webp"),
             mediaBleed: "bottom-right",
           },
           {
@@ -92,7 +92,7 @@ export const content: PortfolioContent = {
             blurb:
               "A security and compliance foundation that grew into a multi-million dollar add-on.",
             labels: ["Security & Compliance", "Research & Strategy", "0→1"],
-            image: thumb("document-discovery.png"),
+            image: thumb("document-discovery.webp"),
             mediaBleed: "bottom",
           },
           {
@@ -101,7 +101,7 @@ export const content: PortfolioContent = {
             blurb:
               "+14.5% improvement in 7-day license approval rate — by giving admins the context to act.",
             labels: ["Growth", "End-to-End", "A/B Test"],
-            image: thumb("license-request-justification.jpg"),
+            image: thumb("license-request-justification.webp"),
             mediaPadding: "loose",
           },
           {
@@ -110,7 +110,7 @@ export const content: PortfolioContent = {
             blurb:
               "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
             labels: ["Systems Thinking", "Design Strategy", "0→1"],
-            image: thumb("distributed-admin-controls.png"),
+            image: thumb("distributed-admin-controls.webp"),
             mediaPadding: "loose-vertical",
             wip: true,
           },
@@ -130,7 +130,7 @@ export const content: PortfolioContent = {
               "Mobile Application",
               "Fan Community",
             ],
-            image: thumb("hasbro-pulse.jpg"),
+            image: thumb("hasbro-pulse.webp"),
           },
           {
             id: "ibm-solution-gateway",
@@ -142,7 +142,7 @@ export const content: PortfolioContent = {
               "Web-based Application",
               "Content Management",
             ],
-            image: thumb("ibm-solution-gateway.png"),
+            image: thumb("ibm-solution-gateway.webp"),
           },
         ],
       },

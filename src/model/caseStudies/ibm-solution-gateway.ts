@@ -16,7 +16,7 @@ export const ibmSolutionGateway: CaseStudyContent = {
   blocks: [
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/hero.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/hero.webp`,
       alt: "A laptop mockup of the IBM Solution Gateway platform, showing a sample solution overview page with descriptions, business drivers, and value propositions",
     },
     { kind: "heading", id: "introduction", text: "Introduction of My Experience", navLabel: "Introduction" },
@@ -47,7 +47,7 @@ export const ibmSolutionGateway: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/program-director-quote.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/program-director-quote.webp`,
       alt: "Patrick McMahon, Program Director – IBM Global Solutions, who managed Jiaqi directly: “I had the privilege to have JiaQi as a UX/UI Design Intern on my software engineering team building and managing an enterprise software application. She was an outstanding contributor to our team, demonstrating an amazing ability to pick up complicated user personas and their business contexts with minimal handholding. She was not only able to retain this knowledge but also able to augment and grow it through organic connections she made while working in other contexts across the application platform. This ability to be able to quickly and seamlessly connect personas, business needs and application capabilities allowed her to significantly contribute to all aspects of our UX and UI functions. She was directly involved in the user experience testing and user interface design for several brand new functions for our platform and her work was of high quality and was very well received by both business and technical teams. Her technical skills in the tools supporting her design work was also very strong. I shocked a number of mid and senior level individuals when I would tell them she was just an intern, when looking at the quality and insightfulness her work demonstrated.”",
       caption: "Comments from Program Director",
     },
@@ -55,7 +55,7 @@ export const ibmSolutionGateway: CaseStudyContent = {
     { kind: "heading", id: "about-product", text: "About the Product", navLabel: "About the product" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/product-overview-diagram.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/product-overview-diagram.webp`,
       alt: "Diagram: Offering and solution aligned assets flow into IBM Solution Gateway. Portfolio Managers and Solution Owners create, edit, review, and publish solutions through the Portfolio Management Tool; IBM Sellers and Business Partners search, browse, and reuse solutions through the Solution Catalog to bring IBM's offerings to industry clients.",
     },
     {
@@ -110,7 +110,7 @@ export const ibmSolutionGateway: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/moving-experience-options.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/moving-experience-options.webp`,
       alt: "Previous moving experience: move an item at a time within the section through Drag & Drop. New requirement on the moving experience: move multiple items at a time within or across sections through Drag & Drop or other more intuitive ways.",
     },
     { kind: "subsubheading", text: "The challenge:" },
@@ -187,13 +187,13 @@ export const ibmSolutionGateway: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-flow-previous.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-flow-previous.webp`,
       alt: 'The previous flow of "contribute a new file": add a file to the Portfolio Item, choose and upload the file, then register the file and link it to the Portfolio Item — a happy path with no validation step.',
       caption: "The previous flow of contributing a file",
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-flow-revised.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-flow-revised.webp`,
       alt: 'The revised flow of "contribute a new file": after adding a file, the system checks whether it already exists in the Solution Gateway Managed Box folder. If not, register and link it (happy path). If a new version, create a new version and link it. If linking an existing file, link it to the Portfolio Item. If the filename is a duplicate, the user renames the file to upload it as new.',
       caption: "The revised flow of contributing a file",
     },
@@ -221,7 +221,7 @@ export const ibmSolutionGateway: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-option-1.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-option-1.webp`,
       alt: "Option 1 workflow: users can either link an existing registered file from the Box Folder to the Portfolio Item, or upload a new file, register it, and link it to the Portfolio Item.",
     },
     { kind: "subsubheading", text: "For option 2: (See the workflow below)" },
@@ -248,7 +248,7 @@ export const ibmSolutionGateway: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-option-2.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/contribute-file-option-2.webp`,
       alt: "Option 2 workflow: users upload a file, the system validates it against the Box Folder with an exact or fuzzy match, and then presents a warning popup with four follow-up options — use the existing file, create a new version, create a new file, or pass validation on a happy path.",
     },
     { kind: "subsubheading", text: "My approaches and the lessons I learned:" },
@@ -281,7 +281,7 @@ export const ibmSolutionGateway: CaseStudyContent = {
           caption: "Usability testing",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/usability-testing-scenarios.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/ibm-solution-gateway/usability-testing-scenarios.webp`,
           alt: "A list of the usability testing scenarios used to evaluate the contribute-a-file design options",
           caption: "Testing Scenarios",
         },

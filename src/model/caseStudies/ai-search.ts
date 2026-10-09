@@ -80,11 +80,11 @@ export const aiSearch: CaseStudyContent = {
       ordered: true,
       items: [
         {
-          icon: `${import.meta.env.BASE_URL}case-studies/ai-search/initial-prototype-slowness.png`,
+          icon: `${import.meta.env.BASE_URL}case-studies/ai-search/initial-prototype-slowness.webp`,
           text: "**Performance, and the perception of it.** AI-generated results took meaningfully longer to load than a normal search. And because nothing on screen indicated AI was involved, that delay didn't read as a new capability warming up — it just felt like search had gotten slower.",
         },
         {
-          icon: `${import.meta.env.BASE_URL}case-studies/ai-search/initial-prototype-accuracy.png`,
+          icon: `${import.meta.env.BASE_URL}case-studies/ai-search/initial-prototype-accuracy.webp`,
           text: "**The traditional results format showed its limits.** Reusing the existing layout for AI-generated results caused two distinct issues: no way to tell why a document was surfaced as a match — the format didn't explain its own reasoning — and no way to represent a narrowed, high-confidence set, since a layout built for scanning a long list had no way to hold a precise few.",
         },
       ],
@@ -97,7 +97,7 @@ export const aiSearch: CaseStudyContent = {
       kind: "paragraph",
       text: "If users chose to turn AI mode on themselves, they'd likely expect it to take a moment — making the latency easier to accept.",
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle.png`, alt: "Early exploration of an AI mode toggle in the search bar", caption: "Early AI toggle exploration" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle.webp`, alt: "Early exploration of an AI mode toggle in the search bar", caption: "Early AI toggle exploration" },
     { kind: "subsubheading", text: "The problem" },
     {
       kind: "paragraph",
@@ -108,7 +108,7 @@ export const aiSearch: CaseStudyContent = {
       kind: "paragraph",
       text: "Intent-aware search evaluates how much information is in the query itself, and only runs the AI answer when there's enough signal to make it worthwhile. Sparse, keyword-style queries stay fast and get traditional results; specific, question-style queries get the richer AI experience — automatically, with no mode for the user to discover or manage.",
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle-let-system-decide.png`, alt: "The system evaluates query intent automatically, with no mode for the user to manage", caption: "The system decides — no mode for the user to discover or manage" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/ai-toggle-let-system-decide.webp`, alt: "The system evaluates query intent automatically, with no mode for the user to manage", caption: "The system decides — no mode for the user to discover or manage" },
 
     { kind: "subheading", text: "Decision #2: Where should the AI answer live? A separate tab, or inline above the results?" },
     { kind: "subsubheading", text: "The alternative" },
@@ -120,11 +120,11 @@ export const aiSearch: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative-1.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative-1.webp`,
           alt: "The default 'All results' tab, with a separate 'AI answer' tab beside it",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative-2.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-alternative-2.webp`,
           alt: "The AI answer, hidden behind a separate tab a user has to notice and click into",
         },
       ],
@@ -141,7 +141,7 @@ export const aiSearch: CaseStudyContent = {
         },
       ],
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-performance.png`, alt: "Performance: results appear instantly while the AI answer loads above them", caption: "Traditional results appear instantly, the AI answer loads above them" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-performance.webp`, alt: "Performance: results appear instantly while the AI answer loads above them", caption: "Traditional results appear instantly, the AI answer loads above them" },
     {
       kind: "list",
       items: [
@@ -151,7 +151,7 @@ export const aiSearch: CaseStudyContent = {
         },
       ],
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-rationale.png`, alt: "Rationale: each AI result shows why it matched", caption: "Each document returns with a short summary explaining why it matched" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-rationale.webp`, alt: "Rationale: each AI result shows why it matched", caption: "Each document returns with a short summary explaining why it matched" },
     {
       kind: "list",
       items: [
@@ -161,7 +161,7 @@ export const aiSearch: CaseStudyContent = {
         },
       ],
     },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-format.png`, alt: "Format: a compact, collapsed AI answer above the full results list", caption: "A compact, collapsible answer" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-2-format.webp`, alt: "Format: a compact, collapsed AI answer above the full results list", caption: "A compact, collapsible answer" },
 
     { kind: "subheading", text: "Decision #3: Where should follow-up conversation happen? In search, or in the AI hub?" },
     { kind: "subsubheading", text: "The obvious path" },
@@ -170,7 +170,7 @@ export const aiSearch: CaseStudyContent = {
       text: "Build conversation directly into search — turn the AI answer into the start of a chat thread on the results page.",
     },
     { kind: "subsubheading", text: "The decision: hand off instead" },
-    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-3-handoff.png`, alt: "Handing off a follow-up question from search into Lucid's AI hub", caption: "Handing off follow-up conversation to Lucid's AI hub" },
+    { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/decision-3-handoff.webp`, alt: "Handing off a follow-up question from search into Lucid's AI hub", caption: "Handing off follow-up conversation to Lucid's AI hub" },
     {
       kind: "paragraph",
       text: "Lucid already has an AI hub built for back-and-forth with Lucid AI. Building a second, parallel conversational experience inside search would have meant maintaining two chat patterns for the same capability, and blurred what each surface was for — search is where people go to find something fast; the hub is where they go to think something through.",
@@ -192,7 +192,7 @@ export const aiSearch: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/ai-search/signaling-ai-capability.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/ai-search/signaling-ai-capability.webp`,
         alt: "New sparkle icon and placeholder text signal AI-powered search",
         caption: "Signaling AI-powered search",
       },
@@ -220,11 +220,11 @@ export const aiSearch: CaseStudyContent = {
         kind: "image-row",
         items: [
           {
-            src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-1.png`,
+            src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-1.webp`,
             alt: "The expanded AI answer with an embedded 'Chat more with Lucid AI' input",
           },
           {
-            src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-2.png`,
+            src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-deeper-answer-2.webp`,
             alt: "A 'Prompt sent to Lucid AI' confirmation after opening the conversation in Lucid's AI hub",
           },
         ],
@@ -242,7 +242,7 @@ export const aiSearch: CaseStudyContent = {
           text: '**Resolving ambiguity with a chip.** Ambiguous names — "documents Peter shared with me" — surface a dropdown to disambiguate. The selected person renders as a chip in both the search input and the AI answer itself ("Found 3 roadmaps shared by Sarah Chen in the last 7 days"), resolving the ambiguity without a back-and-forth and staying visible as confirmation.',
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-person-chip.png`, alt: "A person chip resolves an ambiguous name in both the query and the AI answer", caption: "Resolving ambiguity with a person chip" },
+      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-person-chip.webp`, alt: "A person chip resolves an ambiguous name in both the query and the AI answer", caption: "Resolving ambiguity with a person chip" },
     },
     {
       kind: "media-split",
@@ -253,7 +253,7 @@ export const aiSearch: CaseStudyContent = {
           text: "**Compact answers via inline links.** Each AI result flows as a single block — a clickable document title followed directly by its summary — rather than a separate row or card. That compactness is what keeps both the collapsed and expanded states tight enough to sit above the full traditional results.",
         },
       ],
-      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-inline-links.png`, alt: "Compact AI results rendered as inline linked titles with summaries", caption: "Compact answers via inline links" },
+      media: { kind: "image", src: `${import.meta.env.BASE_URL}case-studies/ai-search/solution-inline-links.webp`, alt: "Compact AI results rendered as inline linked titles with summaries", caption: "Compact answers via inline links" },
     },
   ],
 };

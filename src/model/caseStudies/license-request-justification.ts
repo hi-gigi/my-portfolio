@@ -18,12 +18,12 @@ export const licenseRequestJustification: CaseStudyContent = {
       kind: "carousel",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/end-user-add-justification.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/end-user-add-justification.webp`,
           alt: "End user adding a justification note when requesting a license",
           caption: "End user adds a justification note",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/admin-review-justification.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/admin-review-justification.webp`,
           alt: "Admin reviewing a pending license request alongside the user's justification",
           caption: "Admin reviews the justification",
         },
@@ -76,7 +76,7 @@ export const licenseRequestJustification: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/problem-space.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/problem-space.webp`,
         alt: "A pending license request showing only requester name, email, and request details — license type, date, and count — with no context on why",
         caption: "All the context a pending request gave an admin",
       },
@@ -107,7 +107,7 @@ export const licenseRequestJustification: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/admin-research-synthesis.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/admin-research-synthesis.webp`,
       alt: "Notes and synthesis from 10 admin interviews, organized into top takeaways and other takeaways",
       caption: "Admin interview notes and synthesis",
     },
@@ -131,7 +131,7 @@ export const licenseRequestJustification: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/end-user-research-synthesis.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/end-user-research-synthesis.webp`,
       alt: "Notes and synthesis from 6 end user calls, organized into top takeaways and other takeaways",
       caption: "End user call notes and synthesis",
     },
@@ -142,13 +142,13 @@ export const licenseRequestJustification: CaseStudyContent = {
     { kind: "subheading", text: "Process snapshots" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/brainstorming-and-prioritization.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/brainstorming-and-prioritization.webp`,
       alt: "Brainstormed ideas for surfacing user justification, grouped into a V1/MVP scope and longer-term ideas",
       caption: "Brainstorming solution directions and prioritizing by feasibility and expected impact",
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/solution-scope-and-alignment.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/solution-scope-and-alignment.webp`,
       alt: "The full solution mapped out across the end-user request flow, admin review, email notifications, and license settings",
       caption: "Aligning with the Engagement & Virality team — scoping changes without disrupting key business metrics",
     },
@@ -160,7 +160,7 @@ export const licenseRequestJustification: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/current-experience.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/current-experience.webp`,
       alt: "The existing end-user flow: a view-only user is prompted to request a license, and gets 7 days of full access while their request is pending",
       caption: "The existing end-user request flow, before this project",
     },
@@ -175,12 +175,12 @@ export const licenseRequestJustification: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v1-request-modal-hint.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v1-request-modal-hint.webp`,
           alt: "V1 request modal hinting that users can add a message for their admin in the next step",
           caption: "Hints at the option in the request modal",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v1-confirmation-note.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v1-confirmation-note.webp`,
           alt: "V1 confirmation step with an optional note field for the admin, shown after the request is sent",
           caption: "Optional note field lives in the confirmation step",
         },
@@ -199,12 +199,12 @@ export const licenseRequestJustification: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v2-request-modal-note.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v2-request-modal-note.webp`,
           alt: "V2 request modal with the justification field moved directly into it, ahead of submitting the request",
           caption: "Note field moved into the request modal itself",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v2-confirmation.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/v2-confirmation.webp`,
           alt: "V2 confirmation step, simplified now that the note is captured earlier in the request modal",
           caption: "Confirmation step simplifies once the note moves earlier",
         },
@@ -226,7 +226,7 @@ export const licenseRequestJustification: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/justification-optional-field.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/justification-optional-field.webp`,
         alt: "The request modal noting that justification is an optional field users can skip if they don't have a clear use case yet",
         caption: "Optional, so it never blocks the request",
       },
@@ -241,7 +241,7 @@ export const licenseRequestJustification: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/justification-edit-or-reask.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/justification-edit-or-reask.webp`,
         alt: "A dialog letting a user with a pending request add or edit their note to the admin, or request again",
         caption: "Users can add or edit their note while a request is pending",
       },
@@ -271,22 +271,22 @@ export const licenseRequestJustification: CaseStudyContent = {
       kind: "carousel",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/pending-requests-page.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/pending-requests-page.webp`,
           alt: "User justification shown inline on the pending license requests page, with a filter for requests that include one",
           caption: "Surfaced on the pending requests page, with a filter",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/user-table.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/user-table.webp`,
           alt: "User justification visible when an admin edits a user's licenses from the user table",
           caption: "Visible when admins edit licenses from the user table",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/user-details-panel.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/user-details-panel.webp`,
           alt: "User justification visible in the expanded user details panel",
           caption: "Visible in the user details panel",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/most-recent-requests.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/most-recent-requests.webp`,
           alt: "User justification shown alongside the most recent pending requests on the Users overview page",
           caption: "Shown alongside the most recent requests",
         },
@@ -303,7 +303,7 @@ export const licenseRequestJustification: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/email-notification.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/email-notification.webp`,
         alt: "License request email notification with the user's justification included in the body, alongside grant and deny actions",
         caption: "Justification included in the email notification",
       },
@@ -317,12 +317,12 @@ export const licenseRequestJustification: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/in-product-education-launch.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/in-product-education-launch.webp`,
           alt: "In-product education callout on the admin panel overview announcing that users can now include justifications with license requests",
           caption: "Announced at launch on the admin overview",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/in-product-education-settings.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/license-request-justification/in-product-education-settings.webp`,
           alt: "License request settings page directing admins to where they can add custom instructions for end users",
           caption: "Points admins to where they can customize instructions",
         },

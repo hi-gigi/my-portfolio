@@ -87,7 +87,7 @@ export const documentDiscovery: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/competitor-research.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/competitor-research.webp`,
         alt: "Competitive research comparing eDiscovery, retention, and legal hold across Microsoft Purview, Google Vault, Box, Slack, Miro, Figma, Notion, and Zoom",
         caption: "Competitor & market research matrix",
       },
@@ -113,7 +113,7 @@ export const documentDiscovery: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/research-synthesis.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/research-synthesis.webp`,
         alt: "Admin call notes and synthesis, organized into document discovery and retention/legal hold themes",
         caption: "Interview synthesis and affinity mapping",
       },
@@ -128,17 +128,17 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-it-support.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-it-support.webp`,
           alt: "Persona: James Miller, IT support — keeps the account running day to day and enforces retention policy at the scale of the entire account",
           caption: "Persona: IT support",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-legal-compliance.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-legal-compliance.webp`,
           alt: "Persona: Sarah Johnson, Legal & Compliance Counsel — leads document-related work during investigations and legal hold",
           caption: "Persona: Legal",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-security.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-security.webp`,
           alt: "Persona: David Anderson, Security Engineer — safeguards the account by monitoring for sensitive content and compliance gaps",
           caption: "Persona: Security Engineer",
         },
@@ -149,7 +149,7 @@ export const documentDiscovery: CaseStudyContent = {
     { kind: "paragraph", text: "Across the three personas, the needs converged into four capability areas." },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-visibility.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-visibility.webp`,
       content: [
         { kind: "subsubheading", text: "Document Visibility" },
         {
@@ -167,7 +167,7 @@ export const documentDiscovery: CaseStudyContent = {
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-controls.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-document-controls.webp`,
       content: [
         { kind: "subsubheading", text: "Document Controls" },
         { kind: "paragraph", text: "Once admins find what they're looking for, they need to act on it." },
@@ -184,7 +184,7 @@ export const documentDiscovery: CaseStudyContent = {
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-legal-hold.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-legal-hold.webp`,
       content: [
         { kind: "subsubheading", text: "Legal Hold" },
         {
@@ -202,7 +202,7 @@ export const documentDiscovery: CaseStudyContent = {
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-retention-compliance.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/document-discovery/icon-retention-compliance.webp`,
       content: [
         { kind: "subsubheading", text: "Retention Compliance" },
         {
@@ -227,7 +227,7 @@ export const documentDiscovery: CaseStudyContent = {
     { kind: "paragraph", text: "We ranked capabilities in order of admin impact and urgency:" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/capability-ranking.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/document-discovery/capability-ranking.webp`,
       alt: "Capability areas ranked by admin impact and urgency: Document Visibility (V1 scope), Document Controls, Legal Hold, Retention",
       caption: "Capability areas ranked by impact and urgency",
     },
@@ -264,17 +264,17 @@ export const documentDiscovery: CaseStudyContent = {
       kind: "carousel",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-1-search.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-1-search.webp`,
           alt: "Searching the account by keyword, user, and created date in Document Discovery",
           caption: "Searching by keyword, user, and date",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-2-results.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-2-results.webp`,
           alt: "Search results listing matched documents with owner, collaborators, and dates",
           caption: "Search results",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-3-bulk-export.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/document-discovery/solution-3-bulk-export.webp`,
           alt: "Selecting multiple documents to bulk-export as PDF or metadata",
           caption: "Bulk export",
         },
@@ -323,7 +323,7 @@ export const documentDiscovery: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-search-filters.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-search-filters.webp`,
         alt: "A later, deepened search with filters for access type, document type, external access, classification, and status, plus saved queries",
         caption: "Deepened search filters and saved queries",
       },
@@ -338,7 +338,7 @@ export const documentDiscovery: CaseStudyContent = {
       ],
       media: {
         kind: "image",
-        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-document-actions.png`,
+        src: `${import.meta.env.BASE_URL}case-studies/document-discovery/later-document-actions.webp`,
         alt: "An expanded document action menu with edit classification, transfer ownership, move location, remove external access, and mark for permanent deletion",
         caption: "Expanded document actions",
       },

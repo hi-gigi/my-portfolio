@@ -28,7 +28,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-pulse-website.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-pulse-website.webp`,
       alt: "The current Hasbro Pulse website, showing a Marvel Legends product page",
       caption: "Click to view the current Pulse website",
     },
@@ -85,7 +85,7 @@ export const hasbroPulse: CaseStudyContent = {
         [
           {
             kind: "image",
-            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/quote-icon-marvel.png`,
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/quote-icon-marvel.webp`,
             alt: "Illustration of a fan following a brand's social media feed",
           },
           {
@@ -101,7 +101,7 @@ export const hasbroPulse: CaseStudyContent = {
         [
           {
             kind: "image",
-            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/quote-icon-transformers.png`,
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/quote-icon-transformers.webp`,
             alt: "Illustration of a fan seeking out exclusive products on the Pulse website",
           },
           {
@@ -146,17 +146,17 @@ export const hasbroPulse: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-enrich.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-enrich.webp`,
           alt: "Icon representing enriching the content type",
           caption: 'Enriching the content type - deliver "Content to Commerce"',
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-curate.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-curate.webp`,
           alt: "Icon representing curating content for each individual",
           caption: "Curating the content presented to each individual",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-notify.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-icon-notify.webp`,
           alt: "Icon representing notifying fans of the latest updates",
           caption: "Notifying fans for the latest updates from the brands they like",
         },
@@ -180,12 +180,12 @@ export const hasbroPulse: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/solution-onboarding-preview.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/solution-onboarding-preview.webp`,
           alt: "Onboarding screens for setting brand preferences and viewing a personalized news feed",
           caption: "Brand preferences & personalized news feed",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/solution-features-preview.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/solution-features-preview.webp`,
           alt: "Preview of the Upcoming Calendar, My List, Notification Hub, and Live Stream features",
           caption: "Highlighted features on the app",
         },
@@ -195,13 +195,13 @@ export const hasbroPulse: CaseStudyContent = {
     { kind: "subheading", text: "What impacts the solution would bring?" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-diagram.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/strategy-diagram.webp`,
       alt: "Diagram mapping how brand teams' content flows through Hasbro Pulse Mobile to reach fans",
       caption: "How the three strategies connect brand teams to fans",
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-exclusive-content.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-exclusive-content.webp`,
       content: [
         { kind: "subsubheading", text: "Provide exclusive content fans cannot get anywhere else." },
         {
@@ -212,7 +212,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-efficiency.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-efficiency.webp`,
       content: [
         { kind: "subsubheading", text: "Improve the efficiency of getting relevant information." },
         {
@@ -223,7 +223,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-engagement.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/impact-icon-engagement.webp`,
       content: [
         { kind: "subsubheading", text: "Adopt new channel to increase fan engagement." },
         {
@@ -237,14 +237,14 @@ export const hasbroPulse: CaseStudyContent = {
     { kind: "subheading", text: "Process Overview" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/design-process-overview.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/design-process-overview.webp`,
       alt: "Five-step design process: Problem Space Exploration, Opportunities Discovery, Design Scope Definition, Concept Generation and Evaluation, Design Finalization and Delivery",
       caption: "Process overview",
     },
     { kind: "subheading", text: "Project Prompt" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/project-prompt-keywords.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/project-prompt-keywords.webp`,
       alt: "Keywords extracted from the project prompt: Fan Community, Mobile Commerce for Shopify, Curated View of Content, Slick UI",
       caption: "Extracted keywords from the prompt",
     },
@@ -265,7 +265,7 @@ export const hasbroPulse: CaseStudyContent = {
     { kind: "subheading", text: "Methods I applied" },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-stakeholder-meetings.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-stakeholder-meetings.webp`,
       content: [
         { kind: "subsubheading", text: "Stakeholder Meetings" },
         {
@@ -284,7 +284,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-benchmarking.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-benchmarking.webp`,
       content: [
         { kind: "subsubheading", text: "Benchmarking" },
         {
@@ -303,13 +303,13 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/benchmarking-competitor-apps.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/benchmarking-competitor-apps.webp`,
       alt: "Competitive analysis of sneaker and streetwear apps, annotated with notes on their upcoming-release and notification features",
       caption: "Competitors",
     },
     {
       kind: "icon-split",
-      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-internal-interview.png`,
+      icon: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/method-icon-internal-interview.webp`,
       content: [
         { kind: "subsubheading", text: "Internal Fan Interview" },
         {
@@ -358,12 +358,12 @@ export const hasbroPulse: CaseStudyContent = {
       kind: "image-row",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-sources-of-information.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-sources-of-information.webp`,
           alt: "Diagram of the three main sources fans use to find information: social media, official websites, and Google search",
           caption: "Current sources of information",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-content-mostly-toyshop.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/current-content-mostly-toyshop.webp`,
           alt: "Sketch showing that 80% of the current Pulse website's content is about the Toy Shop, versus 20% other information",
           caption: "Problems with current fan experience",
         },
@@ -396,7 +396,7 @@ export const hasbroPulse: CaseStudyContent = {
         [
           {
             kind: "image",
-            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/persona-hardcore-fan.png`,
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/persona-hardcore-fan.webp`,
             alt: "Illustration representing the Hardcore Fan persona",
           },
           { kind: "subsubheading", text: "Hardcore Fan" },
@@ -418,7 +418,7 @@ export const hasbroPulse: CaseStudyContent = {
         [
           {
             kind: "image",
-            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/persona-casual-fan.png`,
+            src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/persona-casual-fan.webp`,
             alt: "Illustration representing the Casual Fan persona",
           },
           { kind: "subsubheading", text: "Casual Fan" },
@@ -467,7 +467,7 @@ export const hasbroPulse: CaseStudyContent = {
     { kind: "paragraph", text: "Keywords: Distinguishable, Shareable" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/card-format-options.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/card-format-options.webp`,
       alt: "Five card format options explored for the product card, labeled A through E with pros and cons noted",
       caption: "Different options & iterations",
     },
@@ -478,7 +478,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/card-format-final.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/card-format-final.webp`,
       alt: "Final card designs for the Product Card and the Story, Product Collection, and Activity Post cards",
       caption: "Final card design",
     },
@@ -496,7 +496,7 @@ export const hasbroPulse: CaseStudyContent = {
     { kind: "paragraph", text: "Keywords: Discoverability" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/upcoming-calendar-iterations.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/upcoming-calendar-iterations.webp`,
       alt: "Two iterations of the Upcoming Calendar's location — first on the Product Catalog page, then moved to the home page after usability testing",
       caption: "Iterations",
     },
@@ -518,7 +518,7 @@ export const hasbroPulse: CaseStudyContent = {
     { kind: "paragraph", text: "Keywords: Discoverability, Intuitiveness" },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/live-stream-entrance-options.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/live-stream-entrance-options.webp`,
       alt: "Two options tested for the Live Stream entrance — a swipe-down gesture on the feed versus a dedicated entrance icon",
       caption: "Different options & iterations",
     },
@@ -533,7 +533,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/live-stream-entrance-final.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/live-stream-entrance-final.webp`,
       alt: "Final Live Stream entrance and page, organized into Live Now, Upcoming Live Streams, and Archived Live Streams",
       caption: "Final entrance & Live Stream page",
     },
@@ -543,37 +543,37 @@ export const hasbroPulse: CaseStudyContent = {
       kind: "carousel",
       items: [
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-inspiration.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-inspiration.webp`,
           alt: "Annotated screenshots of competitor apps used for inspiration",
           caption: "Finding inspiration from exemplars on the market",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-lofi-wireframes.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-lofi-wireframes.webp`,
           alt: "Low-fidelity wireframes prepared for user testing",
           caption: "Low-fi wireframes for user testing",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-feature-exploration.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-feature-exploration.webp`,
           alt: "Sketches exploring new feature ideas for the app",
           caption: "New feature exploration",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-interview-scripts.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-interview-scripts.webp`,
           alt: "Scripts written for fan interviews and usability testing sessions",
           caption: "Scripts for fan interview and testing",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-testing-session-1.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-testing-session-1.webp`,
           alt: "Photo from the first user testing session with an internal fan",
           caption: "User testing session #1",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-testing-session-2.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-testing-session-2.webp`,
           alt: "Photo from the second user testing session with an internal fan",
           caption: "User testing session #2",
         },
         {
-          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-affinity-diagram.png`,
+          src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/process-affinity-diagram.webp`,
           alt: "Affinity diagram synthesizing interview data on sticky notes",
           caption: "Interview data synthesis - Affinity Diagram",
         },
@@ -591,7 +591,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-onboarding.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-onboarding.webp`,
       alt: "Onboarding flow: welcome screen, account creation, brand preference selection, and the personalized feed",
     },
     { kind: "subsubheading", text: "Upcoming Calendar" },
@@ -607,7 +607,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-upcoming-calendar.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-upcoming-calendar.webp`,
       alt: "Upcoming Calendar flow: browsing upcoming products, marking interest, setting notification preferences, and checking My Upcoming list",
     },
     { kind: "subsubheading", text: "Notification" },
@@ -623,7 +623,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-notification.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-notification.webp`,
       alt: "Notification flow: the inbox showing read and unread messages, and the notification preference settings",
     },
     { kind: "subsubheading", text: "Live Stream" },
@@ -642,7 +642,7 @@ export const hasbroPulse: CaseStudyContent = {
     },
     {
       kind: "image",
-      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-live-stream.png`,
+      src: `${import.meta.env.BASE_URL}case-studies/hasbro-pulse/final-live-stream.webp`,
       alt: "Live Stream flow: accessing the feature, browsing live and upcoming streams, and finding video-related products",
     },
     { kind: "subsubheading", text: "Other Flows and Features" },

@@ -226,6 +226,7 @@ function CaseStudyVideo({
     <video
       ref={ref}
       src={src}
+      poster={src.replace(/\.mp4$/, "-poster.webp")}
       autoPlay={!startPauseMs}
       loop={!startPauseMs}
       muted
