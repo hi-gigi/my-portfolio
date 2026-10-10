@@ -130,34 +130,39 @@ export const distributedAdminControls: CaseStudyContent = {
       text: "When designing how admins modify org group-level settings, we considered two approaches:",
     },
     {
-      kind: "list",
-      items: [
-        {
-          label: "Group-first",
-          text: "Admins navigate to a group, then modify settings from within the group detail view",
-        },
-        {
-          label: "Setting-first",
-          text: "Admins navigate to a settings page as usual, with a group panel added to let them view and override settings per org group",
-        },
-      ],
+      kind: "paragraph",
+      text: "**Group-first** — Admins navigate to a group, then modify settings from within the group detail view",
     },
     {
-      kind: "image-row",
+      kind: "carousel",
       items: [
-        {
-          alt: "Group-first concept: admins navigate to a group, then modify settings from within the group detail view",
-          caption: "Option A — group-first",
-        },
-        {
-          alt: "Setting-first concept: admins navigate to the settings page, with a group panel to view and override settings per org group",
-          caption: "Option B — setting-first",
-        },
+        { src: "/case-studies/distributed-admin-controls/group-first-members.webp", alt: "Group-first concept: the group details page, members tab", caption: "Group details — members" },
+        { src: "/case-studies/distributed-admin-controls/group-first-license-requests.webp", alt: "Group-first concept: the group details page, license requests tab", caption: "Group details — license requests" },
+        { src: "/case-studies/distributed-admin-controls/group-first-group-settings.webp", alt: "Group-first concept: the group details page, group-specific settings tab", caption: "Group details — group-specific settings" },
       ],
     },
     {
       kind: "paragraph",
-      text: "We went with the setting-first model for two reasons. First, it keeps each settings page as the single source of truth — admins don't have to wonder whether a setting lives on the group page or the settings page. Second, the group panel lets admins compare and manage settings across multiple org groups in one place, rather than navigating in and out of individual group pages.",
+      spaced: true,
+      text: "**Setting-first** — Admins navigate to a settings page as usual, with a group panel added to let them view and override settings per org group",
+    },
+    {
+      kind: "image",
+      src: "/case-studies/distributed-admin-controls/setting-first-groups-panel.webp",
+      alt: "Setting-first concept: a groups panel added to the settings page, with no net-new group-specific settings page",
+      caption: "Groups panel on the settings page",
+    },
+    {
+      kind: "paragraph",
+      spaced: true,
+      text: "**We went with the setting-first model for two reasons.**",
+    },
+    {
+      kind: "list",
+      items: [
+        "First, it keeps each settings page as the single source of truth — admins don't have to wonder whether a setting lives on the group page or the settings page.",
+        "Second, the group panel lets admins compare and manage settings across multiple org groups in one place, rather than navigating in and out of individual group pages.",
+      ],
     },
     {
       kind: "paragraph",

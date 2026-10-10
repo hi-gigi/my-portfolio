@@ -305,6 +305,7 @@ function CaseStudyBlockView({
       const classes = [
         block.emphasis && "case-study-emphasis",
         block.continuation && "case-study-continuation",
+        block.spaced && "case-study-spaced",
       ].filter(Boolean).join(" ");
       return <p className={classes || undefined}>{renderInlineText(block.text)}</p>;
     }

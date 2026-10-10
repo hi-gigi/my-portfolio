@@ -240,9 +240,11 @@ export type CaseStudyBlock =
    * a subheading. `continuation` pulls this paragraph closer to the
    * one directly above it — for a claim immediately followed by the
    * evidence/detail for it, read as one unit rather than two separate
-   * ideas.
+   * ideas. `spaced` restores the full block gap right after an
+   * image/video/carousel, for a paragraph that starts a new idea
+   * rather than explaining the media above it.
    */
-  | { kind: "paragraph"; text: string; emphasis?: boolean; continuation?: boolean }
+  | { kind: "paragraph"; text: string; emphasis?: boolean; continuation?: boolean; spaced?: boolean }
   | { kind: "list"; ordered?: boolean; items: CaseStudyListItem[] }
   /**
    * An editorial two-column opener: `content` paragraphs and `timeline`
