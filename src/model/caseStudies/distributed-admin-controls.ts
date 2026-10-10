@@ -165,8 +165,17 @@ export const distributedAdminControls: CaseStudyContent = {
       ],
     },
     {
+      kind: "carousel",
+      aspectRatio: "2.05 / 1",
+      spaced: true,
+      items: [
+        { src: "/case-studies/distributed-admin-controls/group-details-panel-read-only.webp", alt: "The group details panel, showing an org group's settings read-only", caption: "Group details panel — read-only" },
+        { src: "/case-studies/distributed-admin-controls/group-details-panel-redirect.webp", alt: "A direct link from the group details panel redirecting the admin to the relevant settings page to make changes", caption: "Redirect to the relevant settings page to make changes" },
+      ],
+    },
+    {
       kind: "paragraph",
-      text: "Rather than abandoning the group-first path entirely, we designed the group details panel as a read surface — admins can view all settings for a specific org group in one place, with direct links that take them to the relevant settings page to make changes. This preserved discoverability for admins who naturally start from the group, without creating a second place to edit settings.",
+      text: "Rather than abandoning the group-first path entirely, we **designed the group details panel as a read surface** — admins can view all settings for a specific org group in one place, **with direct links that take them to the relevant settings page to make changes**. This preserved discoverability for admins who naturally start from the group, without creating a second place to edit settings.",
     },
     {
       kind: "media-split",

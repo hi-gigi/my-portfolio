@@ -485,7 +485,7 @@ function CaseStudyBlockView({
     }
 
     case "carousel":
-      return <CaseStudyCarousel items={block.items} frameClass={frameClass} onImageClick={onImageClick} />;
+      return <CaseStudyCarousel items={block.items} aspectRatio={block.aspectRatio} frameClass={block.spaced ? `${frameClass} case-study-spaced` : frameClass} onImageClick={onImageClick} />;
 
     case "columns":
       return (
@@ -554,10 +554,12 @@ const CAROUSEL_INTERVAL_MS = 4000;
  */
 function CaseStudyCarousel({
   items,
+  aspectRatio,
   frameClass,
   onImageClick,
 }: {
   items: { src?: string; alt: string; caption?: string }[];
+  aspectRatio?: string;
   frameClass: string;
   onImageClick?: (items: LightboxItem[], index: number) => void;
 }) {
@@ -581,6 +583,7 @@ function CaseStudyCarousel({
     <div className={frameClass}>
       <div
         className="case-study-carousel"
+        style={aspectRatio ? { aspectRatio } : undefined}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >

@@ -276,9 +276,13 @@ export type CaseStudyBlock =
    * One image at a time, auto-advancing on a timer and looping — e.g.
    * a short flow of screenshots. Freezes on the first image instead of
    * animating when the visitor prefers reduced motion. Each item's
-   * `caption` swaps with it as the carousel advances.
+   * `caption` swaps with it as the carousel advances. `aspectRatio` (a CSS
+   * ratio, e.g. "2 / 1") overrides the default frame ratio, for slides
+   * that are wider than the default would show without cropping.
+   * `spaced` restores the full block gap above the carousel, when it
+   * opens a new idea rather than illustrating the text above it.
    */
-  | { kind: "carousel"; items: { src?: string; alt: string; caption?: string }[] }
+  | { kind: "carousel"; items: { src?: string; alt: string; caption?: string }[]; aspectRatio?: string; spaced?: boolean }
   /**
    * Side-by-side content columns (e.g. paired callouts, or an image
    * stacked with its own text) once there's room, stacking to one
