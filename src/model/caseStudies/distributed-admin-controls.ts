@@ -179,16 +179,18 @@ export const distributedAdminControls: CaseStudyContent = {
     },
     {
       kind: "media-split",
+      spaced: true,
       content: [
         {
           kind: "paragraph",
-          text: "Validation research supported this direction: most admins navigated to the settings page first and completed the task without friction. Admins who started from the org groups page were still able to figure out the flow through the group details panel.",
+          text: "**Validation research supported this direction:** most admins navigated to the settings page first and completed the task without friction. Admins who started from the org groups page were still able to figure out the flow through the group details panel.",
         },
       ],
       media: {
         kind: "image",
-        alt: "The group details panel, showing settings read-only with direct links out to the relevant settings page to make changes",
-        caption: "Group details panel — a read surface with links out to edit",
+        src: "/case-studies/distributed-admin-controls/validation-research-readout.webp",
+        alt: "Validation research readout, summarizing the research goals and key findings from testing the setting-first design",
+        caption: "Validation research readout — goals and key findings",
       },
     },
 

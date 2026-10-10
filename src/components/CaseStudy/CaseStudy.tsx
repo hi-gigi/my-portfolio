@@ -406,7 +406,7 @@ function CaseStudyBlockView({
         <div
           className={`case-study-media-split${block.alignBottom ? " case-study-media-split--align-end" : ""}${
             block.stacked ? " case-study-media-split--stacked" : ""
-          }`}
+          }${block.spaced ? " case-study-spaced" : ""}`}
         >
           <div className="case-study-media-split-text">
             {block.content.map((item, index) => (

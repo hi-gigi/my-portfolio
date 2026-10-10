@@ -312,6 +312,8 @@ export type CaseStudyBlock =
       media: Extract<CaseStudyBlock, { kind: "image" | "video" | "image-row" }>;
       alignBottom?: boolean;
       stacked?: boolean;
+      /** Full block gap above, for a split that opens a new idea after the block above it. */
+      spaced?: boolean;
     }
   /**
    * Like `media-split`, but for a small fixed-size icon tile (e.g. a
