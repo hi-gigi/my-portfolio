@@ -1209,6 +1209,8 @@
     img {
       width: 66px;
       height: 66px;
+      border-radius: @radius;
+      background: rgba(255, 255, 255, 0.9);
     }
   }
 }
@@ -1226,6 +1228,39 @@
 @media (max-width: @bp-icon-split) {
   .case-study-icon-columns .case-study-icon-split {
     flex-direction: column;
+  }
+}
+
+// Parallel items as tonal cards — two across once each has room to
+// read comfortably, stacked below that.
+@bp-cards: 700px;
+
+.case-study-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: @space-5;
+  align-items: stretch;
+}
+
+@media (max-width: @bp-cards) {
+  .case-study-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.case-study-card {
+  padding: @space-5;
+  border-radius: @radius;
+  background: var(--tonal);
+
+  // The body's heading top margin would push the title down inside the
+  // card instead of lining it up with the card's own padding.
+  h4 {
+    margin: 0 0 @space-2;
+  }
+
+  p {
+    margin: 0;
   }
 }
 

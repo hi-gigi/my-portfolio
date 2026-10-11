@@ -451,6 +451,18 @@ function CaseStudyBlockView({
         </div>
       );
 
+    case "cards":
+      return (
+        <div className="case-study-cards">
+          {block.items.map((item, index) => (
+            <div className="case-study-card" key={index}>
+              <h4>{item.title}</h4>
+              <p>{renderInlineText(item.text)}</p>
+            </div>
+          ))}
+        </div>
+      );
+
     case "image":
       if (!block.src) {
         return <MediaPlaceholder alt={block.alt} />;

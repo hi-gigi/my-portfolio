@@ -340,6 +340,12 @@ export type CaseStudyBlock =
       kind: "icon-columns";
       items: { icon: string; content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[] }[];
     }
+  /**
+   * Parallel items as tonal cards — a bold `title` over its `text`, in
+   * two columns once there's room, one below `@bp-cards`. `text`
+   * supports the same `**bold**` markup as `paragraph`.
+   */
+  | { kind: "cards"; items: { title: string; text: string }[] }
   /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */
   | { kind: "video"; src?: string; alt: string; caption?: string; playbackRate?: number; startPauseMs?: number; cropTopPx?: number }
   /**

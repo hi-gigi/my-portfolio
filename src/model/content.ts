@@ -87,6 +87,15 @@ export const content: PortfolioContent = {
             mediaTone: "paper",
           },
           {
+            id: "distributed-admin-controls",
+            title: "Distributed admin controls for Enterprise accounts",
+            blurb:
+              "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
+            labels: ["Systems Thinking", "Design Strategy", "0→1"],
+            image: thumb("distributed-admin-controls.webp"),
+            mediaTone: "ash",
+          },
+          {
             id: "document-discovery",
             title: "Document Discovery: search and audit across an org",
             blurb:
@@ -103,16 +112,6 @@ export const content: PortfolioContent = {
             labels: ["Growth", "End-to-End", "A/B Test"],
             image: thumb("license-request-justification.webp"),
             mediaTone: "stone",
-          },
-          {
-            id: "distributed-admin-controls",
-            title: "Distributed admin controls for Enterprise accounts",
-            blurb:
-              "Built to replace a legacy model that couldn't scale. Rolled out across thousands of enterprise accounts.",
-            labels: ["Systems Thinking", "Design Strategy", "0→1"],
-            image: thumb("distributed-admin-controls.webp"),
-            mediaTone: "ash",
-            wip: true,
           },
         ],
       },

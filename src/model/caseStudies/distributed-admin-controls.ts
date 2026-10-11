@@ -110,30 +110,25 @@ export const distributedAdminControls: CaseStudyContent = {
       text: "To understand how enterprise accounts were actually using groups — and what they needed that the legacy model couldn't support — I conducted discovery interviews with 10 enterprise admins. Four common use cases emerged:",
     },
     {
-      kind: "list",
+      kind: "cards",
       items: [
         {
-          label: "Distributed administration",
+          title: "Distributed administration",
           text: "In large organizations, a single IT admin can't manage everything. Department or group leads wanted the ability to manage their own teams — deciding who gets access to Lucid and who needs a paid license — without routing every change through central IT",
         },
         {
-          label: "Granular permission controls",
-          text: "One-size-fits-all account settings don't work for complex organizations. A legal or finance team may need strict data boundaries so sensitive content is never shared outside the company, while an HR team needs the flexibility to collaborate with external candidates in Lucid documents. Admins needed the ability to set different rules for different groups",
+          title: "Granular permission controls",
+          text: "One-size-fits-all account settings don't work for complex organizations. Legal or finance teams may need strict data boundaries so sensitive content never leaves the company, while a sales team needs to collaborate with external clients. Admins needed different rules for different groups",
         },
         {
-          label: "Internal bill back",
+          title: "Internal bill back",
           text: "Many enterprise organizations allocate software licenses by department budget. Admins needed a clear view of how many licenses each group was using — and an easy way to charge costs back to the right department at the end of the billing cycle",
         },
         {
-          label: "Document sharing & day-1 access",
+          title: "Document sharing & day-1 access",
           text: "Onboarding a new hire means getting them access to the right documents and tools immediately. Admins wanted a simple way to share a set of documents with a group, or automatically provision access to team repositories the moment someone joins",
         },
       ],
-    },
-    {
-      kind: "image",
-      alt: "Synthesis from discovery interviews with 10 enterprise admins, organized into the four recurring use cases",
-      caption: "Discovery interview synthesis",
     },
     {
       kind: "paragraph",
