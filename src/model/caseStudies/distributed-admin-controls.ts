@@ -194,6 +194,22 @@ export const distributedAdminControls: CaseStudyContent = {
       },
     },
 
+    { kind: "subheading", text: "Org Groups Panel: From Toggle to Hierarchy" },
+    {
+      kind: "image",
+      src: "/case-studies/distributed-admin-controls/org-group-panel-iterations.webp",
+      alt: "Iterations of the org groups panel, from a toggle between account settings and org group settings to a single hierarchical tree",
+      caption: "Org groups panel iterations",
+    },
+    {
+      kind: "paragraph",
+      text: "**Early iterations (Options 1–3.2) kept \"Account settings\" and \"org group settings\" as two separate modes that admins toggled between** — first with radio buttons, then segmented tabs, then a nav-style list, with the last pass adding inline copy explaining that groups without custom settings inherit from the account. Each iteration polished the styling, but the underlying model stayed the same: account-level and group-level settings as two parallel, separate places.",
+    },
+    {
+      kind: "paragraph",
+      text: "We ultimately moved away from that toggle. **The final design renders org groups as a single hierarchical tree** — the account-level default appears as the top-level group (e.g., \"BigComplexCo (Default)\"), with nested org groups indented beneath it. **Rather than explaining inheritance with copy, the hierarchy shows it directly** — it's visually clear which settings are the default and which groups branch off with their own overrides.",
+    },
+
     { kind: "heading", id: "solution", text: "Solution", navLabel: "Solution" },
     {
       kind: "paragraph",
