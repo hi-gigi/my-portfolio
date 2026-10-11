@@ -150,15 +150,13 @@
   --rainbow-7: @{rainbow-7};
 
   // Thumbnail backdrops — a hard diagonal split between a pale and a
-  // deeper warm grey. Each tile has its own angle and split ratio, and
-  // the deeper grey lands in a different corner (paper: upper-left,
-  // linen: lower-left, stone: upper-right, ash: lower-right) so the four
-  // read as a set. Hue is constant across themes; dark just drops
+  // deeper warm grey. Each tile has its own angle and split ratio so the
+  // four read as a set. Hue is constant across themes; dark just drops
   // lightness.
-  --thumb-bg-paper: linear-gradient(319deg, oklch(0.965 0.004 60) 0 62%, oklch(0.89 0.007 55) 62% 100%);
-  --thumb-bg-linen: linear-gradient(249deg, oklch(0.965 0.004 60) 0 58%, oklch(0.89 0.007 55) 58% 100%);
-  --thumb-bg-stone: linear-gradient(41deg, oklch(0.965 0.004 60) 0 44%, oklch(0.89 0.007 55) 44% 100%);
-  --thumb-bg-ash: linear-gradient(111deg, oklch(0.965 0.004 60) 0 65%, oklch(0.89 0.007 55) 65% 100%);
+  --thumb-bg-paper: linear-gradient(194deg, oklch(0.965 0.004 60) 0 54%, oklch(0.89 0.007 55) 54% 100%);
+  --thumb-bg-linen: linear-gradient(241deg, oklch(0.965 0.004 60) 0 55%, oklch(0.89 0.007 55) 55% 100%);
+  --thumb-bg-stone: linear-gradient(158deg, oklch(0.965 0.004 60) 0 49%, oklch(0.89 0.007 55) 49% 100%);
+  --thumb-bg-ash: linear-gradient(106deg, oklch(0.965 0.004 60) 0 54%, oklch(0.89 0.007 55) 54% 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -169,10 +167,10 @@
     --tonal: @{palette-tonal-dark};
     --coral-text: @{palette-accent};
 
-    --thumb-bg-paper: linear-gradient(319deg, oklch(0.41 0.006 60) 0 62%, oklch(0.28 0.007 55) 62% 100%);
-    --thumb-bg-linen: linear-gradient(249deg, oklch(0.41 0.006 60) 0 58%, oklch(0.28 0.007 55) 58% 100%);
-    --thumb-bg-stone: linear-gradient(41deg, oklch(0.41 0.006 60) 0 44%, oklch(0.28 0.007 55) 44% 100%);
-    --thumb-bg-ash: linear-gradient(111deg, oklch(0.41 0.006 60) 0 65%, oklch(0.28 0.007 55) 65% 100%);
+    --thumb-bg-paper: linear-gradient(194deg, oklch(0.41 0.006 60) 0 54%, oklch(0.28 0.007 55) 54% 100%);
+    --thumb-bg-linen: linear-gradient(241deg, oklch(0.41 0.006 60) 0 55%, oklch(0.28 0.007 55) 55% 100%);
+    --thumb-bg-stone: linear-gradient(158deg, oklch(0.41 0.006 60) 0 49%, oklch(0.28 0.007 55) 49% 100%);
+    --thumb-bg-ash: linear-gradient(106deg, oklch(0.41 0.006 60) 0 54%, oklch(0.28 0.007 55) 54% 100%);
   }
 }
 
@@ -182,8 +180,8 @@
   --muted: @{palette-muted-dark};
   --tonal: @{palette-tonal-dark};
   --coral-text: @{palette-accent};
-  --thumb-bg-paper: linear-gradient(319deg, oklch(0.41 0.006 60) 0 62%, oklch(0.28 0.007 55) 62% 100%);
-  --thumb-bg-linen: linear-gradient(249deg, oklch(0.41 0.006 60) 0 58%, oklch(0.28 0.007 55) 58% 100%);
-  --thumb-bg-stone: linear-gradient(41deg, oklch(0.41 0.006 60) 0 44%, oklch(0.28 0.007 55) 44% 100%);
-  --thumb-bg-ash: linear-gradient(111deg, oklch(0.41 0.006 60) 0 65%, oklch(0.28 0.007 55) 65% 100%);
+  --thumb-bg-paper: linear-gradient(194deg, oklch(0.41 0.006 60) 0 54%, oklch(0.28 0.007 55) 54% 100%);
+  --thumb-bg-linen: linear-gradient(241deg, oklch(0.41 0.006 60) 0 55%, oklch(0.28 0.007 55) 55% 100%);
+  --thumb-bg-stone: linear-gradient(158deg, oklch(0.41 0.006 60) 0 49%, oklch(0.28 0.007 55) 49% 100%);
+  --thumb-bg-ash: linear-gradient(106deg, oklch(0.41 0.006 60) 0 54%, oklch(0.28 0.007 55) 54% 100%);
 }
