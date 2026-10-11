@@ -69,19 +69,37 @@ export const distributedAdminControls: CaseStudyContent = {
       text: "Lucid's legacy group model was originally built for document distribution, then later leveraged for group-based license allotment. As customer needs grew, the model started to show its limits:",
     },
     {
-      kind: "list",
+      kind: "icon-columns",
       items: [
         {
-          label: "Tangled mental model",
-          text: "Sharing and license membership were mixed together in one construct, leaving admins confused about how to set up and manage their groups",
+          icon: `${import.meta.env.BASE_URL}case-studies/distributed-admin-controls/icon-tangled-mental-model.webp`,
+          content: [
+            { kind: "subsubheading", text: "Tangled mental model" },
+            {
+              kind: "paragraph",
+              text: "Sharing and license membership were mixed together in one construct, leaving admins confused about how to set up and manage their groups",
+            },
+          ],
         },
         {
-          label: "Performance at scale",
-          text: "For accounts with multi-level group structures, the license allotment modal took an unreasonable amount of time to load, making it effectively unusable",
+          icon: `${import.meta.env.BASE_URL}case-studies/distributed-admin-controls/icon-performance-at-scale.webp`,
+          content: [
+            { kind: "subsubheading", text: "Performance at scale" },
+            {
+              kind: "paragraph",
+              text: "For accounts with multi-level group structures, the license allotment modal took an unreasonable amount of time to load, making it effectively unusable",
+            },
+          ],
         },
         {
-          label: "Lack of granular controls",
-          text: "Growing enterprise accounts were increasingly asking for controls at the group level rather than single settings that applied to all users across the entire account",
+          icon: `${import.meta.env.BASE_URL}case-studies/distributed-admin-controls/icon-lack-of-granular-controls.webp`,
+          content: [
+            { kind: "subsubheading", text: "Lack of granular controls" },
+            {
+              kind: "paragraph",
+              text: "Growing enterprise accounts were increasingly asking for controls at the group level rather than single settings that applied to all users across the entire account",
+            },
+          ],
         },
       ],
     },

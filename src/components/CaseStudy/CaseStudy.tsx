@@ -433,6 +433,24 @@ function CaseStudyBlockView({
         </div>
       );
 
+    case "icon-columns":
+      return (
+        <div className="case-study-icon-columns">
+          {block.items.map((item, index) => (
+            <div className="case-study-icon-split" key={index}>
+              <span className="case-study-icon-split-icon">
+                <img src={item.icon} alt="" />
+              </span>
+              <div className="case-study-icon-split-content">
+                {item.content.map((child, i) => (
+                  <CaseStudyBlockView key={i} block={child} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+
     case "image":
       if (!block.src) {
         return <MediaPlaceholder alt={block.alt} />;

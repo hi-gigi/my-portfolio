@@ -1184,6 +1184,51 @@
   }
 }
 
+// Icon columns — each entry stacks its icon above its text while the
+// row is wide enough for three columns, then falls back to the
+// icon-beside-text layout of a standalone `icon-split`, one per row.
+@bp-icon-columns: 800px;
+
+.case-study-icon-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: @space-6;
+  align-items: start;
+
+  .case-study-icon-split {
+    flex-direction: column;
+    gap: @space-4;
+  }
+
+  // Smaller than a standalone icon-split's 128px tile — three of them
+  // share a row here, so the icon shouldn't outweigh the text beneath it.
+  .case-study-icon-split-icon {
+    width: 96px;
+    height: 96px;
+
+    img {
+      width: 66px;
+      height: 66px;
+    }
+  }
+}
+
+@media (max-width: @bp-icon-columns) {
+  .case-study-icon-columns {
+    grid-template-columns: 1fr;
+
+    .case-study-icon-split {
+      flex-direction: row;
+    }
+  }
+}
+
+@media (max-width: @bp-icon-split) {
+  .case-study-icon-columns .case-study-icon-split {
+    flex-direction: column;
+  }
+}
+
 .case-study-icon-split-content > * + * {
   margin-top: @space-4;
 }

@@ -331,6 +331,15 @@ export type CaseStudyBlock =
       icon: string;
       content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[];
     }
+  /**
+   * Several `icon-split` entries side by side once there's room — each
+   * column stacks its icon above its text. Collapses to one column, each
+   * entry back to icon-beside-text, below `@bp-icon-columns`.
+   */
+  | {
+      kind: "icon-columns";
+      items: { icon: string; content: Extract<CaseStudyBlock, { kind: "subsubheading" | "paragraph" | "list" }>[] }[];
+    }
   /** A flow demo clip. `src` omitted renders the same placeholder panel as `image`. */
   | { kind: "video"; src?: string; alt: string; caption?: string; playbackRate?: number; startPauseMs?: number; cropTopPx?: number }
   /**
