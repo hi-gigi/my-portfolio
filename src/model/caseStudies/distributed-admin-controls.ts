@@ -210,6 +210,26 @@ export const distributedAdminControls: CaseStudyContent = {
       text: "We ultimately moved away from that toggle. **The final design renders org groups as a single hierarchical tree** — the account-level default appears as the top-level group (e.g., \"BigComplexCo (Default)\"), with nested org groups indented beneath it. **Rather than explaining inheritance with copy, the hierarchy shows it directly** — it's visually clear which settings are the default and which groups branch off with their own overrides.",
     },
 
+    { kind: "subheading", text: "Visual Indicator for Custom Group Settings" },
+    {
+      kind: "paragraph",
+      text: "Validation research surfaced a clear ask: **admins wanted a holistic view of which org groups had settings that differed from the account-level default**, without opening each group individually.",
+    },
+    {
+      kind: "image",
+      src: "/case-studies/distributed-admin-controls/visual-indicator-custom-settings.webp",
+      alt: "Icon concepts tested for marking org groups with custom settings, and the final plain gray dot with a tooltip",
+      caption: "Visual indicator for custom group settings",
+    },
+    {
+      kind: "paragraph",
+      text: "I tested several icon concepts — a pencil-and-sparkle mark, a flag, a filled dot, an outlined circle — looking for one that would intuitively read as \"this group has custom settings.\" None did; in testing with a handful of users, no icon communicated that meaning without explanation.",
+    },
+    {
+      kind: "paragraph",
+      text: "The final design kept it simple: a plain gray dot, paired with a tooltip (\"This group has custom settings that differ from its parent\"). Rather than keep chasing a self-explanatory icon, **I treated this as a one-time education problem — once an admin learns what the dot means, they recognize it on sight from then on**.",
+    },
+
     { kind: "heading", id: "solution", text: "Solution", navLabel: "Solution" },
     {
       kind: "paragraph",
