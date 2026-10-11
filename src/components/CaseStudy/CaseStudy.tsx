@@ -695,6 +695,18 @@ function ListItem({ item }: { item: CaseStudyListItem }) {
       </li>
     );
   }
+  if ("children" in item) {
+    return (
+      <li>
+        {renderInlineText(item.text)}
+        <ul>
+          {item.children.map((child, index) => (
+            <li key={index}>{renderInlineText(child)}</li>
+          ))}
+        </ul>
+      </li>
+    );
+  }
   return (
     <li>
       <strong>{item.label}</strong> — {item.text}

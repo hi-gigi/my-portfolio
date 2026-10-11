@@ -181,7 +181,12 @@ export interface PortfolioContent {
  * sentence` — inline bold same as the plain-string case, just with an
  * icon alongside).
  */
-export type CaseStudyListItem = string | { label: string; text: string } | { text: string; icon: string };
+export type CaseStudyListItem =
+  | string
+  | { label: string; text: string }
+  | { text: string; icon: string }
+  /** A bullet with nested sub-bullets (`children`) indented beneath it. */
+  | { text: string; children: string[] };
 
 /** One metric card — e.g. "Adoption · 4 weeks post-launch" → "53.6%". */
 export interface CaseStudyStat {

@@ -58,8 +58,7 @@ export const distributedAdminControls: CaseStudyContent = {
           { name: "Analytics", text: "Existing account analysis and migration risk tiering" },
           { name: "Customer Success", text: "Customer recruitment for discovery and validation research" },
           { name: "Implementation Team", text: "SCIM account migration" },
-          { name: "Product Marketing", text: "Go-to-market and release announcement" },
-          { name: "Help Center", text: "Admin-facing documentation" },
+          { name: "Product Marketing & Help Center", text: "Go-to-market, release announcement, and admin-facing documentation" },
         ],
       },
     },
@@ -238,17 +237,23 @@ export const distributedAdminControls: CaseStudyContent = {
     {
       kind: "list",
       items: [
-        "Delegated admin responsibilities across the org",
-        "Group-level sharing permission controls",
-        "License limits per group for budget management and internal bill back",
+        {
+          text: "**Group-based access and licensing.** For roles or departments where Lucid is a must-have, admins designate groups as licensing groups. Members get a license automatically and lose it when they're removed from the group.",
+          children: [
+            "Contrast: request-for-access groups, where members request a license with a valid use case and an admin approves.",
+          ],
+        },
+        "**Org-group-based sharing permissions.** Granular control over who can share externally. For example, sales and marketing can share with external clients, while legal, finance, and HR cannot.",
+        "**Distributed administration.** Admin responsibilities are delegated to group leads and managers, who help central IT manage users on their team, department, or group.",
       ],
     },
     {
       kind: "carousel",
+      aspectRatio: "2880 / 1463",
       items: [
-        { alt: "Delegated admin responsibilities for an org group", caption: "Delegated admin roles" },
-        { alt: "Group-level sharing permission controls", caption: "Sharing permission controls" },
-        { alt: "Per-group license limits for budget management and internal bill back", caption: "License limits per group" },
+        { src: "/case-studies/distributed-admin-controls/group-based-licensing.webp", alt: "Group-based access and licensing: a group pre-approved for Lucid, where members get a license automatically", caption: "Group-based access and licensing" },
+        { src: "/case-studies/distributed-admin-controls/group-based-sharing-permissions.webp", alt: "Org-group-based sharing permissions: a group permitted to share documents with external users as needed for their work", caption: "Org-group-based sharing permissions" },
+        { src: "/case-studies/distributed-admin-controls/delegated-admin-roles.webp", alt: "Distributed administration: assigning an org group admin to a group, and the org group admin's view", caption: "Distributed administration" },
       ],
     },
     {
@@ -282,7 +287,7 @@ export const distributedAdminControls: CaseStudyContent = {
     },
     {
       kind: "paragraph",
-      text: "To validate impact, we interviewed power users of license allotments — whose feedback confirmed the new experience resolved major pain points from the legacy model and effectively supports their budget-driven license allocation needs.",
+      text: "To validate impact, we interviewed power users of legacy groups — whose feedback confirmed the new experience resolved major pain points from the legacy model and effectively supports their budget-driven license allocation needs.",
     },
   ],
 };

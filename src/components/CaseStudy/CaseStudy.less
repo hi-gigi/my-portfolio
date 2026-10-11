@@ -291,6 +291,12 @@
     line-height: @leading-body;
   }
 
+  // A sub-list nested under a bullet — sits close to its parent, like a
+  // sub-point of it, rather than at the full gap between sibling bullets.
+  li > ul {
+    margin-top: @space-3;
+  }
+
   // A list whose items carry an icon (`CaseStudyListItem`'s `icon`
   // variant) drops the numbered/bulleted marker in favor of an icon
   // tile per item — the icon itself is the marker.

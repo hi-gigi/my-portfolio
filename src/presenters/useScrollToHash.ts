@@ -28,5 +28,25 @@ export function useScrollToHash() {
     if (document.fonts.status !== "loaded") {
       document.fonts.ready.then(scroll);
     }
+
+    // Lazy-loaded images above the target have no reserved height until
+    // they load, so each one that finishes pushes the heading further
+    // down than where the jump landed — leaving the section tab to read
+    // as the previous section. Re-align as they load, until the reader
+    // takes over by scrolling themselves (or a short window passes).
+    const realign = () => document.getElementById(id)?.scrollIntoView({ behavior: "instant" });
+    const stop = () => {
+      document.removeEventListener("load", realign, true);
+      for (const type of ["wheel", "touchstart", "keydown", "pointerdown"]) {
+        window.removeEventListener(type, stop);
+      }
+      window.clearTimeout(timeout);
+    };
+    const timeout = window.setTimeout(stop, 4000);
+    document.addEventListener("load", realign, true);
+    for (const type of ["wheel", "touchstart", "keydown", "pointerdown"]) {
+      window.addEventListener(type, stop, { passive: true });
+    }
+    return stop;
   }, [pathname, hash]);
 }
