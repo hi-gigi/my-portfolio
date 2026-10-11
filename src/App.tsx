@@ -8,6 +8,7 @@ import { Hero } from "./components/Hero";
 import { PlaygroundPage } from "./components/Playground";
 import { Work } from "./components/Work";
 import { content } from "./model/content";
+import { useHomeHashSync } from "./presenters/useHomeHashSync";
 import { useScrollToHash } from "./presenters/useScrollToHash";
 
 function HomePage() {
@@ -23,6 +24,7 @@ function HomePage() {
 /** Footer/Cursor persist across routes; the header and `<main>` swap. */
 function Layout() {
   useScrollToHash();
+  useHomeHashSync();
 
   const caseStudyMatch = useMatch("/work/:id");
   const caseStudyId = caseStudyMatch?.params.id;

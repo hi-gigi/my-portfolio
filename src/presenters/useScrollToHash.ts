@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
  * (itself gated on `prefers-reduced-motion` in global.less).
  */
 export function useScrollToHash() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
 
   useEffect(() => {
     if (!hash) {
@@ -48,5 +48,5 @@ export function useScrollToHash() {
       window.addEventListener(type, stop, { passive: true });
     }
     return stop;
-  }, [pathname, hash]);
+  }, [pathname, hash, key]);
 }
