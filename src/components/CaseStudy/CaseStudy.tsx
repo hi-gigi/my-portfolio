@@ -490,7 +490,7 @@ function CaseStudyBlockView({
       );
       return (
         <div className={frameClass}>
-          <div className="case-study-image-row">
+          <div className={block.tight ? "case-study-image-row case-study-image-row--tight" : "case-study-image-row"}>
             {block.items.map((item, index) =>
               item.src ? (
                 <div className="case-study-image-row-item" key={index}>

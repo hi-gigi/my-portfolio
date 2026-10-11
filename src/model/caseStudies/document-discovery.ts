@@ -126,6 +126,7 @@ export const documentDiscovery: CaseStudyContent = {
     },
     {
       kind: "image-row",
+      tight: true,
       items: [
         {
           src: `${import.meta.env.BASE_URL}case-studies/document-discovery/persona-it-support.webp`,

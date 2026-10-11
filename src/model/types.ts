@@ -274,9 +274,10 @@ export type CaseStudyBlock =
    * block. Give each item its own `caption` when they're distinct
    * subjects (e.g. parallel persona cards); use the row-level
    * `caption` instead when the images are one pair (e.g. before/after)
-   * captioned as a single artifact.
+   * captioned as a single artifact. `tight` narrows the space between
+   * items, for images that carry enough margin of their own.
    */
-  | { kind: "image-row"; items: { src?: string; alt: string; caption?: string }[]; caption?: string }
+  | { kind: "image-row"; items: { src?: string; alt: string; caption?: string }[]; caption?: string; tight?: boolean }
   /**
    * One image at a time, auto-advancing on a timer and looping — e.g.
    * a short flow of screenshots. Freezes on the first image instead of

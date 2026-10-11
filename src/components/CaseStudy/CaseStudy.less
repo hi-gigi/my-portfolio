@@ -898,6 +898,17 @@
   }
 }
 
+// Closer-together items: no grid gap, and each item's own inset
+// trimmed to @space-2 — the space between two images drops from
+// roughly 40px to 16px.
+.case-study-image-row--tight {
+  gap: 0;
+
+  .case-study-image-row-item-button {
+    padding: @space-2;
+  }
+}
+
 @media (max-width: @bp-image-row) {
   .case-study-image-row {
     grid-template-columns: 1fr;
