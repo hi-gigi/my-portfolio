@@ -1,0 +1,56 @@
+<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <rect width="760" height="300" rx="4" fill="#f8f7f4"/>
+
+  <rect x="24" y="30" width="250" height="240" rx="10" fill="#fff" stroke="#d6d3cc" stroke-width="1.5"/>
+  <text x="149" y="62" text-anchor="middle" font-size="16" font-weight="600" fill="#1f2937">Identity provider</text>
+  <text x="149" y="82" text-anchor="middle" font-size="13" fill="#6b7280">Okta · Entra ID</text>
+  <rect x="42" y="104" width="214" height="42" rx="8" fill="#e8eefc"/>
+  <text x="56" y="130" font-size="14" fill="#1f2937">Design</text>
+  <circle cx="234" cy="125" r="10" fill="#cbd5e1" stroke="#e8eefc" stroke-width="2"/>
+  <circle cx="220" cy="125" r="10" fill="#94a3b8" stroke="#e8eefc" stroke-width="2"/>
+  <circle cx="206" cy="125" r="10" fill="#64748b" stroke="#e8eefc" stroke-width="2"/>
+  <rect x="42" y="156" width="214" height="42" rx="8" fill="#e8eefc"/>
+  <text x="56" y="182" font-size="14" fill="#1f2937">Engineering</text>
+  <circle cx="234" cy="177" r="10" fill="#cbd5e1" stroke="#e8eefc" stroke-width="2"/>
+  <circle cx="220" cy="177" r="10" fill="#94a3b8" stroke="#e8eefc" stroke-width="2"/>
+  <circle cx="206" cy="177" r="10" fill="#64748b" stroke="#e8eefc" stroke-width="2"/>
+  <rect x="42" y="208" width="214" height="42" rx="8" fill="#e8eefc"/>
+  <text x="56" y="234" font-size="14" fill="#1f2937">Marketing</text>
+  <circle cx="234" cy="229" r="10" fill="#cbd5e1" stroke="#e8eefc" stroke-width="2"/>
+  <circle cx="220" cy="229" r="10" fill="#94a3b8" stroke="#e8eefc" stroke-width="2"/>
+  <circle cx="206" cy="229" r="10" fill="#64748b" stroke="#e8eefc" stroke-width="2"/>
+
+  <!-- SCIM -->
+  <line x1="280" y1="150" x2="480" y2="150" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr)">
+    <animate attributeName="stroke-dashoffset" from="22" to="0" dur="1s" repeatCount="indefinite"/>
+  </line>
+  <rect x="330" y="130" width="100" height="40" rx="20" fill="#1f2937"/>
+  <text x="380" y="156" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">SCIM</text>
+  <text x="380" y="108" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">Automatic sync</text>
+  <text x="380" y="124" text-anchor="middle" font-size="12" fill="#6b7280">on every change</text>
+  <text x="380" y="198" text-anchor="middle" font-size="13" fill="#6b7280">Groups + their members</text>
+
+  <rect x="486" y="30" width="250" height="240" rx="10" fill="#fff" stroke="#d6d3cc" stroke-width="1.5"/>
+  <text x="611" y="62" text-anchor="middle" font-size="16" font-weight="600" fill="#1f2937">Lucid</text>
+  <text x="611" y="82" text-anchor="middle" font-size="13" fill="#6b7280">Admin panel › Org groups</text>
+  <rect x="504" y="104" width="214" height="42" rx="8" fill="#fde9d9"/>
+  <text x="518" y="130" font-size="14" fill="#1f2937">Design</text>
+  <circle cx="696" cy="125" r="10" fill="#cbd5e1" stroke="#fde9d9" stroke-width="2"/>
+  <circle cx="682" cy="125" r="10" fill="#94a3b8" stroke="#fde9d9" stroke-width="2"/>
+  <circle cx="668" cy="125" r="10" fill="#64748b" stroke="#fde9d9" stroke-width="2"/>
+  <rect x="504" y="156" width="214" height="42" rx="8" fill="#fde9d9"/>
+  <text x="518" y="182" font-size="14" fill="#1f2937">Engineering</text>
+  <circle cx="696" cy="177" r="10" fill="#cbd5e1" stroke="#fde9d9" stroke-width="2"/>
+  <circle cx="682" cy="177" r="10" fill="#94a3b8" stroke="#fde9d9" stroke-width="2"/>
+  <circle cx="668" cy="177" r="10" fill="#64748b" stroke="#fde9d9" stroke-width="2"/>
+  <rect x="504" y="208" width="214" height="42" rx="8" fill="#fde9d9"/>
+  <text x="518" y="234" font-size="14" fill="#1f2937">Marketing</text>
+  <circle cx="696" cy="229" r="10" fill="#cbd5e1" stroke="#fde9d9" stroke-width="2"/>
+  <circle cx="682" cy="229" r="10" fill="#94a3b8" stroke="#fde9d9" stroke-width="2"/>
+  <circle cx="668" cy="229" r="10" fill="#64748b" stroke="#fde9d9" stroke-width="2"/>
+</svg>

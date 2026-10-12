@@ -275,9 +275,16 @@ export const distributedAdminControls: CaseStudyContent = {
         { src: "/case-studies/distributed-admin-controls/delegated-admin-roles.webp", alt: "Distributed administration: assigning an org group admin to a group, and the org group admin's view", caption: "Distributed administration" },
       ],
     },
+    { kind: "subheading", text: "Two ways to create org groups" },
     {
       kind: "paragraph",
-      text: "The collaboration-native half of the initiative (Lucid team hubs) was developed simultaneously by a separate product area.",
+      text: "**Org groups can be created manually in the admin UI**, which suits smaller teams or groups that only exist inside Lucid. **They can also be provisioned automatically via SCIM from an identity provider like Okta or Entra ID**, so groups and their members stay in sync with the company's source of truth without anyone maintaining them by hand.",
+    },
+    {
+      kind: "image",
+      src: "/case-studies/distributed-admin-controls/scim-sync.svg",
+      alt: "An identity provider such as Okta or Entra ID auto-provisioning users and groups into Lucid's admin panel under org groups via SCIM",
+      caption: "Provisioning org groups via SCIM",
     },
 
     { kind: "heading", id: "impact", text: "Impact", navLabel: "Impact" },
