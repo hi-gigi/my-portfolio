@@ -137,6 +137,13 @@
     margin-top: @space-8;
   }
 
+  // An intro line sitting between a lead image and the icon columns
+  // it introduces — the standard block gap, not the tight image caption
+  // gap.
+  > .case-study-media-frame + p:has(+ .case-study-icon-columns) {
+    margin-top: @space-6;
+  }
+
   // A second paragraph still explaining the same image (e.g. a V1/V2
   // beat: label, image, then two paragraphs unpacking it) reads as
   // part of that one beat — as tight as the first paragraph was to

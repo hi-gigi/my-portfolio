@@ -65,6 +65,12 @@ export const distributedAdminControls: CaseStudyContent = {
 
     { kind: "heading", id: "problem-space", text: "Problem Space", navLabel: "Problem space" },
     {
+      kind: "image",
+      src: "/case-studies/distributed-admin-controls/legacy-groups.webp",
+      alt: "Legacy groups experience in Lucid's admin settings",
+      caption: "Legacy groups",
+    },
+    {
       kind: "paragraph",
       text: "Lucid's legacy group model was originally built for document distribution, then later leveraged for group-based license allotment. As customer needs grew, the model started to show its limits:",
     },
