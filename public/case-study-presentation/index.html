@@ -399,9 +399,12 @@
   fsBtn.addEventListener("click", function (e) { e.stopPropagation(); toggleFs(); });
   toc.addEventListener("click", function (e) { e.stopPropagation(); });
   document.addEventListener("fullscreenchange", function () { fsBtn.innerHTML = (document.fullscreenElement ? "&#10005; Exit full screen" : "&#9974; Full screen") + ' <span style="opacity:.5">F</span>'; });
-  var idleT;
-  function wake() { ctl.classList.remove("idle"); clearTimeout(idleT); idleT = setTimeout(function () { if (!toc.classList.contains("on")) ctl.classList.add("idle"); }, 2500); }
-  addEventListener("mousemove", wake); wake();
+  ctl.classList.add("idle");
+  addEventListener("mousemove", function (e) {
+    var inZone = e.clientX > innerWidth - 420 && e.clientY < 110;
+    ctl.classList.toggle("idle", !inZone);
+  });
+  document.addEventListener("mouseleave", function () { ctl.classList.add("idle"); });
   function show(n) {
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach(function (s, k) {
