@@ -74,7 +74,7 @@
 
   .flow { flex: 1; height: 3px; background: repeating-linear-gradient(90deg, #6b7280 0 12px, transparent 12px 22px); background-size: 22px 3px; animation: flow 1s linear infinite; }
   @keyframes flow { to { background-position: 22px 0; } }
-  .opt-frame { position: relative; width: 100%; aspect-ratio: 2880 / 1544; border-radius: 6px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(60,30,20,.06), 0 6px 16px rgba(60,30,20,.08); }
+  .opt-frame { position: relative; width: 100%; aspect-ratio: 2880 / 1544; border-radius: 2px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(60,30,20,.06), 0 6px 16px rgba(60,30,20,.08); }
   .opt-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; cursor: zoom-in; opacity: 0; pointer-events: none; transition: opacity .25s; }
   .opt-img.on { opacity: 1; pointer-events: auto; }
   .lb-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 72px; height: 72px; border-radius: 50%; border: 1px solid rgba(248,243,241,.3); background: rgba(32,26,24,.7); color: #f8f3f1; font: 400 48px/1 var(--font); cursor: pointer; padding: 0 0 6px; display: none; }
@@ -318,6 +318,19 @@
     <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="https://jiaqizhuo.com/case-studies/distributed-admin-controls/group-details-panel-redirect.webp" alt="Group details panel redirect" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
 </section>
 
+<!-- Key decision 1 validation -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Setting-first validation">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Key decision 1</div>
+      <h2 style="font-size:44px;line-height:1.1">Validation research supported this direction</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em">
+        <li style="font-size:26px;line-height:1.35;color:var(--text)">Most admins went to the <strong>settings page first</strong> and completed the task without friction</li>
+        <li style="font-size:26px;line-height:1.35;color:var(--text)">Admins who started from the org groups page still found the flow through the <strong>group details panel</strong></li>
+      </ul>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="../case-studies/distributed-admin-controls/validation-research-readout.webp" alt="Validation research readout, summarizing the research goals and key findings from testing the setting-first design" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
+</section>
+
 <!-- Key decision 2 -->
 <section class="slide" data-seg="Granular admin controls for enterprise accounts · Inheritance">
   <div class="eyebrow">Key decision 2</div>
@@ -337,7 +350,7 @@
 <section class="slide" data-seg="Granular admin controls for enterprise accounts · Custom settings">
   <div class="eyebrow">Key decision 3</div>
   <h2 style="font-size:54px">Which groups differ from the default?</h2>
-  <div class="body" style="gap:44px;margin:36px 0 -16px 0;align-items:flex-start">
+  <div class="body" style="gap:44px;margin:48px 0 0 0;align-items:flex-start">
     <div class="col" style="flex:none;width:440px;justify-content:flex-start">
       <ul style="gap:28px;padding-left:1.1em">
         <li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Validation research:</strong> admins wanted a holistic view of which groups differ from the default, without opening each one</li>
@@ -345,7 +358,7 @@
         <li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Shipped a gray dot with a tooltip,</strong> a one-time education problem: once learned, recognized on sight</li>
       </ul>
     </div>
-    <div style="flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;align-items:flex-end;height:100%"><img class="zoomable" src="https://jiaqizhuo.com/case-studies/distributed-admin-controls/visual-indicator-custom-settings.webp" alt="Icon concepts tested for marking org groups with custom settings, and the final gray dot with a tooltip" style="max-width:100%;min-height:0;flex:0 1 auto;object-fit:contain;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"><div class="row" style="flex:none;margin-top:18px;justify-content:flex-end"><span class="pill no">Pencil + sparkle</span><span class="pill no">Flag</span><span class="pill no">Filled dot</span><span class="pill no">Outlined circle</span><span class="pill yes">Shipped: gray dot + tooltip</span></div></div>
+    <div style="flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;align-items:flex-end;height:100%"><img class="zoomable" src="https://jiaqizhuo.com/case-studies/distributed-admin-controls/visual-indicator-custom-settings.webp" alt="Icon concepts tested for marking org groups with custom settings, and the final gray dot with a tooltip" style="max-width:100%;min-height:0;flex:0 1 auto;object-fit:contain;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
   </div>
 </section>
 
