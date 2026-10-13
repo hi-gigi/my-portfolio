@@ -54,6 +54,9 @@
   #stage.dark .vidwrap { box-shadow: none; }
   #lightbox { position: absolute; inset: 0; background: rgba(5,4,4,.98); display: none; align-items: center; justify-content: center; z-index: 20; cursor: zoom-out; padding: 48px; }
   #lightbox.on { display: flex; }
+  #lightbox video { display: none; max-width: 100%; max-height: 100%; border-radius: 8px; background: #000; cursor: default; }
+  #lightbox.vid video { display: block; }
+  #lightbox.vid img { display: none; }
   #lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; background: rgba(248,243,241,.7); }
   .cap { font-family: var(--mono); font-size: 20px; color: var(--muted); text-align: center; margin-top: 22px; }
 
@@ -80,6 +83,11 @@
   .lb-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 72px; height: 72px; border-radius: 50%; border: 1px solid rgba(248,243,241,.3); background: rgba(32,26,24,.7); color: #f8f3f1; font: 400 48px/1 var(--font); cursor: pointer; padding: 0 0 6px; display: none; }
   .lb-btn.prev { left: 32px; } .lb-btn.next { right: 32px; }
   #lightbox.multi .lb-btn { display: block; }
+  [data-step] { transition: opacity .3s; }
+  [data-step].dim { opacity: .3; }
+  .stack { display: grid; width: 100%; }
+  .stack > img { grid-area: 1 / 1; align-self: center; opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .stack > img.on { opacity: 1; pointer-events: auto; }
   .car-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--hair); background: rgba(248,243,241,.95); color: var(--text); font: 400 34px/1 var(--font); cursor: pointer; opacity: 0; transition: opacity .2s; z-index: 2; padding: 0 0 4px; }
   .car-btn.prev { left: 14px; } .car-btn.next { right: 14px; }
   .carousel:hover .car-btn { opacity: 1; }
@@ -136,7 +144,7 @@
 </section>
 
 <!-- 0c Overview -->
-<section class="slide" data-seg="Overview" style="justify-content:center" data-notes="~0.5 min. Set the agenda: two projects. Organizational Groups first (about 15 min) — a systems problem in enterprise administration. Then AI-powered search (about 5 min) — a 0-to-1 AI feature. Then jump into the first.">
+<section class="slide" data-toc="Two case studies" data-seg="Overview" style="justify-content:center" data-notes="~0.5 min. Set the agenda: two projects. Organizational Groups first (about 15 min) — a systems problem in enterprise administration. Then AI-powered search (about 5 min) — a 0-to-1 AI feature. Then jump into the first.">
   <div class="eyebrow" style="margin-bottom:28px">Today</div>
   <div class="body" style="flex:none;justify-content:space-between;margin-top:0">
     <div class="col" style="flex:none;width:780px;justify-content:flex-start"><h2 style="font-size:44px;margin-bottom:28px">Case study 1</h2><img style="width:100%;aspect-ratio:963/625;object-fit:cover;border-radius:8px;display:block;box-shadow:0 1px 3px rgba(60,30,20,.08),0 8px 24px rgba(60,30,20,.10)" src="https://jiaqizhuo.com/thumbs/distributed-admin-controls.webp" alt="Organizational Groups">
@@ -147,7 +155,7 @@
 </section>
 
 <!-- 1 Title -->
-<section class="slide" data-dark="1" data-seg="Granular admin controls for enterprise accounts">
+<section class="slide" data-dark="1" data-toc="Case study 1" data-seg="Granular admin controls for enterprise accounts">
   <div class="body" style="margin-top:0;gap:64px;align-items:center">
     <div class="col" style="flex:.8;justify-content:center">
       <div class="eyebrow">Case study 1 of 2</div>
@@ -369,14 +377,14 @@
       <h1 style="font-size:150px">Conflict</h1>
     </div>
     <div class="col" style="flex:1.2;justify-content:center">
-      <p style="font-size:30px;color:var(--text)">When admins disagreed, and priorities shifted mid-project: can an org group admin invite brand-new users?</p>
+      <p style="font-size:30px;color:var(--text)">Should an org group admin be able to invite brand-new users?</p>
     </div>
   </div>
 </section>
 
 <!-- 8 Conflict 1 -->
 <section class="slide" data-seg="Granular admin controls for enterprise accounts · Invite conflict">
-  <div class="eyebrow">Invite conflict · The question</div>
+  <div class="eyebrow">Conflict / Different admin voices</div>
   <h2>Can an org group admin invite brand-new users?</h2>
   <div class="body" style="align-items:flex-start;margin-top:110px">
     <div class="col rule"><div class="num">01</div><h3>Admins were split</h3><p>Some wanted group admins to add brand-new users, not just existing ones. Some didn't.</p></div>
@@ -387,7 +395,7 @@
 
 <!-- 9 Conflict 2 -->
 <section class="slide" data-seg="Granular admin controls for enterprise accounts · Invite conflict">
-  <div class="eyebrow">Invite conflict · The flip</div>
+  <div class="eyebrow">Conflict / Priorities shifted</div>
   <h2>Priorities changed. The principle didn't.</h2>
   <div class="body" style="align-items:flex-start;margin-top:110px">
     <div class="col rule"><div class="num">01</div><h3>Months later</h3><p>A push to grow active users led product to call the block "leaving steak on the table."</p></div>
@@ -398,11 +406,170 @@
 
 <!-- 10 Wrap -->
 <section class="slide center" data-seg="Wrap">
-  <h1 style="font-size:110px;max-width:1500px">One place to look. A structure that explains itself.</h1>
-  <p class="lead" style="margin-top:40px">Questions on any decision — happy to go deeper.</p>
+  <h1 style="font-size:150px">Thank you</h1>
+  <p class="lead" style="margin-top:40px;font-size:32px;max-width:none">Any questions before we move on to the second case study?</p>
 </section>
 
-<div id="lightbox"><button type="button" class="lb-btn prev" aria-label="Previous image">&#8249;</button><img alt=""><button type="button" class="lb-btn next" aria-label="Next image">&#8250;</button></div>
+<!-- AI 1 Title -->
+<section class="slide" data-dark="1" data-toc="Case study 2" data-seg="Bringing AI-powered answers to document search">
+  <div class="body" style="margin-top:0;gap:64px;align-items:center">
+    <div class="col" style="flex:.8;justify-content:center">
+      <div class="eyebrow">Case study 2 of 2</div>
+      <h1 style="font-size:66px;line-height:1.05">Bringing AI-powered answers to document search</h1>
+      <div style="margin-top:56px">
+        <div class="eyebrow" style="color:var(--muted);margin-bottom:22px">Timeline</div>
+        <p style="font-size:24px;color:var(--text)"><span style="color:var(--muted)">Jun–Jul 2026</span>&nbsp; Concept to internal release</p>
+        <p style="font-size:24px;color:var(--text);margin-top:16px"><span style="color:var(--muted)">Jul–Aug 2026</span>&nbsp; External release</p>
+      </div>
+    </div>
+    <div class="col" style="flex:1.2"><div class="vidwrap" style="position:relative;overflow:hidden;border-radius:8px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08);width:100%"><video class="deckvid" src="../case-studies/ai-search/overview-video.mp4" poster="../case-studies/ai-search/overview-video-poster.webp" muted playsinline preload="auto" style="width:100%;height:auto;display:block;margin-top:-2px"></video><button class="vidctl" type="button" aria-label="Pause video">❚❚ Pause <span class="k">P</span></button></div></div>
+  </div>
+</section>
+
+<!-- AI 2 Role -->
+<section class="slide" data-seg="Bringing AI-powered answers to document search">
+  <div class="body" style="margin-top:140px;gap:110px;align-items:flex-start">
+    <div class="col" style="flex:1;justify-content:flex-start">
+      <div class="eyebrow">My role</div>
+      <h2 style="font-size:52px">Lead designer, 0-to-1 AI initiative</h2>
+      <ul style="margin-top:40px;gap:22px">
+        <li style="font-size:30px">Owned design <strong>end to end</strong>, from concept to external release</li>
+        <li style="font-size:30px">Drove key decisions: <strong>when AI kicks in</strong> and <strong>how answers surface</strong></li>
+        <li style="font-size:30px">Aligned with the Design System team on <strong>new AI components</strong></li>
+      </ul>
+    </div>
+    <div class="col" style="flex:1.15;justify-content:flex-start">
+      <div class="eyebrow">Collaborators</div>
+      <div style="margin-top:12px">
+        <div style="display:flex;gap:32px;align-items:baseline;border-top:1px solid var(--hair);padding:22px 0"><h3 style="margin:0;width:330px;flex:none;font-size:30px">Search &amp; AI Hub teams</h3><p style="font-size:26px">PM, engineers, ML engineer, and UX intern</p></div>
+        <div style="display:flex;gap:32px;align-items:baseline;border-top:1px solid var(--hair);padding:22px 0"><h3 style="margin:0;width:330px;flex:none;font-size:30px">Design System team</h3><p style="font-size:26px">New components for the AI experience: inline button and inline user chip</p></div>
+        <div style="border-top:1px solid var(--hair)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI 3 Problem -->
+<section class="slide" style="justify-content:center" data-seg="Bringing AI-powered answers to document search">
+  <div class="eyebrow">Problem space</div>
+  <h2 style="font-size:44px;max-width:1500px;margin-top:28px;line-height:1.25;font-weight:500">Search still mattered as much as ever, and generative AI had finally made a better version possible.</h2>
+  <div class="body" style="flex:none;align-items:flex-start;margin-top:90px">
+    <div class="col rule"><div class="num">01</div><h3>Search has always mattered</h3><p>Across 35+ research calls, users said <strong>what they searched for lived inside their documents, not in the title</strong>. Search could only return a list of vague matches.</p></div>
+    <div class="col rule"><div class="num">02</div><h3>Expectations have shifted</h3><p>Search is <strong>moving from retrieval toward answering</strong>, raising the bar for what a search experience should do.</p></div>
+  </div>
+</section>
+
+<!-- AI 4 Prototype -->
+<section class="slide" style="justify-content:center" data-seg="Bringing AI-powered answers to document search">
+  <div class="eyebrow">Key considerations</div>
+  <h2 style="font-size:44px;max-width:1500px;margin-top:28px;line-height:1.25;font-weight:500">An engineer's coded prototype proved the potential: AI surfaced accurate matches. It also surfaced two problems.</h2>
+  <div class="body" style="flex:none;align-items:flex-start;margin-top:90px">
+    <div class="col rule"><div class="num">01</div><h3>Performance, and the perception of it</h3><p>AI results took longer to load, and nothing on screen said AI was involved. It just felt like <strong>search had gotten slower</strong>.</p></div>
+    <div class="col rule"><div class="num">02</div><h3>The results format showed its limits</h3><p>No way to tell <strong>why a document matched</strong>, and no way to show a narrowed, high-confidence set in a layout built for long lists.</p></div>
+  </div>
+</section>
+
+<!-- AI 5 Decisions transition -->
+<section class="slide" data-dark="tone" data-seg="Bringing AI-powered answers to document search · Key design decisions">
+  <div class="body" style="margin-top:0;gap:100px;align-items:center">
+    <div class="col" style="flex:1;justify-content:center">
+      <h1 style="font-size:130px">Key design decisions</h1>
+    </div>
+    <div class="col" style="flex:1.2;justify-content:center">
+      <p style="font-size:30px;color:var(--text);margin-bottom:36px">Three calls that shaped the experience:</p>
+      <div style="display:flex;gap:28px;align-items:baseline;border-top:1px solid var(--hair);padding:26px 0"><span style="font-family:var(--mono);font-size:22px;color:var(--coral-text);width:44px;flex:none">01</span><h3 style="margin:0;font-size:36px">When should AI kick in?</h3></div>
+      <div style="display:flex;gap:28px;align-items:baseline;border-top:1px solid var(--hair);padding:26px 0"><span style="font-family:var(--mono);font-size:22px;color:var(--coral-text);width:44px;flex:none">02</span><h3 style="margin:0;font-size:36px">Where should the AI answer live?</h3></div>
+      <div style="display:flex;gap:28px;align-items:baseline;border-top:1px solid var(--hair);padding:26px 0"><span style="font-family:var(--mono);font-size:22px;color:var(--coral-text);width:44px;flex:none">03</span><h3 style="margin:0;font-size:36px">Where should follow-up conversation happen?</h3></div>
+      <div style="border-top:1px solid var(--hair)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI 6a Decision 1: idea + problem -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Decision 1">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Key decision 1</div>
+      <h2 style="font-size:44px;line-height:1.1">When should AI kick in?</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>First idea: an AI toggle.</strong> Users who opt in would expect a delay, making latency easier to accept</li><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>The problem:</strong> answer quality depends on what the user gives it, and a single keyword gets a slow answer no better than traditional search</li><li style="font-size:26px;line-height:1.35;color:var(--text)">The toggle puts the burden on users to <strong>know when AI would help</strong></li></ul>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="../case-studies/ai-search/ai-toggle.webp" alt="Early exploration of an AI mode toggle in the search bar" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
+</section>
+
+<!-- AI 6b Decision 1: decision -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Decision 1">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Key decision 1</div>
+      <h2 style="font-size:44px;line-height:1.1">The system decides, not the user</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Intent-aware search</strong> checks how much information is in the query</li><li style="font-size:26px;line-height:1.35;color:var(--text)">Sparse, keyword-style queries stay <strong>fast</strong> and get traditional results</li><li style="font-size:26px;line-height:1.35;color:var(--text)">Specific, question-style queries get the <strong>AI answer</strong>, automatically, with no mode to discover or manage</li></ul>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="../case-studies/ai-search/ai-toggle-let-system-decide.webp" alt="The system evaluates query intent automatically, with no mode for the user to manage" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
+</section>
+
+<!-- AI 7 Decision 2: separate tab -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Decision 2">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Key decision 2</div>
+      <h2 style="font-size:44px;line-height:1.1">Where should the AI answer live?</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em">
+        <li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>We considered a separate &ldquo;AI answer&rdquo; tab first,</strong> appearing next to &ldquo;All results&rdquo; once AI had something to show</li>
+        <li style="font-size:26px;line-height:1.35;color:var(--text)">Clean separation, but it put <strong>a click between the user and the answer</strong></li>
+        <li style="font-size:26px;line-height:1.35;color:var(--text)">Users would have to notice the tab and switch views to find out whether AI found anything</li>
+      </ul>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:24px;padding:48px 56px 48px 40px;background:#e6d8d4"><div style="flex:1;min-width:0"><img class="zoomable" src="../case-studies/ai-search/decision-2-alternative-1.webp" alt="The default All results tab, with a separate AI answer tab beside it" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div><div style="flex:1;min-width:0"><img class="zoomable" src="../case-studies/ai-search/decision-2-alternative-2.webp" alt="The AI answer, hidden behind a separate tab a user has to notice and click into" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div></div>
+</section>
+
+<!-- AI 8 Decision 2 outcome -->
+<section class="slide" style="padding:0;flex-direction:row" data-steps="3" data-seg="Bringing AI-powered answers to document search · Decision 2">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Key decision 2</div>
+      <h2 style="font-size:44px;line-height:1.1">Inline, above the results, collapsed by default</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em">
+        <li data-step="0" style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Performance:</strong> traditional results appear instantly; the AI answer loads above them, then settles into the top match</li>
+        <li data-step="1" style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Rationale:</strong> each result carries a summary written for that query, so users can see why it matched</li>
+        <li data-step="2" style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Format:</strong> compact, since AI often narrows a query to just a few documents</li>
+      </ul>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 56px 48px 40px;background:#e6d8d4"><div class="stack"><img class="zoomable" data-step-img="0" src="../case-studies/ai-search/decision-2-performance.webp" alt="Performance: results appear instantly while the AI answer loads above them" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"><img class="zoomable" data-step-img="1" src="../case-studies/ai-search/decision-2-rationale.webp" alt="Rationale: each AI result shows why it matched" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"><img class="zoomable" data-step-img="2" src="../case-studies/ai-search/decision-2-format.webp" alt="Format: a compact, collapsed AI answer above the full results list" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div></div>
+</section>
+
+<!-- AI 9 Decision 3 -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Decision 3">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Key decision 3</div>
+      <h2 style="font-size:44px;line-height:1.1">Where should follow-up conversation happen?</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>The obvious path:</strong> build chat into the search results page</li><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Decision: hand off to the AI hub.</strong> Lucid already has one, and two chat patterns would blur what each surface is for</li><li style="font-size:26px;line-height:1.35;color:var(--text)">The query and answer carry over, so follow-up <strong>picks up in context</strong></li></ul>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="../case-studies/ai-search/decision-3-handoff.webp" alt="Handing off a follow-up question from search into Lucid's AI hub" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
+</section>
+
+<!-- AI 10 Solution -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Solution">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Solution</div>
+      <h2 style="font-size:44px;line-height:1.1">Fast by default, AI layered on top</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)">Traditional results load <strong>instantly</strong>; the AI answer appears above them in a loading state</li><li style="font-size:26px;line-height:1.35;color:var(--text)">It settles into a collapsed view: the <strong>top match</strong>, with a one-line summary generated for that query</li><li style="font-size:26px;line-height:1.35;color:var(--text)">&ldquo;Show more&rdquo; expands the rest, with an embedded <strong>&ldquo;Chat more with Lucid AI&rdquo;</strong> input</li></ul>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4"><div class="vidwrap" style="position:relative;overflow:hidden;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08);width:100%"><video class="deckvid" src="../case-studies/ai-search/solution-fast-by-default.mp4" poster="../case-studies/ai-search/solution-fast-by-default-poster.webp" muted playsinline preload="auto" style="width:100%;height:auto;display:block;margin-top:-2px"></video><button class="vidctl" type="button" aria-label="Pause video">❚❚ Pause <span class="k">P</span></button></div></div>
+</section>
+
+<!-- AI 11 Components -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Solution">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Solution</div>
+      <h2 style="font-size:44px;line-height:1.1">New components, built for the AI experience</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>A person chip</strong> resolves ambiguous names like &ldquo;documents Peter shared with me&rdquo;, in both the query and the answer</li><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Inline links</strong> keep each result to a single block, tight enough to sit above the full results</li></ul>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4;min-height:0"><img class="zoomable" src="../case-studies/ai-search/solution-person-chip.webp" alt="A person chip resolves an ambiguous name in both the query and the AI answer" style="width:auto;height:auto;max-width:100%;max-height:calc(50% - 14px);object-fit:contain;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"><img class="zoomable" src="../case-studies/ai-search/solution-inline-links.webp" alt="Compact AI results rendered as inline linked titles with summaries" style="width:auto;height:auto;max-width:100%;max-height:calc(50% - 14px);object-fit:contain;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
+</section>
+
+<!-- AI 12 Thank you -->
+<section class="slide center" data-seg="Wrap">
+  <h1 style="font-size:150px">Thank you</h1>
+  <p class="lead" style="margin-top:40px;font-size:32px;max-width:none">I would love to hear your questions.</p>
+</section>
+
+<div id="lightbox"><button type="button" class="lb-btn prev" aria-label="Previous image">&#8249;</button><img alt=""><video id="lbVid" muted playsinline loop controls></video><button type="button" class="lb-btn next" aria-label="Next image">&#8250;</button></div>
 
 <div class="hud"><span id="seg" hidden></span><span id="count"></span></div>
 </div>
@@ -439,6 +606,7 @@
   var fsBtn = document.getElementById("fsBtn"), tocBtn = document.getElementById("tocBtn");
   var tocLinks = [];
   function slideTitle(sl, k) {
+    if (sl.getAttribute("data-toc")) return sl.getAttribute("data-toc");
     var h = sl.querySelector("h1, h2, .layer");
     var t = h ? h.textContent.replace(/\s+/g, " ").trim() : "";
     return t || (sl.getAttribute("data-seg") || "Slide " + (k + 1));
@@ -471,6 +639,14 @@
     ctl.classList.toggle("idle", !inZone);
   });
   document.addEventListener("mouseleave", function () { ctl.classList.add("idle"); });
+  function stepsOf(sl) { return +sl.getAttribute("data-steps") || 0; }
+  function setStep(k) {
+    var sl = slides[i]; sl.__step = k;
+    Array.prototype.forEach.call(sl.querySelectorAll("[data-step]"), function (e) { e.classList.toggle("dim", +e.getAttribute("data-step") !== k); });
+    Array.prototype.forEach.call(sl.querySelectorAll("[data-step-img]"), function (e) { e.classList.toggle("on", +e.getAttribute("data-step-img") === k); });
+  }
+  function next() { var sl = slides[i], n = stepsOf(sl), k = sl.__step || 0; if (n && k < n - 1) setStep(k + 1); else show(i + 1); }
+  function prev() { var sl = slides[i], n = stepsOf(sl), k = sl.__step || 0; if (n && k > 0) setStep(k - 1); else { var was = i; show(i - 1); var m = stepsOf(slides[i]); if (m && i !== was) setStep(m - 1); } }
   function show(n) {
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach(function (s, k) {
@@ -478,6 +654,7 @@
       var v = s.querySelector("video");
       if (v) { if (k === i) restartVideo(v); else { clearTimeout(v.__t); v.pause(); } }
     });
+    if (stepsOf(slides[i])) setStep(0);
     notes.textContent = slides[i].getAttribute("data-notes") || "";
     stage.classList.toggle("dark", slides[i].hasAttribute("data-dark"));
     stage.classList.toggle("tone", slides[i].getAttribute("data-dark") === "tone");
@@ -491,7 +668,8 @@
     var v = w.querySelector("video"), b = w.querySelector(".vidctl");
     function sync() { var p = v.paused; w.classList.toggle("paused", p); b.innerHTML = (p ? "&#9654; Play" : "&#10074;&#10074; Pause") + ' <span class="k">P</span>'; b.setAttribute("aria-label", p ? "Play video" : "Pause video"); }
     v.addEventListener("play", sync); v.addEventListener("pause", sync);
-    w.addEventListener("click", function (e) { e.stopPropagation(); if (v.paused) v.play(); else v.pause(); });
+    b.addEventListener("click", function (e) { e.stopPropagation(); if (v.paused) v.play(); else v.pause(); });
+    w.addEventListener("click", function (e) { e.stopPropagation(); if (w.closest("[data-dark=\"1\"]")) openVid(v); else if (v.paused) v.play(); else v.pause(); });
     w.__toggle = function () { if (v.paused) v.play(); else v.pause(); };
   });
   Array.prototype.forEach.call(document.querySelectorAll(".carousel"), function (c) {
@@ -505,7 +683,16 @@
     c.__go = go; c.__imgs = imgs; c.__idx = function () { return n; };
   });
   var lb = document.getElementById("lightbox"), lbImg = lb.querySelector("img");
-  function closeLb() { lb.classList.remove("on"); }
+  var lbVid = document.getElementById("lbVid"), lbSrc = null, lbWasPlaying = false;
+  function openVid(v) {
+    lbSrc = v; lbWasPlaying = !v.paused; v.pause(); clearTimeout(v.__t);
+    lbCar = null; lb.classList.remove("multi"); lb.classList.add("vid", "on");
+    lbVid.src = v.currentSrc || v.src; lbVid.currentTime = v.currentTime || 0; lbVid.play();
+  }
+  function closeLb() {
+    lb.classList.remove("on");
+    if (lb.classList.contains("vid")) { lbVid.pause(); lb.classList.remove("vid"); if (lbSrc && lbWasPlaying) lbSrc.play(); lbSrc = null; }
+  }
   Array.prototype.forEach.call(document.querySelectorAll("img.zoomable"), function (im) {
     im.addEventListener("click", function (e) { e.stopPropagation(); lbCar = im.closest(".carousel"); lb.classList.toggle("multi", !!lbCar); lbShow(im); lb.classList.add("on"); });
   });
@@ -513,7 +700,7 @@
   function lbShow(im) { lbImg.src = im.currentSrc || im.src; lbImg.alt = im.alt; }
   function lbStep(d) { var k = lbCar.__idx() + d; lbCar.__go(k); lbShow(lbCar.__imgs[lbCar.__idx()]); }
   Array.prototype.forEach.call(lb.querySelectorAll(".lb-btn"), function (b) { b.addEventListener("click", function (e) { e.stopPropagation(); lbStep(b.classList.contains("next") ? 1 : -1); }); });
-  lb.addEventListener("click", function (e) { e.stopPropagation(); closeLb(); });
+  lb.addEventListener("click", function (e) { e.stopPropagation(); if (e.target === lbVid) return; closeLb(); });
   addEventListener("resize", fit);
   addEventListener("keydown", function (e) {
     if (lb.classList.contains("on")) {
@@ -522,8 +709,8 @@
       return;
     }
     if (e.key === "Escape" && toc.classList.contains("on")) { toggleToc(false); return; }
-    if ([" ", "ArrowRight", "PageDown", "Enter"].indexOf(e.key) > -1) { e.preventDefault(); show(i + 1); }
-    else if (["ArrowLeft", "PageUp", "Backspace"].indexOf(e.key) > -1) { e.preventDefault(); show(i - 1); }
+    if ([" ", "ArrowRight", "PageDown", "Enter"].indexOf(e.key) > -1) { e.preventDefault(); next(); }
+    else if (["ArrowLeft", "PageUp", "Backspace"].indexOf(e.key) > -1) { e.preventDefault(); prev(); }
     else if (e.key === "Home") show(0);
     else if (e.key === "End") show(slides.length - 1);
     else if (e.key === "p" || e.key === "P") { var w = slides[i].querySelector(".vidwrap"); if (w) w.__toggle(); }
@@ -531,7 +718,7 @@
     else if (e.key === "f" || e.key === "F") toggleFs();
     else if (e.key === "t" || e.key === "T" || e.key === "m" || e.key === "M") toggleToc(!toc.classList.contains("on"));
   });
-  addEventListener("click", function (e) { if (toc.classList.contains("on")) { toggleToc(false); return; } show(e.clientX < innerWidth / 3 ? i - 1 : i + 1); });
+  addEventListener("click", function (e) { if (toc.classList.contains("on")) { toggleToc(false); return; } if (e.clientX < innerWidth / 3) prev(); else next(); });
   fit(); show(i);
 })();
 </script>
