@@ -1,5 +1,5 @@
 // ============================================================
-//  CASE STUDY — Distributed admin controls for Enterprise accounts
+//  CASE STUDY — Granular admin controls for enterprise accounts
 //  (Organizational Groups)
 //  Body copy for the /work/distributed-admin-controls page. Header
 //  (title/blurb/labels) comes from the matching Project in content.ts.
