@@ -86,8 +86,8 @@
   [data-step] { transition: opacity .3s; }
   [data-step].dim { opacity: .3; }
   .stack { display: grid; width: 100%; }
-  .stack > img { grid-area: 1 / 1; align-self: center; opacity: 0; transition: opacity .3s; pointer-events: none; }
-  .stack > img.on { opacity: 1; pointer-events: auto; }
+  .stack > [data-step-img] { grid-area: 1 / 1; align-self: center; opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .stack > [data-step-img].on { opacity: 1; pointer-events: auto; }
   .car-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--hair); background: rgba(248,243,241,.95); color: var(--text); font: 400 34px/1 var(--font); cursor: pointer; opacity: 0; transition: opacity .2s; z-index: 2; padding: 0 0 4px; }
   .car-btn.prev { left: 14px; } .car-btn.next { right: 14px; }
   .carousel:hover .car-btn { opacity: 1; }
@@ -543,24 +543,57 @@
     <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="../case-studies/ai-search/decision-3-handoff.webp" alt="Handing off a follow-up question from search into Lucid's AI hub" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
 </section>
 
-<!-- AI 10 Solution -->
-<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Solution">
-    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
-      <div class="eyebrow">Solution</div>
-      <h2 style="font-size:44px;line-height:1.1">Fast by default, AI layered on top</h2>
-      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)">Traditional results load <strong>instantly</strong>; the AI answer appears above them in a loading state</li><li style="font-size:26px;line-height:1.35;color:var(--text)">It settles into a collapsed view: the <strong>top match</strong>, with a one-line summary generated for that query</li><li style="font-size:26px;line-height:1.35;color:var(--text)">&ldquo;Show more&rdquo; expands the rest, with an embedded <strong>&ldquo;Chat more with Lucid AI&rdquo;</strong> input</li></ul>
+<!-- AI Solution transition -->
+<section class="slide" data-dark="tone" data-seg="Bringing AI-powered answers to document search · Solution">
+  <div class="body" style="margin-top:0;gap:100px;align-items:center">
+    <div class="col" style="flex:1;justify-content:center">
+      <h1 style="font-size:150px">Solution</h1>
     </div>
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4"><div class="vidwrap" style="position:relative;overflow:hidden;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08);width:100%"><video class="deckvid" src="../case-studies/ai-search/solution-fast-by-default.mp4" poster="../case-studies/ai-search/solution-fast-by-default-poster.webp" muted playsinline preload="auto" style="width:100%;height:auto;display:block;margin-top:-2px"></video><button class="vidctl" type="button" aria-label="Pause video">❚❚ Pause <span class="k">P</span></button></div></div>
+    <div class="col" style="flex:1.2;justify-content:center">
+      <p style="font-size:30px;color:var(--text);margin-bottom:36px">An AI answer that appears automatically above the traditional results, when the query has enough to work with:</p>
+      <div style="display:flex;gap:28px;align-items:baseline;border-top:1px solid var(--hair);padding:26px 0"><span style="font-family:var(--mono);font-size:22px;color:var(--coral-text);width:44px;flex:none">01</span><h3 style="margin:0;font-size:36px">Fast by default, AI layered on top</h3></div>
+      <div style="display:flex;gap:28px;align-items:baseline;border-top:1px solid var(--hair);padding:26px 0"><span style="font-family:var(--mono);font-size:22px;color:var(--coral-text);width:44px;flex:none">02</span><h3 style="margin:0;font-size:36px">New components, built for the AI experience</h3></div>
+      <div style="border-top:1px solid var(--hair)"></div>
+    </div>
+  </div>
 </section>
 
-<!-- AI 11 Components -->
-<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Solution">
+<!-- AI 10 Solution: experience end to end -->
+<section class="slide" style="padding:0;flex-direction:row" data-steps="3" data-seg="Bringing AI-powered answers to document search · Solution">
     <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
       <div class="eyebrow">Solution</div>
-      <h2 style="font-size:44px;line-height:1.1">New components, built for the AI experience</h2>
-      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>A person chip</strong> resolves ambiguous names like &ldquo;documents Peter shared with me&rdquo;, in both the query and the answer</li><li style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Inline links</strong> keep each result to a single block, tight enough to sit above the full results</li></ul>
+      <h2 style="font-size:44px;line-height:1.1">The experience, end to end</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em">
+        <li data-step="0" style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Signaling AI-powered search:</strong> a sparkle icon and &ldquo;What are you looking for?&rdquo; nudge people to ask, not just type keywords</li>
+        <li data-step="1" style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Fast by default, AI layered on top:</strong> traditional results load instantly; the AI answer loads above them, then settles into the top match</li>
+        <li data-step="2" style="font-size:26px;line-height:1.35;color:var(--text)"><strong>Deeper answers, seamless hand-off:</strong> &ldquo;Show more&rdquo; reveals every match, plus a &ldquo;Chat more with Lucid AI&rdquo; input that carries the query into the AI hub</li>
+      </ul>
     </div>
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:48px 56px 48px 40px;background:#e6d8d4;min-height:0"><img class="zoomable" src="../case-studies/ai-search/solution-person-chip.webp" alt="A person chip resolves an ambiguous name in both the query and the AI answer" style="width:auto;height:auto;max-width:100%;max-height:calc(50% - 14px);object-fit:contain;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"><img class="zoomable" src="../case-studies/ai-search/solution-inline-links.webp" alt="Compact AI results rendered as inline linked titles with summaries" style="width:auto;height:auto;max-width:100%;max-height:calc(50% - 14px);object-fit:contain;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 56px 48px 40px;background:#e6d8d4"><div class="stack">
+      <img class="zoomable" data-step-img="0" src="../case-studies/ai-search/signaling-ai-capability.webp" alt="New sparkle icon and placeholder text signal AI-powered search" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)">
+      <div class="vidwrap" data-step-img="1" style="position:relative;overflow:hidden;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"><video class="deckvid" src="../case-studies/ai-search/solution-fast-by-default.mp4" poster="../case-studies/ai-search/solution-fast-by-default-poster.webp" muted playsinline preload="auto" style="width:100%;height:auto;display:block;margin-top:-2px"></video><button class="vidctl" type="button" aria-label="Pause video">❚❚ Pause <span class="k">P</span></button></div>
+      <div data-step-img="2" style="display:flex;gap:24px"><img class="zoomable" src="../case-studies/ai-search/solution-deeper-answer-1.webp" alt="The expanded AI answer with an embedded Chat more with Lucid AI input" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08);flex:1;min-width:0"><img class="zoomable" src="../case-studies/ai-search/solution-deeper-answer-2.webp" alt="A Prompt sent to Lucid AI confirmation after opening the conversation in the AI hub" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08);flex:1;min-width:0"></div>
+    </div></div>
+</section>
+
+<!-- AI 11a Component: person chip -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Solution">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Solution / New components</div>
+      <h2 style="font-size:44px;line-height:1.1">Resolving ambiguity with a chip</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)">Ambiguous names like &ldquo;documents Peter shared with me&rdquo; surface a <strong>dropdown to disambiguate</strong></li><li style="font-size:26px;line-height:1.35;color:var(--text)">The selected person renders as a <strong>chip</strong> in both the search input and the AI answer</li><li style="font-size:26px;line-height:1.35;color:var(--text)">No back-and-forth, and the chip stays visible as <strong>confirmation</strong></li></ul>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="../case-studies/ai-search/solution-person-chip.webp" alt="A person chip resolves an ambiguous name in both the query and the AI answer" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
+</section>
+
+<!-- AI 11b Component: inline links -->
+<section class="slide" style="padding:0;flex-direction:row" data-seg="Bringing AI-powered answers to document search · Solution">
+    <div style="width:580px;flex:none;padding:96px 72px 96px 96px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Solution / New components</div>
+      <h2 style="font-size:44px;line-height:1.1">Compact answers via inline links</h2>
+      <ul style="margin-top:32px;gap:20px;padding-left:1.2em"><li style="font-size:26px;line-height:1.35;color:var(--text)">Each AI result flows as <strong>a single block</strong>: a clickable document title followed directly by its summary</li><li style="font-size:26px;line-height:1.35;color:var(--text)">No separate row or card for each result</li><li style="font-size:26px;line-height:1.35;color:var(--text)">That compactness keeps both states <strong>tight enough to sit above</strong> the full results</li></ul>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 56px 48px 40px;background:#e6d8d4"><img class="zoomable" src="../case-studies/ai-search/solution-inline-links.webp" alt="Compact AI results rendered as inline linked titles with summaries" style="width:100%;height:auto;display:block;cursor:zoom-in;border-radius:6px;box-shadow:0 1px 2px rgba(60,30,20,.06),0 6px 16px rgba(60,30,20,.08)"></div>
 </section>
 
 <!-- AI 12 Thank you -->
@@ -643,7 +676,10 @@
   function setStep(k) {
     var sl = slides[i]; sl.__step = k;
     Array.prototype.forEach.call(sl.querySelectorAll("[data-step]"), function (e) { e.classList.toggle("dim", +e.getAttribute("data-step") !== k); });
-    Array.prototype.forEach.call(sl.querySelectorAll("[data-step-img]"), function (e) { e.classList.toggle("on", +e.getAttribute("data-step-img") === k); });
+    Array.prototype.forEach.call(sl.querySelectorAll("[data-step-img]"), function (e) {
+      var on = +e.getAttribute("data-step-img") === k; e.classList.toggle("on", on);
+      var v = e.querySelector("video"); if (v) { if (on) restartVideo(v); else { clearTimeout(v.__t); v.pause(); } }
+    });
   }
   function next() { var sl = slides[i], n = stepsOf(sl), k = sl.__step || 0; if (n && k < n - 1) setStep(k + 1); else show(i + 1); }
   function prev() { var sl = slides[i], n = stepsOf(sl), k = sl.__step || 0; if (n && k > 0) setStep(k - 1); else { var was = i; show(i - 1); var m = stepsOf(slides[i]); if (m && i !== was) setStep(m - 1); } }
