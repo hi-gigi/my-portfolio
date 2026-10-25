@@ -8,6 +8,7 @@ import { Hero } from "./components/Hero";
 import { PlaygroundPage } from "./components/Playground";
 import { Work } from "./components/Work";
 import { content } from "./model/content";
+import { useAnalytics } from "./presenters/useAnalytics";
 import { useHomeHashSync } from "./presenters/useHomeHashSync";
 import { useScrollToHash } from "./presenters/useScrollToHash";
 
@@ -23,6 +24,7 @@ function HomePage() {
 
 /** Footer/Cursor persist across routes; the header and `<main>` swap. */
 function Layout() {
+  useAnalytics();
   useScrollToHash();
   useHomeHashSync();
 
